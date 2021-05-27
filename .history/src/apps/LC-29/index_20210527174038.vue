@@ -57,9 +57,9 @@
                 </tr>
                 <tr>
                   <td class="text-center">
-                    <div class="badge badge-danger">MEMBERHIP_PRICING_TEAM</div>
+                    <div class="badge badge-success">auto entrepreneur</div>
                   </td>
-                  <td class="text-center">200</td>
+                  <td class="text-center">Berlin</td>
                   <td class="text-center">
                     <b-button
                       class="mb-2 mr-2 btn-icon btn-icon-only btn-pill"
@@ -77,9 +77,9 @@
                 </tr>
                 <tr>
                   <td class="text-center">
-                    <div class="badge badge-info">FREETIME</div>
+                    <div class="badge badge-success">auto entrepreneur</div>
                   </td>
-                  <td class="text-center">20</td>
+                  <td class="text-center">London</td>
                   <td class="text-center">
                     <b-button
                       class="mb-2 mr-2 btn-icon btn-icon-only btn-pill"
@@ -95,12 +95,11 @@
                     ></b-button>
                   </td>
                 </tr>
-
                 <tr>
                   <td class="text-center">
-                    <div class="badge badge-success">CREDITPACKS</div>
+                    <div class="badge badge-info">Particulier</div>
                   </td>
-                  <td class="text-center">20</td>
+                  <td class="text-center">Amsterdam</td>
                   <td class="text-center">
                     <b-button
                       class="mb-2 mr-2 btn-icon btn-icon-only btn-pill"

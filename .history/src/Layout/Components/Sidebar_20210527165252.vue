@@ -64,6 +64,7 @@ export default {
             {
               href: "/LC-29",
               title: "Membres",
+              
             },
           ],
         },

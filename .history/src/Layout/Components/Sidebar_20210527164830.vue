@@ -59,7 +59,7 @@ export default {
         },
         {
           title: "Espace Membres",
-          icon: "lnr-user icon-gradient bg-ripe-malin",
+          icon: "pe-7s-users swatch-holder-lg bg-love-kiss",
           child: [
             {
               href: "/LC-29",

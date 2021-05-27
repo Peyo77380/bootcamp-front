@@ -57,7 +57,9 @@
                 </tr>
                 <tr>
                   <td class="text-center">
-                    <div class="badge badge-danger">MEMBERHIP_PRICING_TEAM</div>
+                    <div class="badge badge-success">
+                      MEMBERHIP_PRICING_TEAM
+                    </div>
                   </td>
                   <td class="text-center">200</td>
                   <td class="text-center">

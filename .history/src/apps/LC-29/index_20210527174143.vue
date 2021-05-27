@@ -57,7 +57,9 @@
                 </tr>
                 <tr>
                   <td class="text-center">
-                    <div class="badge badge-danger">MEMBERHIP_PRICING_TEAM</div>
+                    <div class="badge badge-success">
+                      MEMBERHIP_PRICING_TEAM
+                    </div>
                   </td>
                   <td class="text-center">200</td>
                   <td class="text-center">
@@ -77,7 +79,7 @@
                 </tr>
                 <tr>
                   <td class="text-center">
-                    <div class="badge badge-info">FREETIME</div>
+                    <div class="badge badge-success">FREETIME</div>
                   </td>
                   <td class="text-center">20</td>
                   <td class="text-center">
@@ -98,9 +100,9 @@
 
                 <tr>
                   <td class="text-center">
-                    <div class="badge badge-success">CREDITPACKS</div>
+                    <div class="badge badge-info">WELCOMECREDITS</div>
                   </td>
-                  <td class="text-center">20</td>
+                  <td class="text-center">30</td>
                   <td class="text-center">
                     <b-button
                       class="mb-2 mr-2 btn-icon btn-icon-only btn-pill"

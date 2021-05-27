@@ -59,7 +59,11 @@ export default {
         },
         {
           title: "Espace Membres",
-          icon: "lnr-user icon-gradient bg-ripe-malin",
+          icon: (
+            <div class="font-icon-wrapper font-icon-lg">
+              <i class="lnr-user icon-gradient bg-ripe-malin"> </i>
+            </div>
+          ),
           child: [
             {
               href: "/LC-29",

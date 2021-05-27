@@ -59,7 +59,7 @@ export default {
         },
         {
           title: "Espace Membres",
-          icon: "lnr-user icon-gradient bg-ripe-malin",
+          icon: "pe-7s-users icon-gradient bgwarm-flame",
           child: [
             {
               href: "/LC-29",

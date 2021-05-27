@@ -15,9 +15,9 @@
         </v-breadcrumbs>
       </div>
 
-      <div class="col-10 offset-1 mt-5">
+      <div class="col-md-12">
         <div class="main-card mb-3 card">
-          <div class="card-header">Paramètres Membres</div>
+          <div class="card-header">Liste des membres de la CoLloc</div>
 
           <div class="table-responsive">
             <table
@@ -34,12 +34,10 @@
               <tbody>
                 <tr>
                   <td class="text-center">
-                    <div class="badge badge-warning">
-                      MEMBERSHIP_CREDIT_DAYS
-                    </div>
+                    <div class="badge badge-warning">Entreprise</div>
                   </td>
 
-                  <td class="text-center">10</td>
+                  <td class="text-center">Berlin</td>
                   <td class="text-center">
                     <b-button
                       class="mb-2 mr-2 btn-icon btn-icon-only btn-pill"
@@ -51,69 +49,68 @@
                     <b-button
                       class="mb-2 mr-2 btn-icon btn-icon-only btn-pill"
                       variant="outline-warning"
-                      ><i class="pe-7s-look btn-icon-wrapper"> </i
+                      ><i class="pe-7s-trash btn-icon-wrapper"> </i
                     ></b-button>
                   </td>
                 </tr>
                 <tr>
                   <td class="text-center">
-                    <div class="badge badge-danger">MEMBERHIP_PRICING_TEAM</div>
+                    <div class="badge badge-success">auto entrepreneur</div>
                   </td>
-                  <td class="text-center">200</td>
-                  <td class="text-center">
-                    <b-button
-                      class="mb-2 mr-2 btn-icon btn-icon-only btn-pill"
-                      variant="outline-info"
-                      ><i class="pe-7s-pen btn-icon-wrapper"> </i
-                    ></b-button>
+                  <td class="text-center">Berlin</td>
+                  <td class="text-center" style="width: 50px">
+                    <button
+                      class="mr-2 btn-icon btn-icon-only btn btn-outline-danger"
+                    >
+                      <i class="pe-7s-trash btn-icon-wrapper"> </i>
+                    </button>
                   </td>
-                  <td class="text-center">
-                    <b-button
-                      class="mb-2 mr-2 btn-icon btn-icon-only btn-pill"
-                      variant="outline-warning"
-                      ><i class="pe-7s-look btn-icon-wrapper"> </i
-                    ></b-button>
+                  <td class="text-center" style="width: 50px">
+                    <button
+                      class="mr-2 btn-icon btn-icon-only btn btn-outline-danger"
+                    >
+                      <i class="pe-7s-pen btn-icon-wrapper"> </i>
+                    </button>
                   </td>
                 </tr>
                 <tr>
                   <td class="text-center">
-                    <div class="badge badge-info">FREETIME</div>
+                    <div class="badge badge-success">auto entrepreneur</div>
                   </td>
-                  <td class="text-center">20</td>
-                  <td class="text-center">
-                    <b-button
-                      class="mb-2 mr-2 btn-icon btn-icon-only btn-pill"
-                      variant="outline-info"
-                      ><i class="pe-7s-pen btn-icon-wrapper"> </i
-                    ></b-button>
+                  <td class="text-center">London</td>
+                  <td class="text-center" style="width: 150px">
+                    <button
+                      class="mr-2 btn-icon btn-icon-only btn btn-outline-danger"
+                    >
+                      <i class="pe-7s-trash btn-icon-wrapper"> </i>
+                    </button>
                   </td>
-                  <td class="text-center">
-                    <b-button
-                      class="mb-2 mr-2 btn-icon btn-icon-only btn-pill"
-                      variant="outline-warning"
-                      ><i class="pe-7s-look btn-icon-wrapper"> </i
-                    ></b-button>
+                  <td class="text-center" style="width: 150px">
+                    <button
+                      class="mr-2 btn-icon btn-icon-only btn btn-outline-danger"
+                    >
+                      <i class="pe-7s-pen btn-icon-wrapper"> </i>
+                    </button>
                   </td>
                 </tr>
-
                 <tr>
                   <td class="text-center">
-                    <div class="badge badge-success">CREDITPACKS</div>
+                    <div class="badge badge-info">Particulier</div>
                   </td>
-                  <td class="text-center">20</td>
-                  <td class="text-center">
-                    <b-button
-                      class="mb-2 mr-2 btn-icon btn-icon-only btn-pill"
-                      variant="outline-info"
-                      ><i class="pe-7s-pen btn-icon-wrapper"> </i
-                    ></b-button>
+                  <td class="text-center">Amsterdam</td>
+                  <td class="text-center" style="width: 150px">
+                    <button
+                      class="mr-2 btn-icon btn-icon-only btn btn-outline-danger"
+                    >
+                      <i class="pe-7s-trash btn-icon-wrapper"> </i>
+                    </button>
                   </td>
-                  <td class="text-center">
-                    <b-button
-                      class="mb-2 mr-2 btn-icon btn-icon-only btn-pill"
-                      variant="outline-warning"
-                      ><i class="pe-7s-look btn-icon-wrapper"> </i
-                    ></b-button>
+                  <td class="text-center" style="width: 150px">
+                    <button
+                      class="mr-2 btn-icon btn-icon-only btn btn-outline-danger"
+                    >
+                      <i class="pe-7s-pen btn-icon-wrapper"> </i>
+                    </button>
                   </td>
                 </tr>
               </tbody>

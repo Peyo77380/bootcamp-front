@@ -63,6 +63,7 @@ export default {
           child: [
             {
               href: "/LC-29",
+              icon: "pe-7s-users icon-gradient bg-malibu-beach",
               title: "Membres",
             },
           ],
