@@ -14,6 +14,11 @@ export default new Router({
             path: "/",
             name: "analytics",
             component: () => import("@/apps/dash-exemple/Analytics")
-        }
+        },
+        {
+            path: "/LC-27",
+            name: "LC-27",
+            component: () => import("../apps/LC-27/App.vue")
+        },
     ]
 });
