@@ -19,6 +19,7 @@ export default new Router({
             path: "/LC-29",
             name: "Members",
             component: () => import('../apps/LC-29'),
+<<<<<<< HEAD
         },
         {
             path: "/LC-29/components/view",
@@ -26,5 +27,8 @@ export default new Router({
             component: () => import('@/apps/LC-29/components/view'),
         },
         
+=======
+        }
+>>>>>>> first commit
     ]
 });
