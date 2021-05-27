@@ -14,11 +14,11 @@ export default new Router({
             path: "/",
             name: "analytics",
             component: () => import("@/apps/dash-exemple/Analytics")
-        },
+        }
         {
             path: "/LC-29",
-            name: "Members",
-            component: () => import('../apps/LC-29'),
+            name: "analytics",
+            component: () => import("@/apps/dash-exemple/Analytics")
         }
     ]
 });
