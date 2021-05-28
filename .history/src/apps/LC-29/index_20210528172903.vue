@@ -151,11 +151,6 @@ export default {
         id: 11,
         value: "BTP | matériaux de construction",
       },
-      {
-        category: "catégorie",
-        id: 13,
-        value: "coworker",
-      },
     ],
     dialog: false,
   }),

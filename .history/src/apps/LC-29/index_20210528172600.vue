@@ -133,13 +133,8 @@ export default {
       },
       {
         category: "catégorie",
-        id: 12,
-        value: "stagiaire",
-      },
-      {
-        category: "metier",
-        id: 2,
-        value: "traducteur",
+        id: 4,
+        value: "collaborateur",
       },
       {
         category: "annonces",
@@ -149,12 +144,7 @@ export default {
       {
         category: "activité",
         id: 11,
-        value: "BTP | matériaux de construction",
-      },
-      {
-        category: "catégorie",
-        id: 13,
-        value: "coworker",
+        value: "BTP | assurances",
       },
     ],
     dialog: false,
@@ -173,18 +163,22 @@ export default {
           return {
             "badge badge-warning": true,
           };
+          break;
         case "metier":
           return {
             "badge badge-info": true,
           };
+          break;
         case "évènements":
           return {
             "badge badge-success": true,
           };
+          break;
         case "catégorie":
           return {
             "badge badge-alternate": true,
           };
+          break;
         case "annonces":
           return {
             "badge badge-danger": true,

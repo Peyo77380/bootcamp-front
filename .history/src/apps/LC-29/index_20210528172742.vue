@@ -139,7 +139,7 @@ export default {
       {
         category: "metier",
         id: 2,
-        value: "traducteur",
+        value: "stagiaire",
       },
       {
         category: "annonces",
@@ -150,11 +150,6 @@ export default {
         category: "activité",
         id: 11,
         value: "BTP | matériaux de construction",
-      },
-      {
-        category: "catégorie",
-        id: 13,
-        value: "coworker",
       },
     ],
     dialog: false,
@@ -173,18 +168,22 @@ export default {
           return {
             "badge badge-warning": true,
           };
+          break;
         case "metier":
           return {
             "badge badge-info": true,
           };
+          break;
         case "évènements":
           return {
             "badge badge-success": true,
           };
+
         case "catégorie":
           return {
             "badge badge-alternate": true,
           };
+     
         case "annonces":
           return {
             "badge badge-danger": true,

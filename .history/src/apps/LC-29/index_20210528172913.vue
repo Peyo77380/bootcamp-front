@@ -154,7 +154,7 @@ export default {
       {
         category: "catégorie",
         id: 13,
-        value: "coworker",
+        value: "stagiaire",
       },
     ],
     dialog: false,

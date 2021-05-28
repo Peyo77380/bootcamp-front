@@ -153,8 +153,8 @@ export default {
       },
       {
         category: "catégorie",
-        id: 13,
-        value: "coworker",
+        id: 12,
+        value: "stagiaire",
       },
     ],
     dialog: false,

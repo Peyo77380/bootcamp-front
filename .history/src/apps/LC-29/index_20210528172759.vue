@@ -139,7 +139,7 @@ export default {
       {
         category: "metier",
         id: 2,
-        value: "traducteur",
+        value: "stagiaire",
       },
       {
         category: "annonces",
@@ -150,11 +150,6 @@ export default {
         category: "activité",
         id: 11,
         value: "BTP | matériaux de construction",
-      },
-      {
-        category: "catégorie",
-        id: 13,
-        value: "coworker",
       },
     ],
     dialog: false,
