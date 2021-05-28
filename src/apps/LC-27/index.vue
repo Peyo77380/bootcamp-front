@@ -1,6 +1,8 @@
 <template>
   <div>
     
+    <Filters />
+
     <Table />
         
   </div>
@@ -9,10 +11,12 @@
 <script>
 
   import Table from "../LC-27/components/Table/Table"
+  import Filters from "../LC-27/components/Filters/Filters"
 
   export default {
     components: {
         Table,
+        Filters,
     },
     data: () => ({
       heading: 'Recherche',
