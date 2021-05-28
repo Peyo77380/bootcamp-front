@@ -14,6 +14,11 @@ export default new Router({
             path: "/",
             name: "analytics",
             component: () => import("@/apps/dash-exemple/Analytics")
+        },
+        {
+            path: "/LC-31-RMC",
+            name: "LC-31-RMC",
+            component: () => import("@/apps/LC-31-RMC/index.vue")
         }
     ]
 });
