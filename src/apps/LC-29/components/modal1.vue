@@ -186,9 +186,9 @@ export default {
     close() {
       this.$emit("close");
     },
-    // edit() {
-    //   this.$emit("save");
-    // },
+    edit() {
+      this.$emit("save");
+    },
   },
 };
 </script>

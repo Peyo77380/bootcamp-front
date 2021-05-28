@@ -1,6 +1,5 @@
 <template>
   <div>
-<<<<<<< HEAD
     <page-title
       :heading="heading"
       :subheading="subheading"
@@ -22,22 +21,6 @@
       <div class="col-10 offset-1 mt-5">
         <div class="main-card mb-3 card">
           <div class="card-header">Paramètres Membres</div>
-=======
-    <dov class="row mb-3"
-      ><h2 class="col-8 offset-1">Membres</h2>
-      <b-button
-        variant="btn btn-warning btn-lg col-2"
-        :to="{ name: 'AddMembers' }"
-      >
-        ajouter un membre
-      </b-button></dov
-    >
-
-    <div>
-      <div class="col-md-12">
-        <div class="main-card mb-3 card">
-          <div class="card-header">Liste des membres de la CoLloc</div>
->>>>>>> first commit
 
           <div class="table-responsive">
             <table
@@ -45,7 +28,6 @@
             >
               <thead>
                 <tr>
-<<<<<<< HEAD
                   <th class="text-center">Listes</th>
                   <th class="text-center">Clés</th>
                   <th class="text-center">Nombre</th>
@@ -81,99 +63,6 @@
                       @click="edit(item.id)"
                       ><i class="pe-7s-pen btn-icon-wrapper"> </i
                     ></b-button>
-=======
-                  <th class="text-center">Clé</th>
-                  <th class="text-center">valeur</th>
-
-                  <th class="text-center">
-                    <i class="pe-7s-trash btn-icon-wrapper"> </i>
-                  </th>
-                  <th class="text-center">
-                    <i class="pe-7s-pen btn-icon-wrapper"> </i>
-                  </th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr>
-                  <td class="text-center">
-                    <div class="badge badge-warning">Entreprise</div>
-                  </td>
-
-                  <td class="text-center">Berlin</td>
-                  <td class="text-center" style="width: 150px">
-                    <button
-                      class="mr-2 btn-icon btn-icon-only btn btn-outline-danger"
-                    >
-                      <i class="pe-7s-trash btn-icon-wrapper"> </i>
-                    </button>
-                  </td>
-                  <td class="text-center" style="width: 150px">
-                    <button
-                      class="mr-2 btn-icon btn-icon-only btn btn-outline-danger"
-                    >
-                      <i class="pe-7s-pen btn-icon-wrapper"> </i>
-                    </button>
-                  </td>
-                </tr>
-                <tr>
-                  <td class="text-center">
-                    <div class="badge badge-success">auto entrepreneur</div>
-                  </td>
-                  <td class="text-center">Berlin</td>
-                  <td class="text-center" style="width: 50px">
-                    <button
-                      class="mr-2 btn-icon btn-icon-only btn btn-outline-danger"
-                    >
-                      <i class="pe-7s-trash btn-icon-wrapper"> </i>
-                    </button>
-                  </td>
-                  <td class="text-center" style="width: 50px">
-                    <button
-                      class="mr-2 btn-icon btn-icon-only btn btn-outline-danger"
-                    >
-                      <i class="pe-7s-pen btn-icon-wrapper"> </i>
-                    </button>
-                  </td>
-                </tr>
-                <tr>
-                  <td class="text-center">
-                    <div class="badge badge-success">auto entrepreneur</div>
-                  </td>
-                  <td class="text-center">London</td>
-                  <td class="text-center" style="width: 150px">
-                    <button
-                      class="mr-2 btn-icon btn-icon-only btn btn-outline-danger"
-                    >
-                      <i class="pe-7s-trash btn-icon-wrapper"> </i>
-                    </button>
-                  </td>
-                  <td class="text-center" style="width: 150px">
-                    <button
-                      class="mr-2 btn-icon btn-icon-only btn btn-outline-danger"
-                    >
-                      <i class="pe-7s-pen btn-icon-wrapper"> </i>
-                    </button>
-                  </td>
-                </tr>
-                <tr>
-                  <td class="text-center">
-                    <div class="badge badge-info">Particulier</div>
-                  </td>
-                  <td class="text-center">Amsterdam</td>
-                  <td class="text-center" style="width: 150px">
-                    <button
-                      class="mr-2 btn-icon btn-icon-only btn btn-outline-danger"
-                    >
-                      <i class="pe-7s-trash btn-icon-wrapper"> </i>
-                    </button>
-                  </td>
-                  <td class="text-center" style="width: 150px">
-                    <button
-                      class="mr-2 btn-icon btn-icon-only btn btn-outline-danger"
-                    >
-                      <i class="pe-7s-pen btn-icon-wrapper"> </i>
-                    </button>
->>>>>>> first commit
                   </td>
                 </tr>
               </tbody>
@@ -186,7 +75,6 @@
 </template>
 
 <script>
-<<<<<<< HEAD
 import PageTitle from "../../Layout/Components/PageTitle";
 import Modal1 from "../LC-29/components/modal1";
 
@@ -243,7 +131,7 @@ export default {
       {
         name: "catégories",
         id: 5,
-        quantity: 56,
+        quantity: 34,
       },
     ],
     dialog: false,
@@ -353,39 +241,6 @@ export default {
           };
       }
     },
-=======
-export default {
-  data() {
-    return {
-      items: [
-        {
-          id: "1",
-          name: "John Doe",
-          ville: "Madrid",
-          activity: "24/04/1996",
-          status: "entreprise",
-        },
-        {
-          id: "2",
-          name: "Ruben Tillman",
-          ville: "Berlin",
-          status: "auto-entrepreneur",
-        },
-        {
-          id: "3",
-          name: "Elliot Huber",
-          ville: "London",
-          status: "auto-entrepreneur",
-        },
-        {
-          id: "4",
-          name: "Virginie Wagstaff",
-          ville: "Amsterdam",
-          status: "particulier",
-        },
-      ],
-    };
->>>>>>> first commit
   },
 };
 </script>
