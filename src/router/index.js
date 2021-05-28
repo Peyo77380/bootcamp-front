@@ -14,6 +14,11 @@ export default new Router({
             path: "/",
             name: "analytics",
             component: () => import("@/apps/dash-exemple/Analytics")
-        }
+        },
+        {
+            name: 'params-key',
+            path: '/LC-28',
+            component: () => import('../apps/LC-28/ParamsKeyValue'),
+        },
     ]
 });

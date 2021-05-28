@@ -49,7 +49,7 @@
                         
                         <td class="text-center">
                             <div role="group" class="btn-group-sm btn-group">
-                                <b-button class="mb-2 mr-2 btn-icon btn-icon-only btn-pill" variant="outline-warning"><i class="pe-7s-look btn-icon-wrapper"> </i></b-button>
+                                <b-button class="mb-2 mr-2 btn-icon btn-icon-only btn-pill" variant="outline-warning"><i class="pe-7s-search btn-icon-wrapper"> </i></b-button>
                            
                             </div>
                             <div role="group" class="btn-group-sm btn-group" >
@@ -71,7 +71,7 @@
                         
                         <td class="text-center">
                             <div role="group" class="btn-group-sm btn-group">
-                                <b-button class="mb-2 mr-2 btn-icon btn-icon-only btn-pill" variant="outline-warning"><i class="pe-7s-look btn-icon-wrapper"> </i></b-button>
+                                <b-button class="mb-2 mr-2 btn-icon btn-icon-only btn-pill" variant="outline-warning"><i class="pe-7s-search btn-icon-wrapper"> </i></b-button>
                            
                             </div>
                             <div role="group" class="btn-group-sm btn-group" >
@@ -92,7 +92,7 @@
                         
                         <td class="text-center">
                             <div role="group" class="btn-group-sm btn-group">
-                                <b-button class="mb-2 mr-2 btn-icon btn-icon-only btn-pill" variant="outline-warning"><i class="pe-7s-look btn-icon-wrapper"> </i></b-button>
+                                <b-button class="mb-2 mr-2 btn-icon btn-icon-only btn-pill" variant="outline-warning"><i class="pe-7s-search btn-icon-wrapper"> </i></b-button>
                            
                             </div>
                             <div role="group" class="btn-group-sm btn-group" >
@@ -113,7 +113,7 @@
                         
                         <td class="text-center">
                             <div role="group" class="btn-group-sm btn-group">
-                                <b-button class="mb-2 mr-2 btn-icon btn-icon-only btn-pill" variant="outline-warning"><i class="pe-7s-look btn-icon-wrapper"> </i></b-button>
+                                <b-button class="mb-2 mr-2 btn-icon btn-icon-only btn-pill" variant="outline-warning"><i class="pe-7s-search btn-icon-wrapper"> </i></b-button>
                            
                             </div>
                             <div role="group" class="btn-group-sm btn-group" >
