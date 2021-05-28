@@ -41,7 +41,7 @@
                     <tbody>
                     <tr>
                         
-                        <td class="text-center"> Édition de contenu</td>
+                        <div style="margin-left:20px;" class="mb-2 mr-2 badge badge-pill badge-info"><td class="text-center "> Édition de contenu</td></div>
                         <td class="text-center">COWORKING_BOOK_INFO</td>
                         
                         <td class="text-center">La colloc met à disposition de ses membres qui sont dans l'incapacité de faire du ... </td>
@@ -63,7 +63,7 @@
                     </tr>
                     <tr>
                       
-                        <td class="text-center"> Modes de règlement </td>
+                        <div style="margin-left:17px;" class="mb-2 mr-2 badge badge-pill badge-warning"><td class="text-center "> Modes de règlement </td></div>
                         <td class="text-center">PENDING</td>
                   
                         <td class="text-center">01009017</td>
@@ -85,20 +85,20 @@
                     </tr>
                     <tr>
                         
-                        <td class="text-center"> Salles de réunion</td>
+                        <div style="margin-left:20px;" class="mb-2 mr-2 badge badge-pill badge-alternate"><td class="text-center "> Salles de réunion</td></div>
                         <td class="text-center">REFUND_DEPOSIT_PERCENT</td>
                         <td class="text-center">30</td>
                        
                         
                         <td class="text-center">
                             <div role="group" class="btn-group-sm btn-group">
+                                
                                 <b-button class="mb-2 mr-2 btn-icon btn-icon-only btn-pill" variant="outline-warning"><i class="pe-7s-search btn-icon-wrapper"> </i></b-button>
                            
                             </div>
                             <div role="group" class="btn-group-sm btn-group" >
-                                <b-button class="mb-2 mr-2 btn-icon btn-icon-only btn-pill" variant="outline-primary"><i class="pe-7s-tools btn-icon-wrapper"> </i></b-button>
-                                 
-                                 
+                                <modal></modal>
+
                                 
                             </div>
                             
@@ -106,13 +106,13 @@
                     </tr>
                     <tr>
                       
-                        <td class="text-center"> Réglages</td>
+                        <div style ="margin-left: 40px;" class="mb-2 mr-2 badge badge-pill badge-secondary"><td class="text-center "> Réglages</td></div>
                         <td class="text-center">COWORKING_NUMBER</td>
                         <td class="text-center">10 </td>
                        
                         
                         <td class="text-center">
-                            <div role="group" class="btn-group-sm btn-group">
+                            <div role="group" class="btn-group-sm btn-group" >
                                 <b-button class="mb-2 mr-2 btn-icon btn-icon-only btn-pill" variant="outline-warning"><i class="pe-7s-search btn-icon-wrapper"> </i></b-button>
                            
                             </div>
@@ -129,11 +129,13 @@
 </template>
 
 <script>
-import fullscreen from "./fullscreen.vue"
+import modal from "./form.vue"
+import popout from "./popout"
 
     export default{
         components:{
-            fullscreen,
+            modal,
+            popout,
         },
         data: () => ({
                 items: [
