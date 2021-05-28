@@ -68,6 +68,32 @@
 
                 <tr>
                   <td class="text-center">
+                    <div class="badge badge-alternate">Catégorie</div>
+                  </td>
+                  <td class="text-center">#8</td>
+                  <td class="text-center">
+                    <div class="text-center">Collaborateur</div>
+                  </td>
+
+                  <td class="text-center">
+                    <b-button
+                      :to="{ name: 'listEdit' }"
+                      class="mb-2 btn-icon btn-icon-only btn-pill"
+                      variant="outline-info"
+                      ><i class="pe-7s-pen btn-icon-wrapper"> </i
+                    ></b-button>
+                  </td>
+
+                  <td class="text-center">
+                    <b-button
+                      class="mb-2 btn-icon btn-icon-only btn-pill"
+                      variant="outline-danger"
+                      ><i class="pe-7s-trash btn-icon-wrapper"> </i
+                    ></b-button>
+                  </td>
+                </tr>
+                <tr>
+                  <td class="text-center">
                     <div class="badge badge-success">Annonces</div>
                   </td>
                   <td class="text-center">#6</td>
@@ -183,16 +209,6 @@ export default {
         case "évènements":
           return {
             "badge badge-success": true,
-          };
-          break;
-        case "catégorie":
-          return {
-            "badge badge-alternate": true,
-          };
-          break;
-        case "annonces":
-          return {
-            "badge badge-danger": true,
           };
       }
     },

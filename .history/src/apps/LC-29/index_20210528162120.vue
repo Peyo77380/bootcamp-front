@@ -38,59 +38,32 @@
                 </tr>
               </thead>
               <tbody>
-                <tr v-for="list in lists" :key="list.id">
-                  <td class="text-center">
-                    <div :class="getStatus(list.category)">
-                      {{ list.category }}
-                    </div>
-                  </td>
-
-                  <td class="text-center">{{ list.id }}</td>
-                  <td class="text-center">
-                    <div class="text-center">{{ list.value }}</div>
-                  </td>
-                  <td class="text-center">
-                    <b-button
-                      :to="{ name: 'listEdit' }"
-                      class="mb-2 btn-icon btn-icon-only btn-pill"
-                      variant="outline-info"
-                      ><i class="pe-7s-pen btn-icon-wrapper"> </i
-                    ></b-button>
-                  </td>
-                  <td class="text-center">
-                    <b-button
-                      class="mb-2 btn-icon btn-icon-only btn-pill"
-                      variant="outline-danger"
-                      ><i class="pe-7s-trash btn-icon-wrapper"> </i
-                    ></b-button>
-                  </td>
-                </tr>
-
                 <tr>
                   <td class="text-center">
-                    <div class="badge badge-success">Annonces</div>
-                  </td>
-                  <td class="text-center">#6</td>
-                  <td class="text-center">
-                    <div class="text-center">Je recherche</div>
+                    <div class="badge badge-warning">Activités</div>
                   </td>
 
+                  <td class="text-center">#10</td>
+                  <td class="text-center">
+                    <div class="text-center">Agroalimentaire</div>
+                  </td>
                   <td class="text-center">
                     <b-button
                       :to="{ name: 'listEdit' }"
-                      class="mb-2 mr-2 btn-icon btn-icon-only btn-pill"
+                      class="mb-2 btn-icon btn-icon-only btn-pill"
                       variant="outline-info"
                       ><i class="pe-7s-pen btn-icon-wrapper"> </i
                     ></b-button>
                   </td>
                   <td class="text-center">
                     <b-button
-                      class="mb-2 mr-2 btn-icon btn-icon-only btn-pill"
+                      class="mb-2 btn-icon btn-icon-only btn-pill"
                       variant="outline-danger"
                       ><i class="pe-7s-trash btn-icon-wrapper"> </i
                     ></b-button>
                   </td>
                 </tr>
+
               </tbody>
             </table>
           </div>
@@ -131,31 +104,16 @@ export default {
         href: "breadcrumbs_link_2",
       },
     ],
-    lists: [
+    list: [
       {
-        category: "activité",
+        categorie: "activité",
         id: 1,
-        value: "agroalimentaire",
+        valeur: "agroalimentaire",
       },
       {
-        category: "metier",
+        categorie: "mmetier",
         id: 2,
-        value: "développeur web",
-      },
-      {
-        category: "évènements",
-        id: 3,
-        value: "innovations managériales",
-      },
-      {
-        category: "catégorie",
-        id: 4,
-        value: "collaborateur",
-      },
-      {
-        category: "annonces",
-        id: 5,
-        value: "je cherche",
+        valeur: "développeur web",
       },
     ],
     dialog: false,
@@ -167,34 +125,6 @@ export default {
     },
     closemodal() {
       this.dialog = false;
-    },
-    getStatus(category) {
-      switch (category) {
-        case "activité":
-          return {
-            "badge badge-warning": true,
-          };
-          break;
-        case "metier":
-          return {
-            "badge badge-info": true,
-          };
-          break;
-        case "évènements":
-          return {
-            "badge badge-success": true,
-          };
-          break;
-        case "catégorie":
-          return {
-            "badge badge-alternate": true,
-          };
-          break;
-        case "annonces":
-          return {
-            "badge badge-danger": true,
-          };
-      }
     },
   },
 };

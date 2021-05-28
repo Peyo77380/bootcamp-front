@@ -192,7 +192,7 @@ export default {
           break;
         case "annonces":
           return {
-            "badge badge-danger": true,
+            "badge badge-": true,
           };
       }
     },

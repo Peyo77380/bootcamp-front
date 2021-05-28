@@ -66,6 +66,7 @@
                   </td>
                 </tr>
 
+               
                 <tr>
                   <td class="text-center">
                     <div class="badge badge-success">Annonces</div>
@@ -188,11 +189,6 @@ export default {
         case "catégorie":
           return {
             "badge badge-alternate": true,
-          };
-          break;
-        case "annonces":
-          return {
-            "badge badge-danger": true,
           };
       }
     },
