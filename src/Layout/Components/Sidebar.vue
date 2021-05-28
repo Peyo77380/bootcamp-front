@@ -56,6 +56,16 @@ export default {
                             title: "Demo page"
                         }
                     ]
+                }, 
+                {
+                    title: "Paramètres",
+                    icon:"pe-7s-tools",
+                    child: [
+                        {
+                            href: "/email-service",
+                            title: "Email de services"
+                        }
+                    ]
                 }
             ],
             collapsed: true,

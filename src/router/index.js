@@ -14,6 +14,11 @@ export default new Router({
             path: "/",
             name: "analytics",
             component: () => import("@/apps/dash-exemple/Analytics")
+        },
+        {
+            path: "/email-service",
+            name: "email-service",
+            component: () => import("@/apps/ms-customField/LC-30")
         }
     ]
 });
