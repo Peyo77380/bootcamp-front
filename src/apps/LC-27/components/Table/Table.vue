@@ -12,6 +12,7 @@
                             <th class="text-center">Nom</th>
                             <th class="text-center">Société</th>
                             <th class="text-center">Status</th>
+                            <th class="text-center">Crédits</th>
                             <th class="text-center">Temps</th>
                             <th class="text-center">Actions</th>
                         </tr>
@@ -46,6 +47,14 @@
                                 </div>
                             </td>
                             <td class="text-center">
+                                <div class="font-size-xlg">
+                                    <span>429</span>
+                                    <small class="text-warning pl-2">
+                                        <font-awesome-icon icon="dot-circle"/>
+                                    </small>
+                                </div>
+                            </td>
+                            <td class="text-center">
                                 <span class="pr-2 opacity-6">
                                     <font-awesome-icon icon="business-time" />
                                 </span>
@@ -57,10 +66,10 @@
                                     role="group"
                                     class="btn-group-xl"
                                 >
-                                    <button class="btn-shadow btn btn-primary">
+                                    <v-btn fab small color="primary" dark>
                                         <i class="lnr-pencil btn-icon-wrapper"></i>
-                                    </button>
-                                    <button class="mr-2 mb-2btn-icon btn-shadow btn-icon-only btn btn-danger"><i class="pe-7s-trash btn-icon-wrapper"> </i></button>
+                                    </v-btn>
+                                    <v-btn fab small color="error" dark><i class="pe-7s-trash btn-icon-wrapper"> </i></v-btn>
 
                                 </div>
                             </td>
@@ -92,6 +101,14 @@
                                 </div>
                             </td>
                             <td class="text-center">
+                                <div class="font-size-xlg">
+                                    <span>200</span>
+                                    <small class="text-warning pl-2">
+                                        <font-awesome-icon icon="dot-circle"/>
+                                    </small>
+                                </div>
+                            </td>
+                            <td class="text-center">
                                 <span class="pr-2 opacity-6">
                                     <font-awesome-icon icon="business-time" />
                                 </span>
@@ -103,10 +120,10 @@
                                     role="group"
                                     class="btn-group-xl"
                                 >
-                                    <button class="btn-shadow btn btn-primary">
+                                    <v-btn fab small color="primary" dark>
                                         <i class="lnr-pencil btn-icon-wrapper"></i>
-                                    </button>
-                                    <button class="mr-2 mb-2btn-icon btn-shadow btn-icon-only btn btn-danger"><i class="pe-7s-trash btn-icon-wrapper"> </i></button>
+                                    </v-btn>
+                                    <v-btn fab small color="error" dark><i class="pe-7s-trash btn-icon-wrapper"> </i></v-btn>
 
                                 </div>
                             </td>
@@ -140,6 +157,14 @@
                                 </div>
                             </td>
                             <td class="text-center">
+                                <div class="font-size-xlg">
+                                    <span>120</span>
+                                    <small class="text-warning pl-2">
+                                        <font-awesome-icon icon="dot-circle"/>
+                                    </small>
+                                </div>
+                            </td>
+                            <td class="text-center">
                                 <span class="pr-2 opacity-6">
                                     <font-awesome-icon icon="business-time" />
                                 </span>
@@ -151,10 +176,10 @@
                                     role="group"
                                     class="btn-group-xl"
                                 >
-                                    <button class="btn-shadow btn btn-primary">
+                                    <v-btn fab small color="primary" dark>
                                         <i class="lnr-pencil btn-icon-wrapper"></i>
-                                    </button>
-                                    <button class="mr-2 mb-2btn-icon btn-shadow btn-icon-only btn btn-danger"><i class="pe-7s-trash btn-icon-wrapper"> </i></button>
+                                    </v-btn>
+                                    <v-btn fab small color="error" dark><i class="pe-7s-trash btn-icon-wrapper"> </i></v-btn>
 
                                 </div>
                             </td>
@@ -186,6 +211,14 @@
                                 </div>
                             </td>
                             <td class="text-center">
+                                <div class="font-size-xlg">
+                                    <span>5</span>
+                                    <small class="text-warning pl-2">
+                                        <font-awesome-icon icon="dot-circle"/>
+                                    </small>
+                                </div>
+                            </td>
+                            <td class="text-center">
                                 <span class="pr2 opacity-6">
                                     <font-awesome-icon icon="business-time" />
                                 </span>
@@ -197,10 +230,10 @@
                                     role="group"
                                     class="btn-group-xl"
                                 >
-                                    <button class="btn-shadow btn btn-primary">
+                                    <v-btn fab small color="primary" dark>
                                         <i class="lnr-pencil btn-icon-wrapper"></i>
-                                    </button>
-                                    <button class="mr-2 mb-2btn-icon btn-shadow btn-icon-only btn btn-danger"><i class="pe-7s-trash btn-icon-wrapper"> </i></button>
+                                    </v-btn>
+                                    <v-btn fab small color="error" dark><i class="pe-7s-trash btn-icon-wrapper"> </i></v-btn>
 
                                 </div>
                             </td>
@@ -224,6 +257,7 @@ import {
     faAngleRight,
     faHome,
     faQuestionCircle,
+    faDotCircle,
     faBusinessTime
 } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/vue-fontawesome";
@@ -235,6 +269,7 @@ library.add(
     faAngleRight,
     faHome,
     faQuestionCircle,
+    faDotCircle,
     faBusinessTime
 );
 export default {
