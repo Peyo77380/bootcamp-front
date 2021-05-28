@@ -241,8 +241,8 @@
                         
                     </tbody>
                 </table>
-                <div class="d-block text-center card-footer">
-                    <b-pagination :total-rows="totalRows" :per-page="perPage" v-model="currentPage" align-h="center" class="" />
+                <div class="d-block p-4 text-center card-footer">
+                    <b-pagination align="center" :total-rows="totalRows" :per-page="perPage" v-model="currentPage" class="mb-0" />
                 </div>
             </div>
         </div>
