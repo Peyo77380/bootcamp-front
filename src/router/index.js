@@ -18,7 +18,7 @@ export default new Router({
         {
             path: "/LC-27",
             name: "LC-27",
-            component: () => import("../apps/LC-27/App.vue")
+            component: () => import("../apps/LC-27/index.vue")
         },
     ]
 });
