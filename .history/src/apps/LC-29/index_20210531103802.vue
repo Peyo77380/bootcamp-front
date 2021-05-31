@@ -34,9 +34,7 @@
                   <th class="text-center">ID</th>
                   <th class="text-center">Valeur</th>
                   <th class="text-center">Modifier</th>
-                  <th class="text-center">Modifier</th>
                   <th class="text-center">Supprimer</th>
-                  <th class="text-center">voir plus</th>
                 </tr>
               </thead>
               <tbody>
@@ -53,10 +51,11 @@
                   </td>
                   <td class="text-center">
                     <b-button
+                      icon="pe-7s-pen btn-icon-wrapper"
                       class="mb-2 btn-icon btn-icon-only btn-pill"
                       variant="outline-info"
-                      @click="edit(list.id)"
-                      ><i class="pe-7s-pen btn-icon-wrapper"> </i
+                      @click="edit(list.item.id)"
+                     
                     ></b-button>
                   </td>
                   <td class="text-center">
@@ -73,18 +72,6 @@
                       variant="outline-danger"
                       ><i class="pe-7s-trash btn-icon-wrapper"> </i
                     ></b-button>
-                  </td>
-                  <td class="text-center">
-                    <button
-                      class="ui inverted button"
-                      v-on:click="toggleVoirPlus()"
-                    >
-                      +
-                    </button>
-                    <div class="voir" v-if="toggleVoir" transition="expand">
-                      <p class="text-center">modifié le :{{ list.modify }}</p>
-                      <p class="text-center">cree le{{ list.createdAt }}</p>
-                    </div>
                   </td>
                 </tr>
               </tbody>
@@ -107,7 +94,6 @@ export default {
   },
 
   data: () => ({
-    toggleVoir: false,
     heading: "LaColloc - Paramètres",
     subheading: "Paramètrage de LaColloc",
     icon: "pe-7s-news-paper icon-gradient bg-night-fade",
@@ -133,50 +119,36 @@ export default {
         category: "activité",
         id: 1,
         value: "agroalimentaire",
-        modify: "24/05/2021",
-        createdAt: "19/05/2019",
       },
       {
         category: "metier",
         id: 2,
         value: "développeur web",
-        modify: "24/05/2021",
-        createdAt: "19/05/2019",
       },
       {
         category: "évènements",
         id: 3,
         value: "innovations managériales",
-        modify: "24/05/2021",
-        createdAt: "19/05/2019",
       },
       {
         category: "annonces",
         id: 8,
         value: "je vends",
-        modify: "24/05/2021",
-        createdAt: "19/05/2019",
       },
       {
         category: "activité",
         id: 10,
         value: "banque | assurances",
-        modify: "24/05/2021",
-        createdAt: "19/05/2019",
       },
       {
         category: "catégorie",
         id: 12,
         value: "stagiaire",
-        modify: "24/05/2021",
-        createdAt: "19/05/2019",
       },
       {
         category: "metier",
         id: 2,
         value: "traducteur",
-        modify: "24/05/2021",
-        createdAt: "19/05/2019",
       },
       {
         category: "annonces",
@@ -203,12 +175,6 @@ export default {
     },
     closemodal() {
       this.dialog = false;
-    },
-    edit() {
-      this.dialog = true;
-    },
-    toggleVoirPlus: function () {
-      this.toggleVoir = !this.toggleVoir;
     },
     getStatus(category) {
       switch (category) {

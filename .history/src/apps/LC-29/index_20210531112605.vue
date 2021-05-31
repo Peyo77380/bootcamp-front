@@ -19,7 +19,8 @@
           Ajouter
         </b-button>
       </div>
-
+ <BeeGridTable border :columns="columns" :data="data">
+      <template slot-scope="{ row, index }" slot="expand">
       <div class="col-10 offset-1 mt-5">
         <div class="main-card mb-3 card">
           <div class="card-header">Paramètres Membres</div>
@@ -30,7 +31,8 @@
             >
               <thead>
                 <tr>
-                  <th class="text-center">Catégories</th>
+                  
+                  <th class="text-center">Catégories  </th>
                   <th class="text-center">ID</th>
                   <th class="text-center">Valeur</th>
                   <th class="text-center">Modifier</th>
@@ -75,16 +77,10 @@
                     ></b-button>
                   </td>
                   <td class="text-center">
-                    <button
-                      class="ui inverted button"
-                      v-on:click="toggleVoirPlus()"
-                    >
-                      +
-                    </button>
-                    <div class="voir" v-if="toggleVoir" transition="expand">
-                      <p class="text-center">modifié le :{{ list.modify }}</p>
-                      <p class="text-center">cree le{{ list.createdAt }}</p>
-                    </div>
+                    <b-button
+                     >
+                    
+                    ></b-button>
                   </td>
                 </tr>
               </tbody>
@@ -94,6 +90,7 @@
       </div>
     </div>
   </div>
+  
 </template>
 
 <script>
@@ -107,7 +104,6 @@ export default {
   },
 
   data: () => ({
-    toggleVoir: false,
     heading: "LaColloc - Paramètres",
     subheading: "Paramètrage de LaColloc",
     icon: "pe-7s-news-paper icon-gradient bg-night-fade",
@@ -133,50 +129,38 @@ export default {
         category: "activité",
         id: 1,
         value: "agroalimentaire",
-        modify: "24/05/2021",
-        createdAt: "19/05/2019",
+        modifify:"24/05/2021",
+        createdAt:""
       },
       {
         category: "metier",
         id: 2,
         value: "développeur web",
-        modify: "24/05/2021",
-        createdAt: "19/05/2019",
       },
       {
         category: "évènements",
         id: 3,
         value: "innovations managériales",
-        modify: "24/05/2021",
-        createdAt: "19/05/2019",
       },
       {
         category: "annonces",
         id: 8,
         value: "je vends",
-        modify: "24/05/2021",
-        createdAt: "19/05/2019",
       },
       {
         category: "activité",
         id: 10,
         value: "banque | assurances",
-        modify: "24/05/2021",
-        createdAt: "19/05/2019",
       },
       {
         category: "catégorie",
         id: 12,
         value: "stagiaire",
-        modify: "24/05/2021",
-        createdAt: "19/05/2019",
       },
       {
         category: "metier",
         id: 2,
         value: "traducteur",
-        modify: "24/05/2021",
-        createdAt: "19/05/2019",
       },
       {
         category: "annonces",
@@ -206,9 +190,6 @@ export default {
     },
     edit() {
       this.dialog = true;
-    },
-    toggleVoirPlus: function () {
-      this.toggleVoir = !this.toggleVoir;
     },
     getStatus(category) {
       switch (category) {

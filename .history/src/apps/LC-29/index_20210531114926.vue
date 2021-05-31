@@ -79,7 +79,7 @@
                       class="ui inverted button"
                       v-on:click="toggleVoirPlus()"
                     >
-                      +
+                      >
                     </button>
                     <div class="voir" v-if="toggleVoir" transition="expand">
                       <p class="text-center">modifié le :{{ list.modify }}</p>
@@ -133,50 +133,38 @@ export default {
         category: "activité",
         id: 1,
         value: "agroalimentaire",
-        modify: "24/05/2021",
+        modifify: "24/05/2021",
         createdAt: "19/05/2019",
       },
       {
         category: "metier",
         id: 2,
         value: "développeur web",
-        modify: "24/05/2021",
-        createdAt: "19/05/2019",
       },
       {
         category: "évènements",
         id: 3,
         value: "innovations managériales",
-        modify: "24/05/2021",
-        createdAt: "19/05/2019",
       },
       {
         category: "annonces",
         id: 8,
         value: "je vends",
-        modify: "24/05/2021",
-        createdAt: "19/05/2019",
       },
       {
         category: "activité",
         id: 10,
         value: "banque | assurances",
-        modify: "24/05/2021",
-        createdAt: "19/05/2019",
       },
       {
         category: "catégorie",
         id: 12,
         value: "stagiaire",
-        modify: "24/05/2021",
-        createdAt: "19/05/2019",
       },
       {
         category: "metier",
         id: 2,
         value: "traducteur",
-        modify: "24/05/2021",
-        createdAt: "19/05/2019",
       },
       {
         category: "annonces",

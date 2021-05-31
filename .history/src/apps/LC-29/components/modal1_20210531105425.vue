@@ -47,9 +47,6 @@ export default {
     close() {
       this.$emit("close");
     },
-    edit() {
-      this.$emit("save");
-    },
   },
 };
 </script>

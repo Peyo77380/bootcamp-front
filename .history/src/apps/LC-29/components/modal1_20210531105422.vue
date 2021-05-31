@@ -14,7 +14,7 @@
               <v-flex xs12 sm8 md6>
                 <v-text-field label="Categorie" required></v-text-field>
               </v-flex>
-              <v-flex xs12 sm8 md6>
+              <v-flex xs12 sm8 md4>
                 <v-text-field
                   label="Valeur"
                   hint="example of helper text only on focus"
@@ -46,9 +46,6 @@ export default {
   methods: {
     close() {
       this.$emit("close");
-    },
-    edit() {
-      this.$emit("save");
     },
   },
 };

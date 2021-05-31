@@ -81,7 +81,7 @@
                     >
                       +
                     </button>
-                    <div class="voir" v-if="toggleVoir" transition="expand">
+                    <div class="voir row" v-if="toggleVoir" transition="expand">
                       <p class="text-center">modifié le :{{ list.modify }}</p>
                       <p class="text-center">cree le{{ list.createdAt }}</p>
                     </div>

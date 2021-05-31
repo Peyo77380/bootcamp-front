@@ -133,7 +133,7 @@ export default {
         category: "activité",
         id: 1,
         value: "agroalimentaire",
-        modify: "24/05/2021",
+        modifify: "24/05/2021",
         createdAt: "19/05/2019",
       },
       {
