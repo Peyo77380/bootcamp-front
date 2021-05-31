@@ -37,7 +37,7 @@
                   <th class="text-center">Modifier</th>
                   <th class="text-center">Supprimer</th>
                   <!-- <th class="text-center">voir plus</th> -->
-                  <th class="text-center">Voir plus</th>
+                  <th class="text-center">essai</th>
                 </tr>
               </thead>
               <tbody>

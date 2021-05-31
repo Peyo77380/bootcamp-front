@@ -36,8 +36,8 @@
                   <th class="text-center">Modifier</th>
                   <th class="text-center">Modifier</th>
                   <th class="text-center">Supprimer</th>
-                  <!-- <th class="text-center">voir plus</th> -->
-                  <th class="text-center">Voir plus</th>
+                  <th class="text-center">voir plus</th>
+                  <th class="text-center">essai</th>
                 </tr>
               </thead>
               <tbody>
@@ -75,7 +75,7 @@
                       ><i class="pe-7s-trash btn-icon-wrapper"> </i
                     ></b-button>
                   </td>
-                  <!-- <td class="text-center">
+                  <td class="text-center">
                     <button
                       class="ui inverted button"
                       v-on:click="toggleVoirPlus()"
@@ -88,7 +88,7 @@
                         <p class="text-center">cree le{{ list.createdAt }}</p>
                       </div>
                     </div>
-                  </td> -->
+                  </td>
                   <b-card no-body class="mb-1 bg-transparent">
                     <b-card-header
                       header-tag="header"

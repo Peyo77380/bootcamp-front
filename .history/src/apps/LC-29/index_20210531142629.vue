@@ -36,8 +36,7 @@
                   <th class="text-center">Modifier</th>
                   <th class="text-center">Modifier</th>
                   <th class="text-center">Supprimer</th>
-                  <!-- <th class="text-center">voir plus</th> -->
-                  <th class="text-center">Voir plus</th>
+                  <th class="text-center">voir plus</th>
                 </tr>
               </thead>
               <tbody>
@@ -75,43 +74,24 @@
                       ><i class="pe-7s-trash btn-icon-wrapper"> </i
                     ></b-button>
                   </td>
-                  <!-- <td class="text-center">
-                    <button
-                      class="ui inverted button"
-                      v-on:click="toggleVoirPlus()"
-                    >
-                      +
-                    </button>
-                    <div class="d-flex flex-wrap">
-                      <div class="voir" v-if="toggleVoir" transition="expand">
-                        <p class="text-center">modifié le :{{ list.modify }}</p>
-                        <p class="text-center">cree le{{ list.createdAt }}</p>
-                      </div>
-                    </div>
-                  </td> -->
-                  <b-card no-body class="mb-1 bg-transparent">
-                    <b-card-header
-                      header-tag="header"
-                      v-b-toggle.accordion2
-                      class="p-1 d-flex justify-content-center bg-transparent"
-                      role="tab"
-                    >
-                      <div class="pl-2 pr-2 d-flex justify-content-center">
-                        +
-                      </div>
-                    </b-card-header>
-                    <b-collapse
-                      id="accordion2"
-                      accordion="my-accordion"
-                      role="tabpanel"
-                    >
-                      <b-card-body>
-                        <p class="card-text"></p>
-                        <p>modifié le : {{ list.modify }}</p>
-                        <p>cree le: {{ list.createdAt }}</p>
-                      </b-card-body>
-                    </b-collapse>
-                  </b-card>
+                   <b-table :items="items" :fields="fields" striped responsive="sm">
+      <template #cell(show_details)="row">
+        <b-button size="sm" @click="row.toggleDetails" class="mr-2">
+          {{ row.detailsShowing ? "Hide" : "Show" }} Details
+        </b-button>
+      </template>
+
+      <template #row-details="row">
+        <b-card>
+          <b-row class="mb-2">
+            <b-col sm="3" class="text-sm-right"><b>Age:</b></b-col>
+            <b-col>{{ row.item.age }}</b-col>
+            <b-col sm="3" class="text-sm-right"><b>Adresse:</b></b-col>
+            <b-col>{{ row.item.adresse }}</b-col>
+          </b-row>
+        </b-card>
+      </template>
+    </b-table>
                 </tr>
               </tbody>
             </table>
@@ -166,8 +146,8 @@ export default {
         category: "metier",
         id: 2,
         value: "développeur web",
-        modify: "essai1",
-        createdAt: "essai1",
+        modify: "24/05/2021",
+        createdAt: "19/05/2019",
       },
       {
         category: "évènements",

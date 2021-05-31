@@ -36,8 +36,8 @@
                   <th class="text-center">Modifier</th>
                   <th class="text-center">Modifier</th>
                   <th class="text-center">Supprimer</th>
-                  <!-- <th class="text-center">voir plus</th> -->
-                  <th class="text-center">Voir plus</th>
+                  <th class="text-center">voir plus</th>
+                  <th class="text-center">essai</th>
                 </tr>
               </thead>
               <tbody>
@@ -75,7 +75,7 @@
                       ><i class="pe-7s-trash btn-icon-wrapper"> </i
                     ></b-button>
                   </td>
-                  <!-- <td class="text-center">
+                  <td class="text-center">
                     <button
                       class="ui inverted button"
                       v-on:click="toggleVoirPlus()"
@@ -88,17 +88,15 @@
                         <p class="text-center">cree le{{ list.createdAt }}</p>
                       </div>
                     </div>
-                  </td> -->
-                  <b-card no-body class="mb-1 bg-transparent">
+                  </td>
+                  <b-card no-body class="mb-1">
                     <b-card-header
                       header-tag="header"
                       v-b-toggle.accordion2
-                      class="p-1 d-flex justify-content-center bg-transparent"
+                      class="p-1"
                       role="tab"
                     >
-                      <div class="pl-2 pr-2 d-flex justify-content-center">
-                        +
-                      </div>
+                      <div class="pl-2 pr-2 d-block">Voir plus</div>
                     </b-card-header>
                     <b-collapse
                       id="accordion2"
@@ -106,9 +104,10 @@
                       role="tabpanel"
                     >
                       <b-card-body>
-                        <p class="card-text"></p>
-                        <p>modifié le : {{ list.modify }}</p>
-                        <p>cree le: {{ list.createdAt }}</p>
+                        <p class="card-text">
+                          modifié le : {{ list.modify }} cree le:
+                          {{ list.createdAt }}
+                        </p>
                       </b-card-body>
                     </b-collapse>
                   </b-card>
@@ -166,8 +165,8 @@ export default {
         category: "metier",
         id: 2,
         value: "développeur web",
-        modify: "essai1",
-        createdAt: "essai1",
+        modify: "24/05/2021",
+        createdAt: "19/05/2019",
       },
       {
         category: "évènements",
