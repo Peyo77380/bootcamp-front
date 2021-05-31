@@ -9,7 +9,7 @@
                             
                         </div>
                         <div class="widget-content-right">
-                             <b-button class="mb-2 mr-2 btn-icon btn-icon-only btn-pill" variant="light"><i class="pe-7s-search btn-icon-wrapper"> </i></b-button>
+                             <b-button class="mb-2 mr-2 btn-icon btn-icon-only btn-pill" variant="light"><i class="pe-7s-glasses btn-icon-wrapper"> </i></b-button>
                         </div>
                     </div>
                 </div>
@@ -22,7 +22,7 @@
                             
                         </div>
                         <div class="widget-content-right">
-                             <b-button class="mb-2 mr-2 btn-icon btn-icon-only btn-pill" variant="light"><i class="pe-7s-search btn-icon-wrapper"> </i></b-button>
+                             <b-button class="mb-2 mr-2 btn-icon btn-icon-only btn-pill" variant="light"><i class="pe-7s-glasses btn-icon-wrapper"> </i></b-button>
                         </div>
                     </div>
                 </div>
@@ -35,7 +35,7 @@
                             
                         </div>
                         <div class="widget-content-right">
-                             <b-button class="mb-2 mr-2 btn-icon btn-icon-only btn-pill" variant="light"><i class="pe-7s-search btn-icon-wrapper"> </i></b-button>
+                             <b-button class="mb-2 mr-2 btn-icon btn-icon-only btn-pill" variant="light"><i class="pe-7s-glasses btn-icon-wrapper"> </i></b-button>
                         </div>
                     </div>
                 </div>
@@ -48,7 +48,7 @@
                     
                         </div>
                         <div class="widget-content-right">
-                            <b-button class="mb-2 mr-2 btn-icon btn-icon-only btn-pill" variant="light"><i class="pe-7s-search btn-icon-wrapper"> </i></b-button>
+                            <b-button class="mb-2 mr-2 btn-icon btn-icon-only btn-pill" variant="light"><i class="pe-7s-glasses btn-icon-wrapper"> </i></b-button>
                         </div>
                     </div>
                 </div>
@@ -61,7 +61,7 @@
                         
                         </div>
                         <div class="widget-content-right">
-                             <b-button class="mb-2 mr-2 btn-icon btn-icon-only btn-pill" variant="light"><i class="pe-7s-search btn-icon-wrapper"> </i></b-button>
+                             <b-button class="mb-2 mr-2 btn-icon btn-icon-only btn-pill" variant="light"><i class="pe-7s-glasses btn-icon-wrapper"> </i></b-button>
                         </div>
                     </div>
                 </div>
@@ -111,7 +111,7 @@
                   
                     <tr >
                         
-                        <div style="display: flex;justify-content: center; align-items: center; margin-top : 10px; margin-left:10px" class="mb-2 mr-2 badge badge-pill badge-info" :class=item.classcategory>
+                        <div style="display: flex;justify-content: center; align-items: center; margin-top : 10px; margin-left:30px" class="swatch-holder" :class=item.classcategory>
                          
                             <td> 
 
@@ -124,7 +124,13 @@
                         
                         <td class="text-center">
                             <div role="group" class="btn-group-sm btn-group">
-                                <b-button class="mb-2 mr-2 btn-icon btn-icon-only btn-pill" variant="outline-warning"><i class="pe-7s-search btn-icon-wrapper"> </i></b-button>
+                                <v-btn class="outlined-search btn-pill"
+
+  elevation="2"
+  icon
+  outlined
+  small
+         v-on="on"><i class="pe-7s-search icon-color-search btn-icon-wrapper"> </i></v-btn>
                            
                             </div>
                             <div role="group" class="btn-group-sm btn-group" >
@@ -165,8 +171,7 @@ import modal from "./modal.vue"
         { category: 'modes de règlement', key: 'SEPA', value: '01009011', info:'lorem ipsum', classcategory:'bg-night-fade' },
         { category: 'salles de réunion', key: 'MEETINGROOM_BOOKING_HOUR_START', value: '08:00:00', info:'Heure minimum de début de location des salles de réunion', classcategory:'bg-love-kiss' },
         { category: 'Membres', key: 'FREETIME', value: '4', info:"Nombre d'heures de location de salle", classcategory:'bg-arielle-smile' },
-        { category: 'édition de contenu', key: 'INVOICE_FOOTER', value: 'Virement : CMM Lorient Portes des Indes; IBAN ...', info:'lorem ipsum', classcategory:'bg-happy-green' },
-        { category: 'réglages', key: 'CPT_TVA5.5', value: '4457055', info:'lorem ipsum', classcategory:'bg-night-sky' },
+        
 
         
       ],
@@ -175,3 +180,23 @@ import modal from "./modal.vue"
     }
 
 </script>
+
+<style>
+.outlined-search{
+
+    border: 1px solid #ECA906;
+                  border-radius:50%;
+                  
+}
+
+.outlined-search:hover{
+    background-color: #ECA906;
+    
+}
+.icon-color-search{
+    color:#ECA906;
+}
+.icon-color-search:hover{
+    color:black;
+}
+</style>
