@@ -18,12 +18,12 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <tr>
+                        <tr v-for="user in users" :key="user.id">
                             <td
                                 class="text-center text-muted"
                                 style="width: 80px;"
                             >
-                                #54
+                                {{ user.ID }}
                             </td>
                             <td class="text-center" style="width: 80px;">
                                 <img
@@ -34,7 +34,7 @@
                                 />
                             </td>
                             <td class="text-center">
-                                <a href="javascript:void(0)">Marvin Gaye</a>
+                                <a href="javascript:void(0)">{{user.Nom}}</a>
                             </td>
                             <td class="text-center">
                                 <a href="javascript:void(0)"
@@ -43,12 +43,12 @@
                             </td>
                             <td class="text-center">
                                 <div class="badge badge-pill badge-danger">
-                                    Inactif
+                                    {{ user.Status }}
                                 </div>
                             </td>
                             <td class="text-center">
                                 <div class="font-size-xlg">
-                                    <span>429</span>
+                                    <span>{{ user.Credits }}</span>
                                     <small class="text-warning pl-2">
                                         <font-awesome-icon icon="dot-circle"/>
                                     </small>
@@ -58,7 +58,7 @@
                                 <span class="pr-2 opacity-6">
                                     <font-awesome-icon icon="business-time" />
                                 </span>
-                                03h30
+                                {{ user.Temps }}
                             </td>
 
                             <td class="text-center">
@@ -72,7 +72,7 @@
                                         <i class="lnr-pencil"></i>
                                     </b-button>
 
-                                        <ModalForm />
+                                        
 
                                     <b-popover
                                         :target="'popover1'"
@@ -149,7 +149,6 @@
                                         <i class="lnr-pencil"></i>
                                     </b-button>
 
-                                        <ModalForm />
 
                                     <b-popover
                                         :target="'popover3'"
@@ -225,7 +224,6 @@
                                         <i class="lnr-pencil"></i>
                                     </b-button>
 
-                                        <ModalForm />
 
                                     <b-popover :target="'popover5'" placement="left" title="Modifier la fiche" triggers="hover focus"></b-popover>
                                     <b-button class="mb-2 mr-2 btn-icon btn-pill btn-shadow" variant="danger" id="popover6" @click="showWarnMsg()"><i class="pe-7s-trash"> </i></b-button>
@@ -284,7 +282,6 @@
                                         <i class="lnr-pencil"></i>
                                     </b-button>
 
-                                        <ModalForm />
 
                                     <b-popover :target="'popover7'" placement="left" title="Modifier la fiche" triggers="hover focus"></b-popover>
                                     <b-button class="mb-2 mr-2 btn-icon btn-pill btn-shadow" variant="danger" id="popover8" @click="showWarnMsg()"><i class="pe-7s-trash"> </i></b-button>
@@ -346,6 +343,13 @@ export default {
     components: {
         "font-awesome-icon": FontAwesomeIcon,
         ModalForm
+    },
+    data() {
+        return {
+            users: [{'ID': 1, 'Photo': "@/assets/images/avatars/4.jpg", 'Nom': 'Marvin Gaye', 'Societe': 'Motown', 'Status': 'Inactif', 'Credits': 0, 'Temps': '05h00'},
+            {'ID': 2, 'Photo': "@/assets/images/avatars/4.jpg", 'Nom': 'Laurent Sauzet', 'Societe': 'MIcrosoft', 'Status': 'Actif', 'Credits': 1, 'Temps': '06h00'}
+            ]
+        }
     },
     notifications: {
         showWarnMsg: {
