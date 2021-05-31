@@ -1,7 +1,5 @@
 <template>
-    <b-modal id="modal-scoped">
-   
-
+  <b-modal id="modal-scoped">
     <template>
       <p>Je suis un modal</p>
     </template>
