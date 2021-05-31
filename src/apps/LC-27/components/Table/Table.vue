@@ -62,15 +62,32 @@
                             </td>
 
                             <td class="text-center">
-                                <div
-                                    role="group"
-                                    class="btn-group-xl"
-                                >
-                                    <b-button class="mb-2 mr-2 btn-icon btn-pill btn-shadow" variant="primary">
+                                <div role="group" class="btn-group-xl">
+                                    <b-button
+                                        class="mb-2 mr-2  btn-pill btn-shadow"
+                                        variant="primary"
+                                        id="popover1"
+                                    >
                                         <i class="lnr-pencil"></i>
                                     </b-button>
-                                    <b-button class="mb-2 mr-2 btn-icon btn-pill btn-shadow" variant="danger"><i class="pe-7s-trash"> </i></b-button>
-
+                                    <b-popover
+                                        :target="'popover1'"
+                                        placement="bottomleft"
+                                        title="Modifier la fiche"
+                                        triggers="hover focus"
+                                    ></b-popover>
+                                    <b-button
+                                        class="mb-2 mr-2 btn-icon btn-pill btn-shadow"
+                                        variant="danger"
+                                        id="popover2"
+                                        ><i class="pe-7s-trash"> </i
+                                    ></b-button>
+                                    <b-popover
+                                        :target="'popover2'"
+                                        placement="bottom"
+                                        title="Supprimer la fiche"
+                                        triggers="hover focus"
+                                    ></b-popover>
                                 </div>
                             </td>
                         </tr>
@@ -116,15 +133,33 @@
                             </td>
 
                             <td class="text-center">
-                                <div
-                                    role="group"
-                                    class="btn-group-xl"
-                                >
-                                    <b-button class="mb-2 mr-2 btn-icon btn-pill btn-shadow" variant="primary">
+                                <div role="group"
+                                    class="btn-group-xl">
+                                    <b-button
+                                        class="mb-2 mr-2  btn-pill btn-shadow"
+                                        variant="primary"
+                                        id="popover3"
+                                    >
                                         <i class="lnr-pencil"></i>
                                     </b-button>
-                                    <b-button class="mb-2 mr-2 btn-icon btn-pill btn-shadow" variant="danger"><i class="pe-7s-trash"> </i></b-button>
-
+                                    <b-popover
+                                        :target="'popover3'"
+                                        placement="bottomleft"
+                                        title="Modifier la fiche"
+                                        triggers="hover focus"
+                                    ></b-popover>
+                                    <b-button
+                                        class="mb-2 mr-2 btn-icon btn-pill btn-shadow"
+                                        variant="danger"
+                                        id="popover4"
+                                        ><i class="pe-7s-trash"> </i
+                                    ></b-button>
+                                    <b-popover
+                                        :target="'popover4'"
+                                        placement="bottom"
+                                        title="Supprimer la fiche"
+                                        triggers="hover focus"
+                                    ></b-popover>
                                 </div>
                             </td>
                         </tr>
@@ -176,10 +211,12 @@
                                     role="group"
                                     class="btn-group-xl"
                                 >
-                                    <b-button class="mb-2 mr-2 btn-icon btn-pill btn-shadow" variant="primary">
+                                    <b-button class="mb-2 mr-2  btn-pill btn-shadow" variant="primary" id="popover5">
                                         <i class="lnr-pencil"></i>
                                     </b-button>
-                                    <b-button class="mb-2 mr-2 btn-icon btn-pill btn-shadow" variant="danger"><i class="pe-7s-trash"> </i></b-button>
+                                    <b-popover :target="'popover5'" placement="left" title="Modifier la fiche" triggers="hover focus"></b-popover>
+                                    <b-button class="mb-2 mr-2 btn-icon btn-pill btn-shadow" variant="danger" id="popover6"><i class="pe-7s-trash"> </i></b-button>
+                                    <b-popover :target="'popover6'" placement="bottom" title="Supprimer la fiche" triggers="hover focus"></b-popover>
 
                                 </div>
                             </td>
@@ -230,10 +267,12 @@
                                     role="group"
                                     class="btn-group-xl"
                                 >
-                                    <b-button class="mb-2 mr-2 btn-icon btn-pill btn-shadow" variant="primary">
+                                    <b-button class="mb-2 mr-2  btn-pill btn-shadow" variant="primary" id="popover7">
                                         <i class="lnr-pencil"></i>
                                     </b-button>
-                                    <b-button class="mb-2 mr-2 btn-icon btn-pill btn-shadow" variant="danger"><i class="pe-7s-trash"> </i></b-button>
+                                    <b-popover :target="'popover7'" placement="left" title="Modifier la fiche" triggers="hover focus"></b-popover>
+                                    <b-button class="mb-2 mr-2 btn-icon btn-pill btn-shadow" variant="danger" id="popover8"><i class="pe-7s-trash"> </i></b-button>
+                                    <b-popover :target="'popover8'" placement="bottom" title="Supprimer la fiche" triggers="hover focus"></b-popover>
 
                                 </div>
                             </td>
@@ -274,7 +313,7 @@ library.add(
 );
 export default {
     components: {
-        "font-awesome-icon": FontAwesomeIcon
+        "font-awesome-icon": FontAwesomeIcon,
     }
 };
 </script>
