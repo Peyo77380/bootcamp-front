@@ -2,45 +2,13 @@
   <v-layout row justify-center>
     <v-dialog v-model="dialog" persistent max-width="600px">
       <!-- <template v-slot:activator="{ on }">
-        <v-btn color="warning" dark v-on="on">Ajouter</v-btn>
-      </template>  -->
-
+        <v-btn color="primary" dark v-on="on">Ajouter</v-btn>
+      </template> -->
       <v-card>
         <v-card-title>
-          <span class="headline">Modifier la liste activité</span>
+          <span class="headline">User Profile</span>
         </v-card-title>
         <v-card-text>
-          <ul class="list-group">
-            <li class="list-group-item">
-              <div class="widget-content p-0">
-                <div class="widget-content-wrapper">
-                  <div class="widget-content-left">
-                    <div class="widget-heading">Activité</div>
-                  </div>
-                  <div class="widget-content-right">
-                    <div class="widget-heading">agroalimentaire</div>
-                  </div>
-                  <div class="widget-content-right">
-                    <div role="group" class="btn-group-sm btn-group">
-                      <b-button
-                        class="ml-4 btn-icon btn-icon-only btn-pill"
-                        variant="outline-info"
-                        @click="edit(list.id)"
-                        ><i class="pe-7s-pen btn-icon-wrapper"> </i
-                      ></b-button>
-                      <b-button
-                        class="ml-4 btn-icon btn-icon-only btn-pill"
-                        variant="outline-warning"
-                        @click="edit(list.id)"
-                        ><i class="pe-7s-trash btn-icon-wrapper"> </i
-                      ></b-button>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </li>
-          </ul>
-
           <v-container grid-list-md>
             <v-layout wrap>
               <v-flex xs12 sm8 md6>
