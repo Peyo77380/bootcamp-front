@@ -67,9 +67,13 @@
                                         class="mb-2 mr-2  btn-pill btn-shadow"
                                         variant="primary"
                                         id="popover1"
+                                        @click="$bvModal.show('modal-scoped')"
                                     >
                                         <i class="lnr-pencil"></i>
                                     </b-button>
+
+                                        <ModalForm />
+
                                     <b-popover
                                         :target="'popover1'"
                                         placement="bottomleft"
@@ -80,6 +84,7 @@
                                         class="mb-2 mr-2 btn-icon btn-pill btn-shadow"
                                         variant="danger"
                                         id="popover2"
+                                        @click="showWarnMsg()"
                                         ><i class="pe-7s-trash"> </i
                                     ></b-button>
                                     <b-popover
@@ -139,9 +144,13 @@
                                         class="mb-2 mr-2  btn-pill btn-shadow"
                                         variant="primary"
                                         id="popover3"
+                                        @click="$bvModal.show('modal-scoped')"
                                     >
                                         <i class="lnr-pencil"></i>
                                     </b-button>
+
+                                        <ModalForm />
+
                                     <b-popover
                                         :target="'popover3'"
                                         placement="bottomleft"
@@ -152,6 +161,7 @@
                                         class="mb-2 mr-2 btn-icon btn-pill btn-shadow"
                                         variant="danger"
                                         id="popover4"
+                                        @click="showWarnMsg()"
                                         ><i class="pe-7s-trash"> </i
                                     ></b-button>
                                     <b-popover
@@ -211,11 +221,14 @@
                                     role="group"
                                     class="btn-group-xl"
                                 >
-                                    <b-button class="mb-2 mr-2  btn-pill btn-shadow" variant="primary" id="popover5">
+                                    <b-button class="mb-2 mr-2  btn-pill btn-shadow" variant="primary" id="popover5" @click="$bvModal.show('modal-scoped')">
                                         <i class="lnr-pencil"></i>
                                     </b-button>
+
+                                        <ModalForm />
+
                                     <b-popover :target="'popover5'" placement="left" title="Modifier la fiche" triggers="hover focus"></b-popover>
-                                    <b-button class="mb-2 mr-2 btn-icon btn-pill btn-shadow" variant="danger" id="popover6"><i class="pe-7s-trash"> </i></b-button>
+                                    <b-button class="mb-2 mr-2 btn-icon btn-pill btn-shadow" variant="danger" id="popover6" @click="showWarnMsg()"><i class="pe-7s-trash"> </i></b-button>
                                     <b-popover :target="'popover6'" placement="bottom" title="Supprimer la fiche" triggers="hover focus"></b-popover>
 
                                 </div>
@@ -267,11 +280,14 @@
                                     role="group"
                                     class="btn-group-xl"
                                 >
-                                    <b-button class="mb-2 mr-2  btn-pill btn-shadow" variant="primary" id="popover7">
+                                    <b-button class="mb-2 mr-2  btn-pill btn-shadow" variant="primary" id="popover7" @click="$bvModal.show('modal-scoped')">
                                         <i class="lnr-pencil"></i>
                                     </b-button>
+
+                                        <ModalForm />
+
                                     <b-popover :target="'popover7'" placement="left" title="Modifier la fiche" triggers="hover focus"></b-popover>
-                                    <b-button class="mb-2 mr-2 btn-icon btn-pill btn-shadow" variant="danger" id="popover8"><i class="pe-7s-trash"> </i></b-button>
+                                    <b-button class="mb-2 mr-2 btn-icon btn-pill btn-shadow" variant="danger" id="popover8" @click="showWarnMsg()"><i class="pe-7s-trash"> </i></b-button>
                                     <b-popover :target="'popover8'" placement="bottom" title="Supprimer la fiche" triggers="hover focus"></b-popover>
 
                                 </div>
@@ -281,7 +297,7 @@
                     </tbody>
                 </table>
                 <div class="d-block p-4 text-center card-footer">
-                    <b-pagination align="center" :total-rows="totalRows" :per-page="perPage" v-model="currentPage" class="mb-0" />
+                    <b-pagination align="center" class="mb-0" />
                 </div>
             </div>
         </div>
@@ -300,6 +316,21 @@ import {
     faBusinessTime
 } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/vue-fontawesome";
+import Vue from 'vue'
+import VueNotifications from 'vue-notifications'
+import swal from 'sweetalert'
+import ModalForm from '../modals/modalForm'
+
+function toast ({title, message, type}) {
+    if (type === VueNotifications.types.warn) type = 'warning'
+    return swal(title, message, type)
+  }
+
+  const options = {
+    warn: toast
+  }
+
+  Vue.use(VueNotifications, options)
 
 library.add(
     faBatteryThreeQuarters,
@@ -314,6 +345,14 @@ library.add(
 export default {
     components: {
         "font-awesome-icon": FontAwesomeIcon,
+        ModalForm
+    },
+    notifications: {
+        showWarnMsg: {
+        type: VueNotifications.types.warn,
+        title: 'Attention !',
+        message: 'Etes-vous sûr de vouloir effacer cette fiche ?'
+      }
     }
 };
 </script>
