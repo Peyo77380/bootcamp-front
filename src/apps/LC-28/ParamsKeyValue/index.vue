@@ -27,7 +27,7 @@ import pagination from './pagination'
         data: () => ({
             heading: "Paramètres Clé - Valeur",
             
-            icon: 'pe-7s-news-paper icon-gradient bg-night-fade',
+            icon: 'pe-7s-key icon-gradient bg-night-fade',
             
         }),
     }

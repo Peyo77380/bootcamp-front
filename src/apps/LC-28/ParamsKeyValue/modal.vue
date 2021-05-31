@@ -1,14 +1,14 @@
 <template>
-  <v-layout row justify-center>
+  <v-layout >
     <v-dialog v-model="dialog" persistent max-width="600px">
       <template v-slot:activator="{ on }">
-        <v-btn 
-  color="primary"
+        <v-btn class="outlined btn-pill"
+
   elevation="2"
   icon
   outlined
   small
-         v-on="on"><i class="pe-7s-tools btn-icon-wrapper"> </i></v-btn>
+         v-on="on"><i class="pe-7s-tools icon-color btn-icon-wrapper"> </i></v-btn>
       </template>
       <v-card>
         <v-card-title>
@@ -65,3 +65,22 @@
     })
   }
 </script>
+<style>
+.outlined{
+
+    border: 1px solid #1967C0;
+                  border-radius:50%;
+                  
+}
+
+.outlined:hover{
+    background-color: #1967C0;
+    
+}
+.icon-color{
+    color:#1967C0;
+}
+.icon-color:hover{
+    color:white;
+}
+</style>
