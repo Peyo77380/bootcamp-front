@@ -2,7 +2,13 @@
   <v-layout row justify-center>
     <v-dialog v-model="dialog" persistent max-width="600px">
       <template v-slot:activator="{ on }">
-        <v-btn class="mb-2 mr-2 btn-icon btn-icon-only btn-pill" variant="outline-primary" v-on="on"><i class="pe-7s-tools btn-icon-wrapper"> </i></v-btn>
+        <v-btn 
+  color="primary"
+  elevation="2"
+  icon
+  outlined
+  small
+         v-on="on"><i class="pe-7s-tools btn-icon-wrapper"> </i></v-btn>
       </template>
       <v-card>
         <v-card-title>

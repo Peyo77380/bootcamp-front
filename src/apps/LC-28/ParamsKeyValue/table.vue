@@ -38,120 +38,57 @@
                         <th class="text-center">Actions</th>
                     </tr>
                     </thead>
-                    <tbody>
-                    <tr>
-                        
-                        <div style="margin-left:20px;" class="mb-2 mr-2 badge badge-pill badge-info"><td class="text-center "> Édition de contenu</td></div>
-                        <td class="text-center">COWORKING_BOOK_INFO</td>
-                        
-                        <td class="text-center">La colloc met à disposition de ses membres qui sont dans l'incapacité de faire du ... </td>
-                       
-                        
-                        <td class="text-center">
-                            <div role="group" class="btn-group-sm btn-group">
-                                <b-button class="mb-2 mr-2 btn-icon btn-icon-only btn-pill" variant="outline-warning"><i class="pe-7s-search btn-icon-wrapper"> </i></b-button>
-                           
-                            </div>
-                            <div role="group" class="btn-group-sm btn-group" >
-                                <b-button class="mb-2 mr-2 btn-icon btn-icon-only btn-pill" variant="outline-primary"><i class="pe-7s-tools  btn-icon-wrapper"> </i></b-button>
-                                 
-                                 
-                                
-                            </div>
-                            
-                        </td>
-                    </tr>
-                    <tr>
-                      
-                        <div style="margin-left:17px;" class="mb-2 mr-2 badge badge-pill badge-warning"><td class="text-center "> Modes de règlement </td></div>
-                        <td class="text-center">PENDING</td>
+                    
+                    <tbody v-for="item in items" :key="item.id">
                   
-                        <td class="text-center">01009017</td>
-                       
-                        
-                        <td class="text-center">
-                            <div role="group" class="btn-group-sm btn-group">
-                                <b-button class="mb-2 mr-2 btn-icon btn-icon-only btn-pill" variant="outline-warning"><i class="pe-7s-search btn-icon-wrapper"> </i></b-button>
-                           
-                            </div>
-                            <div role="group" class="btn-group-sm btn-group" >
-                                <b-button class="mb-2 mr-2 btn-icon btn-icon-only btn-pill" variant="outline-primary"><i class="pe-7s-tools btn-icon-wrapper"> </i></b-button>
-                                 
-                                 
-                                
-                            </div>
-                            
-                        </td>
-                    </tr>
                     <tr>
                         
-                        <div style="margin-left:20px;" class="mb-2 mr-2 badge badge-pill badge-alternate"><td class="text-center "> Salles de réunion</td></div>
-                        <td class="text-center">REFUND_DEPOSIT_PERCENT</td>
-                        <td class="text-center">30</td>
+                        <div style="margin-left:20px;" class="mb-2 mr-2 badge badge-pill badge-info"><td class="text-center "> {{item.category}}</td></div>
+                        <td class="text-center">{{item.key}}</td>
+                        
+                        <td class="text-center">{{item.value}} </td>
                        
                         
                         <td class="text-center">
                             <div role="group" class="btn-group-sm btn-group">
-                                
                                 <b-button class="mb-2 mr-2 btn-icon btn-icon-only btn-pill" variant="outline-warning"><i class="pe-7s-search btn-icon-wrapper"> </i></b-button>
                            
                             </div>
                             <div role="group" class="btn-group-sm btn-group" >
                                 <modal></modal>
-
+                                 
+                                 
                                 
                             </div>
                             
                         </td>
                     </tr>
-                    <tr>
-                      
-                        <div style ="margin-left: 40px;" class="mb-2 mr-2 badge badge-pill badge-secondary"><td class="text-center "> Réglages</td></div>
-                        <td class="text-center">COWORKING_NUMBER</td>
-                        <td class="text-center">10 </td>
-                       
-                        
-                        <td class="text-center">
-                            <div role="group" class="btn-group-sm btn-group" >
-                                <b-button class="mb-2 mr-2 btn-icon btn-icon-only btn-pill" variant="outline-warning"><i class="pe-7s-search btn-icon-wrapper"> </i></b-button>
-                           
-                            </div>
-                            <div role="group" class="btn-group-sm btn-group" >
-                                <b-button class="mb-2 mr-2 btn-icon btn-icon-only btn-pill" variant="outline-primary"><i class="pe-7s-tools btn-icon-wrapper"> </i></b-button>
-                            </div>
-                            
-                        </td>
-                    </tr>
                     </tbody>
+                    
+                    
+                    
                 </table>
             </div>
 </div>
 </template>
 
 <script>
-import modal from "./form.vue"
-import popout from "./popout"
+import modal from "./modal.vue"
+
 
     export default{
         components:{
             modal,
-            popout,
+            
         },
         data: () => ({
                 items: [
-                            { title: "Chargée de l'expédition et du stock chez Super chouette SAS", state:'pe-7s-sun', member:'', image:'', createdAt : ''},
-                            { title: "Qui veut faire l'affiche du prochain after de la Colloc", state:'pe-7s-sun', member:'', image:'', createdAt : ''},
-                            { title: 'Team Vintage Racing Ouest Motorsport - Partenariats / Sponsoring', state:'pe-7s-sun', member:'', image:'', createdAt : ''},
-                            { title: "Chargée de l'expédition et du stock chez Super chouette SAS", state:'pe-7s-sun', member:'', image:'', createdAt : ''},
-                            { title: 'Team Vintage Racing Ouest Motorsport - Partenariats / Sponsoring', state:'pe-7s-sun', member:'', image:'', createdAt : ''},
-                            { title: "Qui veut faire l'affiche du prochain after de la Colloc", state:'pe-7s-sun', member:'', image:'', createdAt : ''},
-                            { title: 'Partager locaux entre libéraux', state:'pe-7s-sun', member:'', image:'', createdAt : ''},
-                            { title: "Chargée de l'expédition et du stock chez Super chouette SAS", state:'pe-7s-sun', member:'', image:'', createdAt : ''},
-                            { title: 'Team Vintage Racing Ouest Motorsport - Partenariats / Sponsoring', state:'pe-7s-sun', member:'', image:'', createdAt : ''},
-                            { title: 'Partager locaux entre libéraux', state:'pe-7s-sun', member:'', image:'', createdAt : ''},
-                           
-                    
-                    ],
+        { category: 'édition de contenu', key: 'COWORKING_BOOK_INFO', value: "La colloc met à disposition de ses membres qui sont dans l'incapacité de faire du ...", info:'lorem ipsum' },
+        { category: 'modes de règlement', key: 'PENDING', value: '01009017', info:'lorem ipsum' },
+        { category: 'salles de réunion', key: 'REFUND_DEPOSIT_PERCENT', value: '30', info:'lorem ipsum' },
+        { category: 'réglages', key: 'COWORKING_NUMBER', value: '10', info:'lorem ipsum' },
+        
+      ],
                     
     })
     }
