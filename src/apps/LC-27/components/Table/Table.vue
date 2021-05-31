@@ -66,10 +66,10 @@
                                     role="group"
                                     class="btn-group-xl"
                                 >
-                                    <v-btn fab small color="primary" dark>
-                                        <i class="lnr-pencil btn-icon-wrapper"></i>
-                                    </v-btn>
-                                    <v-btn fab small color="error" dark><i class="pe-7s-trash btn-icon-wrapper"> </i></v-btn>
+                                    <b-button class="mb-2 mr-2 btn-icon btn-pill btn-shadow" variant="primary">
+                                        <i class="lnr-pencil"></i>
+                                    </b-button>
+                                    <b-button class="mb-2 mr-2 btn-icon btn-pill btn-shadow" variant="danger"><i class="pe-7s-trash"> </i></b-button>
 
                                 </div>
                             </td>
@@ -120,10 +120,10 @@
                                     role="group"
                                     class="btn-group-xl"
                                 >
-                                    <v-btn fab small color="primary" dark>
-                                        <i class="lnr-pencil btn-icon-wrapper"></i>
-                                    </v-btn>
-                                    <v-btn fab small color="error" dark><i class="pe-7s-trash btn-icon-wrapper"> </i></v-btn>
+                                    <b-button class="mb-2 mr-2 btn-icon btn-pill btn-shadow" variant="primary">
+                                        <i class="lnr-pencil"></i>
+                                    </b-button>
+                                    <b-button class="mb-2 mr-2 btn-icon btn-pill btn-shadow" variant="danger"><i class="pe-7s-trash"> </i></b-button>
 
                                 </div>
                             </td>
@@ -176,10 +176,10 @@
                                     role="group"
                                     class="btn-group-xl"
                                 >
-                                    <v-btn fab small color="primary" dark>
-                                        <i class="lnr-pencil btn-icon-wrapper"></i>
-                                    </v-btn>
-                                    <v-btn fab small color="error" dark><i class="pe-7s-trash btn-icon-wrapper"> </i></v-btn>
+                                    <b-button class="mb-2 mr-2 btn-icon btn-pill btn-shadow" variant="primary">
+                                        <i class="lnr-pencil"></i>
+                                    </b-button>
+                                    <b-button class="mb-2 mr-2 btn-icon btn-pill btn-shadow" variant="danger"><i class="pe-7s-trash"> </i></b-button>
 
                                 </div>
                             </td>
@@ -230,10 +230,10 @@
                                     role="group"
                                     class="btn-group-xl"
                                 >
-                                    <v-btn fab small color="primary" dark>
-                                        <i class="lnr-pencil btn-icon-wrapper"></i>
-                                    </v-btn>
-                                    <v-btn fab small color="error" dark><i class="pe-7s-trash btn-icon-wrapper"> </i></v-btn>
+                                    <b-button class="mb-2 mr-2 btn-icon btn-pill btn-shadow" variant="primary">
+                                        <i class="lnr-pencil"></i>
+                                    </b-button>
+                                    <b-button class="mb-2 mr-2 btn-icon btn-pill btn-shadow" variant="danger"><i class="pe-7s-trash"> </i></b-button>
 
                                 </div>
                             </td>
