@@ -99,7 +99,7 @@
                         
                         <td class="text-center">
                             <div role="group" class="btn-group-sm btn-group">
-                                <v-btn class="outlined-search btn-pill"
+                                <v-btn class=" outlined-search btn-pill"
 
   elevation="2"
   icon
@@ -114,6 +114,7 @@
                             </div>
                             
                         </td>
+                        
                     </tr>
                     </tbody>
                     
@@ -150,6 +151,7 @@ import modal from "./modal.vue"
       ],
                     
     })
+    
     }
 
 </script>
@@ -172,4 +174,11 @@ import modal from "./modal.vue"
 .icon-color-search:hover{
     color:black;
 }
+.content {
+  padding: 0 18px;
+  display: none;
+  overflow: hidden;
+  background-color: #f1f1f1;
+}
+
 </style>
