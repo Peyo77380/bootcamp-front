@@ -19,6 +19,12 @@ export default new Router({
             path: "/LC-29",
             name: "Members",
             component: () => import('../apps/LC-29'),
-        }
+        },
+        {
+            path: "/LC-29/components/view",
+            name: "View",
+            component: () => import('@/apps/LC-29/components/view'),
+        },
+        
     ]
 });

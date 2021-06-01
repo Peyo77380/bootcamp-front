@@ -222,6 +222,12 @@ export default {
     edit() {
       this.dialog = true;
     },
+<<<<<<< HEAD
+=======
+    toggleVoirPlus: function () {
+      this.toggleVoir = !this.toggleVoir;
+    },
+>>>>>>> structure suite call
     getStatus(category) {
       switch (category) {
         case "activité":
