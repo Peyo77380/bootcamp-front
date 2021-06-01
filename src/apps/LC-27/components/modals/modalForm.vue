@@ -2,6 +2,7 @@
   <b-modal id="modal-scoped">
     <template>
       <p>Je suis un modal</p>
+      <div>{{user}}</div>
     </template>
 
     <template #modal-footer="{ ok, cancel }">
@@ -16,6 +17,13 @@
 </template>
 <script>
 export default {
-    
+    name: 'Modale',
+    props: {user: {
+      type: Object,
+      default: function () {
+        return { message: 'hello' }
+    }}
+  },
+
 }
 </script>

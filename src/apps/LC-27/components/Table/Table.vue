@@ -1,5 +1,6 @@
 <template>
     <div>
+        <div><ModalForm :user="updateUser"/></div>
         <div class="main-card mb-3 card">
             <div class="table-responsive">
                 <table
@@ -96,201 +97,6 @@
                                 </div>
                             </td>
                         </tr>
-                        <tr>
-                            <td
-                                class="text-center text-muted"
-                                style="width: 80px;"
-                            >
-                                #55
-                            </td>
-                            <td class="text-center" style="width: 80px;">
-                                <img
-                                    width="40"
-                                    class="rounded-circle"
-                                    src="@/assets/images/avatars/3.jpg"
-                                    alt=""
-                                />
-                            </td>
-                            <td class="text-center">
-                                <a href="javascript:void(0)">Curtis Mayfield</a>
-                            </td>
-                            <td class="text-center">
-                                <a href="javascript:void(0)">Hatchworks</a>
-                            </td>
-                            <td class="text-center">
-                                <div class="badge badge-pill badge-success">
-                                    Actif
-                                </div>
-                            </td>
-                            <td class="text-center">
-                                <div class="font-size-xlg">
-                                    <span>200</span>
-                                    <small class="text-warning pl-2">
-                                        <font-awesome-icon icon="dot-circle"/>
-                                    </small>
-                                </div>
-                            </td>
-                            <td class="text-center">
-                                <span class="pr-2 opacity-6">
-                                    <font-awesome-icon icon="business-time" />
-                                </span>
-                                02h15
-                            </td>
-
-                            <td class="text-center">
-                                <div role="group"
-                                    class="btn-group-xl">
-                                    <b-button
-                                        class="mb-2 mr-2  btn-pill btn-shadow"
-                                        variant="primary"
-                                        id="popover3"
-                                        @click="$bvModal.show('modal-scoped')"
-                                    >
-                                        <i class="lnr-pencil"></i>
-                                    </b-button>
-
-
-                                    <b-popover
-                                        :target="'popover3'"
-                                        placement="bottomleft"
-                                        title="Modifier la fiche"
-                                        triggers="hover focus"
-                                    ></b-popover>
-                                    <b-button
-                                        class="mb-2 mr-2 btn-icon btn-pill btn-shadow"
-                                        variant="danger"
-                                        id="popover4"
-                                        @click="showWarnMsg()"
-                                        ><i class="pe-7s-trash"> </i
-                                    ></b-button>
-                                    <b-popover
-                                        :target="'popover4'"
-                                        placement="bottom"
-                                        title="Supprimer la fiche"
-                                        triggers="hover focus"
-                                    ></b-popover>
-                                </div>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td
-                                class="text-center text-muted"
-                                style="width: 80px;"
-                            >
-                                #56
-                            </td>
-                            <td class="text-center" style="width: 80px;">
-                                <img
-                                    width="40"
-                                    class="rounded-circle"
-                                    src="@/assets/images/avatars/2.jpg"
-                                    alt=""
-                                />
-                            </td>
-                            <td class="text-center">
-                                <a href="javascript:void(0)">Roberta Flack</a>
-                            </td>
-                            <td class="text-center">
-                                <a href="javascript:void(0)"
-                                    >Riddle Electronics</a
-                                >
-                            </td>
-                            <td class="text-center">
-                                <div class="badge badge-pill badge-danger">
-                                    Inactif
-                                </div>
-                            </td>
-                            <td class="text-center">
-                                <div class="font-size-xlg">
-                                    <span>120</span>
-                                    <small class="text-warning pl-2">
-                                        <font-awesome-icon icon="dot-circle"/>
-                                    </small>
-                                </div>
-                            </td>
-                            <td class="text-center">
-                                <span class="pr-2 opacity-6">
-                                    <font-awesome-icon icon="business-time" />
-                                </span>
-                                07h00
-                            </td>
-
-                            <td class="text-center">
-                                <div
-                                    role="group"
-                                    class="btn-group-xl"
-                                >
-                                    <b-button class="mb-2 mr-2  btn-pill btn-shadow" variant="primary" id="popover5" @click="$bvModal.show('modal-scoped')">
-                                        <i class="lnr-pencil"></i>
-                                    </b-button>
-
-
-                                    <b-popover :target="'popover5'" placement="left" title="Modifier la fiche" triggers="hover focus"></b-popover>
-                                    <b-button class="mb-2 mr-2 btn-icon btn-pill btn-shadow" variant="danger" id="popover6" @click="showWarnMsg()"><i class="pe-7s-trash"> </i></b-button>
-                                    <b-popover :target="'popover6'" placement="bottom" title="Supprimer la fiche" triggers="hover focus"></b-popover>
-
-                                </div>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td
-                                class="text-center text-muted"
-                                style="width: 80px;"
-                            >
-                                #56
-                            </td>
-                            <td class="text-center" style="width: 80px;">
-                                <img
-                                    width="40"
-                                    class="rounded-circle"
-                                    src="@/assets/images/avatars/1.jpg"
-                                    alt=""
-                                />
-                            </td>
-                            <td class="text-center">
-                                <a href="javascript:void(0)">Nancy Sinatra</a>
-                            </td>
-                            <td class="text-center">
-                                <a href="javascript:void(0)">Pixelcloud</a>
-                            </td>
-                            <td class="text-center">
-                                <div class="badge badge-pill badge-success">
-                                    Actif
-                                </div>
-                            </td>
-                            <td class="text-center">
-                                <div class="font-size-xlg">
-                                    <span>5</span>
-                                    <small class="text-warning pl-2">
-                                        <font-awesome-icon icon="dot-circle"/>
-                                    </small>
-                                </div>
-                            </td>
-                            <td class="text-center">
-                                <span class="pr2 opacity-6">
-                                    <font-awesome-icon icon="business-time" />
-                                </span>
-                                05h00
-                            </td>
-
-                            <td class="text-center">
-                                <div
-                                    role="group"
-                                    class="btn-group-xl"
-                                >
-                                    <b-button class="mb-2 mr-2  btn-pill btn-shadow" variant="primary" id="popover7" @click="$bvModal.show('modal-scoped')">
-                                        <i class="lnr-pencil"></i>
-                                    </b-button>
-
-
-                                    <b-popover :target="'popover7'" placement="left" title="Modifier la fiche" triggers="hover focus"></b-popover>
-                                    <b-button class="mb-2 mr-2 btn-icon btn-pill btn-shadow" variant="danger" id="popover8" @click="showWarnMsg()"><i class="pe-7s-trash"> </i></b-button>
-                                    <b-popover :target="'popover8'" placement="bottom" title="Supprimer la fiche" triggers="hover focus"></b-popover>
-
-                                </div>
-                            </td>
-                        </tr>
-                        
                     </tbody>
                 </table>
                 <div class="d-block p-4 text-center card-footer">
@@ -346,9 +152,14 @@ export default {
     },
     data() {
         return {
+            updateUser: {message:'Coucou'},
             users: [{'ID': 1, 'Photo': "@/assets/images/avatars/4.jpg", 'Nom': 'Marvin Gaye', 'Societe': 'Motown', 'Status': 'Inactif', 'Credits': 0, 'Temps': '05h00'},
-            {'ID': 2, 'Photo': "@/assets/images/avatars/4.jpg", 'Nom': 'Laurent Sauzet', 'Societe': 'MIcrosoft', 'Status': 'Actif', 'Credits': 1, 'Temps': '06h00'}
-            ]
+            {'ID': 2, 'Photo': "@/assets/images/avatars/3.jpg", 'Nom': 'Laurent Sauzet', 'Societe': 'Microsoft', 'Status': 'Actif', 'Credits': 1, 'Temps': '06h00'},
+            {'ID': 3, 'Photo': "@/assets/images/avatars/3.jpg", 'Nom': 'Curtis Mayfield', 'Societe': 'Hatchworks', 'Status': 'Actif', 'Credits': 200, 'Temps': '02h15'},
+            {'ID': 4, 'Photo': "@/assets/images/avatars/5.jpg", 'Nom': 'Roberta Flack', 'Societe': 'Riddle Electronics', 'Status': 'Inactif', 'Credits': 120, 'Temps': '07h00'},
+            {'ID': 5, 'Photo': "@/assets/images/avatars/6.jpg", 'Nom': 'Nancy Sinatra', 'Societe': 'Pixelcloud', 'Status': 'Actif', 'Credits': 5, 'Temps': '05h00'}
+            ],
+            //user.Status = true,
         }
     },
     notifications: {
