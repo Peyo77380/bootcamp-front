@@ -1,11 +1,20 @@
 <template>
   <v-form v-model="valid">
     <v-container>
-      <v-layout>
-        <v-flex
-          xs12
-          md4
-        >
+      <v-layout d-flex flex-column>
+
+          <h4>Verification email</h4>
+
+        <v-flex xs12 md4>
+          <v-text-field
+            v-model="email"
+            :rules="emailRules"
+            label="E-mail"
+            required
+          ></v-text-field>
+        </v-flex>
+
+        <v-flex xs12 md4>
           <v-text-field
             v-model="firstname"
             :rules="nameRules"
@@ -15,10 +24,7 @@
           ></v-text-field>
         </v-flex>
 
-        <v-flex
-          xs12
-          md4
-        >
+        <v-flex xs12 md4>
           <v-text-field
             v-model="lastname"
             :rules="nameRules"
@@ -28,14 +34,12 @@
           ></v-text-field>
         </v-flex>
 
-        <v-flex
-          xs12
-          md4
-        >
+        <v-flex xs12 md4>
           <v-text-field
-            v-model="email"
-            :rules="emailRules"
-            label="E-mail"
+            v-model="models.phoneNumber"
+            v-mask="'(###) ##########'"
+            :rules="nameRules"
+            label="Téléphone"
             required
           ></v-text-field>
         </v-flex>
@@ -45,6 +49,9 @@
 </template>
 
 <script>
+import Vue from 'vue'
+import VueMask from 'v-mask';
+Vue.use(VueMask);
   export default {
     data: () => ({
       valid: false,
@@ -58,7 +65,11 @@
       emailRules: [
         v => !!v || 'E-mail is required',
         v => /.+@.+/.test(v) || 'E-mail must be valid'
-      ]
-    })
+      ],
+      
+      models: {
+          phoneNumber: '',
+      },
+    }),
   }
 </script>
