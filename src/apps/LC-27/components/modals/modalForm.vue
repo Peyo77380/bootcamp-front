@@ -1,7 +1,10 @@
 <template>
   <b-modal id="modal-scoped">
     <template>
-      <p>Je suis un modal</p>
+      <form action="">
+        <label for="test">Coucou</label>
+        <input type="text" name="test" id="test">
+      </form>
       <div>{{user}}</div>
     </template>
 
@@ -24,6 +27,8 @@ export default {
         return { message: 'hello' }
     }}
   },
-
+  data: () => ({
+      dialog: false
+    }),
 }
 </script>
