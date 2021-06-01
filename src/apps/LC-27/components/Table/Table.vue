@@ -15,7 +15,7 @@
                             <th class="text-center">Status</th>
                             <th class="text-center">Crédits</th>
                             <th class="text-center">Temps</th>
-                            <th class="text-center">Actions</th>
+                            <th class="text-center">Act</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -43,8 +43,11 @@
                                 >
                             </td>
                             <td class="text-center">
-                                <div class="badge badge-pill badge-danger">
-                                    {{ user.Status }}
+                                <div class="badge badge-pill badge-danger" v-if="!user.Status">
+                                    Inactif
+                                </div>
+                                <div class="badge badge-pill badge-success" v-else>
+                                    Actif
                                 </div>
                             </td>
                             <td class="text-center">
@@ -153,13 +156,12 @@ export default {
     data() {
         return {
             updateUser: {message:'Coucou'},
-            users: [{'ID': 1, 'Photo': "@/assets/images/avatars/4.jpg", 'Nom': 'Marvin Gaye', 'Societe': 'Motown', 'Status': 'Inactif', 'Credits': 0, 'Temps': '05h00'},
-            {'ID': 2, 'Photo': "@/assets/images/avatars/3.jpg", 'Nom': 'Laurent Sauzet', 'Societe': 'Microsoft', 'Status': 'Actif', 'Credits': 1, 'Temps': '06h00'},
-            {'ID': 3, 'Photo': "@/assets/images/avatars/3.jpg", 'Nom': 'Curtis Mayfield', 'Societe': 'Hatchworks', 'Status': 'Actif', 'Credits': 200, 'Temps': '02h15'},
-            {'ID': 4, 'Photo': "@/assets/images/avatars/5.jpg", 'Nom': 'Roberta Flack', 'Societe': 'Riddle Electronics', 'Status': 'Inactif', 'Credits': 120, 'Temps': '07h00'},
-            {'ID': 5, 'Photo': "@/assets/images/avatars/6.jpg", 'Nom': 'Nancy Sinatra', 'Societe': 'Pixelcloud', 'Status': 'Actif', 'Credits': 5, 'Temps': '05h00'}
+            users: [{'ID': 1, 'Photo': "@/assets/images/avatars/4.jpg", 'Nom': 'Marvin Gaye', 'Societe': 'Motown', 'Status': false, 'Credits': 0, 'Temps': '05h00'},
+            {'ID': 2, 'Photo': "@/assets/images/avatars/3.jpg", 'Nom': 'Laurent Sauzet', 'Societe': 'Microsoft', 'Status': true, 'Credits': 1, 'Temps': '06h00'},
+            {'ID': 3, 'Photo': "@/assets/images/avatars/3.jpg", 'Nom': 'Curtis Mayfield', 'Societe': 'Hatchworks', 'Status': true, 'Credits': 200, 'Temps': '02h15'},
+            {'ID': 4, 'Photo': "@/assets/images/avatars/5.jpg", 'Nom': 'Roberta Flack', 'Societe': 'Riddle Electronics', 'Status': false, 'Credits': 120, 'Temps': '07h00'},
+            {'ID': 5, 'Photo': "@/assets/images/avatars/6.jpg", 'Nom': 'Nancy Sinatra', 'Societe': 'Pixelcloud', 'Status': true, 'Credits': 5, 'Temps': '05h00'}
             ],
-            //user.Status = true,
         }
     },
     notifications: {
