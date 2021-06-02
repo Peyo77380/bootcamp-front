@@ -1,5 +1,5 @@
 <template>
-    <b-modal id="modal-scoped" hide-backdrop="true" content-class="shadow">
+    <b-modal id="modal-scoped" :hide-backdrop="true" content-class="shadow">
         <template #modal-title>
             Modification rapide
         </template>
