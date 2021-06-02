@@ -37,10 +37,12 @@
                 <b-form-input
                     list="input-list"
                     id="input-with-list"
+                    v-model="test"
                 ></b-form-input>
                 <b-form-datalist
                     id="input-list"
                     :options="optionsCHoices"
+                    
                 ></b-form-datalist>
             </div>
         </template>
@@ -58,7 +60,9 @@
     </b-modal>
 </template>
 <script>
+//import sweetAlert from '@/plugins/sweetAlert.js';
 export default {
+   // components: {sweetAlert},
     name: "Modale",
     props: {
         user: {
@@ -79,6 +83,7 @@ export default {
     data: () => ({
         userNom: "",
         userSociete: "",
+        test:'Inactif',
         optionsCHoices: ['Actif', 'Inactif']
     }),
     computed: {
@@ -88,6 +93,21 @@ export default {
         validationSociety() {
             return this.user.Societe.length > 4 && this.user.Societe.length < 100;
         }
+    },
+    created() {
+      this.$successNotif()
+    },
+    methods: {
+      test () {
+        this.sweetConfirmation()
+      }
+      /*importStatus: function(user) {
+        if (user.Status ===true){
+          return this.test = 'Actif'
+        } else{
+          return this.test = 'Inactif'
+        }
+      }*/
     }
 };
 </script>
