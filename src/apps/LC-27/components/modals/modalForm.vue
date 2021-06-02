@@ -35,7 +35,6 @@
             <div>
                 <label for="input-with-list">Status</label>
                 <b-form-input
-                    v-model="user.Status"
                     list="input-list"
                     id="input-with-list"
                 ></b-form-input>
@@ -80,7 +79,7 @@ export default {
     data: () => ({
         userNom: "",
         userSociete: "",
-        optionsCHoices: ['actif', 'inactif'],
+        optionsCHoices: ['Actif', 'Inactif']
     }),
     computed: {
         validation() {
