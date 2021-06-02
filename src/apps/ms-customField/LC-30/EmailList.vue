@@ -1,61 +1,65 @@
 <template>   
     <div class="main-card mb-3 card col-12">
         <div class="table-responsive">
-            <table class="align-middle mb-0 table table-borderless table-striped table-hover">
+            <table class="align-middle mb-2 table table-borderless table-striped table-hover">
                 <thead>
                 <tr>
                     <th class="text-center">Clé</th>
                     <th class="text-center">Titre</th>
                     <th class="text-center">Modifié il y a</th>
-                    <th class="text-center">Action</th>
+                    <th class="text-center">Actions</th>
                 </tr>
                 </thead>
                 <tbody>
-                <tr v-for="email in EmailData" :key="email.id">
-                    <td class="text-center text-muted">{{ email.key }}</td>
-                    <td class="text-center">{{ email.title }}</td>
-                    <td class="text-center">{{ email.updateDate }}</td>
-                    <td class="text-center">
-                        <div>
-                            <b-button 
-                            class="mb-2 mr-2 btn-icon btn-icon-only btn-pill" 
-                            variant="outline-primary"
-                            id="viewBouton"
-                            @click="displayEmail"><i class="pe-7s-search btn-icon-wrapper">  
-                            </i>
-                            </b-button>
-                            <b-button 
-                            class="mb-2 mr-2 btn-icon btn-icon-only btn-pill" 
-                            variant="outline-warning"
-                            id="editBouton"><i class="pe-7s-pen btn-icon-wrapper">
-                            </i>
-                            </b-button>
-                            <b-popover 
-                                target="editBouton"
-                                placement="bottomleft"
-                                triggers="hover focus"
-                                content="Modifier">
-                            </b-popover>  
-                            <b-popover 
-                                target="viewBouton"
-                                placement="bottomleft"
-                                triggers="hover focus"
-                                content="Consulter">
-                            </b-popover>  
-                        </div>
-                    </td>
-                </tr>
+                    <tr v-for="email in EmailData" :key="email.id">
+                        <td class="text-center text-muted">{{ email.key }}</td>
+                        <td class="text-center">{{ email.title }}</td>
+                        <td class="text-center">{{ email.updateDate }}</td>
+                        <td class="text-center">
+                            <div>
+                                <b-button 
+                                class="mb-2 mr-2 btn-icon btn-icon-only btn-pill" 
+                                variant="outline-warning"
+                                id="viewBouton"
+                                @click="displayEmail(email)"
+                                >
+                                <i class="pe-7s-search btn-icon-wrapper"></i>
+                                </b-button>
+                                <b-button 
+                                class="mb-2 mr-2 btn-icon btn-icon-only btn-pill" 
+                                variant="outline-primary"
+                                id="editBouton"
+                                @click="edit">
+                                <i class="pe-7s-tools btn-icon-wrapper"></i>
+                                </b-button>
+                            </div>
+                        </td>
+                    </tr>
                 </tbody>
             </table>
+            <b-popover 
+                target="editBouton"
+                placement="bottomleft"
+                triggers="hover focus"
+                content="Modifier">
+            </b-popover>  
+            <b-popover 
+                target="viewBouton"
+                placement="bottomleft"
+                triggers="hover focus"
+                content="Consulter">
+            </b-popover>  
         </div>
     </div>
 </template>
 <script>
 
 export default {
+    name: "email-list",
     data() {
         return {
             isActive: true,
+            displayDetails: false
         }
     },
     props: {
@@ -64,9 +68,12 @@ export default {
         }
     }, 
      methods: {
-         displayEmail() {
-             this.$emit("displayEmail")
+         displayEmail(email) {
+             this.$emit("displayEmail", email)
 
+         }, 
+         edit() {
+             this.$emit("edit")
          }
     //     deleteAction(data) {
     //         console.log(data),

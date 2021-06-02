@@ -1,79 +1,80 @@
 <template>
   <v-layout row justify-center>
     <v-dialog v-model="dialog" fullscreen hide-overlay transition="dialog-bottom-transition">
-      <!-- <template v-slot:activator="{ on }">
-        <v-btn color="primary" dark v-on="on">Open Dialog</v-btn>
-      </template> -->
-      <v-card>
-        <v-toolbar dark color="primary">
-          <v-btn icon dark @click="closeDisplay">
-            <v-icon>close</v-icon>
-          </v-btn>
-          <v-toolbar-title>Affichage</v-toolbar-title>
-          <v-spacer></v-spacer>
-        </v-toolbar>
-        <v-list three-line subheader>
-          <v-list-tile avatar>
-            <v-list-tile-content>
-              <v-list-tile-title>Content filtering</v-list-tile-title>
-              <v-list-tile-sub-title>Set the content filtering level to restrict apps that can be downloaded</v-list-tile-sub-title>
-            </v-list-tile-content>
-          </v-list-tile>
-          <v-list-tile avatar>
-            <v-list-tile-content>
-              <v-list-tile-title>Password</v-list-tile-title>
-              <v-list-tile-sub-title>Require password for purchase or use password to restrict purchase</v-list-tile-sub-title>
-            </v-list-tile-content>
-          </v-list-tile>
-        </v-list>
-        <v-divider></v-divider>
-        <v-list three-line subheader>
-          <v-subheader>General</v-subheader>
-          <v-list-tile avatar>
-            <v-list-tile-action>
-              <v-checkbox v-model="notifications"></v-checkbox>
-            </v-list-tile-action>
-            <v-list-tile-content>
-              <v-list-tile-title>Notifications</v-list-tile-title>
-              <v-list-tile-sub-title>Notify me about updates to apps or games that I downloaded</v-list-tile-sub-title>
-            </v-list-tile-content>
-          </v-list-tile>
-          <v-list-tile avatar>
-            <v-list-tile-action>
-              <v-checkbox v-model="sound"></v-checkbox>
-            </v-list-tile-action>
-            <v-list-tile-content>
-              <v-list-tile-title>Sound</v-list-tile-title>
-              <v-list-tile-sub-title>Auto-update apps at any time. Data charges may apply</v-list-tile-sub-title>
-            </v-list-tile-content>
-          </v-list-tile>
-          <v-list-tile avatar>
-            <v-list-tile-action>
-              <v-checkbox v-model="widgets"></v-checkbox>
-            </v-list-tile-action>
-            <v-list-tile-content>
-              <v-list-tile-title>Auto-add widgets</v-list-tile-title>
-              <v-list-tile-sub-title>Automatically add home screen widgets</v-list-tile-sub-title>
-            </v-list-tile-content>
-          </v-list-tile>
-        </v-list>
+      <v-card> 
+        <div>
+          <div class="mb-5">
+            <v-toolbar dark color="primary" class="mb-6">
+              <v-btn icon dark @click="closeDisplay">
+                <v-icon>close</v-icon>
+              </v-btn>
+              <v-toolbar-title>Informations de l'email</v-toolbar-title>
+              <v-spacer></v-spacer>
+                <v-toolbar-items>
+                <v-btn dark flat>Modifier</v-btn>
+              </v-toolbar-items>
+            </v-toolbar>
+          </div>
+          <div class="main-card card col-11 mb-5">
+            <div class="table-responsive card-body"><h5 class="card-title">Information génerales</h5>
+              <table class="align-middle mb-0 table table-borderless table-striped">
+                <tbody>
+                  <tr>
+                      <td class="text-center font-weight-bold">Clé</td>
+                      <td class="text-center text-muted">{{ details.key }}</td>
+                  </tr>
+                  <tr>
+                      <td class="text-center font-weight-bold">Titre</td>
+                      <td class="text-center text-muted">{{ details.title }}</td>
+                  </tr>
+                  <tr>
+                      <td class="text-center font-weight-bold">Description</td>
+                      <td class="text-center text-muted">{{ details.description }}</td>
+                  </tr>
+                  <tr>
+                      <td class="text-center font-weight-bold">Date de création</td>
+                      <td class="text-center text-muted">{{ details.creationDate }}</td>
+                  </tr>
+                  <tr>
+                      <td class="text-center font-weight-bold">Date de modification</td>
+                      <td class="text-center text-muted">{{ details.updateDate }}</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>  
+          <div class="main-card card col-11  mb-5">
+            <div class="card-body"><h5 class="card-title">Contenu de l'email</h5>
+              <div class="scroll-area-sm">
+                <VuePerfectScrollbar class="scrollbar-container" v-once>
+                  <p>{{ details.content }}</p>
+                </VuePerfectScrollbar>
+              </div>
+            </div>
+          </div> 
+        </div>       
       </v-card>
     </v-dialog>
   </v-layout>
 </template>
 
 <script>
+import VuePerfectScrollbar from 'vue-perfect-scrollbar'
   export default {
+    name: "display-email",
+    components: {
+      VuePerfectScrollbar
+    },
     data () {
       return {
-        notifications: false,
-        sound: true,
-        widgets: false
       }
     }, 
     props: {
         dialog: {
             type: Boolean
+        },
+        details: {
+          type: Object
         }
     }, 
     methods: {
