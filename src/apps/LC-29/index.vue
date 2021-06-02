@@ -82,7 +82,6 @@
 
 <script>
 import PageTitle from "../../Layout/Components/PageTitle";
-
 import EditList from "../LC-29/components/EditList";
 
 export default {

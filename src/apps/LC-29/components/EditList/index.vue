@@ -5,34 +5,62 @@
         <span class="headline">Liste des activités</span>
       </v-card-title>
       <v-card-text class="col-10 offset-1">
-        <h3 class="my-2">Ajouter une Activité</h3>
-        <v-container grid-list-md>
-          <v-layout wrap>
-            <v-flex xs12 sm8 md6>
-              <v-text-field label="Categorie" required></v-text-field>
-            </v-flex>
-            <v-flex xs12 sm8 md6>
-              <v-text-field
-                label="Valeur"
-                hint="example of helper text only on focus"
-              ></v-text-field>
-            </v-flex>
-          </v-layout>
-        </v-container>
+        <h3 class="my-3">Ajouter une Activité</h3>
+        <li class="list-group-item">
+          <div class="widget-content p-0">
+            <div class="widget-content-wrapper">
+              <div class="widget-content-left">
+                <div class="widget-heading"></div>
+              </div>
+              <v-layout>
+                <v-flex>
+                  <v-text-field
+                    label="Activité"
+                    required
+                    class="col-10"
+                  ></v-text-field>
+                </v-flex>
+              </v-layout>
+              <b-button
+                class="ml-6 btn-icon btn-icon-only btn-pill"
+                variant="outline-warning"
+                @click="edit(list.id)"
+                ><i class=""> + </i></b-button
+              >
+            </div>
+          </div>
+        </li>
+
         <ul class="list-group">
           <h3 class="my-5">Modifier une Activité</h3>
-        
-          <b-col md="6" class="my-1 ">
-            <b-form-group horizontal label="Ordre" class="mb-0 row">
-              <b-input-group>
-                <b-form-select v-model="sortDirection" slot="append" >
-                  <option value="asc">Asc</option>
-                  <option value="desc">Desc</option>
-                  <option value="last">Last</option>
-                </b-form-select>
-              </b-input-group>
-            </b-form-group>
-          </b-col>
+          <b-row>
+            <b-col md="6" class="my-1">
+              <b-form-group horizontal label="Filtrer" class="mb-3">
+                <b-input-group>
+                  <b-form-input
+                    v-model="filter"
+                    placeholder="Rechercher une activité"
+                  />
+                  <b-input-group-append>
+                    <b-btn :disabled="!filter" @click="filter = ''"
+                      >Clear</b-btn
+                    >
+                  </b-input-group-append>
+                </b-input-group>
+              </b-form-group>
+            </b-col>
+            <b-col md="6" class="my-1">
+              <b-form-group horizontal label="Ordre" class="mb-0">
+                <b-input-group>
+                  <b-form-select v-model="sortDirection" slot="append">
+                    <option value="asc">Asc</option>
+                    <option value="desc">Desc</option>
+                    <option value="last">Last</option>
+                  </b-form-select>
+                </b-input-group>
+              </b-form-group>
+            </b-col>
+          </b-row>
           <li class="list-group-item" v-for="item in lists" :key="item.id">
             <div class="widget-content p-0">
               <div class="widget-content-wrapper">
@@ -50,7 +78,7 @@
                     ></b-button>
                     <b-button
                       class="ml-4 btn-icon btn-icon-only btn-pill"
-                      variant="outline-warning"
+                      variant="outline-danger"
                       @click="edit(list.id)"
                       ><i class="pe-7s-trash btn-icon-wrapper"> </i
                     ></b-button>
@@ -139,6 +167,24 @@ export default {
       {
         name: "Etudes/Conseils",
         id: 10,
+        modify: "04/05/2021",
+        createdAt: "09/05/2019",
+      },
+      {
+        name: "Informatiques / Télécoms",
+        id: 11,
+        modify: "04/05/2021",
+        createdAt: "09/05/2019",
+      },
+      {
+        name: "Machines / Equipements / Automobiles",
+        id: 12,
+        modify: "04/05/2021",
+        createdAt: "09/05/2019",
+      },
+      {
+        name: "Mettalurgie/ Travail du métal",
+        id: 12,
         modify: "04/05/2021",
         createdAt: "09/05/2019",
       },
