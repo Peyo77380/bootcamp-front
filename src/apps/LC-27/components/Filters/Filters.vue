@@ -1,8 +1,9 @@
 <template>
-    <div class="mb-3 card">
+    <div class="mb-3 card text-center">
         
 
-        <div class="text-center p-3 nav ">
+        <b-nav class="text-center p-3 nav " align="center">
+        
             <div class="search-wrapper"  v-bind:class="{ active: searchOpen }">
                 <div class="input-holder">
                     <input type="text" class="search-input" placeholder="Mots clé"/>
@@ -103,7 +104,7 @@
                         <b-dropdown-item-button>Z - A</b-dropdown-item-button>
                     </b-dropdown>
                     
-        </div>
+        </b-nav>
     </div>
 </template>
 <script>
