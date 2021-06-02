@@ -60,9 +60,15 @@
                     <b-button
                       class="mb-2 btn-icon btn-icon-only btn-pill"
                       variant="outline-info"
-                      @click="edit(item.id)"
+                      :to="{ name: 'EditList' }"
                       ><i class="pe-7s-pen btn-icon-wrapper"> </i
                     ></b-button>
+                    <!-- <b-button
+                      class="mb-2 btn-icon btn-icon-only btn-pill"
+                      variant="outline-info"
+                      @click="edit(item.id)"
+                      ><i class="pe-7s-pen btn-icon-wrapper"> </i
+                    ></b-button> -->
                   </td>
                 </tr>
               </tbody>
@@ -76,13 +82,14 @@
 
 <script>
 import PageTitle from "../../Layout/Components/PageTitle";
-import Modal1 from "../LC-29/components/modal1";
+
+import EditList from "../LC-29/components/EditList";
 
 export default {
   name: "home",
   components: {
     PageTitle,
-    Modal1,
+    EditList,
   },
 
   data: () => ({
@@ -121,91 +128,21 @@ export default {
       {
         name: "évènements",
         id: 3,
-        quantity: 34,
+        quantity: 12,
       },
       {
         name: "annonces",
         id: 4,
-        quantity: 34,
+        quantity: 25,
       },
       {
         name: "catégories",
         id: 5,
-        quantity: 34,
+        quantity: 36,
       },
     ],
     dialog: false,
   }),
-
-  list_values: [
-    {
-      category_id: 1,
-      id: 1,
-      value: "agroalimentaire",
-      modify: "24/05/2021",
-      createdAt: "19/05/2019",
-    },
-    {
-      category_id: 2,
-      id: 2,
-      value: "développeur web",
-      modify: "essai1",
-      createdAt: "essai1",
-    },
-    {
-      category_id: 3,
-      id: 3,
-      value: "innovations managériales",
-      modify: "13/09/2020",
-      createdAt: "03/05/2018",
-    },
-    {
-      category_id: 4,
-      id: 8,
-      value: "je vends",
-      modify: "14/08/2017",
-      createdAt: "09/08/2016",
-    },
-    {
-      category_id: 1,
-      id: 10,
-      value: "banque | assurances",
-      modify: "12/06/2021",
-      createdAt: "11/04/2019",
-    },
-    {
-      category_id: 5,
-      id: 12,
-      value: "stagiaire",
-      modify: "24/05/2021",
-      createdAt: "19/05/2019",
-    },
-    {
-      category_id: 2,
-      id: 20,
-      value: "traducteur",
-      modify: "04/05/2021",
-      createdAt: "09/05/2019",
-    },
-    {
-      category_id: 4,
-      id: 5,
-      value: "je cherche",
-      modify: "test3",
-      createdAt: "3test",
-    },
-    {
-      category_id: 1,
-      id: 11,
-      value: "BTP | matériaux de construction",
-    },
-    {
-      category_id: 5,
-      id: 13,
-      value: "coworker",
-    },
-  ],
-  dialog: false,
 
   methods: {
     add() {

@@ -25,6 +25,11 @@ export default new Router({
             name: "View",
             component: () => import('@/apps/LC-29/components/view'),
         },
+        {
+            path: "/LC-29/components/EditList",
+            name: "EditList",
+            component: () => import('@/apps/LC-29/components/EditList'),
+        },
         
     ]
 });
