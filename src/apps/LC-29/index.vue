@@ -205,7 +205,7 @@ export default {
       value: "coworker",
     },
   ],
-  openDialog: false,
+  dialog: false,
 
   methods: {
     add() {

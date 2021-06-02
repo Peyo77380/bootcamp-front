@@ -3,7 +3,8 @@
     <v-dialog v-model="dialog" persistent max-width="600px">
       <template v-slot:activator="{ on }">
         <v-btn color="warning" dark v-on="on">Ajouter</v-btn>
-      </template>
+      </template>  
+
       <v-card>
         <v-card-title>
           <span class="headline">User Profile</span>
@@ -154,9 +155,9 @@ export default {
     close() {
       this.$emit("close");
     },
-    edit() {
-      this.$emit("save");
-    },
+    // edit() {
+    //   this.$emit("save");
+    // },
   },
 };
 </script>
