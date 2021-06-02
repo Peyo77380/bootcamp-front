@@ -30,7 +30,7 @@
                                 <img
                                     width="40"
                                     class="rounded-circle"
-                                    src="@/assets/images/avatars/4.jpg"
+                                    :src="user.Photo"
                                     alt=""
                                 />
                             </td>
@@ -77,7 +77,7 @@
                                         class="mb-2 mr-2  btn-pill btn-shadow"
                                         variant="primary"
                                         id="popover1"
-                                        @click="$bvModal.show('modal-scoped')"
+                                        @click="updateForm(user)"
                                     >
                                         <i class="lnr-pencil"></i>
                                     </b-button>
@@ -216,6 +216,13 @@ export default {
             message: "Etes-vous sûr de vouloir effacer cette fiche ?"
         }
     },
+    methods: {
+        updateForm (user) {
+           
+            this.updateUser = user,
+            this.$bvModal.show('modal-scoped')
+        }
+    }
     
 };
 </script>
