@@ -54,95 +54,16 @@
                   </td>
                   <td class="text-center">{{ item.id }}</td>
                   <td class="text-center">
-<<<<<<< HEAD
                     <div class="text-center">{{ item.quantity }}</div>
                   </td>
                   <td class="text-center">
                     <b-button
                       class="mb-2 btn-icon btn-icon-only btn-pill"
-=======
-                    <div class="text-center">45</div>
-                  </td>
-                  <td class="text-center">
-                    <b-button
-                      class="mb-2 mr-2 btn-icon btn-icon-only btn-pill"
->>>>>>> structure suite call
                       variant="outline-info"
                       @click="edit(item.id)"
                       ><i class="pe-7s-pen btn-icon-wrapper"> </i
                     ></b-button>
                   </td>
-<<<<<<< HEAD
-=======
-                </tr>
-                <tr>
-                  <td class="text-center">
-                    <div class="badge badge-danger">Métier</div>
-                  </td>
-                  <td class="text-center">#20</td>
-                  <td class="text-center">
-                    <div class="text-center">56</div>
-                  </td>
-                  <td class="text-center">
-                    <b-button
-                      class="mb-2 mr-2 btn-icon btn-icon-only btn-pill"
-                      variant="outline-info"
-                      ><i class="pe-7s-pen btn-icon-wrapper"> </i
-                    ></b-button>
-                  </td>
-                </tr>
-                <tr >
-                  <td class="text-center">
-                    <div class="badge badge-info">Evènements</div>
-                  </td>
-                  <td class="text-center">#4</td>
-                  <td class="text-center">
-                    <div class="text-center">34</div>
-                  </td>
-
-                  <td class="text-center">
-                    <b-button
-                      class="mb-2 mr-2 btn-icon btn-icon-only btn-pill"
-                      variant="outline-info"
-                      ><i class="pe-7s-pen btn-icon-wrapper"> </i
-                    ></b-button>
-                  </td>
-                </tr>
-                <tr>
-                  <td class="text-center">
-                    <div class="badge badge-alternate">Catégorie</div>
-                  </td>
-                  <td class="text-center">#8</td>
-                  <td class="text-center">
-                    <div class="text-center">76</div>
-                  </td>
-
-                  <td class="text-center">
-                    <b-button
-                      class="mb-2 mr-2 btn-icon btn-icon-only btn-pill"
-                      variant="outline-info"
-                      ><i class="pe-7s-pen btn-icon-wrapper"> </i
-                    ></b-button>
-                  </td>
-                </tr>
-                <tr>
-                  <td class="text-center">
-                    <div class="badge badge-success">Annonces</div>
-                  </td>
-                  <td class="text-center">#6</td>
-                  <td class="text-center">
-                    <div class="text-center">26</div>
-                  </td>
-
-                  <td class="text-center">
-                    <b-button
-                      class="mb-2 btn-icon btn-icon-only btn-pill"
-                      variant="outline-info"
-                      @click="edit(list.id)"
-                      ><i class="pe-7s-pen btn-icon-wrapper"> </i
-                    ></b-button>
-                  </td>
->>>>>>> structure suite call
                 </tr>
               </tbody>
             </table>
@@ -155,15 +76,13 @@
 
 <script>
 import PageTitle from "../../Layout/Components/PageTitle";
-<<<<<<< HEAD
 import Modal1 from "../LC-29/components/modal1";
-=======
->>>>>>> structure suite call
 
 export default {
   name: "home",
   components: {
     PageTitle,
+    Modal1,
   },
 
   data: () => ({
@@ -188,7 +107,7 @@ export default {
         href: "breadcrumbs_link_2",
       },
     ],
-        lists: [
+    list: [
       {
         name: "activités",
         id: 1,
@@ -202,73 +121,22 @@ export default {
       {
         name: "évènements",
         id: 3,
-<<<<<<< HEAD
-        quantity: 23,
+        quantity: 34,
       },
       {
         name: "annonces",
         id: 4,
-        quantity: 12,
+        quantity: 34,
       },
       {
         name: "catégories",
         id: 5,
         quantity: 34,
-=======
-        value: "innovations managériales",
-        modify: "13/09/2020",
-        createdAt: "03/05/2018",
-      },
-      {
-        category: "annonces",
-        id: 8,
-        value: "je vends",
-        modify: "14/08/2017",
-        createdAt: "09/08/2016",
-      },
-      {
-        category: "activité",
-        id: 10,
-        value: "banque | assurances",
-        modify: "12/06/2021",
-        createdAt: "11/04/2019",
-      },
-      {
-        category: "catégorie",
-        id: 12,
-        value: "stagiaire",
-        modify: "24/05/2021",
-        createdAt: "19/05/2019",
-      },
-      {
-        category: "metier",
-        id: 2,
-        value: "traducteur",
-        modify: "04/05/2021",
-        createdAt: "09/05/2019",
-      },
-      {
-        category: "annonces",
-        id: 5,
-        value: "je cherche",
-        modify: "test3",
-        createdAt: "3test",
-      },
-      {
-        category: "activité",
-        id: 11,
-        value: "BTP | matériaux de construction",
-      },
-      {
-        category: "catégorie",
-        id: 13,
-        value: "coworker",
->>>>>>> structure suite call
       },
     ],
+    dialog: false,
   }),
 
-<<<<<<< HEAD
   list_values: [
     {
       category_id: 1,
@@ -339,9 +207,6 @@ export default {
   ],
   openDialog: false,
 
-=======
-  
->>>>>>> structure suite call
   methods: {
     add() {
       this.dialog = true;
@@ -352,7 +217,6 @@ export default {
     edit() {
       this.dialog = true;
     },
-<<<<<<< HEAD
     getStatus(list) {
       switch (list) {
         case "activités":
@@ -377,8 +241,6 @@ export default {
           };
       }
     },
-=======
->>>>>>> structure suite call
   },
 };
 </script>
