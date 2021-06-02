@@ -31,6 +31,9 @@
       </div>
     </template>
     <template #modal-footer="{ ok, cancel }">
+      <b-button size="sm" variant="primary" @click="update()">
+        Voir fiche
+      </b-button>
       <b-button size="sm" variant="danger" @click="cancel()">
         Annuler
       </b-button>
