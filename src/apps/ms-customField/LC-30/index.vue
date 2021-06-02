@@ -10,7 +10,7 @@
         <display-email :details="emailDetails" @closeDisplay="displayOff" :dialog="behavior.modalDisplay"/>
     </div>
     <div>
-        <edit-email :dialog="behavior.modalEdit" @close="closeEdit"/>
+        <edit-email :editedEmail="editedEmail" :dialog="behavior.modalEdit" @close="closeEdit"/>
     </div>
 </div>
     
@@ -39,6 +39,7 @@ export default {
             EmailData: EmailData, 
             dialog: false,
             emailDetails : {},  
+            editedEmail: {},
             behavior: {
                 modalEdit: false,
                 modalDisplay: false
@@ -47,16 +48,18 @@ export default {
     }, 
     methods: {
         showDetails(email) {
-            this.behavior.modalDisplay = true
-            //this.dialog = !this.dialog,
+            this.behavior.modalDisplay = true;
             this.emailDetails = email
             //@TODO point API affichage details de l'email
         },
         displayOff() {
             this.behavior.modalDisplay = false
         }, 
-        editEmail() {
-            this.behavior.modalEdit = true
+        editEmail(email) {
+            this.behavior.modalEdit = true;
+            this.editedEmail = email;
+            //console.log('edition email', this.editedEmail)
+
         }, 
         closeEdit() {
             this.behavior.modalEdit = false

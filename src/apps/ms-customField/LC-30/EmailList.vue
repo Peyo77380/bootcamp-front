@@ -29,7 +29,7 @@
                                 class="mb-2 mr-2 btn-icon btn-icon-only btn-pill" 
                                 variant="outline-primary"
                                 id="editBouton"
-                                @click="edit">
+                                @click="edit(email)">
                                 <i class="pe-7s-tools btn-icon-wrapper"></i>
                                 </b-button>
                             </div>
@@ -72,8 +72,8 @@ export default {
              this.$emit("displayEmail", email)
 
          }, 
-         edit() {
-             this.$emit("edit")
+         edit(email) {
+             this.$emit("edit", email)
          }
     //     deleteAction(data) {
     //         console.log(data),
