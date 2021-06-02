@@ -1,9 +1,9 @@
 <template>
   <v-layout row justify-center>
     <v-dialog v-model="dialog" persistent max-width="600px">
-      <!-- <template v-slot:activator="{ on }">
+      <template v-slot:activator="{ on }">
         <v-btn color="warning" dark v-on="on">Ajouter</v-btn>
-      </template>  -->
+      </template> 
 
       <v-card>
         <v-card-title>

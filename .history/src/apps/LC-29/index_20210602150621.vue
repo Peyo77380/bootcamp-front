@@ -116,22 +116,22 @@ export default {
       {
         name: "metiers",
         id: 2,
-        quantity: 45,
+        quantity: 34,
       },
       {
         name: "évènements",
         id: 3,
-        quantity: 23,
+        quantity: 34,
       },
       {
         name: "annonces",
         id: 4,
-        quantity: 12,
+        quantity: 34,
       },
       {
         name: "catégories",
         id: 5,
-        quantity: 56,
+        quantity: 34,
       },
     ],
     dialog: false,

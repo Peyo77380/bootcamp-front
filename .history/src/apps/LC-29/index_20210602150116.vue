@@ -35,7 +35,10 @@
                 </tr>
               </thead>
               <tbody>
-                <tr v-for="item in list" :key="item.id">
+                <tr
+                  v-for="item in list"
+                  :key="item.id"
+                >
                   <td class="text-center">
                     <b-btn
                       id="exButton4"
@@ -54,13 +57,13 @@
                   </td>
                   <td class="text-center">{{ item.id }}</td>
                   <td class="text-center">
-                    <div class="text-center">{{ item.quantity }}</div>
+                    <div class="text-center">23</div>
                   </td>
                   <td class="text-center">
                     <b-button
                       class="mb-2 btn-icon btn-icon-only btn-pill"
                       variant="outline-info"
-                      @click="edit(item.id)"
+                      @click="edit(list_category.id)"
                       ><i class="pe-7s-pen btn-icon-wrapper"> </i
                     ></b-button>
                   </td>
@@ -116,22 +119,22 @@ export default {
       {
         name: "metiers",
         id: 2,
-        quantity: 45,
+        quantity: 34,
       },
       {
-        name: "évènements",
+        cname: "évènements",
         id: 3,
-        quantity: 23,
+        quantity: 34,
       },
       {
         name: "annonces",
         id: 4,
-        quantity: 12,
+        quantity: 34,
       },
       {
         name: "catégories",
         id: 5,
-        quantity: 56,
+        quantity: 34,
       },
     ],
     dialog: false,
@@ -217,8 +220,8 @@ export default {
     edit() {
       this.dialog = true;
     },
-    getStatus(list) {
-      switch (list) {
+    getStatus(category) {
+      switch (category) {
         case "activités":
           return {
             "badge badge-warning": true,

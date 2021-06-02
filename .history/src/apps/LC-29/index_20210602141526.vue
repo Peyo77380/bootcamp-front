@@ -35,14 +35,17 @@
                 </tr>
               </thead>
               <tbody>
-                <tr v-for="item in list" :key="item.id">
+                <tr
+                  v-for="list_category in list_categories"
+                  :key="list_category.id"
+                >
                   <td class="text-center">
                     <b-btn
                       id="exButton4"
                       variant="outiline-info"
-                      :class="getStatus(item.name)"
+                      :class="getStatus(list_category.category)"
                     >
-                      {{ item.name }}
+                      {{ list_category.category }}
                       <b-tooltip
                         target="exButton4"
                         variant="outline-primary"
@@ -52,15 +55,16 @@
                       ></b-tooltip>
                     </b-btn>
                   </td>
-                  <td class="text-center">{{ item.id }}</td>
+                  <td class="text-center">{{ list_category.id }}</td>
                   <td class="text-center">
-                    <div class="text-center">{{ item.quantity }}</div>
+                    <div class="text-center">23</div>
                   </td>
                   <td class="text-center">
+                    <v-btn color="warning" dark v-on="on">Ajouter</v-btn>
                     <b-button
                       class="mb-2 btn-icon btn-icon-only btn-pill"
                       variant="outline-info"
-                      @click="edit(item.id)"
+                      @click="edit(list_category.id)"
                       ><i class="pe-7s-pen btn-icon-wrapper"> </i
                     ></b-button>
                   </td>
@@ -107,31 +111,26 @@ export default {
         href: "breadcrumbs_link_2",
       },
     ],
-    list: [
+    list_categories: [
       {
-        name: "activités",
+        category: "activités",
         id: 1,
-        quantity: 34,
       },
       {
-        name: "metiers",
+        category: "metiers",
         id: 2,
-        quantity: 45,
       },
       {
-        name: "évènements",
+        category: "évènements",
         id: 3,
-        quantity: 23,
       },
       {
-        name: "annonces",
+        category: "annonces",
         id: 4,
-        quantity: 12,
       },
       {
-        name: "catégories",
+        category: "catégories",
         id: 5,
-        quantity: 56,
       },
     ],
     dialog: false,
@@ -205,7 +204,7 @@ export default {
       value: "coworker",
     },
   ],
-  openDialog: false,
+  dialog: false,
 
   methods: {
     add() {
@@ -217,8 +216,8 @@ export default {
     edit() {
       this.dialog = true;
     },
-    getStatus(list) {
-      switch (list) {
+    getStatus(category) {
+      switch (category) {
         case "activités":
           return {
             "badge badge-warning": true,

@@ -143,9 +143,7 @@ export default {
   }),
 
   methods: {
-    add() {
-      this.dialog = true;
-    },
+\
     closemodal() {
       this.dialog = false;
     },

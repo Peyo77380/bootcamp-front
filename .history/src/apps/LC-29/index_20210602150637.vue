@@ -126,12 +126,12 @@ export default {
       {
         name: "annonces",
         id: 4,
-        quantity: 12,
+        quantity: 34,
       },
       {
         name: "catégories",
         id: 5,
-        quantity: 56,
+        quantity: 34,
       },
     ],
     dialog: false,

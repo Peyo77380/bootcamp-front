@@ -3,7 +3,7 @@
     <v-dialog v-model="dialog" persistent max-width="600px">
       <!-- <template v-slot:activator="{ on }">
         <v-btn color="warning" dark v-on="on">Ajouter</v-btn>
-      </template>  -->
+      </template> -->
 
       <v-card>
         <v-card-title>
@@ -186,9 +186,9 @@ export default {
     close() {
       this.$emit("close");
     },
-    // edit() {
-    //   this.$emit("save");
-    // },
+    edit() {
+      this.$emit("save");
+    },
   },
 };
 </script>

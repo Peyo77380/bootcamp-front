@@ -131,7 +131,7 @@ export default {
       {
         name: "catégories",
         id: 5,
-        quantity: 56,
+        quantity: 34,
       },
     ],
     dialog: false,
