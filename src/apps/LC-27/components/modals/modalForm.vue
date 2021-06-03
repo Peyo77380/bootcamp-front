@@ -53,7 +53,7 @@
             <b-button size="sm" variant="danger" @click="cancel()">
                 Annuler
             </b-button>
-            <b-button size="sm" variant="success" @click="modifUpdate($sweetNotif)">
+            <b-button size="sm" variant="success" @click="[ok(), modifUpdate($sweetNotif)]">
                 Valider
             </b-button>
         </template>
@@ -107,7 +107,7 @@ export default {
       modifUpdate() {
         this.$sweetNotif('Modifications enregistrées !')
         // TODO : corriger le problème de fermeture de la modale
-    }
+    },
     }
 };
 </script>
