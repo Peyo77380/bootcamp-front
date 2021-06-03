@@ -30,7 +30,7 @@
                                 <img
                                     width="40"
                                     class="rounded-circle"
-                                    src="user.Photo"
+                                    :src="user.Photo"
                                     alt=""
                                 />
                             </td>
@@ -156,7 +156,6 @@ export default {
                 {
                     ID: 1,
                     Photo: "@/assets/images/avatars/1.jpg",
-                    
                     Nom: "Marvin Gaye",
                     Societe: "Motown",
                     Status: false,
@@ -165,7 +164,7 @@ export default {
                 },
                 {
                     ID: 2,
-                    Photo: "@/assets/images/avatars/3.jpg",
+                  //  Photo: "@/assets/images/avatars/3.jpg",
                     Nom: "Laurent Sauzet",
                     Societe: "Microsoft",
                     Status: true,
@@ -174,7 +173,7 @@ export default {
                 },
                 {
                     ID: 3,
-                    Photo: "@/assets/images/avatars/3.jpg",
+                  //  Photo: "@/assets/images/avatars/3.jpg",
                     Nom: "Curtis Mayfield",
                     Societe: "Hatchworks",
                     Status: true,
@@ -183,7 +182,7 @@ export default {
                 },
                 {
                     ID: 4,
-                    Photo: "@/assets/images/avatars/5.jpg",
+                  //  Photo: "@/assets/images/avatars/5.jpg",
                     Nom: "Roberta Flack",
                     Societe: "Riddle Electronics",
                     Status: false,
@@ -192,7 +191,7 @@ export default {
                 },
                 {
                     ID: 5,
-                    Photo: "@/assets/images/avatars/6.jpg",
+                  //  Photo: "@/assets/images/avatars/6.jpg",
                     Nom: "Nancy Sinatra",
                     Societe: "Pixelcloud",
                     Status: true,
