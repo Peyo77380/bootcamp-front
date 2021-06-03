@@ -39,7 +39,7 @@
                             </td>
                             <td class="text-center">
                                 <a href="javascript:void(0)"
-                                    >Micro Electronics</a
+                                    >{{ user.Societe }}</a
                                 >
                             </td>
                             <td class="text-center">
