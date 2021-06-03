@@ -41,7 +41,7 @@
                 ></b-form-input>
                 <b-form-datalist
                     id="input-list"
-                    :options="optionsCHoices"
+                    :options="optionsChoices"
                     
                 ></b-form-datalist>
             </div>
@@ -83,8 +83,8 @@ export default {
     data: () => ({
         userNom: "",
         userSociete: "",
-        test:'Inactif',
-        optionsCHoices: ['Actif', 'Inactif']
+        
+        optionsChoices: ['Actif', 'Inactif']
     }),
     computed: {
         validation() {
@@ -92,22 +92,18 @@ export default {
         },
         validationSociety() {
             return this.user.Societe.length > 4 && this.user.Societe.length < 100;
+        },
+        test() {
+          if (this.user.Status) {
+            return this.optionsChoices[0]
+          }
+          return this.optionsChoices[1]
         }
-    },
-    created() {
-      this.$successNotif()
     },
     methods: {
-      test () {
-        this.sweetConfirmation()
+      importStatus (){
+        this.test=this.user.Status
       }
-      /*importStatus: function(user) {
-        if (user.Status ===true){
-          return this.test = 'Actif'
-        } else{
-          return this.test = 'Inactif'
-        }
-      }*/
     }
 };
 </script>

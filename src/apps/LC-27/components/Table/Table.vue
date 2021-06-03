@@ -126,21 +126,11 @@ import {
     faBusinessTime
 } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/vue-fontawesome";
-import Vue from "vue";
 import VueNotifications from "vue-notifications";
-import swal from "sweetalert";
 import ModalForm from "../modals/modalForm";
 
-function toast({ title, message, type }) {
-    if (type === VueNotifications.types.warn) type = "warning";
-    return swal(title, message, type);
-}
 
-const options = {
-    warn: toast
-};
 
-Vue.use(VueNotifications, options);
 
 library.add(
     faBatteryThreeQuarters,
