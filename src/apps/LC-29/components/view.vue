@@ -52,22 +52,21 @@
                   <td class="text-center">
                     <div class="text-center">{{ list.value }}</div>
                   </td>
-                  <td class="text-center">
+                  <td class="text-center col-6">
                     <b-button
                       class="mb-2 btn-icon btn-icon-only btn-pill"
                       variant="outline-info"
                       @click="edit(list.id)"
                       ><i class="pe-7s-pen btn-icon-wrapper"> </i
                     ></b-button>
-                  </td>
-
-                  <td class="text-center">
                     <b-button
                       class="mb-2 btn-icon btn-icon-only btn-pill"
                       variant="outline-danger"
                       ><i class="pe-7s-trash btn-icon-wrapper"> </i
                     ></b-button>
                   </td>
+
+                  <td class="text-center"></td>
 
                   <td class="text">
                     <div role="tablist">
@@ -110,7 +109,8 @@
 
 <script>
 import PageTitle from "../../../Layout/Components/PageTitle";
-import Modal1 from "@/apps/LC-29/components/modal1";
+import Modal1 from "@/apps/LC-29/components/Test1/modal1";
+
 
 export default {
   name: "listView",

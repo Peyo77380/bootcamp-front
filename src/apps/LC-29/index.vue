@@ -83,12 +83,14 @@
 <script>
 import PageTitle from "../../Layout/Components/PageTitle";
 import EditList from "../LC-29/components/EditList";
+import AddList from "../LC-29/components/AddList";
 
 export default {
   name: "home",
   components: {
     PageTitle,
     EditList,
+    AddList,
   },
 
   data: () => ({

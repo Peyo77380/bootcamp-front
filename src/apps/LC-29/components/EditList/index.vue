@@ -70,18 +70,23 @@
 
                 <div class="widget-content-right">
                   <div role="group" class="btn-group-sm btn-group">
-                    <b-button
-                      class="ml-4 btn-icon btn-icon-only btn-pill"
-                      variant="outline-info"
-                      @click="edit(list.id)"
-                      ><i class="pe-7s-pen btn-icon-wrapper"> </i
-                    ></b-button>
-                    <b-button
-                      class="ml-4 btn-icon btn-icon-only btn-pill"
-                      variant="outline-danger"
-                      @click="edit(list.id)"
-                      ><i class="pe-7s-trash btn-icon-wrapper"> </i
-                    ></b-button>
+                    <div>
+                      <b-button
+                        class="ml-4 btn-icon btn-icon-only btn-pill"
+                        variant="outline-info"
+                        @click="edit(list.id)"
+                        ><i class="pe-7s-pen btn-icon-wrapper"> </i
+                      ></b-button>
+                    </div>
+
+                    <div>
+                      <b-button
+                        class="ml-4 btn-icon btn-icon-only btn-pill"
+                        variant="outline-danger"
+                        @click="remove(item.id)"
+                        ><i class="pe-7s-trash btn-icon-wrapper"> </i
+                      ></b-button>
+                    </div>
                   </div>
                 </div>
               </div>
@@ -102,7 +107,12 @@
 <script>
 export default {
   name: "EditList",
-
+  methods: {
+    remove(activityId) {
+      this.lists = this.lists.filter((activity) => activity.id !== activityId);
+      console.log("from remove Editlist : ok !!!", activityId);
+    },
+  },
   data: () => ({
     sortBy: null,
     sortDesc: false,
@@ -184,7 +194,7 @@ export default {
       },
       {
         name: "Mettalurgie/ Travail du métal",
-        id: 12,
+        id: 13,
         modify: "04/05/2021",
         createdAt: "09/05/2019",
       },
