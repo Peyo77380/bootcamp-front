@@ -53,7 +53,7 @@
             <b-button size="sm" variant="danger" @click="cancel()">
                 Annuler
             </b-button>
-            <b-button size="sm" variant="success" @click="ok()">
+            <b-button size="sm" variant="success" @click="modifUpdate($sweetNotif)">
                 Valider
             </b-button>
         </template>
@@ -103,7 +103,10 @@ export default {
     methods: {
       importStatus (){
         this.test=this.user.Status
-      }
+      },
+      modifUpdate() {
+        this.$sweetNotif('Modifications enregistrées !')
+    }
     }
 };
 </script>
