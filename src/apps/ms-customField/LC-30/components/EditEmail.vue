@@ -34,20 +34,28 @@
                                     </div>
                                 </div>
                             </div>
-                            <v-form>
-                                <v-flex xs12 sm6 md6>
-                                    <v-text-field
-                                        label="Titre"
-                                    > {{ editedEmail.title }}</v-text-field>
-                                </v-flex>
-                                <p>{{ editedEmail.title }}</p>
-                                <v-flex xs12 sm6 md6>
-                                    <v-text-field
-                                        label="Description"
-                                    > {{ editedEmail.description }}</v-text-field>
-                                </v-flex>
-                                <p>{{ editedEmail.description }}</p>
-                            </v-form>
+                            <div class="main-card card col-11 mb-5">
+                                <v-form>
+                                    <v-flex xs12 sm6 md6>
+                                        <v-text-field
+                                            label="Titre"
+                                        > {{ editedEmail.title }}</v-text-field>
+                                    </v-flex>
+                                    <p>{{ editedEmail.title }}</p>
+                                    <v-flex xs12 sm6 md6>
+                                        <v-text-field
+                                            label="Description"
+                                        > {{ editedEmail.description }}</v-text-field>
+                                    </v-flex>
+                                    <p>{{ editedEmail.description }}</p>
+                                </v-form>  
+                            </div>    
+                            <div>
+                                <div class="col-6 mb-5">
+                                    <email-copy :editedEmail="editedEmail"/>
+                                </div>
+                                
+                            </div>
                         </div>
                     </div>  
                     <div class="main-card card col-11  mb-5">
@@ -63,8 +71,12 @@
 </template>
 
 <script>
+import EmailCopy from "@/apps/ms-customField/LC-30/components/sub-components/EmailCopy";
 export default {
     name: "edit-email",
+    components: { 
+        EmailCopy
+    },
     data() {
     return {
         icon: "pe-7s-mail-open-file"
