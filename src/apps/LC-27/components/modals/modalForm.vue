@@ -106,7 +106,9 @@ export default {
       },
       modifUpdate() {
         this.$sweetNotif('Modifications enregistrées !')
+        // TODO : corriger le problème de fermeture de la modale
     }
     }
 };
 </script>
+
