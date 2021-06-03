@@ -1,6 +1,6 @@
 <template>
     <div>
-        <div><ModalForm :user="updateUser" /></div>
+        
         <div class="main-card mb-3 card">
             <div class="table-responsive">
                 <table
@@ -30,7 +30,7 @@
                                 <img
                                     width="40"
                                     class="rounded-circle"
-                                    :src="user.Photo"
+                                    src="user.Photo"
                                     alt=""
                                 />
                             </td>
@@ -111,9 +111,11 @@
                 </div>
             </div>
         </div>
+        <div><ModalForm :user="updateUser" /></div>
     </div>
 </template>
 <script>
+
 import { library } from "@fortawesome/fontawesome-svg-core";
 import {
     faBatteryThreeQuarters,
@@ -153,7 +155,8 @@ export default {
             users: [
                 {
                     ID: 1,
-                    Photo: "@/assets/images/avatars/4.jpg",
+                    Photo: "@/assets/images/avatars/1.jpg",
+                    
                     Nom: "Marvin Gaye",
                     Societe: "Motown",
                     Status: false,
@@ -195,9 +198,9 @@ export default {
                     Status: true,
                     Credits: 5,
                     Temps: "05h00"
-                }
+                } 
             ]
-        };
+        }; 
     },
     notifications: {
         showWarnMsg: {
@@ -213,6 +216,7 @@ export default {
             this.$bvModal.show('modal-scoped')
         }
     }
-    
+
 };
+
 </script>
