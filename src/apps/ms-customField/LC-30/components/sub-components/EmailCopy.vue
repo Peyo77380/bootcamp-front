@@ -88,7 +88,6 @@ export default {
       },
       closeModalEmail() {
           this.modalEmail = false
-          //console.log("tets tableau", this.editedEmail.emailCopy)
       },
       saveEmail() {
           this.closeModalEmail()
@@ -98,7 +97,7 @@ export default {
           }
           else {
               this.editedEmail.emailCopy.push(this.createdEmail)
-              //@TODO point API pour enregistrer nouveau email a mettre en copie
+              //TODO point API pour enregistrer nouveau email a mettre en copie
           }
           this.createdEmail = {}
       },

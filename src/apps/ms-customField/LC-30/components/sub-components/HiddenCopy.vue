@@ -88,7 +88,6 @@ export default {
       },
       closeModalEmail() {
           this.modalEmail = false
-          //console.log("tets tableau", this.editedEmail.emailCopy)
       },
       saveEmail() {
           this.closeModalEmail()
@@ -98,21 +97,19 @@ export default {
           }
           else {
               this.editedEmail.hiddenCopie.push(this.createdEmail)
-              //@TODO point API pour enregistrer nouveau email a mettre en copie caché 
+              //TODO point API pour enregistrer nouveau email a mettre en copie caché 
           }
           this.createdEmail = {}
       },
       deleteEmail(email) {
           this.editedIndex = this.editedEmail.emailCopy.indexOf(email);
           this.editedEmail.emailCopy.splice(this.editedIndex,1)
-          //@TODO point API pour supprimer email a mettre en copie 
+          //TODO point API pour supprimer email a mettre en copie 
       },
       EditEmailCopy(email) {
           this.openModalEmail();
           this.editedIndex = this.editedEmail.hiddenCopie.indexOf(email);
-         // this.editedEmail.emailCopy.value.splice(this.editedIndex,1,this.createdEmail)
-         //console.log("test edited index",this.editedIndex)
-         //@TODO point API pour modifier l'adresse mail a mettre en copie caché 
+         //TODO point API pour modifier l'adresse mail a mettre en copie caché 
       }
   },
 };

@@ -67,7 +67,7 @@ export default {
         showDetails(email) {
             this.behavior.modalDisplay = true;
             this.emailDetails = email;
-            //TODO: point API affichage details de l'email
+            //TODO point API affichage details de l'email
         },
         displayOff() {
             this.behavior.modalDisplay = false;
@@ -80,9 +80,9 @@ export default {
             this.behavior.modalEdit = false;
         },
         modificationEmail() {
-            //TODO: point API modification email de services
+            //TODO point API modification email de services
             this.editedIndex = this.EmailData.indexOf(this.editedEmail);
-            let title = "Modification de l'email réussie !";
+            var title = "Modification de l'email réussie !";
             this.$sweetNotif(title);
         }
     }

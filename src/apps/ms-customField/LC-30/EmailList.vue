@@ -1,9 +1,23 @@
 <template>
     <div class="main-card mb-3 card col-12">
+        <div class="card-header-tab card-header">
+            <div class="card-header-title font-size-lg text-capitalize text-primary font-weight-normal">
+                <i class="header-icon pe-7s-mail-open mr-3 text-muted opacity-6"></i>
+                Liste des emails de services
+            </div>
+            <div class="btn-actions-pane-right actions-icon-btn">
+                <b-dropdown toggle-class="btn-icon btn-icon-only" variant="link" right>
+                    <span slot="button-content"><i class=" header-icon lnr-earth mr-3 text-muted opacity-6"></i></span>
+                    <div>
+                        <button type="button" tabindex="0" class="dropdown-item"><country-flag country='FR' size='small' class="mr-1"/><span>Français</span></button>
+                        <button type="button" tabindex="0" class="dropdown-item"><country-flag country='US' size='small' class="mr-1"/><span>Anglais</span></button>
+                        <button type="button" tabindex="0" class="dropdown-item"><country-flag country='DE' size='small' class="mr-1"/><span>Allemand</span></button>
+                    </div>
+                </b-dropdown>
+            </div>
+        </div>
         <div class="table-responsive">
-            <table
-                class="align-middle mb-2 table table-borderless table-striped table-hover"
-            >
+            <table class="align-middle mb-2 table table-borderless table-striped table-hover">
                 <thead>
                     <tr>
                         <th class="text-center">Clé</th>
@@ -60,19 +74,27 @@
     </div>
 </template>
 <script>
+import CountryFlag from 'vue-country-flag'
 export default {
     name: "email-list",
+
+    components:{
+        CountryFlag
+    },
+
     data() {
         return {
             isActive: true,
             displayDetails: false
         };
     },
+
     props: {
         EmailData: {
             type: Array
         }
     },
+
     methods: {
         displayEmail(email) {
             this.$emit("displayEmail", email);
