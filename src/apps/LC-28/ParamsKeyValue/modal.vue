@@ -1,6 +1,6 @@
 <template>
   <v-layout >
-    <v-dialog v-model="dialog" persistent max-width="600px">
+    <v-dialog  persistent max-width="600px">
       <template v-slot:activator="{ on }">
         <v-btn class="outlined btn-pill" elevation="2" icon outlined small v-on="on"><i class="pe-7s-tools icon-color btn-icon-wrapper"> </i></v-btn>
       </template>
@@ -31,9 +31,7 @@
                 ></v-text-field>
               </v-flex>
               <v-flex xs12>
-                  <div class="v-text-field__slot">
-                    <text-area aria-label='Default style' name='input-7-1' label="Infos" required > </text-area> 
-                    </div>
+                  
               </v-flex>
            
               
@@ -44,8 +42,8 @@
         </v-card-text>
         <v-card-actions>
           <v-spacer></v-spacer>
-          <v-btn color="blue darken-1" flat @click="dialog = false">Fermer</v-btn>
-          <v-btn color="blue darken-1" flat @click="dialog = false">Sauvegarder</v-btn>
+          <v-btn color="blue darken-1" flat>Fermer</v-btn>
+          <v-btn color="blue darken-1" flat>Sauvegarder</v-btn>
         </v-card-actions>
       </v-card>
     </v-dialog>
@@ -55,7 +53,7 @@
 <script>
   export default {
     data: () => ({
-      dialog: false
+      
     })
   }
 </script>

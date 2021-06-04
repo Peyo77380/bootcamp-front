@@ -20,5 +20,6 @@ export default new Router({
             path: '/LC-28',
             component: () => import('../apps/LC-28/ParamsKeyValue'),
         },
+       
     ]
 });

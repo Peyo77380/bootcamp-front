@@ -1,6 +1,6 @@
 <template>
     <div>
-        <page-title :heading=heading :subheading=subheading :icon=icon></page-title>
+        <page-title :heading=heading :icon=icon></page-title>
         <content-table></content-table>
         <pagination></pagination>
         

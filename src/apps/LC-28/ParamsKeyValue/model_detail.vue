@@ -4,55 +4,47 @@
       v-model="dialog"
       width="500"
     >
-      <template v-slot:activator="{ on }">
-        <v-btn class=" outlined-search btn-pill"
-
-                        elevation="2"
-                        icon
-                        outlined
-                        small
-                         v-on="on"><i class="pe-7s-search icon-color-search btn-icon-wrapper"> </i></v-btn>
-      </template>
 
       <v-card>
         <v-card-title
           class="headline grey lighten-2"
           primary-title
         >
-          Détail Clé - WELCOME_CREDITS
+          Détail Clé - {{items.key}}
         </v-card-title>
         <v-form>
     <v-container>
       <v-layout row wrap>
-        <v-flex xs12 sm6>
+        <v-flex xs12 sm12>
           <v-text-field
-            value="Membres"
+            :value=items.category
             label="Catégorie"
             readonly
           ></v-text-field>
         </v-flex>
         <v-flex xs12 sm6>
           <v-text-field
-            value="WELCOME_CREDITS"
+            :value=items.key
             label="Clé"
             readonly
           ></v-text-field>
         </v-flex>
         <v-flex xs12 sm6>
           <v-text-field
-            value="10"
+            :value=items.value
             label="Valeur"
             readonly
           ></v-text-field>
         </v-flex>
-        <v-flex xs12 sm6 >
+        <v-flex xs12 sm12 >
           <v-text-field 
-            value="Nombre de co offerts lors du premier abonnement à la Colloc"
+            :value=items.info
             label="Infos"
             readonly
           ></v-text-field>
         </v-flex>
          </v-layout>
+         
     </v-container>
   </v-form>
 
@@ -63,7 +55,7 @@
           <v-btn
             color="primary"
             flat
-            @click="dialog = false"
+            @click="close"
           >
             Retour
           </v-btn>
@@ -75,11 +67,22 @@
 
 <script>
   export default {
-    data () {
-      return {
-        dialog: false
-      }
+    name: "display-keyvalue",
+    props:{
+        dialog:{
+            type:Boolean
+        },
+        items: {
+      type: Object
     }
+
+    },
+    methods:{
+        close(){
+            this.$emit("close")
+        }
+    },
+    
   }
 </script>
 
