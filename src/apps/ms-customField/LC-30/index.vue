@@ -12,6 +12,8 @@
                 :EmailData="EmailData"
                 @displayEmail="showDetails"
                 @edit="editEmail"
+                @changeUs="translateUs"
+                @changeFr="translateFr"
             />
         </div>
         <div>
@@ -38,6 +40,7 @@ import EmailList from "@/apps/ms-customField/LC-30/EmailList";
 import DisplayEmail from "@/apps/ms-customField/LC-30/components/DisplayEmail";
 import EditEmail from "@/apps/ms-customField/LC-30/components/EditEmail";
 import { EmailData } from "@/apps/ms-customField/LC-30/EmailData";
+import { EmailDataUs } from "@/apps/ms-customField/LC-30/EmailDataUs";
 
 export default {
     components: {
@@ -53,6 +56,8 @@ export default {
                 "Créer l'ensemble des modèles de vos email de services ici.",
             icon: "pe-7s-mail",
             EmailData: EmailData,
+            EmailDataUs: EmailDataUs,
+            EmailDataFr: EmailData,
             dialog: false,
             emailDetails: {},
             editedEmail: {},
@@ -84,7 +89,17 @@ export default {
             this.editedIndex = this.EmailData.indexOf(this.editedEmail);
             var title = "Modification de l'email réussie !";
             this.$sweetNotif(title);
+        },
+        translateUs() {
+            this.EmailData = this.EmailDataUs
+            //TODO point API pour importer les data en anglais
+        },
+        translateFr() {
+            this.EmailData = this.EmailDataFr
+            //TODO point API pour importer les data en francais
+            
         }
+
     }
 };
 </script>

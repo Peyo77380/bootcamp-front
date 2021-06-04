@@ -9,8 +9,12 @@
                 <b-dropdown toggle-class="btn-icon btn-icon-only" variant="link" right>
                     <span slot="button-content"><i class=" header-icon lnr-earth mr-3 text-muted opacity-6"></i></span>
                     <div>
-                        <button type="button" tabindex="0" class="dropdown-item"><country-flag country='FR' size='small' class="mr-1"/><span>Français</span></button>
-                        <button type="button" tabindex="0" class="dropdown-item"><country-flag country='US' size='small' class="mr-1"/><span>Anglais</span></button>
+                        <button 
+                        @click="changeFr"
+                        type="button" tabindex="0" class="dropdown-item"><country-flag country='FR' size='small' class="mr-1"/><span>Français</span></button>
+                        <button 
+                        @click="changeUs" 
+                        type="button" tabindex="0" class="dropdown-item"><country-flag country='US' size='small' class="mr-1"/><span>Anglais</span></button>
                         <button type="button" tabindex="0" class="dropdown-item"><country-flag country='DE' size='small' class="mr-1"/><span>Allemand</span></button>
                     </div>
                 </b-dropdown>
@@ -101,6 +105,12 @@ export default {
         },
         edit(email) {
             this.$emit("edit", email);
+        },
+        changeUs() {
+            this.$emit("changeUs")
+        },
+        changeFr() {
+            this.$emit("changeFr")
         }
     }
 };
