@@ -10,7 +10,7 @@
         <display-email :details="emailDetails" @closeDisplay="displayOff" :dialog="behavior.modalDisplay"/>
     </div>
     <div>
-        <edit-email :editedEmail="editedEmail" :dialog="behavior.modalEdit" @close="closeEdit"/>
+        <edit-email  @saveModification="modificationEmail" :editedEmail="editedEmail" :dialog="behavior.modalEdit" @close="closeEdit"/>
     </div>
 </div>
     
@@ -43,7 +43,8 @@ export default {
             behavior: {
                 modalEdit: false,
                 modalDisplay: false
-            }
+            }, 
+            editedIndex: "",
         }
     }, 
     methods: {
@@ -63,6 +64,13 @@ export default {
         }, 
         closeEdit() {
             this.behavior.modalEdit = false
+        }, 
+        modificationEmail() {
+            //@TODO point API modification email de services 
+            this.editedIndex = this.EmailData.indexOf(this.editedEmail)
+            //console.log("test valeur", this.editedIndex);
+            let title = "Modification de l'email réussie !"
+            this.$sweetNotif(title)
         }
     }
 }

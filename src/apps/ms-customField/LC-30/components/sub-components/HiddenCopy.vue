@@ -1,14 +1,14 @@
 <template>
-    <div>
-        <div class="card-hover-shadow-2x card">
+  <div>
+        <div class="card-hover-shadow-2x mb-3 card">
             <div class="card-header-tab card-header">
-                <div class="card-header-title font-size-lg text-capitalize font-weight-normal"><i class="header-icon lnr-user icon-gradient bg-malibu-beach"> 
-                    </i>Adresse email en copie</div>
+                <div class="card-header-title font-size-lg text-capitalize font-weight-normal"><i class="header-icon lnr-users icon-gradient bg-malibu-beach"> 
+                    </i>Adresse email en copie cachée</div>
             </div>
             <div class="scroll-area-lg">
                 <div class="chat-wrapper p-1">
                     <ul class="todo-list-wrapper list-group list-group-flush">
-                        <li v-for="email in editedEmail.emailCopy" :key="email.id" class="list-group-item">
+                        <li v-for="email in editedEmail.hiddenCopie" :key="email.id" class="list-group-item">
                             <div class="widget-content p-0">
                                 <div class="widget-content-wrapper">
                                     <div class="widget-content-left">
@@ -66,7 +66,7 @@
 
 <script>
 export default {
-  name: "Email-copy",
+  name: "Hidden-copy",
   created() {},
 
   data() {
@@ -93,12 +93,12 @@ export default {
       saveEmail() {
           this.closeModalEmail()
           if(this.editedIndex>=0) {
-              Object.assign (this.editedEmail.emailCopy[this.editedIndex], this.createdEmail),
+              Object.assign (this.editedEmail.hiddenCopie[this.editedIndex], this.createdEmail),
               this.editedIndex=-1;
           }
           else {
-              this.editedEmail.emailCopy.push(this.createdEmail)
-              //@TODO point API pour enregistrer nouveau email a mettre en copie
+              this.editedEmail.hiddenCopie.push(this.createdEmail)
+              //@TODO point API pour enregistrer nouveau email a mettre en copie caché 
           }
           this.createdEmail = {}
       },
@@ -109,10 +109,10 @@ export default {
       },
       EditEmailCopy(email) {
           this.openModalEmail();
-          this.editedIndex = this.editedEmail.emailCopy.indexOf(email);
+          this.editedIndex = this.editedEmail.hiddenCopie.indexOf(email);
          // this.editedEmail.emailCopy.value.splice(this.editedIndex,1,this.createdEmail)
          //console.log("test edited index",this.editedIndex)
-         //@TODO point API pour modifier l'adresse mail a mettre en copie
+         //@TODO point API pour modifier l'adresse mail a mettre en copie caché 
       }
   },
 };

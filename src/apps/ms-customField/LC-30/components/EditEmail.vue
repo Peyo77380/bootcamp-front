@@ -12,7 +12,7 @@
                     <v-toolbar-title>Modification de l'email</v-toolbar-title>
                     <v-spacer></v-spacer>
                         <v-toolbar-items>
-                            <v-btn dark flat >Sauvegarder</v-btn>
+                            <v-btn dark flat @click="saveModification">Sauvegarder</v-btn>
                         </v-toolbar-items>
                     </v-toolbar>
                 </div>
@@ -39,28 +39,38 @@
                                     <v-flex xs12 sm6 md6>
                                         <v-text-field
                                             label="Titre"
+                                            v-model="editedEmail.title"
                                         > {{ editedEmail.title }}</v-text-field>
                                     </v-flex>
-                                    <p>{{ editedEmail.title }}</p>
                                     <v-flex xs12 sm6 md6>
                                         <v-text-field
                                             label="Description"
+                                            v-model="editedEmail.description"
                                         > {{ editedEmail.description }}</v-text-field>
                                     </v-flex>
-                                    <p>{{ editedEmail.description }}</p>
                                 </v-form>  
                             </div>    
-                            <div>
-                                <div class="col-6 mb-5">
+                            <div class="row col-12">
+                                <div class="col-3">
                                     <email-copy :editedEmail="editedEmail"/>
                                 </div>
-                                
+                                <div class="col-3">
+                                    <hidden-copy :editedEmail="editedEmail"/>
+                                </div>
+                                <div class="col-3">
+                                    <variable :editedEmail="editedEmail"/>
+                                </div>
                             </div>
                         </div>
                     </div>  
                     <div class="main-card card col-11  mb-5">
-                        <div class="card-body"><h5 class="card-title">Destinataires</h5>
+                        <div class="card-body"><h5 class="card-title">Contenu de l'email</h5>
                             <div class="scroll-area-sm">
+                                <textarea class="form-control"
+                                    placeholder="Type something here..."
+                                    ref="someName"
+                                v-model="editedEmail.content"> 
+                                </textarea>
                             </div>
                         </div>
                     </div> 
@@ -72,14 +82,21 @@
 
 <script>
 import EmailCopy from "@/apps/ms-customField/LC-30/components/sub-components/EmailCopy";
+import HiddenCopy from "@/apps/ms-customField/LC-30/components/sub-components/HiddenCopy";
+import Variable from "@/apps/ms-customField/LC-30/components/sub-components/Variable";
+
+
 export default {
     name: "edit-email",
     components: { 
-        EmailCopy
+        EmailCopy,
+        HiddenCopy,
+        Variable
     },
     data() {
     return {
-        icon: "pe-7s-mail-open-file"
+        icon: "pe-7s-mail-open-file",
+        newEmail: {}
     };
     },
     props: {
@@ -93,6 +110,11 @@ export default {
     methods: {
         closeEdit() {
             this.$emit("close")
+        }, 
+        saveModification() {
+            this.closeEdit();
+            this.$emit("saveModification", this.editedEmail)
+
         }
     },
 };

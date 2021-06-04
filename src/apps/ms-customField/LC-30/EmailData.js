@@ -26,15 +26,15 @@ const EmailData = [
         [
             {
                 "id" : 1,
-                "value": "Florian@alt.com"
+                "value": "Florian@lacolloc.com"
             },
             {
                 "id" : 2,
-                "value": "Romain@alt.com"
+                "value": "Romain@lacolloc.com"
             },
             {
                 "id" : 3,
-                "value": "Amelie@alert.com"
+                "value": "Amelie@lacolloc.com"
             },
         ],
         "variable": 
@@ -76,15 +76,15 @@ const EmailData = [
         [
             {
                 "id" : 1,
-                "value": "Florian@alt.com"
+                "value": "Florian@lacolloc.com"
             },
             {
                 "id" : 2,
-                "value": "Romain@alt.com"
+                "value": "Romain@lacolloc.com"
             },
             {
                 "id" : 3,
-                "value": "Amelie@alert.com"
+                "value": "Amelie@lacolloc.com"
             },
         ],
         "variable": 
@@ -127,15 +127,15 @@ const EmailData = [
         [
             {
                 "id" : 1,
-                "value": "Florian@alt.com"
+                "value": "Florian@lacolloc.com"
             },
             {
                 "id" : 2,
-                "value": "Romain@alt.com"
+                "value": "Romain@lacolloc.com"
             },
             {
                 "id" : 3,
-                "value": "Amelie@alert.com"
+                "value": "Amelie@lacolloc.com"
             },
         ],
         "variable": 
@@ -177,15 +177,15 @@ const EmailData = [
         [
             {
                 "id" : 1,
-                "value": "Florian@alt.com"
+                "value": "Florian@lacolloc.com"
             },
             {
                 "id" : 2,
-                "value": "Romain@alt.com"
+                "value": "Romain@lacolloc.com"
             },
             {
                 "id" : 3,
-                "value": "Amelie@alert.com"
+                "value": "Amelie@lacolloc.com"
             },
         ],
         "variable": 
@@ -227,15 +227,15 @@ const EmailData = [
         [
             {
                 "id" : 1,
-                "value": "Florian@alt.com"
+                "value": "Florian@lacolloc.com"
             },
             {
                 "id" : 2,
-                "value": "Romain@alt.com"
+                "value": "Romain@lacolloc.com"
             },
             {
                 "id" : 3,
-                "value": "Amelie@alert.com"
+                "value": "Amelie@lacolloc.com"
             },
         ],
         "variable": 
