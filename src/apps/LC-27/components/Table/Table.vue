@@ -215,7 +215,7 @@ export default {
             this.$bvModal.show('modal-scoped')
         }
     }
-
+    // TODO: Faire le système de tri 
 };
 
 </script>
