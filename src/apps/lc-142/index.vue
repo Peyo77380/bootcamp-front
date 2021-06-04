@@ -11,6 +11,8 @@
                     <v-flex xs4 sm8>
                         <v-overflow-btn
                         label="Choisir un bâtiment"
+                        :items="buildingDropdownsData"
+                        item-value="text"
                         editable
                         
                         ></v-overflow-btn>
