@@ -216,6 +216,7 @@ export default {
         }
     }
     // TODO: Faire le système de tri 
+    
 };
 
 </script>
