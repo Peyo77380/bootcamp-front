@@ -22,17 +22,60 @@
           <v-card-text>
             <div class="col-10 offset-1 mt-5">
               <div class="main-card mb-3 card">
-                <div class="card-header">Paramètres Listes</div>
-                <v-tabs
-                  right
-                  v-model="active"
-                  color="warning"
-                  dark
-                  slider-color="cyan"
-                >
-                  <v-tab v-for="i in item" :key="i" color="warning">
-                    {{ i }}</v-tab
-                  >
+                <div class="card-header">
+                  Paramètres Listes
+                  <div class="btn-actions-pane-right actions-icon-btn">
+                    <b-dropdown
+                      toggle-class="btn-icon btn-icon-only"
+                      variant="link"
+                      right
+                    >
+                      <span slot="button-content"
+                        ><i
+                          class="header-icon lnr-earth mr-3 text-muted opacity-6"
+                        ></i
+                      ></span>
+                      <div>
+                        <button
+                          @click="changeFr"
+                          type="button"
+                          tabindex="0"
+                          class="dropdown-item"
+                        >
+                          <country-flag
+                            country="FR"
+                            size="small"
+                            class="mr-1"
+                          /><span>Français</span>
+                        </button>
+                        <button
+                          @click="changeUs"
+                          type="button"
+                          tabindex="0"
+                          class="dropdown-item"
+                        >
+                          <country-flag
+                            country="US"
+                            size="small"
+                            class="mr-1"
+                          /><span>Anglais</span>
+                        </button>
+                        <button
+                          type="button"
+                          tabindex="0"
+                          class="dropdown-item"
+                        >
+                          <country-flag
+                            country="DE"
+                            size="small"
+                            class="mr-1"
+                          /><span>Allemand</span>
+                        </button>
+                      </div>
+                    </b-dropdown>
+                  </div>
+                </div>
+                <v-tabs>
                   <v-tab-item v-for="i in items" :key="i">
                     <div class="table-responsive">
                       <table
@@ -98,6 +141,8 @@ import PageTitle from "../../Layout/Components/PageTitle";
 import EditList from "../LC-29/components/EditList";
 import AddList from "../LC-29/components/AddList";
 
+import CountryFlag from "vue-country-flag";
+
 export default {
   name: "home",
   components: {
@@ -106,6 +151,7 @@ export default {
     EditList,
     // eslint-disable-next-line vue/no-unused-components
     AddList,
+    CountryFlag,
   },
 
   data: () => ({
