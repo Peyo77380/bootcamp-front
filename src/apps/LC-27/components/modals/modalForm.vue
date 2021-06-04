@@ -33,7 +33,7 @@
                 </b-form-valid-feedback>
             </div>
             <div>
-                <label for="input-with-list">Status</label>
+                <label for="input-with-list">Activité</label>
                 <b-form-input
                     list="input-list"
                     id="input-with-list"
@@ -73,7 +73,8 @@ export default {
                     Photo: "",
                     Nom: "",
                     Societe: "",
-                    Status: false,
+                    Statut: "",
+                    Activite: false,
                     Credits: "",
                     Temps: ""
                 };
@@ -94,19 +95,18 @@ export default {
             return this.user.Societe.length > 4 && this.user.Societe.length < 100;
         },
         test() {
-          if (this.user.Status) {
+          if (this.user.Activite) {
             return this.optionsChoices[0]
-          }
+          } 
           return this.optionsChoices[1]
         }
     },
     methods: {
-      importStatus (){
-        this.test=this.user.Status
+      importActivite (){
+        this.test=this.user.Activite
       },
       modifUpdate() {
         this.$sweetNotif('Modifications enregistrées !')
-        // TODO : corriger le problème de fermeture de la modale
     },
     }
 };

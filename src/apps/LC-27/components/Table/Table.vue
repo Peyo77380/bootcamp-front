@@ -4,7 +4,7 @@
         <div class="main-card mb-3 card">
             <div class="table-responsive">
                 <table
-                    class="align-middle text-truncate mb-0 table table-borderless table-hover"
+                    class="align-middle text-truncate mb-0 table table-borderless table-striped table-hover"
                 >
                     <thead>
                         <tr>
@@ -12,7 +12,10 @@
                             <th class="text-center">Photo</th>
                             <th class="text-center">Nom</th>
                             <th class="text-center">Société</th>
-                            <th class="text-center">Status</th>
+                            <th class="text-center">Statut</th>
+                            <th class="text-center">Activité</th>
+                            <th class="text-center">Catégories</th>
+                            <th class="text-center">Adhésion/th>
                             <th class="text-center">Crédits</th>
                             <th class="text-center">Temps</th>
                             <th class="text-center">Act</th>
@@ -30,7 +33,7 @@
                                 <img
                                     width="40"
                                     class="rounded-circle"
-                                    :src="user.Photo"
+                                    src="@/assets/images/avatars/1.jpg"
                                     alt=""
                                 />
                             </td>
@@ -42,10 +45,16 @@
                                     >{{ user.Societe }}</a
                                 >
                             </td>
+                            
+                            <td class="text-center">
+                                <a href="javascript:void(0)"
+                                    >{{ user.Statut }}</a
+                                >
+                            </td>
                             <td class="text-center">
                                 <div
                                     class="badge badge-pill badge-danger"
-                                    v-if="!user.Status"
+                                    v-if="!user.Activite"
                                 >
                                     Inactif
                                 </div>
@@ -55,6 +64,16 @@
                                 >
                                     Actif
                                 </div>
+                            </td>
+                            <td class="text-center">
+                                <a href="javascript:void(0)"
+                                    >{{ user.Categorie }}</a
+                                >
+                            </td>
+                            <td class="text-center">
+                                <a href="javascript:void(0)"
+                                    >{{ user.Adhesion }}</a
+                                >
                             </td>
                             <td class="text-center">
                                 <div class="font-size-xlg">
@@ -155,10 +174,13 @@ export default {
             users: [
                 {
                     ID: 1,
-                    Photo: "@/assets/images/avatars/1.jpg",
+                    Photo: "1.jpg",
                     Nom: "Marvin Gaye",
                     Societe: "Motown",
-                    Status: false,
+                    Statut: "Société",
+                    Activite: false,
+                    Categorie: "Coworker",
+                    Adhesion: "Non-membre",
                     Credits: 0,
                     Temps: "05h00"
                 },
@@ -167,7 +189,10 @@ export default {
                   //  Photo: "@/assets/images/avatars/3.jpg",
                     Nom: "Laurent Sauzet",
                     Societe: "Microsoft",
-                    Status: true,
+                    Statut: "Salarié",
+                    Activite: true,
+                    Categorie: "Coworker",
+                    Adhesion: "Non-membre",
                     Credits: 1,
                     Temps: "06h00"
                 },
@@ -176,7 +201,10 @@ export default {
                   //  Photo: "@/assets/images/avatars/3.jpg",
                     Nom: "Curtis Mayfield",
                     Societe: "Hatchworks",
-                    Status: true,
+                    Statut: "Salarié",
+                    Activite: true,
+                    Categorie: "Salle de réunion",
+                    Adhesion: "Membre",
                     Credits: 200,
                     Temps: "02h15"
                 },
@@ -185,7 +213,10 @@ export default {
                   //  Photo: "@/assets/images/avatars/5.jpg",
                     Nom: "Roberta Flack",
                     Societe: "Riddle Electronics",
-                    Status: false,
+                    Statut: "Indépendant",
+                    Activite: false,
+                    Categorie: "Bureau",
+                    Adhesion: "Résident",
                     Credits: 120,
                     Temps: "07h00"
                 },
@@ -194,7 +225,10 @@ export default {
                   //  Photo: "@/assets/images/avatars/6.jpg",
                     Nom: "Nancy Sinatra",
                     Societe: "Pixelcloud",
-                    Status: true,
+                    Statut: "Société",
+                    Activite: true,
+                    Categorie: "Bureau",
+                    Adhesion: "Résident",
                     Credits: 5,
                     Temps: "05h00"
                 } 
@@ -203,9 +237,7 @@ export default {
     },
     notifications: {
         showWarnMsg: {
-            type: VueNotifications.types.warn,
-            title: "Attention !",
-            message: "Etes-vous sûr de vouloir effacer cette fiche ?"
+            type: VueNotifications.types.warn
         }
     },
     methods: {

@@ -33,9 +33,9 @@
                         text="Statut"
                         class="m-2 shadow"
                     >
-                        <b-dropdown-item-button>Actifs</b-dropdown-item-button>
+                        <b-dropdown-item-button>Indépendant</b-dropdown-item-button>
                         <b-dropdown-item-button
-                            >Inactifs</b-dropdown-item-button
+                            >Salarié</b-dropdown-item-button
                         >
                     </b-dropdown>
                     <b-dropdown
@@ -43,14 +43,15 @@
                         no-flip
                         id="ddown-lg"
                         size="lg"
-                        text="Etat"
+                        text="Activité"
                         class="m-2 shadow"
                     >
-                        <b-dropdown-item-button>Membres</b-dropdown-item-button>
+                        <b-dropdown-item-button>Actifs</b-dropdown-item-button>
                         <b-dropdown-item-button
-                            >Sociétés</b-dropdown-item-button
+                            >Inactifs</b-dropdown-item-button
                         >
                     </b-dropdown>
+                    
                     <b-dropdown
                         variant="primary"
                         no-flip
@@ -60,11 +61,10 @@
                         class="m-2 shadow"
                     >
                         <b-dropdown-item-button
-                            >Catégorie 1</b-dropdown-item-button
+                            >Coworker</b-dropdown-item-button
                         >
-                        <b-dropdown-item-button
-                            >Catégorie 2</b-dropdown-item-button
-                        >
+                        <b-dropdown-item-button>Salle de réunion</b-dropdown-item-button>
+                        <b-dropdown-item-button>Bureau</b-dropdown-item-button>
                     </b-dropdown>
                     <b-dropdown
                         variant="primary"
@@ -74,22 +74,11 @@
                         text="Adhésion"
                         class="m-2 shadow"
                     >
-                        <b-dropdown-item-button>Oui</b-dropdown-item-button>
-                        <b-dropdown-item-button>Non</b-dropdown-item-button>
+                        <b-dropdown-item-button>Membre</b-dropdown-item-button>
+                        <b-dropdown-item-button>Non-membre</b-dropdown-item-button>
+                        <b-dropdown-item-button>Résident</b-dropdown-item-button>
                     </b-dropdown>
-                    <b-dropdown
-                        variant="primary"
-                        no-flip
-                        id="ddown-lg"
-                        size="lg"
-                        text="Statut commercial"
-                        class="m-2 shadow"
-                    >
-                        <b-dropdown-item-button
-                            >Statut 1</b-dropdown-item-button
-                        >
-                        <b-dropdown-item-button>Statut 2</b-dropdown-item-button>
-                    </b-dropdown>
+                    
                     <b-dropdown
                         variant="primary"
                         no-flip
