@@ -105,14 +105,12 @@ export default {
       deleteEmail(email) {
           this.editedIndex = this.editedEmail.emailCopy.indexOf(email);
           this.editedEmail.emailCopy.splice(this.editedIndex,1)
-          //@TODO point API pour supprimer email a mettre en copie 
+          //TODO point API pour supprimer email a mettre en copie 
       },
       EditEmailCopy(email) {
           this.openModalEmail();
           this.editedIndex = this.editedEmail.emailCopy.indexOf(email);
-         // this.editedEmail.emailCopy.value.splice(this.editedIndex,1,this.createdEmail)
-         //console.log("test edited index",this.editedIndex)
-         //@TODO point API pour modifier l'adresse mail a mettre en copie
+         //TODO point API pour modifier l'adresse mail a mettre en copie
       }
   },
 };
