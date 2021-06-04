@@ -18,6 +18,7 @@
                     label="Activité"
                     required
                     class="col-10 new-activity"
+                    v-model="newItem.name"
                   ></v-text-field>
                 </v-flex>
               </v-layout>
@@ -25,7 +26,7 @@
               <b-button
                 class="ml-6 btn-icon btn-icon-only btn-pill"
                 variant="outline-warning"
-                @click="add(item.id)"
+                @click="add()"
                 ><i class=""> + </i></b-button
               >
             </div>
@@ -113,28 +114,31 @@
 <script>
 export default {
   name: "EditList",
+ 
   methods: {
-    remove(activityId) {
-      // appel api a faire pour suppresion
-      this.lists = this.lists.filter((activity) => activity.id !== activityId);
-      // eslint-disable-next-line no-console
-      console.log("from remove Editlist : ok !!!", activityId);
+    async remove(activityId) {
       // sweet alert sur la suppression
       let title = "Confirmer la suppression de l'activité";
-      this.$sweetConfirmation(title);
+      if (await this.$sweetConfirmation({ title })) {
+        this.lists = this.lists.filter(
+          (activity) => activity.id !== activityId
+        );
+      }
     },
-    // add() {
-    //   this.item.push({
-    //     completed: false,
-    //     name: this.activity,
-    //   });
-    //   this.newActivity = "";
-    // },
+     add() {
+       this.lists.push({
+           id : 123,
+         name: this.newItem.name,
+       });
+       this.$sweetNotif('item added ');
+       this.newItem = {name:'',id: 0};
+     },
   },
   data: () => ({
     sortBy: null,
     sortDesc: false,
     sortDirection: "asc",
+    newItem: {name:'',id:''},
     lists: [
       {
         name: "Agroalimentaire",
