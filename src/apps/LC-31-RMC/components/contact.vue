@@ -1,17 +1,15 @@
 <template>
     <v-form v-model="valid">
-        <v-container >
-            <v-layout d-flex flex-column >
-                <v-flex xs12 md4>
+        <v-container>
+            <div class="row justify-content-center">
+                <div class="col-md-5">
                     <v-text-field
                         v-model="email"
                         :rules="emailRules"
                         label="Verification EMAIL"
                         required
                     ></v-text-field>
-                </v-flex>
 
-                <v-flex xs12 md4>
                     <v-text-field
                         v-model="firstname"
                         :rules="nameRules"
@@ -19,9 +17,7 @@
                         label="Nom referent"
                         required
                     ></v-text-field>
-                </v-flex>
 
-                <v-flex xs12 md4>
                     <v-text-field
                         v-model="lastname"
                         :rules="nameRules"
@@ -29,9 +25,7 @@
                         label="Prenom referent"
                         required
                     ></v-text-field>
-                </v-flex>
 
-                <v-flex xs12 md4>
                     <v-text-field
                         v-model="models.phoneNumber"
                         v-mask="'(###) ##########'"
@@ -39,8 +33,8 @@
                         label="Téléphone"
                         required
                     ></v-text-field>
-                </v-flex>
-            </v-layout>
+                </div>
+            </div>
         </v-container>
     </v-form>
 </template>

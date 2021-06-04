@@ -1,67 +1,55 @@
 <template>
-    <v-container flex>
-        <v-form v-model="valid">
-            <div class="row" no-gutters>
+    <v-form v-model="valid">
+        <v-container flex>
+            <div class="row justify-content-center">
                 <div class="col-md-5">
-                    <v-flex xs12 md4>
-                        <v-text-field
-                            v-model="siret"
-                            :rules="nameRules"
-                            :counter="20"
-                            label="Verification du SIRET"
-                            required
-                        ></v-text-field>
-                    </v-flex>
+                    <v-text-field
+                        v-model="siret"
+                        :rules="nameRules"
+                        :counter="20"
+                        label="Verification du SIRET"
+                        required
+                    ></v-text-field>
 
-                    <v-flex xs12 md4>
-                        <v-text-field
-                            v-model="nomesociete"
-                            :rules="nameRules"
-                            :counter="20"
-                            label="Nom Société"
-                            required
-                        ></v-text-field>
-                    </v-flex>
+                    <v-text-field
+                        v-model="nomesociete"
+                        :rules="nameRules"
+                        :counter="20"
+                        label="Nom Société"
+                        required
+                    ></v-text-field>
 
-                    <v-flex xs12 md4>
-                        <v-text-field
-                            v-model="numerotva"
-                            :rules="nameRules"
-                            :counter="20"
-                            label="Numéro TVA"
-                            required
-                        ></v-text-field>
-                    </v-flex>
+                    <v-text-field
+                        v-model="numerotva"
+                        :rules="nameRules"
+                        :counter="20"
+                        label="Numéro TVA"
+                        required
+                    ></v-text-field>
 
-                    <v-flex xs12 md4>
-                        <v-text-field
-                            v-model="adresse"
-                            :rules="nameRules"
-                            :counter="25"
-                            label="Adresse"
-                            required
-                        ></v-text-field>
-                    </v-flex>
+                    <v-text-field
+                        v-model="adresse"
+                        :rules="nameRules"
+                        :counter="25"
+                        label="Adresse"
+                        required
+                    ></v-text-field>
 
-                    <v-flex xs12 md4>
-                        <v-text-field
-                            v-model="cp"
-                            :rules="nameRules"
-                            :counter="5"
-                            label="CP"
-                            required
-                        ></v-text-field>
-                    </v-flex>
+                    <v-text-field
+                        v-model="cp"
+                        :rules="nameRules"
+                        :counter="5"
+                        label="CP"
+                        required
+                    ></v-text-field>
 
-                    <v-flex xs12 md4>
-                        <v-text-field
-                            v-model="ville"
-                            :rules="nameRules"
-                            :counter="25"
-                            label="Ville"
-                            required
-                        ></v-text-field>
-                    </v-flex>
+                    <v-text-field
+                        v-model="ville"
+                        :rules="nameRules"
+                        :counter="25"
+                        label="Ville"
+                        required
+                    ></v-text-field>
                 </div>
                 <div class="col-md-5">
                     <v-text-field
@@ -102,8 +90,8 @@
                     ></v-autocomplete>
                 </div>
             </div>
-        </v-form>
-    </v-container>
+        </v-container>
+    </v-form>
 </template>
 
 <script>

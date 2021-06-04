@@ -11,7 +11,7 @@
         <div>
             <b-card>
                 <b-tabs pills card vertical>
-                    <b-tab title="Informations générales" active>
+                    <b-tab title="Informations générales" background-color="red" active>
                         <forms1></forms1>
                     </b-tab>
                     <b-tab title="Référent">
@@ -24,15 +24,12 @@
             </b-card>
         </div>
         <div>
-            <b-card align="rigth">
-                <button
-                    type="button"
-                    class="btn-shadow d-inline-flex align-items-center btn btn-success"
-                >
-                    <font-awesome-icon class="mr-2" icon="plus" />
-                    + Ajouter société
-                </button>
-                <v-btn @click="clear">clear</v-btn>
+            <b-card>
+                <div class="row justify-content-end">
+                    <v-btn @click="clear">clear</v-btn>
+                    <v-btn @click="submit" color="success" >Valider</v-btn>
+                    
+                </div>
             </b-card>
         </div>
     </div>
