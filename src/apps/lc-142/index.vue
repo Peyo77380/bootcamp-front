@@ -4,7 +4,7 @@
             :heading="heading"
             :icon="icon"
         ></page-title>
-        <!-- Mettre cette partie dans un components AfficherListeSalles -->
+        
         <div class="mb-3 card">
             <div class="mt-2 card-header-tab card-header">
                 <div class="card-header-title font-size-lg text-capitalize font-weight-normal">
@@ -14,7 +14,6 @@
                         :items="buildingDropdownsData"
                         item-value="text"
                         editable
-                        
                         ></v-overflow-btn>
                     </v-flex>
                 </div>
@@ -25,18 +24,18 @@
                     <!-- Liste des salles existantes -->
                         <div class="row">
                             <div class="col-md-12">
-                                <div class="row">
-                                    <div class="col-md-4 col-lg-4 col-xl-4" :height="80" v-for="roomDetail in roomDetailsData" :key="roomDetail.id">
-                                        <b-card class="mb-3 nav-justified" no-body>
+                                <div class="row" >
+                                    <div class="col-md-4 col-lg-4 col-xl-4" v-for="roomDetail in roomDetailsData" :key="roomDetail.id">
+                                        <b-card class="mb-5 nav-justified" no-body>
                                             <b-tabs class="card-header-tab-animation" card>
                                                 <b-tab title="Info salle" active>
-                                                    <div>
+                                                    <div align="center">
                                                         <p>{{ roomDetail.level }}</p>
                                                         <p>{{ roomDetail.name }}</p>
-                                                        <!-- <v-img :src= "roomDetail.plan" ></v-img> -->
+                                                        <img width="300" src="@/assets/images/salles/atelier.jpeg">
                                                     </div>
                                                         
-                                                    <div class="scroll-area-sm">
+                                                    <div class="scroll-area-xm">
                                                         <VuePerfectScrollbar class="scrollbar-container" v-once>
                                                         </VuePerfectScrollbar>
                                                     </div>
