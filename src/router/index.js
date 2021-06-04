@@ -35,6 +35,12 @@ export default new Router({
             name: "AddList",
             component: () => import('@/apps/LC-29/components/AddList'),
         },
+         {
+            path: "/LC-29/components/EditActivity",
+            name: "EditActivity",
+            component: () => import('@/apps/LC-29/components/EditActivity'),
+        },
+        
         
     ]
 });

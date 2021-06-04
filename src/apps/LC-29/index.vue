@@ -64,7 +64,7 @@
                                 ></b-tooltip>
                               </b-btn>
                             </td>
-                            <td class="text-center">{{ item.id }}</td>
+                            <td class="text-center">{{ item.key }}</td>
                             <td class="text-center">
                               <div class="text-center">{{ item.quantity }}</div>
                             </td>
@@ -102,7 +102,9 @@ export default {
   name: "home",
   components: {
     PageTitle,
+    // eslint-disable-next-line vue/no-unused-components
     EditList,
+    // eslint-disable-next-line vue/no-unused-components
     AddList,
   },
 
@@ -132,27 +134,27 @@ export default {
     list: [
       {
         name: "activités",
-        id: 1,
+        key: 1,
         quantity: 34,
       },
       {
         name: "metiers",
-        id: 2,
+        key: 2,
         quantity: 45,
       },
       {
         name: "évènements",
-        id: 3,
+        key: 3,
         quantity: 12,
       },
       {
         name: "annonces",
-        id: 4,
+        key: 4,
         quantity: 25,
       },
       {
         name: "catégories",
-        id: 5,
+        key: 5,
         quantity: 36,
       },
     ],

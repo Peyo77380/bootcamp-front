@@ -1,5 +1,4 @@
 <template>
-
   <v-layout row justify-center>
     <v-card class="col-8">
       <v-card-title>
@@ -18,14 +17,15 @@
                   <v-text-field
                     label="Activité"
                     required
-                    class="col-10"
+                    class="col-10 new-activity"
                   ></v-text-field>
                 </v-flex>
               </v-layout>
+
               <b-button
                 class="ml-6 btn-icon btn-icon-only btn-pill"
                 variant="outline-warning"
-                @click="edit(list.id)"
+                @click="add(item.id)"
                 ><i class=""> + </i></b-button
               >
             </div>
@@ -62,7 +62,12 @@
               </b-form-group>
             </b-col>
           </b-row>
-          <li class="list-group-item" v-for="item in lists" :key="item.id">
+          <li
+            class="list-group-item"
+            v-for="item in lists"
+            :key="item.id"
+            v-bind:class="{ completed: item.completed }"
+          >
             <div class="widget-content p-0">
               <div class="widget-content-wrapper">
                 <div class="widget-content-left">
@@ -110,15 +115,26 @@ export default {
   name: "EditList",
   methods: {
     remove(activityId) {
+      // appel api a faire pour suppresion
       this.lists = this.lists.filter((activity) => activity.id !== activityId);
+      // eslint-disable-next-line no-console
       console.log("from remove Editlist : ok !!!", activityId);
+      // sweet alert sur la suppression
+      let title = "Confirmer la suppression de l'activité";
+      this.$sweetConfirmation(title);
     },
+    // add() {
+    //   this.item.push({
+    //     completed: false,
+    //     name: this.activity,
+    //   });
+    //   this.newActivity = "";
+    // },
   },
   data: () => ({
     sortBy: null,
     sortDesc: false,
     sortDirection: "asc",
-
     lists: [
       {
         name: "Agroalimentaire",

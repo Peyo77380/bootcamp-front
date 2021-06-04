@@ -144,68 +144,68 @@ export default {
     lists: [
       {
         category: "activité",
-        id: 1,
+      
         value: "agroalimentaire",
         modify: "24/05/2021",
         createdAt: "19/05/2019",
       },
       {
         category: "metier",
-        id: 2,
+    
         value: "développeur web",
         modify: "essai1",
         createdAt: "essai1",
       },
       {
         category: "évènements",
-        id: 3,
+    
         value: "innovations managériales",
         modify: "13/09/2020",
         createdAt: "03/05/2018",
       },
       {
         category: "annonces",
-        id: 8,
+
         value: "je vends",
         modify: "14/08/2017",
         createdAt: "09/08/2016",
       },
       {
         category: "activité",
-        id: 10,
+    
         value: "banque | assurances",
         modify: "12/06/2021",
         createdAt: "11/04/2019",
       },
       {
         category: "catégorie",
-        id: 12,
+    
         value: "stagiaire",
         modify: "24/05/2021",
         createdAt: "19/05/2019",
       },
       {
         category: "metier",
-        id: 2,
+      
         value: "traducteur",
         modify: "04/05/2021",
         createdAt: "09/05/2019",
       },
       {
         category: "annonces",
-        id: 5,
+   
         value: "je cherche",
         modify: "test3",
         createdAt: "3test",
       },
       {
         category: "activité",
-        id: 11,
+       
         value: "BTP | matériaux de construction",
       },
       {
         category: "catégorie",
-        id: 13,
+       
         value: "coworker",
       },
     ],
