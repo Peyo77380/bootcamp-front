@@ -2,39 +2,39 @@ const roomDetailsData = [
 
     {
         id: 1,
-        name: "nom de la Salle 0-1",
+        name: "Salle L'atelier",
         level: "RDC",
-        plan: "@/assets/images/salles/atelier.jpeg",
+        plan: "atelier",
     },
     {
         id: 2,
-        name: "nom de la Salle 0-2",
+        name: "Salle Conférence",
         level: "RDC",
-        plan: "@/assets/images/salles/conference.jpeg",
+        plan: "conference",
     },
     {
         id: 3,
-        name: "nom de la Salle 1-1",
+        name: "Salle Grande jaune",
         level: "1er étage",
-        plan: "@/assets/images/salles/grande-jaune.jpeg",
+        plan: "grande-jaune",
     },
     {
         id: 4,
-        name: "nom de la Salle 1-2",
+        name: "Salle Grande verte",
         level: "1er étage",
-        plan: "@/assets/images/salles/grande-verte.jpeg",
+        plan: "grande-verte",
     },
     {
         id: 5,
-        name: "nom de la Salle 2-1",
+        name: "Salle Moyenne rouge",
         level: "2e étage",
-        plan: "@/assets/images/salles/moyenne-rouge.jpeg",
+        plan: "moyenne-rouge",
     },
     {
         id: 6,
-        name: "nom de la Salle 2-2",
+        name: "Salle Petite bleu",
         level: "2e étage",
-        plan: "@/assets/images/salles/petite-bleu.jpeg",
+        plan: "petite-bleu",
     }
 ];
 

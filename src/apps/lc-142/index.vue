@@ -5,23 +5,25 @@
             :icon="icon"
         ></page-title>
         
+        <b-button :to="{ name: 'RoomAdd'}" class="mt-2 btn-wide btn-shadow btn btn-info btn-sm" align="right">Ajouter salle</b-button>
         <div class="mb-3 card">
+            <!-- Bouton select -->
             <div class="mt-2 card-header-tab card-header">
                 <div class="card-header-title font-size-lg text-capitalize font-weight-normal">
                     <v-flex xs4 sm8>
                         <v-overflow-btn
                         label="Choisir un bâtiment"
-                        :items="buildingDropdownsData"
+                        :items="buildingsData"
                         item-value="text"
                         editable
                         ></v-overflow-btn>
                     </v-flex>
                 </div>
             </div>
+            <!-- Container -->
             <div class="no-gutters row">
                 <div class="col-sm-12">
                     <div class="card no-shadow rm-border bg-transparent widget-chart text-center">
-                    <!-- Liste des salles existantes -->
                         <div class="row">
                             <div class="col-md-12">
                                 <div class="row" >
@@ -32,7 +34,7 @@
                                                     <div align="center">
                                                         <p>{{ roomDetail.level }}</p>
                                                         <p>{{ roomDetail.name }}</p>
-                                                        <img width="300" src="@/assets/images/salles/atelier.jpeg">
+                                                        <v-img :src="require('@/assets/images/salles/' + roomDetail.plan + '.jpeg')"></v-img>
                                                     </div>
                                                         
                                                     <div class="scroll-area-xm">
@@ -42,17 +44,17 @@
                                                 </b-tab>
                                                 <b-tab title="Plus...">
                                                     <div align="center">
-                                                        <button class="mb-2 btn-wide btn-shadow btn btn-info btn-sm">
-                                                            Voir details salle
-                                                        </button>
-                                                        <br>
-                                                        <button class="mb-2 btn-wide btn-shadow btn btn-warning btn-sm">
-                                                            Editer salle
-                                                        </button>
-                                                        <br>
-                                                        <button class="mb-2 btn-wide btn-shadow btn btn-danger btn-sm">
-                                                            Supprimer salle
-                                                        </button>
+                                                            <b-button :to="{ name: 'RoomDetails', params: { id: roomDetail.id } }" class="mb-2 btn-wide btn-shadow btn btn-info btn-sm">
+                                                                Voir détails salle
+                                                            </b-button>
+                                                            <br>
+                                                            <b-button :to="{ name: 'RoomEdit', params: { id: roomDetail.id } }" class="mb-2 btn-wide btn-shadow btn btn-warning btn-sm">
+                                                                Editer salle
+                                                            </b-button>
+                                                            <br>
+                                                            <b-button @click="remove(roomDetail.id)" class="mb-2 btn-wide btn-shadow btn btn-danger btn-sm" >
+                                                                Supprimer salle
+                                                            </b-button>
                                                     </div>
                                                     <div class="scroll-area-xm">
                                                         <VuePerfectScrollbar class="scrollbar-container" v-once>
@@ -87,19 +89,20 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 
 import {roomDetailsData} from "@/apps/lc-142/Components/data-roomDetails";
-import {buildingDropdownsData} from "@/apps/lc-142/Components/data-buildingDropdowns";
+import {buildingsData} from "@/apps/lc-142/Components/data-buildings";
 
 
 library.add(faTrashAlt, faCheck, faAngleDown, faAngleUp, faTh, faCalendarAlt);
 
 export default {
+    name: 'RoomList',
     components: {
         PageTitle,
         VuePerfectScrollbar,
     },
     data: () => ({
         roomDetailsData: roomDetailsData,
-        buildingDropdownsData: buildingDropdownsData,
+        buildingsData: buildingsData,
         heading: "Liste des salles de l'espace de coworking",
         icon: "pe-7s-note2 icon-gradient bg-tempting-azure",
 
@@ -108,7 +111,13 @@ export default {
             dots: true
         }
     }),
+    computed: {},
 
-    methods: {}
+    methods: {
+        remove (id) {
+      // l'appel vers API de Laravel devra etre fait ici
+      this.roomDetailsData = this.roomDetailsData.filter(roomDetail => roomDetail.id !== id)
+        },
+    }
 };
 </script>

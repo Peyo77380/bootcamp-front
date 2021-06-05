@@ -17,28 +17,23 @@ export default new Router({
         },
         {
             path: "/room",
-            name: "room",
+            name: "RoomList",
             component: () => import("@/apps/lc-142/index")
         },
         {
-            path: "/room/edit:id",
-            name: "room-edit",
+            path: "/room/edit/:id",
+            name: "RoomEdit",
             component: () => import("@/apps/lc-142/Components/edit/index")
         },
         {
-            path: "/room/view:id",
-            name: "room-view",
+            path: "/room/view/:id",
+            name: "RoomDetails",
             component: () => import("@/apps/lc-142/Components/view/index")
         },
         {
             path: "/room/add",
-            name: "room-add",
+            name: "RoomAdd",
             component: () => import("@/apps/lc-142/Components/add/index")
-        },
-        {
-            path: "/room/delete:id",
-            name: "room-delete",
-            component: () => import("@/apps/lc-142/Components/delete/index")
         }
     ]
 });

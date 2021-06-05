@@ -1,4 +1,4 @@
-const buildingDropdownsData = [
+const buildingsData = [
     {
         text: 'Nom du batiment 1'
     },
@@ -14,5 +14,5 @@ const buildingDropdownsData = [
 ];
 
 export { 
-    buildingDropdownsData
+    buildingsData
 };
