@@ -29,6 +29,7 @@
                                                         <div class="scroll-gradient">
                                                             <div class="scroll-area-sm">
                                                                 <VuePerfectScrollbar class="scrollbar-container" v-once>
+                                                                    <!-- form-group -->
                                                                     <div class="vertical-time-simple vertical-without-time vertical-timeline vertical-timeline--animate vertical-timeline--one-column">
                                                                         <!-- Contenu 1er wizard-->
                                                                         <p>Wizard 1</p>

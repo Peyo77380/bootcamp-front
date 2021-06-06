@@ -56,6 +56,16 @@ export default {
                             title: "Demo page"
                         }
                     ]
+                },
+                {
+                    title: "Espace de coworking : LC-142",
+                    icon: "pe-7s-note2",
+                    child: [
+                        {
+                            href: "/room",
+                            title: "Rooms List"
+                        }
+                    ]
                 }
             ],
             collapsed: true,

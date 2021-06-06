@@ -4,7 +4,6 @@
             :heading="heading"
             :icon="icon"
         ></page-title>
-        
         <b-button :to="{ name: 'RoomAdd'}" class="mt-2 btn-wide btn-shadow btn btn-info btn-sm" align="right">Ajouter salle</b-button>
         <div class="mb-3 card">
             <!-- Bouton select -->
