@@ -14,10 +14,53 @@
                         <div class="row">
                             <div class="col-md-12">
                                 <div class="row" >
-                                    <div class="col-md-4 col-lg-4 col-xl-4">
+                                    <div class="col-md-12 col-lg-12 col-xl-12">
                                         <b-card class="mb-5 nav-justified" no-body>
                                             <b-tabs class="card-header-tab-animation" card>
-                                              
+                                                <div class="nav-justified">
+                                                    <!-- Contenu -->
+                                                    <b-tabs class="card-header-tab-animation" card>
+                                                        <!-- Onglet 1 du wizard-->
+                                                        <b-tab title="Messages" class="p-3" active>
+                                                            <div class="scroll-gradient">
+                                                                <div class="scroll-area-sm">
+                                                                    <VuePerfectScrollbar class="scrollbar-container" v-once>
+                                                                        <div class="vertical-time-simple vertical-without-time vertical-timeline vertical-timeline--animate vertical-timeline--one-column">
+                                                                            <!-- Contenu 1er wizard-->
+                                                                            <p>Wizard 1</p>
+                                                                        </div>
+                                                                    </VuePerfectScrollbar>
+                                                                </div>
+                                                            </div>
+                                                        </b-tab>
+                                                        <!-- Onglet 2 du wizard-->
+                                                        <b-tab title="Events" class="p-3">
+                                                            <div class="scroll-gradient">
+                                                                <div class="scroll-area-sm">
+                                                                    <VuePerfectScrollbar class="scrollbar-container" v-once>
+                                                                        <div class="vertical-without-time vertical-timeline vertical-timeline--animate vertical-timeline--one-column">
+                                                                            <!-- Contenu 2e wizard-->
+                                                                            <p>Wizard 2</p>
+                                                                        </div>
+                                                                    </VuePerfectScrollbar>
+                                                                </div>
+                                                            </div>
+                                                        </b-tab>
+                                                        <!-- Onglet 3 du wizard-->
+                                                        <b-tab title="3e wizard" class="p-3">
+                                                            <div class="scroll-gradient">
+                                                                <div class="scroll-area-sm">
+                                                                    <VuePerfectScrollbar class="scrollbar-container" v-once>
+                                                                        <div class="vertical-without-time vertical-timeline vertical-timeline--animate vertical-timeline--one-column">
+                                                                            <!-- Contenu 3e wizard-->
+                                                                            <p>Wizard 3</p>
+                                                                        </div>
+                                                                    </VuePerfectScrollbar>
+                                                                </div>
+                                                            </div>
+                                                        </b-tab>
+                                                    </b-tabs>
+                                                </div>
                                             </b-tabs>
                                         </b-card>
                                     </div>
