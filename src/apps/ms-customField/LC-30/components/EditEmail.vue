@@ -18,62 +18,64 @@
                 </div>
                 <div class="row justify-content-center">
                     <div class="main-card card col-11 mb-5">
-                        <div class="table-responsive card-body"><h5 class="card-title">Informations génerales</h5>
-                            <div class="card-shadow-primary col-3 mb-3 widget-chart widget-chart2 text-left card">
-                                <div class="widget-chat-wrapper-outer">
-                                    <div class="widget-chart-content"><h6 class="widget-subheading">Clé</h6>
-                                        <div class="widget-chart-flex">
-                                            <div class="widget-numbers mb-0 w-100">
+                        <div class="row card-body"> 
+                            <div class="col-9">
+                                <h5 class="card-title">Informations génerales</h5>
+                                <div class="main-card card col-12 mb-3">
+                                    <div class="card-shadow-primary col-3 mb-3 widget-chart widget-chart2 text-left card">
+                                        <div class="widget-chat-wrapper-outer">
+                                            <div class="widget-chart-content"><h6 class="widget-subheading">Clé</h6>
                                                 <div class="widget-chart-flex">
-                                                    <div class="fsize-2">
-                                                        {{ editedEmail.key }}
+                                                    <div class="widget-numbers mb-0 w-100">
+                                                        <div class="widget-chart-flex">
+                                                            <div class="fsize-2">
+                                                                {{ editedEmail.key }}
+                                                            </div>
+                                                        </div>
                                                     </div>
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
-                                </div>
+                                    <v-form>
+                                        <v-flex md12>
+                                            <v-text-field
+                                                label="Titre"
+                                                v-model="editedEmail.title"
+                                            > {{ editedEmail.title }}</v-text-field>
+                                        </v-flex>
+                                        <v-flex md12>
+                                            <v-text-field
+                                                label="Description"
+                                                v-model="editedEmail.description"
+                                            > {{ editedEmail.description }}</v-text-field>
+                                        </v-flex>
+                                    </v-form>  
+                                </div>   
+                                <h5 class="card-title">Contenu de l'email</h5>  
+                                
+
+
+
+
+
+
+
                             </div>
-                            <div class="main-card card col-11 mb-5">
-                                <v-form>
-                                    <v-flex xs12 sm6 md6>
-                                        <v-text-field
-                                            label="Titre"
-                                            v-model="editedEmail.title"
-                                        > {{ editedEmail.title }}</v-text-field>
-                                    </v-flex>
-                                    <v-flex xs12 sm6 md6>
-                                        <v-text-field
-                                            label="Description"
-                                            v-model="editedEmail.description"
-                                        > {{ editedEmail.description }}</v-text-field>
-                                    </v-flex>
-                                </v-form>  
-                            </div>    
-                            <div class="row col-12">
-                                <div class="col-3">
+                             
+                            <div class="col-3">
+                                <div class="col-12 mb-2">
                                     <email-copy :editedEmail="editedEmail"/>
                                 </div>
-                                <div class="col-3">
+                                <div class="col-12 mb-2">
                                     <hidden-copy :editedEmail="editedEmail"/>
                                 </div>
-                                <div class="col-3">
+                                <div class="col-12 mb-2">
                                     <variable :editedEmail="editedEmail"/>
                                 </div>
                             </div>
                         </div>
                     </div>  
-                    <div class="main-card card col-11  mb-5">
-                        <div class="card-body"><h5 class="card-title">Contenu de l'email</h5>
-                            <div class="scroll-area-sm">
-                                <textarea class="form-control"
-                                    placeholder="Type something here..."
-                                    ref="someName"
-                                v-model="editedEmail.content"> 
-                                </textarea>
-                            </div>
-                        </div>
-                    </div> 
                 </div>    
             </v-card>
         </v-dialog>
