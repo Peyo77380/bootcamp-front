@@ -5,7 +5,7 @@
                 <div class="card-header-title font-size-lg text-capitalize font-weight-normal"><i class="header-icon lnr-user icon-gradient bg-malibu-beach"> 
                     </i>Adresse email en copie</div>
             </div>
-            <div class="scroll-area-lg">
+            <div class="scroll-area-sm">
                 <div class="chat-wrapper p-1">
                     <ul class="todo-list-wrapper list-group list-group-flush">
                         <li v-for="email in editedEmail.emailCopy" :key="email.id" class="list-group-item">

@@ -87,7 +87,7 @@ export default {
         modificationEmail() {
             //TODO point API modification email de services
             this.editedIndex = this.EmailData.indexOf(this.editedEmail);
-            var title = "Modification de l'email réussie !";
+            let title = "Modification de l'email réussie !";
             this.$sweetNotif(title);
         },
         translateUs() {
@@ -99,7 +99,6 @@ export default {
             //TODO point API pour importer les data en francais
             
         }
-
     }
 };
 </script>
