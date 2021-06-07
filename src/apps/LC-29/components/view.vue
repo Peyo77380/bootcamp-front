@@ -27,7 +27,11 @@
 
           <div class="table-responsive">
             <table
-              class="align-middle mb-0 table table-borderless table-striped table-hover"
+              class="
+                align-middle
+                mb-0
+                table table-borderless table-striped table-hover
+              "
             >
               <thead>
                 <tr>
@@ -74,7 +78,12 @@
                         <b-card-header
                           header-tag="header"
                           v-b-toggle.accordion2
-                          class="p-1 d-flex justify-content-center bg-transparent"
+                          class="
+                            p-1
+                            d-flex
+                            justify-content-center
+                            bg-transparent
+                          "
                           role="tab"
                         >
                           <div class="pl-2 pr-2 d-flex justify-content-end">
@@ -111,7 +120,6 @@
 import PageTitle from "../../../Layout/Components/PageTitle";
 import Modal1 from "@/apps/LC-29/components/Test1/modal1";
 
-
 export default {
   name: "listView",
   components: {
@@ -144,21 +152,21 @@ export default {
     lists: [
       {
         category: "activité",
-      
+
         value: "agroalimentaire",
         modify: "24/05/2021",
         createdAt: "19/05/2019",
       },
       {
         category: "metier",
-    
+
         value: "développeur web",
         modify: "essai1",
         createdAt: "essai1",
       },
       {
         category: "évènements",
-    
+
         value: "innovations managériales",
         modify: "13/09/2020",
         createdAt: "03/05/2018",
@@ -172,40 +180,39 @@ export default {
       },
       {
         category: "activité",
-    
+
         value: "banque | assurances",
         modify: "12/06/2021",
         createdAt: "11/04/2019",
       },
       {
         category: "catégorie",
-    
+
         value: "stagiaire",
         modify: "24/05/2021",
         createdAt: "19/05/2019",
       },
       {
         category: "metier",
-      
+
         value: "traducteur",
         modify: "04/05/2021",
         createdAt: "09/05/2019",
       },
       {
         category: "annonces",
-   
+
         value: "je cherche",
         modify: "test3",
         createdAt: "3test",
       },
       {
         category: "activité",
-       
         value: "BTP | matériaux de construction",
       },
       {
         category: "catégorie",
-       
+
         value: "coworker",
       },
     ],

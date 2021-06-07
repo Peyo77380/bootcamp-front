@@ -32,7 +32,13 @@
                     >
                       <span slot="button-content"
                         ><i
-                          class="header-icon lnr-earth mr-3 text-muted opacity-6"
+                          class="
+                            header-icon
+                            lnr-earth
+                            mr-3
+                            text-muted
+                            opacity-6
+                          "
                         ></i
                       ></span>
                       <div>
@@ -79,7 +85,11 @@
                   <v-tab-item v-for="i in items" :key="i">
                     <div class="table-responsive">
                       <table
-                        class="align-middle mb-0 table table-borderless table-striped table-hover"
+                        class="
+                          align-middle
+                          mb-0
+                          table table-borderless table-striped table-hover
+                        "
                       >
                         <thead>
                           <tr>
@@ -139,8 +149,6 @@
 <script>
 import PageTitle from "../../Layout/Components/PageTitle";
 import EditList from "../LC-29/components/EditList";
-import AddList from "../LC-29/components/AddList";
-
 import CountryFlag from "vue-country-flag";
 
 export default {
@@ -149,8 +157,6 @@ export default {
     PageTitle,
     // eslint-disable-next-line vue/no-unused-components
     EditList,
-    // eslint-disable-next-line vue/no-unused-components
-    AddList,
     CountryFlag,
   },
 
@@ -166,13 +172,9 @@ export default {
         disabled: false,
         href: "breadcrumbs_dashboard",
       },
+
       {
         text: "Listes",
-        disabled: false,
-        href: "breadcrumbs_link_1#/LC-29",
-      },
-      {
-        text: "Activités",
         disabled: true,
         href: "breadcrumbs_link_2#/LC-29/components/EditList",
       },

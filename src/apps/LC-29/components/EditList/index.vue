@@ -1,120 +1,108 @@
 <template>
-  <v-layout row justify-center>
-    <v-card class="col-8">
-      <v-card-title>
-        <span class="headline">Liste des activités</span>
-      </v-card-title>
-      <v-card-text class="col-10 offset-1">
-        <h3 class="my-3">Ajouter une Activité</h3>
-        <li class="list-group-item">
-          <div class="widget-content p-0">
-            <div class="widget-content-wrapper">
-              <div class="widget-content-left">
-                <div class="widget-heading"></div>
-              </div>
-              <v-layout>
-                <v-flex>
-                  <v-text-field
-                    label="Activité"
-                    required
-                    class="col-10 new-activity"
-                    v-model="newItem.name"
-                  ></v-text-field>
-                </v-flex>
-              </v-layout>
+  <div>
+    <page-title
+      :heading="heading"
+      :subheading="subheading"
+      :icon="icon"
+      :items="items"
+    ></page-title>
 
-              <b-button
-                class="ml-6 btn-icon btn-icon-only btn-pill"
-                variant="outline-warning"
-                @click="add()"
-                ><i class=""> + </i></b-button
-              >
-            </div>
-          </div>
-        </li>
+    <div>
+      <div>
+        <v-breadcrumbs :items="items">
+          <template v-slot:divider>
+            <v-icon>chevron_right</v-icon>
+          </template>
+        </v-breadcrumbs>
+      </div>
+    </div>
 
-        <ul class="list-group">
-          <h3 class="my-5">Modifier une Activité</h3>
-          <b-row>
-            <b-col md="6" class="my-1">
-              <b-form-group horizontal label="Filtrer" class="mb-3">
-                <b-input-group>
-                  <b-form-input
-                    v-model="filter"
-                    placeholder="Rechercher une activité"
-                  />
-                  <b-input-group-append>
-                    <b-btn :disabled="!filter" @click="filter = ''"
-                      >Clear</b-btn
-                    >
-                  </b-input-group-append>
-                </b-input-group>
-              </b-form-group>
-            </b-col>
-            <b-col md="6" class="my-1">
-              <b-form-group horizontal label="Ordre" class="mb-0">
-                <b-input-group>
-                  <b-form-select v-model="sortDirection" slot="append">
-                    <option value="asc">Asc</option>
-                    <option value="desc">Desc</option>
-                    <option value="last">Last</option>
-                  </b-form-select>
-                </b-input-group>
-              </b-form-group>
-            </b-col>
-          </b-row>
-          <li
-            class="list-group-item"
-            v-for="item in lists"
-            :key="item.id"
-            v-bind:class="{ completed: item.completed }"
-          >
+    <v-layout row justify-center>
+      <modal1 v-show="dialog" :dialog="dialog" @close="closemodal"></modal1>
+      <v-card class="col-8">
+        <v-card-text class="col-10 offset-1">
+          <h3 class="my-3">Ajouter une Activité</h3>
+          <li class="list-group-item rounded">
             <div class="widget-content p-0">
               <div class="widget-content-wrapper">
                 <div class="widget-content-left">
-                  <div class="widget-heading">{{ item.name }}</div>
+                  <div class="widget-heading"></div>
                 </div>
+                <v-layout>
+                  <v-flex>
+                    <v-text-field
+                      label="Activité"
+                      required
+                      class="col-10 new-activity"
+                      v-model="newItem.name"
+                    ></v-text-field>
+                  </v-flex>
+                </v-layout>
 
-                <div class="widget-content-right">
-                  <div role="group" class="btn-group-sm btn-group">
-                    <div>
-                      <b-button
-                        class="ml-4 btn-icon btn-icon-only btn-pill"
-                        variant="outline-info"
-                        @click="edit(list.id)"
-                        ><i class="pe-7s-pen btn-icon-wrapper"> </i
-                      ></b-button>
-                    </div>
+                <b-button
+                  class="ml-6 btn-icon btn-icon-only btn-pill"
+                  variant="outline-warning"
+                  @click="add()"
+                  ><i class=""> + </i></b-button
+                >
+              </div>
+            </div>
+          </li>
 
-                    <div>
-                      <b-button
-                        class="ml-4 btn-icon btn-icon-only btn-pill"
-                        variant="outline-danger"
-                        @click="remove(item.id)"
-                        ><i class="pe-7s-trash btn-icon-wrapper"> </i
-                      ></b-button>
+          <ul class="list-group">
+            <hr class="my-5" />
+            <li
+              class="list-group-item rounded"
+              v-for="item in lists"
+              :key="item.id"
+              v-bind:class="{ completed: item.completed }"
+            >
+              <div class="widget-content p-0">
+                <div class="widget-content-wrapper">
+                  <div class="widget-content-left">
+                    <div class="widget-heading">{{ item.name }}</div>
+                  </div>
+
+                  <div class="widget-content-right">
+                    <div role="group" class="btn-group-sm btn-group">
+                      <div>
+                        <b-button
+                          class="ml-4 btn-icon btn-icon-only btn-pill"
+                          variant="outline-info"
+                          @click="edit(list.id)"
+                          ><i class="pe-7s-pen btn-icon-wrapper"> </i
+                        ></b-button>
+                      </div>
+
+                      <div>
+                        <b-button
+                          class="ml-4 btn-icon btn-icon-only btn-pill"
+                          variant="outline-danger"
+                          @click="remove(item.id)"
+                          ><i class="pe-7s-trash btn-icon-wrapper"> </i
+                        ></b-button>
+                      </div>
                     </div>
                   </div>
                 </div>
               </div>
-            </div>
-          </li>
-        </ul>
-        <small>*indicates required field</small>
-      </v-card-text>
-      <v-card-actions>
-        <v-spacer></v-spacer>
-        <v-btn color="blue darken-1" flat @click="dialog = false">Close</v-btn>
-        <v-btn color="blue darken-1" flat @click="dialog = false">Save</v-btn>
-      </v-card-actions>
-    </v-card>
-  </v-layout>
+            </li>
+          </ul>
+        </v-card-text>
+      </v-card>
+    </v-layout>
+  </div>
 </template>
 
 <script>
+import PageTitle from "../../../../Layout/Components/PageTitle.vue";
+import Modal1 from "@/apps/LC-29/components/Test1/modal1";
 export default {
   name: "EditList",
- 
+  components: {
+    PageTitle,
+    Modal1,
+  },
   methods: {
     async remove(activityId) {
       // sweet alert sur la suppression
@@ -123,22 +111,43 @@ export default {
         this.lists = this.lists.filter(
           (activity) => activity.id !== activityId
         );
+        this.$sweetNotif("Activité supprimée");
+        
       }
     },
-     add() {
-       this.lists.push({
-           id : 123,
-         name: this.newItem.name,
-       });
-       this.$sweetNotif('item added ');
-       this.newItem = {name:'',id: 0};
-     },
+    add() {
+      this.lists.push({
+        id: 123,
+        name: this.newItem.name,
+      });
+      this.$sweetNotif("Activité ajoutée");
+      this.newItem = { name: "", id: 0 };
+    },
+    edit() {
+      this.dialog = true;
+    },
   },
   data: () => ({
-    sortBy: null,
-    sortDesc: false,
-    sortDirection: "asc",
-    newItem: {name:'',id:''},
+    heading: "LaColloc - Paramètres",
+    subheading: "Paramètrage de LaColloc",
+    icon: "pe-7s-news-paper icon-gradient bg-night-fade",
+    newItem: { name: "", id: "" },
+    items: [
+      {
+        text: "Paramètres",
+        disabled: false,
+        href: "breadcrumbs_dashboard",
+      },
+      {
+        text: "Listes",
+        disabled: false,
+        href: "breadcrumbs_link_1#/LC-29",
+      },
+      {
+        text: "Modifier la liste",
+        disabled: true,
+      },
+    ],
     lists: [
       {
         name: "Agroalimentaire",
