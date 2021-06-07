@@ -18,7 +18,7 @@
                             <th class="text-center">Adhésion/th>
                             <th class="text-center">Crédits</th>
                             <th class="text-center">Temps</th>
-                            <th class="text-center">Act</th>
+                            <th class="text-center">Actions</th>
                         </tr>
                     </thead>
                     <tbody>
