@@ -15,7 +15,7 @@
                             <th class="text-center">Statut</th>
                             <th class="text-center">Activité</th>
                             <th class="text-center">Catégories</th>
-                            <th class="text-center">Adhésion/th>
+                            <th class="text-center">Adhésion</th>
                             <th class="text-center">Crédits</th>
                             <th class="text-center">Temps</th>
                             <th class="text-center">Actions</th>
@@ -131,6 +131,9 @@
             </div>
         </div>
         <div><ModalForm :user="updateUser" /></div>
+        <!-- #TODO : tester <v-img :src="require('@/assets/images/salles/' + roomDetail.plan + '.jpeg')"></v-img>!-->
+        <!-- #TODO : Ajouter bouton Rechercher à droite de la barre de filtre!-->
+        <!-- #TODO : A gauche de la barre de filtre, ajouter bouton Membres/Sociétés!-->
     </div>
 </template>
 <script>
@@ -174,7 +177,7 @@ export default {
             users: [
                 {
                     ID: 1,
-                    Photo: "1.jpg",
+                    Photo: "@/assets/images/avatars/1.jpg",
                     Nom: "Marvin Gaye",
                     Societe: "Motown",
                     Statut: "Société",
@@ -186,7 +189,7 @@ export default {
                 },
                 {
                     ID: 2,
-                  //  Photo: "@/assets/images/avatars/3.jpg",
+                    Photo: "@/assets/images/avatars/2.jpg",
                     Nom: "Laurent Sauzet",
                     Societe: "Microsoft",
                     Statut: "Salarié",
@@ -198,7 +201,7 @@ export default {
                 },
                 {
                     ID: 3,
-                  //  Photo: "@/assets/images/avatars/3.jpg",
+                    Photo: "@/assets/images/avatars/3.jpg",
                     Nom: "Curtis Mayfield",
                     Societe: "Hatchworks",
                     Statut: "Salarié",
@@ -210,7 +213,7 @@ export default {
                 },
                 {
                     ID: 4,
-                  //  Photo: "@/assets/images/avatars/5.jpg",
+                    Photo: "@/assets/images/avatars/4.jpg",
                     Nom: "Roberta Flack",
                     Societe: "Riddle Electronics",
                     Statut: "Indépendant",
@@ -222,7 +225,7 @@ export default {
                 },
                 {
                     ID: 5,
-                  //  Photo: "@/assets/images/avatars/6.jpg",
+                    Photo: "@/assets/images/logo-inverse.png.jpg",
                     Nom: "Nancy Sinatra",
                     Societe: "Pixelcloud",
                     Statut: "Société",
