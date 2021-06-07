@@ -11,7 +11,11 @@
         <div>
             <b-card>
                 <b-tabs pills card vertical>
-                    <b-tab title="Informations générales" background-color="red" active>
+                    <b-tab
+                        title="Informations générales"
+                        background-color="red"
+                        active
+                    >
                         <forms1></forms1>
                     </b-tab>
                     <b-tab title="Référent">
@@ -27,8 +31,7 @@
             <b-card>
                 <div class="row justify-content-end">
                     <v-btn @click="clear">clear</v-btn>
-                    <v-btn @click="submit" color="success" >Valider</v-btn>
-                    
+                    <v-btn @click="submit" color="success">Valider</v-btn>
                 </div>
             </b-card>
         </div>
@@ -50,6 +53,22 @@ export default {
         forms1,
         forms2,
         forms3
+    },
+
+    methods: {
+        submit() {
+            this.$v.$touch();
+        },
+        clear() {
+            this.$v.$reset();
+            this.siret = "";
+            this.nomsociete = "";
+            this.numerotva = "";
+            this.name = "";
+            this.email = "";
+            this.select = null;
+            this.checkbox = false;
+        }
     }
 };
 </script>
