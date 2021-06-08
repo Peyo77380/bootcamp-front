@@ -27,14 +27,7 @@
                 </b-tabs>
             </b-card>
         </div>
-        <div>
-            <b-card>
-                <div class="row justify-content-end">
-                    <v-btn @click="clear">clear</v-btn>
-                    <v-btn @click="submit" color="success">Valider</v-btn>
-                </div>
-            </b-card>
-        </div>
+        
     </div>
 </template>
 

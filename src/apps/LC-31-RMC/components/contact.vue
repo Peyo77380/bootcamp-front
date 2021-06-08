@@ -2,7 +2,7 @@
     <v-form v-model="valid">
         <v-container>
             <div class="row justify-content-center">
-                <div class="col-md-5">
+                <div class="col-md-5 bg-light">
                     <v-text-field
                         v-model="email"
                         :rules="emailRules"
@@ -36,6 +36,11 @@
                 </div>
             </div>
         </v-container>
+
+        <div class="row justify-content-end">
+            <v-btn @click="clear">clear</v-btn>
+            <v-btn @click="submit" color="success">Valider</v-btn>
+        </div>
     </v-form>
 </template>
 

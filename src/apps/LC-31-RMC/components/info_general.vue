@@ -2,7 +2,7 @@
     <v-form v-model="valid">
         <v-container flex>
             <div class="row justify-content-center">
-                <div class="col-md-5">
+                <div class="col-md-5 bg-light">
                     <v-text-field
                         v-model="siret"
                         :rules="nameRules"
@@ -51,7 +51,7 @@
                         required
                     ></v-text-field>
                 </div>
-                <div class="col-md-5">
+                <div class="col-md-5 bg-light">
                     <v-text-field
                         v-model="nombresalaries"
                         :rules="nameRules"
@@ -59,13 +59,15 @@
                         required
                     ></v-text-field>
 
-                    <v-text-field
+                    <v-autocomplete
+                        ref="statut"
                         v-model="statut"
-                        :rules="nameRules"
-                        :counter="20"
+                        :rules="[() => !!statut || 'This field is required']"
+                        :items="statut"
                         label="Statut"
+                        placeholder="Select..."
                         required
-                    ></v-text-field>
+                    ></v-autocomplete>
 
                     <v-autocomplete
                         ref="secteuractivite"
@@ -88,9 +90,19 @@
                         placeholder="Select..."
                         required
                     ></v-autocomplete>
+
+                    <div class="position-relative form-group"><label for="exampleFile" class="">Logo</label><input name="file" id="exampleFile" type="file" class="form-control-file">
+                      <small class="form-text text-muted">Ils sont aceptes formats: .jpg, .png, .raw</small>
+                    </div>
                 </div>
             </div>
+            
         </v-container>
+
+        <div class="row justify-content-end">
+            <v-btn @click="clear">clear</v-btn>
+            <v-btn @click="submit" color="success">Valider</v-btn>
+        </div>
     </v-form>
 </template>
 
@@ -114,11 +126,11 @@ export default {
             "Transport | Logistique"
         ],
         categorie: ["Domicilié", "Resident", "Autre"],
+        statut: ["actif", "inactif"],
         valid: false,
         nomesociete: "",
         siret: "",
         nombresalaries: "",
-        statut: "",
         numerotva: "",
         adresse: "",
         nameRules: [
