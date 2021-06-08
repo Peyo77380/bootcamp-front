@@ -10,6 +10,7 @@
         <div>
             <email-list
                 :EmailData="EmailData"
+                :CategoryName="CategoryName"
                 @displayEmail="showDetails"
                 @edit="editEmail"
                 @changeUs="translateUs"
@@ -41,6 +42,7 @@ import DisplayEmail from "@/apps/ms-customField/LC-30/components/DisplayEmail";
 import EditEmail from "@/apps/ms-customField/LC-30/components/EditEmail";
 import { EmailData } from "@/apps/ms-customField/LC-30/EmailData";
 import { EmailDataUs } from "@/apps/ms-customField/LC-30/EmailDataUs";
+import { CategoryName } from "@/apps/ms-customField/LC-30/CategoryName";
 
 export default {
     components: {
@@ -56,8 +58,11 @@ export default {
                 "Créer l'ensemble des modèles de vos email de services ici.",
             icon: "pe-7s-mail",
             EmailData: EmailData,
+            //TODO API affichage de l'ensemble des données 
             EmailDataUs: EmailDataUs,
             EmailDataFr: EmailData,
+            CategoryName: CategoryName,
+            //TODO API affichage de l'ensemble des catégories
             dialog: false,
             emailDetails: {},
             editedEmail: {},

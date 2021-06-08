@@ -53,9 +53,10 @@
                                     </v-form>  
                                 </div>   
                                 <h5 class="card-title">Contenu de l'email</h5>  
-                                <div>
+                                <!-- <div>
+                                    <ckeditor v-model="editedEmail.content" ></ckeditor>
                                    
-                                </div>
+                                </div> -->
                             </div>
                              
                             <div class="col-3">
@@ -89,13 +90,11 @@ export default {
         EmailCopy,
         HiddenCopy,
         Variable,
-       
-
     },
     data() {
     return {
         icon: "pe-7s-mail-open-file",
-        newEmail: {}
+        newEmail: {},
     };
     },
     props: {

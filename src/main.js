@@ -2,7 +2,7 @@ import Vue from "vue";
 import "./plugins/vuetify";
 import sweetAlert from "./plugins/sweetAlert";
 import router from "./router";
-//import CKEditor from "ckeditor5-vue";
+//import CKEditor from "@ckeditor/ckeditor5-vue2";
 
 import BootstrapVue from "bootstrap-vue";
 
