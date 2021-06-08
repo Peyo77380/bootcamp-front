@@ -1,42 +1,42 @@
 <template>
   <div class="text-xs-center">
-    <v-dialog  v-model="dialog2" max-width="600px">
       
-      <v-card>
+    <v-dialog  v-model="dialog2" max-width="600px">
+        <v-card>
         <v-card-title>
-          <span class="headline">Modification REFUND_DEPOSIT_PERCENT</span>
+          <span class="headline">Modification - {{items.key}}</span>
         </v-card-title>
         <v-card-text>
-          <v-container grid-list-md>
-            <v-layout wrap>
-                <v-flex xs12 sm12>
-                
-              </v-flex>
-             
-              <v-flex xs12 sm6 md4>
-                <v-text-field label="Valeur" :value =items.value ></v-text-field>
-              </v-flex>
-              <v-flex xs12 sm6 md4>
-                <v-text-field
-                  label="Infos"
-                  :value =items.info
-                  persistent-hint
-                  required
-                ></v-text-field>
-              </v-flex>
-              <v-flex xs12>
-              </v-flex>
-            </v-layout>
-          </v-container>
-          
-        </v-card-text>
-        <v-card-actions>
-          <v-spacer></v-spacer>
-          <v-btn color="blue darken-1" @click="close2" flat>Sauvegarder</v-btn>
-          <v-btn color="blue darken-1" @click="close2" flat>Fermer</v-btn>
-        </v-card-actions>
-      </v-card>
+      <b-form >
+      <b-form-group
+        id="input-group-1"
+        label="Valeur :"
+        label-for="input-1"
+        >
+        <b-form-input
+          id="input-1"
+          :value="items.value"
+          required
+        ></b-form-input>
+      </b-form-group>
+
+      <b-form-group id="input-group-2" label="Infos :" label-for="input-2">
+        <b-form-input
+          id="input-2"
+          :value="items.info"  
+          required
+        ></b-form-input>
+      </b-form-group>
+
+    <div class="btn-group-sm btn-group">
+        <b-button type="submit" @click="saveModification" variant="primary">Sauvegarder</b-button>
+        <b-button type="reset" @click="close2" variant="danger">Fermer</b-button>
+    </div>
+    </b-form>
+    </v-card-text>
+    </v-card>
     </v-dialog>
+    
   </div>
 </template>
 
@@ -54,7 +54,13 @@
     methods:{
         close2(){
             this.$emit("close2")
+        },
+        saveModification() {
+            this.close2();
+            this.$emit("saveModification", this.items)
+
         }
+
     }
   }
 </script>

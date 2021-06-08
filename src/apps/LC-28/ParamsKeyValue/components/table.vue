@@ -1,7 +1,6 @@
 <template>
 <div>
-    <modal :items="keyValueEdit" @close2="closeModalEdit" :dialog2="dialog2"></modal>
-     <modal-detail :items="keyValueDetails" @close="closeModal" :dialog="dialog"></modal-detail>
+    
 <div class="row">
             <div class="col-md-3 col-xl-2" style="margin-left:90px">
                 <div class="card mb-3 widget-content bg-alternate">
@@ -131,7 +130,10 @@
                 </table>
             </div>
 </div>
+<modal @saveModification="modificationEmail" :items="keyValueEdit" @close2="closeModalEdit" :dialog2="dialog2"></modal>
+     <modal-detail :items="keyValueDetails" @close="closeModal" :dialog="dialog"></modal-detail>
 </div>
+
 </template>
 
 <script>
@@ -183,6 +185,13 @@ import modalDetail from "./modal_detail"
         this.dialog = true;
         this.keyValueDetails = item;
         },
+        modificationEmail() {
+            //TODO point API modification email de services
+            
+            var title = "Modification de la clé réussie !";
+            this.$sweetNotif(title);
+        },
+
     }
 }
 
