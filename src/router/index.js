@@ -9,7 +9,6 @@ export default new Router({
     },
     routes: [
         // Dashboards
-
         {
             path: "/",
             name: "analytics",
@@ -21,20 +20,14 @@ export default new Router({
             component: () => import('../apps/LC-29'),
         },
         {
-            path: "/LC-29/components/view",
-            name: "View",
-            component: () => import('@/apps/LC-29/components/view'),
-        },
-        {
             path: "/LC-29/components/EditList",
             name: "EditList",
-            component: () => import('@/apps/LC-29/components/EditList'),
+            component: () => import('@/apps/LC-29/EditList.vue'),
         },
-
          {
-            path: "/LC-29/components/EditActivity",
-            name: "EditActivity",
-            component: () => import('@/apps/LC-29/components/EditActivity'),
+            path: "/LC-29/Modal",
+            name: "Modal",
+            component: () => import('@/apps/LC-29/Modal.vue'),
         },
         
         

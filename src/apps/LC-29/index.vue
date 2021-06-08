@@ -148,7 +148,7 @@
 
 <script>
 import PageTitle from "../../Layout/Components/PageTitle";
-import EditList from "../LC-29/components/EditList";
+import EditList from "../LC-29/EditList";
 import CountryFlag from "vue-country-flag";
 
 export default {
@@ -176,7 +176,7 @@ export default {
       {
         text: "Listes",
         disabled: true,
-        href: "breadcrumbs_link_2#/LC-29/components/EditList",
+        href: "breadcrumbs_link_2#/LC-29/EditList",
       },
     ],
     list: [

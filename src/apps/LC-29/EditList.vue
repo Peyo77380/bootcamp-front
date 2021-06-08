@@ -18,7 +18,6 @@
     </div>
 
     <v-layout row justify-center>
-      <modal1 v-show="dialog" :dialog="dialog" @close="closemodal"></modal1>
       <v-card class="col-8">
         <v-card-text class="col-10 offset-1">
           <h3 class="my-3">Ajouter une Activité</h3>
@@ -69,7 +68,7 @@
                         <b-button
                           class="ml-4 btn-icon btn-icon-only btn-pill"
                           variant="outline-info"
-                          @click="edit(list.id)"
+                          @click="showEdit(item.id)"
                           ><i class="pe-7s-pen btn-icon-wrapper"> </i
                         ></b-button>
                       </div>
@@ -91,17 +90,24 @@
         </v-card-text>
       </v-card>
     </v-layout>
+    <modal
+      @saveModification="modificationActivity"
+      :items="keyValueEdit"
+      @close2="closeModalEdit"
+      :dialog2="dialog2"
+    ></modal>
   </div>
 </template>
 
 <script>
-import PageTitle from "../../../../Layout/Components/PageTitle.vue";
-import Modal1 from "@/apps/LC-29/components/Test1/modal1";
+import PageTitle from "../../Layout/Components/PageTitle.vue";
+import Modal from "@/apps/LC-29/Modal.vue";
 export default {
   name: "EditList",
   components: {
     PageTitle,
-    Modal1,
+    // eslint-disable-next-line vue/no-unused-components
+    Modal,
   },
   methods: {
     async remove(activityId) {
@@ -112,9 +118,9 @@ export default {
           (activity) => activity.id !== activityId
         );
         this.$sweetNotif("Activité supprimée");
-        
       }
     },
+    // ajout d'une activité
     add() {
       this.lists.push({
         id: 123,
@@ -123,8 +129,18 @@ export default {
       this.$sweetNotif("Activité ajoutée");
       this.newItem = { name: "", id: 0 };
     },
-    edit() {
-      this.dialog = true;
+    //Modal
+    closeModalEdit() {
+      this.dialog2 = false;
+    },
+    showEdit(item) {
+      this.dialog2 = true;
+      this.keyValueEdit = item;
+    },
+    modificationActivity() {
+      //TODO point API modification email de services
+      var title = "Modification réussie !";
+      this.$sweetNotif(title);
     },
   },
   data: () => ({
@@ -132,6 +148,8 @@ export default {
     subheading: "Paramètrage de LaColloc",
     icon: "pe-7s-news-paper icon-gradient bg-night-fade",
     newItem: { name: "", id: "" },
+    dialog2: false,
+    keyValueEdit: {},
     items: [
       {
         text: "Paramètres",
