@@ -19,16 +19,16 @@
                                     <div class="widget-content-right ">
                                         <b-button 
                                             class="mb-2 mr-2 btn-icon btn-icon-only btn-pill" 
+                                            variant="outline-primary"
+                                            @click="EditEmailCopy(email)">
+                                            <i class="lnr-pencil btn-icon-wrapper"></i>
+                                        </b-button>
+                                         <b-button 
+                                            class="mb-2 mr-2 btn-icon btn-icon-only btn-pill" 
                                             variant="outline-danger"
                                             @click="deleteEmail(email)"
                                             >
                                             <i class="lnr-trash btn-icon-wrapper"></i>
-                                        </b-button>
-                                        <b-button 
-                                            class="mb-2 mr-2 btn-icon btn-icon-only btn-pill" 
-                                            variant="outline-primary"
-                                            @click="EditEmailCopy(email)">
-                                            <i class="lnr-pencil btn-icon-wrapper"></i>
                                         </b-button>
                                     </div>
                                 </div>

@@ -53,19 +53,9 @@
                     <tr v-for="email in EmailData" :key="email.id">
                         <td class="text-center text-muted">{{ email.key }}</td>
                         <td class="text-center">{{ email.title }}</td>
-                        <td class="text-center">{{ email.updateDate }}</td>
+                        <td class="text-center">2 jours</td>
                         <td class="text-center">
                             <div>
-                                <b-button
-                                    class="mb-2 mr-2 btn-icon btn-icon-only btn-pill"
-                                    variant="outline-warning"
-                                    id="viewBouton"
-                                    @click="displayEmail(email)"
-                                >
-                                    <i
-                                        class="pe-7s-search btn-icon-wrapper"
-                                    ></i>
-                                </b-button>
                                 <b-button
                                     class="mb-2 mr-2 btn-icon btn-icon-only btn-pill"
                                     variant="outline-primary"
@@ -119,9 +109,9 @@ export default {
     },
 
     methods: {
-        displayEmail(email) {
-            this.$emit("displayEmail", email);
-        },
+        // displayEmail(email) {
+        //     this.$emit("displayEmail", email);
+        // },
         edit(email) {
             this.$emit("edit", email);
         },

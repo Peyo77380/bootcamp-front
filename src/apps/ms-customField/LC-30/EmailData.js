@@ -11,30 +11,30 @@ const EmailData = [
         [
             {
                 "id" : 1,
-                "value": "Florian@alt.com"
+                "value": "Florian@alt.fr"
             },
             {
                 "id" : 2,
-                "value": "Romain@alt.com"
+                "value": "Romain@alt.fr"
             },
             {
                 "id" : 3,
-                "value": "Amelie@alert.com"
+                "value": "Amelie@alert.fr"
             },
         ], 
         "hiddenCopie": 
         [
             {
                 "id" : 1,
-                "value": "Florian@lacolloc.com"
+                "value": "Florian@lacolloc.fr"
             },
             {
                 "id" : 2,
-                "value": "Romain@lacolloc.com"
+                "value": "Romain@lacolloc.fr"
             },
             {
                 "id" : 3,
-                "value": "Amelie@lacolloc.com"
+                "value": "Amelie@lacolloc.fr"
             },
         ],
         "variable": 

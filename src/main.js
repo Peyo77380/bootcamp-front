@@ -2,6 +2,7 @@ import Vue from "vue";
 import "./plugins/vuetify";
 import sweetAlert from "./plugins/sweetAlert";
 import router from "./router";
+//import CKEditor from "ckeditor5-vue";
 
 import BootstrapVue from "bootstrap-vue";
 
@@ -15,6 +16,7 @@ Vue.config.productionTip = false;
 
 Vue.use(BootstrapVue);
 Vue.use(sweetAlert);
+//Vue.use(CKEditor);
 
 Vue.component("default-layout", Default);
 Vue.component("userpages-layout", Pages);

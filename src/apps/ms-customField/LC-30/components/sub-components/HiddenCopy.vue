@@ -5,7 +5,7 @@
                 <div class="card-header-title font-size-lg text-capitalize font-weight-normal"><i class="header-icon lnr-users icon-gradient bg-malibu-beach"> 
                     </i>Adresse email en copie cachée</div>
             </div>
-            <div class="scroll-area-sm">
+            <div class="scroll-area-">
                 <ul class="todo-list-wrapper list-group list-group-flush">
                     <li v-for="email in editedEmail.hiddenCopie" :key="email.id" class="list-group-item">
                         <div class="widget-content p-0">
@@ -23,7 +23,7 @@
                                         @click="EditEmailCopy(email)">
                                         <i class="lnr-pencil btn-icon-wrapper"></i>
                                     </b-button>
-                                        <b-button 
+                                    <b-button 
                                         class="mb-2 mr-2 btn-icon btn-icon-only btn-pill" 
                                         variant="outline-danger"
                                         @click="deleteEmail(email)"

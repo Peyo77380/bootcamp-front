@@ -21,7 +21,7 @@
                         <div class="row card-body"> 
                             <div class="col-9">
                                 <h5 class="card-title">Informations génerales</h5>
-                                <div class="main-card card col-12 mb-3">
+                                <div class="main-card card col-12 mb-3 p-3">
                                     <div class="card-shadow-primary col-3 mb-3 widget-chart widget-chart2 text-left card">
                                         <div class="widget-chat-wrapper-outer">
                                             <div class="widget-chart-content"><h6 class="widget-subheading">Clé</h6>
@@ -38,13 +38,13 @@
                                         </div>
                                     </div>
                                     <v-form>
-                                        <v-flex md12>
+                                        <v-flex md8>
                                             <v-text-field
                                                 label="Titre"
                                                 v-model="editedEmail.title"
                                             > {{ editedEmail.title }}</v-text-field>
                                         </v-flex>
-                                        <v-flex md12>
+                                        <v-flex md8>
                                             <v-text-field
                                                 label="Description"
                                                 v-model="editedEmail.description"
@@ -53,14 +53,9 @@
                                     </v-form>  
                                 </div>   
                                 <h5 class="card-title">Contenu de l'email</h5>  
-                                
-
-
-
-
-
-
-
+                                <div>
+                                   
+                                </div>
                             </div>
                              
                             <div class="col-3">
@@ -93,7 +88,9 @@ export default {
     components: { 
         EmailCopy,
         HiddenCopy,
-        Variable
+        Variable,
+       
+
     },
     data() {
     return {
