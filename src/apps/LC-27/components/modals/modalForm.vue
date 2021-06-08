@@ -42,7 +42,6 @@
                 <b-form-datalist
                     id="input-list"
                     :options="optionsChoices"
-                    
                 ></b-form-datalist>
             </div>
         </template>
@@ -53,16 +52,18 @@
             <b-button size="sm" variant="danger" @click="cancel()">
                 Annuler
             </b-button>
-            <b-button size="sm" variant="success" @click="[ok(), modifUpdate($sweetNotif)]">
+            <b-button
+                size="sm"
+                variant="success"
+                @click="[ok(), modifUpdate($sweetNotif)]"
+            >
                 Valider
             </b-button>
         </template>
     </b-modal>
 </template>
 <script>
-//import sweetAlert from '@/plugins/sweetAlert.js';
 export default {
-   // components: {sweetAlert},
     name: "Modale",
     props: {
         user: {
@@ -84,31 +85,32 @@ export default {
     data: () => ({
         userNom: "",
         userSociete: "",
-        
-        optionsChoices: ['Actif', 'Inactif']
+
+        optionsChoices: ["Actif", "Inactif"]
     }),
     computed: {
         validation() {
             return this.user.Nom.length > 4 && this.user.Nom.length < 60;
         },
         validationSociety() {
-            return this.user.Societe.length > 4 && this.user.Societe.length < 100;
+            return (
+                this.user.Societe.length > 4 && this.user.Societe.length < 100
+            );
         },
         test() {
-          if (this.user.Activite) {
-            return this.optionsChoices[0]
-          } 
-          return this.optionsChoices[1]
+            if (this.user.Activite) {
+                return this.optionsChoices[0];
+            }
+            return this.optionsChoices[1];
         }
     },
     methods: {
-      importActivite (){
-        this.test=this.user.Activite
-      },
-      modifUpdate() {
-        this.$sweetNotif('Modifications enregistrées !')
-    },
+        importActivite() {
+            this.test = this.user.Activite;
+        },
+        modifUpdate() {
+            this.$sweetNotif("Modifications enregistrées !");
+        }
     }
 };
 </script>
-
