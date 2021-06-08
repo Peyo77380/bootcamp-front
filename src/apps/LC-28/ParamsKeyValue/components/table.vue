@@ -99,26 +99,39 @@
                        
                         
                         <td class="text-center">
-                            <div role="group" class="btn-group-sm btn-group">
-                                <v-btn class=" outlined-search btn-pill"
-                        @click="showDetails(item)"
-                        elevation="2"
-                        icon
-                        outlined
-                        small
-                        ><i class="pe-7s-search icon-color-search btn-icon-wrapper"> </i></v-btn>
+                            <div role="group" class="btn-group-sm">
+                                <b-button
+                                        class="mb-2 mr-2  btn-pill btn-shadow"
+                                        variant="warning"
+                                        id="popover1"
+                                        @click="showDetails(item)"
+                                    >
+                                        <i class="lnr-magnifier"></i>
+                                    </b-button>
+                                    <b-popover
+                                    :target="'popover1'"
+                                    placement="bottomleft"
+                                    title="Voir les détails d'une clé"
+                                    triggers="hover focus"
+                                ></b-popover>
+                                <b-button
+                                        class="mb-2 mr-2  btn-pill btn-shadow"
+                                        variant="primary"
+                                        id="popover2"
+                                        @click="showEdit(item)" 
+                                    >
+                                        <i class="lnr-pencil"></i>
+                                    </b-button>
+                                    <b-popover
+                                    :target="'popover2'"
+                                    placement="bottomleft"
+                                    title="Modifier la clé"
+                                    triggers="hover focus"
+                                ></b-popover>
+                                
                                
                             </div>
-                            <div role="group" class="btn-group-sm btn-group" >
-                                <v-btn class="outlined btn-pill" 
-                                elevation="2" 
-                                @click="showEdit(item)"  
-                                icon 
-                                outlined 
-                                small ><i class="pe-7s-tools icon-color btn-icon-wrapper"> </i></v-btn>
-                                
-               
-                            </div>
+                            
                             
                         </td>
                         

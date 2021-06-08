@@ -27,11 +27,12 @@
           required
         ></b-form-input>
       </b-form-group>
-
-    <div class="btn-group-sm btn-group">
-        <b-button type="submit" @click="saveModification" variant="primary">Sauvegarder</b-button>
-        <b-button type="reset" @click="close2" variant="danger">Fermer</b-button>
-    </div>
+    
+        <div class="p-1 text-right btn-group-sm ">
+            <b-button style="margin-right:10px" type="submit" @click="saveModification" variant="success">Valider</b-button>
+            <b-button type="reset" @click="close2" variant="danger">Retour</b-button>
+        </div>
+   
     </b-form>
     </v-card-text>
     </v-card>

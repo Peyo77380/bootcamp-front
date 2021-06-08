@@ -114,13 +114,8 @@
 
         <v-card-actions>
           <v-spacer></v-spacer>
-          <v-btn
-            color="primary"
-            flat
-            @click="close"
-          >
-            Retour
-          </v-btn>
+          <b-button type="reset" @click="close" variant="danger">Retour</b-button>
+          
         </v-card-actions>
       </v-card>
     </v-dialog>
