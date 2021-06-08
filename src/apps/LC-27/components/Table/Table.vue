@@ -130,7 +130,7 @@
                 </div>
             </div>
         </div>
-        <div><ModalForm :user="updateUser" /></div>
+        <ModalForm :user="updateUser" />
         <!-- #TODO : tester <v-img :src="require('@/assets/images/salles/' + roomDetail.plan + '.jpeg')"></v-img>!-->
         <!-- #TODO : Ajouter bouton Rechercher à droite de la barre de filtre!-->
         <!-- #TODO : A gauche de la barre de filtre, ajouter bouton Membres/Sociétés!-->
@@ -173,7 +173,7 @@ export default {
     },
     data() {
         return {
-            updateUser: { message: "Coucou" },
+            updateUser: null,
             users: [
                 {
                     ID: 1,
@@ -249,9 +249,6 @@ export default {
             this.updateUser = user,
             this.$bvModal.show('modal-scoped')
         },
-        
-    },
-    computed: {
         
     },
     // TODO: Faire le système de tri 

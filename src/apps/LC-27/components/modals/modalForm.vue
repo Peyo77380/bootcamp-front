@@ -46,19 +46,23 @@
             </div>
         </template>
         <template #modal-footer="{ ok, cancel }">
-            <b-button size="sm" variant="primary" @click="update()">
-                Voir fiche
-            </b-button>
-            <b-button size="sm" variant="danger" @click="cancel()">
-                Annuler
-            </b-button>
-            <b-button
-                size="sm"
-                variant="success"
-                @click="[ok(), modifUpdate($sweetNotif)]"
-            >
-                Valider
-            </b-button>
+            
+                <b-button  size="sm" variant="primary" @click="update()">
+                    Voir fiche
+                </b-button>
+                <b-button size="sm" variant="danger" @click="cancel()">
+                    Annuler
+                </b-button>
+                <b-button
+                    type="submit"
+                    size="sm"
+                    variant="success"
+                    @click="[ok(), modifUpdate($sweetNotif)]"
+                >
+                    Valider
+                </b-button>
+            
+            
         </template>
     </b-modal>
 </template>
@@ -83,6 +87,7 @@ export default {
         }
     },
     data: () => ({
+       /* updateUser: null,*/
         userNom: "",
         userSociete: "",
 
@@ -110,6 +115,10 @@ export default {
         },
         modifUpdate() {
             this.$sweetNotif("Modifications enregistrées !");
+        },
+        cancel() {
+           /* this.updateUser = user,*/
+            this.$bvModal.hide('modal-scoped')
         }
     }
 };
