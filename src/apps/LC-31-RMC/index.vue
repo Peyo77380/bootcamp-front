@@ -11,11 +11,7 @@
         <div>
             <b-card>
                 <b-tabs pills card vertical>
-                    <b-tab
-                        title="Informations générales"
-                        background-color="red"
-                        active
-                    >
+                    <b-tab title="Informations générales" active>
                         <forms1></forms1>
                     </b-tab>
                     <b-tab title="Référent">
@@ -27,7 +23,6 @@
                 </b-tabs>
             </b-card>
         </div>
-        
     </div>
 </template>
 
@@ -36,7 +31,7 @@ import breadcrumb1 from "@/apps/LC-31-RMC/components/iconDividers";
 import Vue from "vue";
 import VueTextareaAutosize from "vue-textarea-autosize";
 Vue.use(VueTextareaAutosize);
-import forms1 from "@/apps/LC-31-RMC/components/info_general";
+import forms1 from "@/apps/LC-31-RMC/components/infos_generales";
 import forms2 from "@/apps/LC-31-RMC/components/contact";
 import forms3 from "@/apps/LC-31-RMC/components/reseaux_soc";
 
