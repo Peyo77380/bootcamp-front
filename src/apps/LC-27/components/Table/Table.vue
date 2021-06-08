@@ -1,6 +1,5 @@
 <template>
-    <div>
-        
+    <div>        
         <div class="main-card mb-3 card">
             <div class="table-responsive">
                 <table
@@ -31,9 +30,10 @@
                             </td>
                             <td class="text-center" style="width: 80px;">
                                 <img
-                                    width="40"
+                                    width="40px"
+                                    height="40px"
                                     class="rounded-circle"
-                                    src="@/assets/images/avatars/1.jpg"
+                                    
                                     alt=""
                                 />
                             </td>
@@ -177,7 +177,7 @@ export default {
             users: [
                 {
                     ID: 1,
-                    Photo: "@/assets/images/avatars/1.jpg",
+                    Photo: "../../../../../public/images/avatars/1.jpg",
                     Nom: "Marvin Gaye",
                     Societe: "Motown",
                     Statut: "Société",
@@ -189,7 +189,7 @@ export default {
                 },
                 {
                     ID: 2,
-                    Photo: "@/assets/images/avatars/2.jpg",
+                    Photo: "../../../../assets/images/avatars/2.jpg",
                     Nom: "Laurent Sauzet",
                     Societe: "Microsoft",
                     Statut: "Salarié",
@@ -201,7 +201,7 @@ export default {
                 },
                 {
                     ID: 3,
-                    Photo: "@/assets/images/avatars/3.jpg",
+                    Photo: "../../../../assets/images/avatars/3.jpg",
                     Nom: "Curtis Mayfield",
                     Societe: "Hatchworks",
                     Statut: "Salarié",
@@ -213,7 +213,7 @@ export default {
                 },
                 {
                     ID: 4,
-                    Photo: "@/assets/images/avatars/4.jpg",
+                    Photo: "../../../../assets/images/avatars/4.jpg",
                     Nom: "Roberta Flack",
                     Societe: "Riddle Electronics",
                     Statut: "Indépendant",
@@ -225,7 +225,7 @@ export default {
                 },
                 {
                     ID: 5,
-                    Photo: "@/assets/images/logo-inverse.png.jpg",
+                    Photo: "../../../../assets/images/avatars/5.jpg",
                     Nom: "Nancy Sinatra",
                     Societe: "Pixelcloud",
                     Statut: "Société",
@@ -248,8 +248,12 @@ export default {
            
             this.updateUser = user,
             this.$bvModal.show('modal-scoped')
-        }
-    }
+        },
+        
+    },
+    computed: {
+        
+    },
     // TODO: Faire le système de tri 
     
 };
