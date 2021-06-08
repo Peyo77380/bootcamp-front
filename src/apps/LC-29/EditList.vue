@@ -138,7 +138,7 @@ export default {
       this.keyValueEdit = item;
     },
     modificationActivity() {
-      //TODO point API modification email de services
+      //TODO point API modification activité
       var title = "Modification réussie !";
       this.$sweetNotif(title);
     },
@@ -148,8 +148,11 @@ export default {
     subheading: "Paramètrage de LaColloc",
     icon: "pe-7s-news-paper icon-gradient bg-night-fade",
     newItem: { name: "", id: "" },
+    //data Modal
     dialog2: false,
     keyValueEdit: {},
+
+    //breadcrumb
     items: [
       {
         text: "Paramètres",
@@ -166,6 +169,8 @@ export default {
         disabled: true,
       },
     ],
+
+    //data Lists
     lists: [
       {
         name: "Agroalimentaire",
