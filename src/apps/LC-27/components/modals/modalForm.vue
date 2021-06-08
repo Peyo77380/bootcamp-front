@@ -118,7 +118,7 @@ export default {
         },
         cancel() {
            /* this.updateUser = user,*/
-            this.$bvModal.hide('modal-scoped')
+           /* this.$bvModal.hide('modal-scoped')*/
         }
     }
 };
