@@ -1,7 +1,9 @@
 <template>
 <div>
+    <modal :items="keyValueEdit" @close2="closeModalEdit" :dialog2="dialog2"></modal>
+     <modal-detail :items="keyValueDetails" @close="closeModal" :dialog="dialog"></modal-detail>
 <div class="row">
-            <div class="col-md-3 col-xl-2">
+            <div class="col-md-3 col-xl-2" style="margin-left:90px">
                 <div class="card mb-3 widget-content bg-alternate">
                     <div class="widget-content-wrapper text-white">
                         <div class="widget-content-left">
@@ -101,16 +103,21 @@
                             <div role="group" class="btn-group-sm btn-group">
                                 <v-btn class=" outlined-search btn-pill"
                         @click="showDetails(item)"
-                        
                         elevation="2"
                         icon
                         outlined
                         small
                         ><i class="pe-7s-search icon-color-search btn-icon-wrapper"> </i></v-btn>
-                                <modal-detail :items="keyValueDetails" @close="closeModal" :dialog="dialog"></modal-detail>
+                               
                             </div>
                             <div role="group" class="btn-group-sm btn-group" >
-                                <modal></modal>
+                                <v-btn class="outlined btn-pill" 
+                                elevation="2" 
+                                @click="showEdit(item)"  
+                                icon 
+                                outlined 
+                                small ><i class="pe-7s-tools icon-color btn-icon-wrapper"> </i></v-btn>
+                                
                
                             </div>
                             
@@ -129,7 +136,8 @@
 
 <script>
 import modal from "./modal.vue"
-import modalDetail from "./model_detail"
+import modalDetail from "./modal_detail"
+
 
 
 
@@ -137,6 +145,7 @@ import modalDetail from "./model_detail"
         components:{
             modal,
             modalDetail,
+            
                 
     },
         data ()  {
@@ -152,40 +161,30 @@ import modalDetail from "./model_detail"
         { category: 'Membres', key: 'FREETIME', value: '4', info:"Nombre d'heures de location de salle", classcategory:'bg-warning', initial:'M' }
       ],
          dialog: false,
+         dialog2: false,
          keyValueDetails: {},
-        behavior: {
-                modalEdit: false,
-                modalDisplay: false
-            },
-
-
+         keyValueEdit: {},
     }
     }
     ,
     
     methods: {
-      
+      closeModalEdit(){
+          this.dialog2 = false
+      },
       closeModal() {
         this.dialog = false;
       },
+      showEdit(item){
+        this.dialog2 = true;
+        this.keyValueEdit = item;
+      },
       showDetails(item) {
-            this.dialog = true;
-            this.keyValueDetails = item;
-            //TODO: point API affichage details de l'email
+        this.dialog = true;
+        this.keyValueDetails = item;
         },
-
     }
-    }
+}
 
 </script>
 
-<style>
-
-.content {
-  padding: 0 18px;
-  display: none;
-  overflow: hidden;
-  background-color: #f1f1f1;
-}
-
-</style>

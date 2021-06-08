@@ -14,12 +14,7 @@
                 </div>
             </div>
             <div class="page-title-actions">
-                <router-link to="/activity-area/new" tag="button">   
-                <button type="button" class="btn-shadow d-inline-flex align-items-center btn btn-success">
-                    <font-awesome-icon class="mr-2" icon="plus"/>
-                    Créer nouvelle ligne
-                </button>
-                </router-link>
+               
             </div>
         </div>
     </div>

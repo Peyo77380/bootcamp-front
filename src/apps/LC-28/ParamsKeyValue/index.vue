@@ -11,9 +11,9 @@
 <script>
 
 
-import PageTitle from "./PageTitle2.vue"
-import ContentTable from './table'
-import pagination from './pagination'
+import PageTitle from "./components/PageTitle2.vue"
+import ContentTable from './components/table'
+import pagination from './components/pagination'
     
 
     export default {
