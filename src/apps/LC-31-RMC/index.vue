@@ -10,8 +10,8 @@
         </div>
         <div>
             <b-card>
-                <b-tabs pills card vertical>
-                    <b-tab title="Informations générales" active>
+                <b-tabs pills card vertical >
+                    <b-tab title="Informations générales" active >
                         <forms1></forms1>
                     </b-tab>
                     <b-tab title="Référent">
