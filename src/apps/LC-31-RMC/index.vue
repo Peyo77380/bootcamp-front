@@ -32,7 +32,7 @@ import Vue from "vue";
 import VueTextareaAutosize from "vue-textarea-autosize";
 Vue.use(VueTextareaAutosize);
 import forms1 from "@/apps/LC-31-RMC/components/infos_generales";
-import forms2 from "@/apps/LC-31-RMC/components/contact";
+import forms2 from "@/apps/LC-31-RMC/components/referent";
 import forms3 from "@/apps/LC-31-RMC/components/reseaux_soc";
 
 export default {
@@ -42,21 +42,5 @@ export default {
         forms2,
         forms3
     },
-
-    methods: {
-        submit() {
-            this.$v.$touch();
-        },
-        clear() {
-            this.$v.$reset();
-            this.siret = "";
-            this.nomsociete = "";
-            this.numerotva = "";
-            this.name = "";
-            this.email = "";
-            this.select = null;
-            this.checkbox = false;
-        }
-    }
 };
 </script>
