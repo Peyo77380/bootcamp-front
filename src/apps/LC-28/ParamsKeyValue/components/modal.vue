@@ -3,8 +3,9 @@
       
     <v-dialog  v-model="dialog2" max-width="600px">
         <v-card>
-        <v-card-title>
-          <span class="headline">Modification - {{items.key}}</span>
+        <v-card-title class="headline grey lighten-2"
+            primary-title>
+        Modification - {{items.key}}
         </v-card-title>
         <v-card-text>
       <b-form >

@@ -2,15 +2,20 @@
 <div>
     
 <div class="row">
-            <div class="col-md-3 col-xl-2" style="margin-left:90px">
+            <div class="col-md-3 col-xl-2" >
                 <div class="card mb-3 widget-content bg-alternate">
                     <div class="widget-content-wrapper text-white">
+                        
                         <div class="widget-content-left">
                             <div class="widget-heading">Modes de règlement</div>
                             
                         </div>
                         <div class="widget-content-right">
-                             <b-button class="mb-2 mr-2 btn-icon btn-icon-only btn-pill" variant="light"><i class="pe-7s-glasses btn-icon-wrapper"> </i></b-button>
+                             <v-switch
+                             color="secondary"
+                            v-model="selectedCategory"
+                            value='Modes de règlement'
+                            ></v-switch>
                         </div>
                     </div>
                 </div>
@@ -23,7 +28,11 @@
                             
                         </div>
                         <div class="widget-content-right">
-                             <b-button class="mb-2 mr-2 btn-icon btn-icon-only btn-pill" variant="light"><i class="pe-7s-glasses btn-icon-wrapper"> </i></b-button>
+                             <v-switch
+                             color="secondary"
+                            v-model="selectedCategory"
+                            value='Membres'
+                            ></v-switch>
                         </div>
                     </div>
                 </div>
@@ -36,7 +45,11 @@
                             
                         </div>
                         <div class="widget-content-right">
-                             <b-button class="mb-2 mr-2 btn-icon btn-icon-only btn-pill" variant="light"><i class="pe-7s-glasses btn-icon-wrapper"> </i></b-button>
+                             <v-switch
+                             color="secondary"
+                            v-model="selectedCategory"
+                            value='Édition de contenu'
+                            ></v-switch>
                         </div>
                     </div>
                 </div>
@@ -49,7 +62,11 @@
                     
                         </div>
                         <div class="widget-content-right">
-                            <b-button class="mb-2 mr-2 btn-icon btn-icon-only btn-pill" variant="light"><i class="pe-7s-glasses btn-icon-wrapper"> </i></b-button>
+                            <v-switch
+                            color="secondary"
+                            v-model="selectedCategory"
+                            value='Salles de réunion'
+                            ></v-switch>
                         </div>
                     </div>
                 </div>
@@ -62,7 +79,28 @@
                         
                         </div>
                         <div class="widget-content-right">
-                             <b-button class="mb-2 mr-2 btn-icon btn-icon-only btn-pill" variant="light"><i class="pe-7s-glasses btn-icon-wrapper"> </i></b-button>
+                             <v-switch
+                             color="secondary"
+                            v-model="selectedCategory"
+                            value='Réglages'
+                            ></v-switch>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3 col-xl-2">
+                <div class="card mb-3 widget-content bg-info">
+                    <div class="widget-content-wrapper text-white">
+                        <div class="widget-content-left">
+                            <div class="widget-heading">Toutes les catégories</div>
+                    
+                        </div>
+                        <div class="widget-content-right">
+                            <v-switch
+                            color="secondary"
+                            v-model="selectedCategory"
+                            value='All'
+                            ></v-switch>
                         </div>
                     </div>
                 </div>
@@ -85,7 +123,7 @@
                   
                     <tbody >
                   
-                    <tr v-for="item in items" :key="item.id">
+                    <tr v-for="item in filteredItems" :key="item.id">
                         
                         <div style="display: flex;justify-content: center; align-items: center; margin-top : 10px; margin-left:30px" class="swatch-holder swatch-holder-md" :class=item.classcategory>
                          
@@ -111,7 +149,7 @@
                                     <b-popover
                                     :target="'popover1'"
                                     placement="bottomleft"
-                                    title="Voir les détails d'une clé"
+                                    
                                     triggers="hover focus"
                                 ></b-popover>
                                 <b-button
@@ -125,7 +163,7 @@
                                     <b-popover
                                     :target="'popover2'"
                                     placement="bottomleft"
-                                    title="Modifier la clé"
+                                    
                                     triggers="hover focus"
                                 ></b-popover>
                                 
@@ -179,9 +217,23 @@ import modalDetail from "./modal_detail"
          dialog2: false,
          keyValueDetails: {},
          keyValueEdit: {},
+         selectedCategory: "All"
     }
-    }
-    ,
+    },
+    computed: {
+		filteredItems: function() {
+			var vm = this;
+			var category = vm.selectedCategory;
+			
+			if(category === "All") {
+				return vm.items;
+			} else {
+				return vm.items.filter(function(item) {
+					return item.category === category;
+				});
+			}
+		}
+        },
     
     methods: {
       closeModalEdit(){
