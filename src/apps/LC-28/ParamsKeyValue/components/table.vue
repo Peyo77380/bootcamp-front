@@ -1,110 +1,25 @@
 <template>
 <div>
     
-<div class="row">
-            <div class="col-md-3 col-xl-2" >
-                <div class="card mb-3 widget-content bg-alternate">
+<div class="row" >
+            <div class="col-md-3 col-xl-2" v-for="category in categories" :key="category.id" >
+                <div :class="category.color" class="card mb-3 widget-content">
                     <div class="widget-content-wrapper text-white">
                         
                         <div class="widget-content-left">
-                            <div class="widget-heading">Modes de règlement</div>
+                            <div class="widget-heading">{{category.label}}</div>
                             
                         </div>
                         <div class="widget-content-right">
                              <v-switch
                              color="secondary"
                             v-model="selectedCategory"
-                            value='Modes de règlement'
+                            :value='category.label'
                             ></v-switch>
                         </div>
                     </div>
                 </div>
-            </div>
-            <div class="col-md-3 col-xl-2">
-                <div class="card mb-3 widget-content bg-warning">
-                    <div class="widget-content-wrapper text-white">
-                        <div class="widget-content-left">
-                            <div class="widget-heading">Membres</div>
-                            
-                        </div>
-                        <div class="widget-content-right">
-                             <v-switch
-                             color="secondary"
-                            v-model="selectedCategory"
-                            value='Membres'
-                            ></v-switch>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-3 col-xl-2">
-                <div class="card mb-3 widget-content bg-success">
-                    <div class="widget-content-wrapper text-white">
-                        <div class="widget-content-left">
-                            <div class="widget-heading">Édition de contenu</div>
-                            
-                        </div>
-                        <div class="widget-content-right">
-                             <v-switch
-                             color="secondary"
-                            v-model="selectedCategory"
-                            value='Édition de contenu'
-                            ></v-switch>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-3 col-xl-2">
-                <div class="card mb-3 widget-content bg-danger">
-                    <div class="widget-content-wrapper text-white">
-                        <div class="widget-content-left">
-                            <div class="widget-heading">Salles de réunion</div>
-                    
-                        </div>
-                        <div class="widget-content-right">
-                            <v-switch
-                            color="secondary"
-                            v-model="selectedCategory"
-                            value='Salles de réunion'
-                            ></v-switch>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-3 col-xl-2">
-                <div class="card mb-3 widget-content bg-night-sky">
-                    <div class="widget-content-wrapper text-white">
-                        <div class="widget-content-left">
-                            <div class="widget-heading">Réglages</div>
-                        
-                        </div>
-                        <div class="widget-content-right">
-                             <v-switch
-                             color="secondary"
-                            v-model="selectedCategory"
-                            value='Réglages'
-                            ></v-switch>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-3 col-xl-2">
-                <div class="card mb-3 widget-content bg-info">
-                    <div class="widget-content-wrapper text-white">
-                        <div class="widget-content-left">
-                            <div class="widget-heading">Toutes les catégories</div>
-                    
-                        </div>
-                        <div class="widget-content-right">
-                            <v-switch
-                            color="secondary"
-                            v-model="selectedCategory"
-                            value='All'
-                            ></v-switch>
-                        </div>
-                    </div>
-                </div>
-            </div>
+            </div>      
 </div>
 <div class="main-card mb-3 card">
             
@@ -203,6 +118,14 @@ import modalDetail from "./modal_detail"
     },
         data ()  {
             return{
+                categories: [
+        { label: 'Édition de contenu', color:'bg-success' },
+        { label: 'Réglages', color:'bg-night-sky' },
+        { label: 'Modes de règlement', color:'bg-alternate' },
+        { label: 'Salles de réunion', color:'bg-danger' },
+        { label: 'Membres', color: 'bg-warning' },
+        { label: 'Toutes les catégories', color: 'bg-info' },
+      ],
         items: [
         { category: 'Édition de contenu', key: 'COWORKING_BOOK_INFO', value: "La colloc met à disposition de ses membres qui sont dans l'incapacité de faire du ...", info:'lorem ipsum', classcategory:'bg-success', initial:'ÉC' },
         { category: 'Modes de règlement', key: 'PENDING', value: '01009017', info:'lorem ipsum', classcategory:'bg-alternate', initial:'MR' },
@@ -217,7 +140,7 @@ import modalDetail from "./modal_detail"
          dialog2: false,
          keyValueDetails: {},
          keyValueEdit: {},
-         selectedCategory: "All"
+         selectedCategory: "Toutes les catégories"
     }
     },
     computed: {
@@ -225,7 +148,7 @@ import modalDetail from "./modal_detail"
 			var vm = this;
 			var category = vm.selectedCategory;
 			
-			if(category === "All") {
+			if(category === "Toutes les catégories") {
 				return vm.items;
 			} else {
 				return vm.items.filter(function(item) {
