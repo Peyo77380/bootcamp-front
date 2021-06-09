@@ -30,10 +30,12 @@
                         @click="changeFr"
                         type="button" 
                         tabindex="0" 
-                        class="dropdown-item"><country-flag 
-                        country='FR' 
-                        size='small' 
-                        class="mr-1"/><span>Français</span></button>
+                        class="dropdown-item">
+                            <country-flag 
+                            country='FR' 
+                            size='small' 
+                            class="mr-1"/><span>Français</span>
+                        </button>
                         <button 
                         @click="changeUs" 
                         type="button" 
@@ -42,7 +44,8 @@
                             <country-flag 
                             country='GB' 
                             size='small' 
-                            class="mr-1"/><span>Anglais</span></button>
+                            class="mr-1"/><span>Anglais</span>
+                        </button>
                         <button 
                         type="button" 
                         tabindex="0" 

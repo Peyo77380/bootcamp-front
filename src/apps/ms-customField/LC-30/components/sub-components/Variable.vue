@@ -103,7 +103,7 @@ export default {
           this.createdEmail = {}
       },
       deleteEmail(email) {
-          this.editedIndex = this.editedEmail.emailCopy.indexOf(email);
+          this.editedIndex = this.editedEmail.variable.indexOf(email);
           this.editedEmail.variable.splice(this.editedIndex,1)
           //TODO point API pour supprimer la variable 
       },

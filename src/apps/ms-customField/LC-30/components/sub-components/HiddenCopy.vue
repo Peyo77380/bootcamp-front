@@ -20,13 +20,13 @@
                                     <b-button 
                                         class="mb-2 mr-2 btn-icon btn-icon-only btn-pill" 
                                         variant="outline-primary"
-                                        @click="EditEmailCopy(email)">
+                                        @click="editHiddenEmailCopy(email)">
                                         <i class="lnr-pencil btn-icon-wrapper"></i>
                                     </b-button>
                                     <b-button 
                                         class="mb-2 mr-2 btn-icon btn-icon-only btn-pill" 
                                         variant="outline-danger"
-                                        @click="deleteEmail(email)"
+                                        @click="deleteHiddenEmail(email)"
                                         >
                                         <i class="lnr-trash btn-icon-wrapper"></i>
                                     </b-button>
@@ -45,18 +45,18 @@
                 <v-card-title class="headline">Ajouter adresse Email en CC</v-card-title>
                 <v-card-text>
                     <v-form>
-                        <v-flex xs12 sm12 md12>
-                            <v-text-field 
-                                v-model="createdEmail.value"
-                                label="Adresse email à mettre en copie cachée">
-                            </v-text-field>
-                        </v-flex>
+                        <v-text-field
+                            v-model="createdEmail.value"
+                            :rules="emailRules"
+                            label="Email en copie cachée"
+                            required
+                        ></v-text-field>
                     </v-form>  
                 </v-card-text>
                 <v-card-actions>
                 <v-spacer></v-spacer>
                     <v-btn color="red darken-1" flat @click="closeModalEmail">Annuler</v-btn>
-                    <v-btn color="blue darken-1" @click="saveEmail" flat >Enregistrer</v-btn>
+                    <v-btn color="blue darken-1" @click="saveHiddenEmail" flat >Enregistrer</v-btn>
                 </v-card-actions>
             </v-card>
         </v-dialog> 
@@ -73,6 +73,10 @@ export default {
         modalEmail: false,
         createdEmail: {},
         editedIndex: -1,
+        emailRules: [
+        v => !!v || 'une adresse email est requise',
+        v => /.+@.+/.test(v) || "l'email doit avoir un format valide"
+      ]
     };
   },
   props: {
@@ -83,12 +87,13 @@ export default {
 
   methods: {
       openModalEmail() {
-          this.modalEmail = true
+            this.modalEmail = true
       },
       closeModalEmail() {
-          this.modalEmail = false
+            this.modalEmail = false;
+            this.createdEmail= {}
       },
-      saveEmail() {
+      saveHiddenEmail() {
           this.closeModalEmail()
           if(this.editedIndex>=0) {
               Object.assign (this.editedEmail.hiddenCopie[this.editedIndex], this.createdEmail),
@@ -100,12 +105,12 @@ export default {
           }
           this.createdEmail = {}
       },
-      deleteEmail(email) {
-          this.editedIndex = this.editedEmail.emailCopy.indexOf(email);
-          this.editedEmail.emailCopy.splice(this.editedIndex,1)
+      deleteHiddenEmail(email) {
+          this.editedIndex = this.editedEmail.hiddenCopie.indexOf(email);
+          this.editedEmail.hiddenCopie.splice(this.editedIndex,1)
           //TODO point API pour supprimer email a mettre en copie 
       },
-      EditEmailCopy(email) {
+      editHiddenEmailCopy(email) {
           this.openModalEmail();
           this.editedIndex = this.editedEmail.hiddenCopie.indexOf(email);
          //TODO point API pour modifier l'adresse mail a mettre en copie caché 

@@ -47,10 +47,12 @@
                 <v-card-text>
                     <v-form>
                         <v-flex xs12 sm12 md12>
-                            <v-text-field 
+                            <v-text-field
                                 v-model="createdEmail.value"
-                                label="Adresse email à mettre en copie">
-                            </v-text-field>
+                                :rules="emailRules"
+                                label="Email en copie"
+                                required
+                            ></v-text-field>
                         </v-flex>
                     </v-form>  
                 </v-card-text>
@@ -74,6 +76,10 @@ export default {
         modalEmail: false,
         createdEmail: {},
         editedIndex: -1,
+        emailRules: [
+        v => !!v || 'une adresse email est requise',
+        v => /.+@.+/.test(v) || "l'email doit avoir un format valide"
+      ]
     };
   },
   props: {
@@ -87,7 +93,8 @@ export default {
           this.modalEmail = true
       },
       closeModalEmail() {
-          this.modalEmail = false
+          this.modalEmail = false;
+          this.createdEmail= {}
       },
       saveEmail() {
           this.closeModalEmail()
