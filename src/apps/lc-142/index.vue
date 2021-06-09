@@ -4,7 +4,7 @@
             :heading="heading"
             :icon="icon"
         ></page-title>
-        <b-button :to="{ name: 'RoomAdd'}" class="mt-2 btn-wide btn-shadow btn btn-info btn-sm" align="right">Ajouter salle</b-button>
+        <b-button :to="{ name: 'RoomAdd'}" class="mt-2 btn-wide btn-shadow btn btn-success btn-sm" align="right">Ajouter salle</b-button>
         <div class="mb-3 card">
             <!-- Bouton select -->
             <div class="mt-2 card-header-tab card-header">
@@ -31,8 +31,8 @@
                                             <b-tabs class="card-header-tab-animation" card>
                                                 <b-tab title="Info salle" active>
                                                     <div align="center">
-                                                        <p>{{ roomDetail.level }}</p>
-                                                        <p>{{ roomDetail.name }}</p>
+                                                        <h5>{{ roomDetail.floor }}</h5>
+                                                        <h3>{{ roomDetail.name }}</h3>
                                                         <v-img :src="require('@/assets/images/salles/' + roomDetail.plan + '.jpeg')"></v-img>
                                                     </div>
                                                         
@@ -47,7 +47,7 @@
                                                                 Voir détails salle
                                                             </b-button>
                                                             <br>
-                                                            <b-button :to="{ name: 'RoomEdit', params: { id: roomDetail.id } }" class="mb-2 btn-wide btn-shadow btn btn-warning btn-sm">
+                                                            <b-button :to="{ name: 'RoomEdit', params: { id: roomDetail.id } }" class="mb-2 btn-wide btn-shadow btn btn-primary btn-sm">
                                                                 Editer salle
                                                             </b-button>
                                                             <br>

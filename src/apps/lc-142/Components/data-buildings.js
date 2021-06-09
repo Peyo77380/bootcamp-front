@@ -1,4 +1,4 @@
-const buildingsData = [
+export const buildingsData = [
     {
         text: 'Nom du batiment 1'
     },
@@ -12,7 +12,3 @@ const buildingsData = [
         text: 'Nom du batiment 4'
     }
 ];
-
-export { 
-    buildingsData
-};
