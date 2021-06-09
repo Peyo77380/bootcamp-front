@@ -16,9 +16,13 @@
 
 <script>
 import { roomDetailsData } from "@/apps/lc-142/Components/data-roomDetails";
+import VuePerfectScrollbar from "vue-perfect-scrollbar";
 
 export default {
     name: 'Wizard4',
+    components: {
+        VuePerfectScrollbar,
+    },
     data: () => ({
         slickOptions2: {
             slidesToShow: 1,

@@ -47,7 +47,6 @@
 
 <script>
 import PageTitle from "@/Layout/Components/PageTitle.vue";
-import VuePerfectScrollbar from "vue-perfect-scrollbar";
 
 import { library } from "@fortawesome/fontawesome-svg-core";
 import {

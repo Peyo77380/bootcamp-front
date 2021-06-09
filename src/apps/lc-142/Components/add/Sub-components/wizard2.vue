@@ -7,15 +7,7 @@
                     <div class="mt-3">
                         <!-- Contenu 2e wizard-->
                         <b-form @submit="onSubmit" @reset="onReset" v-if="show">
-                            <b-form-group id="input-group-1" label="Description de la salle :" label-for="input-1">
-                                <b-form-input
-                                id="input-1"
-                                v-model="form.description"
-                                autogrow
-                                placeholder="Description de la salle :"
-                                required
-                                ></b-form-input>
-                            </b-form-group>
+                            <p>Ajout de l'API CKEDITOR</p>
 
                             <b-button class="m-1 col-2" type="reset" variant="danger">Reset</b-button>
                             <b-button class="m-1 col-2" type="submit" variant="primary">Suivant</b-button>
@@ -33,16 +25,20 @@
 
 <script>
 import { roomDetailsData } from "@/apps/lc-142/Components/data-roomDetails";
+import VuePerfectScrollbar from "vue-perfect-scrollbar";
 
 export default {
     name: 'Wizard2',
+    components: {
+        VuePerfectScrollbar,
+    },
     data: () => ({
         slickOptions2: {
             slidesToShow: 1,
             dots: true
         },
         form: {
-            name: '',
+            description: '',
             
         },
         roomDetailsData: roomDetailsData,
@@ -57,7 +53,7 @@ export default {
         onReset(event) {
             event.preventDefault()
             // Reset our form values
-            this.form.name = ''
+            this.form.description = ''
             
             // Trick to reset/clear native browser form validation state
             this.show = false
