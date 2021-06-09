@@ -174,3 +174,10 @@ export const MinRentalDurations = [
     { 'value': '2', 'text': '1/2 journée' },
     { 'value': '3', 'text': '1 journée' }
 ];
+
+export const ServicesElements = [
+    { 'value': '0', 'text': 'recuperer nom du service 1' },
+    { 'value': '1', 'text': 'recuperer nom du service 2' },
+    { 'value': '2', 'text': 'recuperer nom du service 3' },
+    { 'value': '3', 'text': 'recuperer nom du service 4' }
+];

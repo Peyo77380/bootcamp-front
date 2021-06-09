@@ -65,14 +65,14 @@
                                 </b-form-group>
 
                                 <b-form-group id="input-group-6" v-slot="{ ariaDescribedby }" label="Type de réservation :" class="text-left" label-for="checkboxes-6">
-                                    <b-form-checkbox-group
+                                    <b-form-multiple-checkbox-group
                                     v-model="form.typeBooking"
                                     id="checkboxes-6"
                                     :aria-describedby="ariaDescribedby"
                                     >
                                     <b-form-checkbox value="0">Membre</b-form-checkbox>
                                     <b-form-checkbox value="1">Évènement</b-form-checkbox>
-                                    </b-form-checkbox-group>
+                                    </b-form-multiple-checkbox-group>
                                 </b-form-group>
                             
                                 <b-form-group id="input-group-7" v-slot="{ ariaDescribedby }" label="Statut :" class="text-left" label-for="radios-7">
