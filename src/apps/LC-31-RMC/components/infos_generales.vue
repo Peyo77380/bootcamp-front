@@ -5,7 +5,7 @@
                 <div class="col-md-5">
                     <b-form-group
                         id="input-group-1"
-                        label="Nom Société:"
+                        label="* Nom Société:"
                         label-for="input-1"
                     >
                         <b-form-input
@@ -66,7 +66,7 @@
 
                     <b-form-group
                         id="input-group-6"
-                        label="Ville:"
+                        label="* Ville:"
                         label-for="input-6"
                     >
                         <b-form-input
@@ -92,7 +92,7 @@
 
                     <b-form-group
                         id="input-group-8"
-                        label="Statut:"
+                        label="* Statut:"
                         label-for="input-8"
                     >
                         <b-form-select
@@ -105,7 +105,7 @@
 
                     <b-form-group
                         id="input-group-9"
-                        label="Secteur d'activité:"
+                        label="* Secteur d'activité:"
                         label-for="input-9"
                     >
                         <b-form-select
@@ -118,7 +118,7 @@
 
                     <b-form-group
                         id="input-group-10"
-                        label="Categorie:"
+                        label="* Categorie:"
                         label-for="input-10"
                     >
                         <b-form-select
@@ -141,12 +141,24 @@
                             >Ils sont aceptes formats: .jpg, .png, .raw</small
                         >
                     </div>
+                    <p>* champs obligatoire</p>
                 </div>
             </div>
             <div class="row justify-content-end">
-                <b-button type="reset" variant="danger">Clear</b-button>
-
-                <b-button type="submit" variant="success">Valider</b-button>
+                <b-button
+                    class="mb-2 mr-2"
+                    size="sm"
+                    type="reset"
+                    variant="danger"
+                    >Clear</b-button
+                >
+                <b-button
+                    class="mb-2 mr-2"
+                    size="sm"
+                    type="submit"
+                    variant="success"
+                    >Valider</b-button
+                >
             </div>
         </b-form>
     </div>
@@ -190,9 +202,10 @@ export default {
         };
     },
     methods: {
-        onSubmit(event) {
-            event.preventDefault();
-            alert(JSON.stringify(this.form));
+        onSubmit() {
+            this.$sweetNotif("Enregistré avec suces");
+            // event.preventDefault();
+            // alert(JSON.stringify(this.form));
         },
         onReset(event) {
             event.preventDefault();

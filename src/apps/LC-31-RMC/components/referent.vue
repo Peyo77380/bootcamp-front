@@ -5,7 +5,7 @@
                 <div class="col-md-5">
                     <b-form-group
                         id="input-group-1"
-                        label="Adresse email:"
+                        label="* Adresse email:"
                         label-for="input-1"
                     >
                         <b-form-input
@@ -19,7 +19,7 @@
 
                     <b-form-group
                         id="input-group-2"
-                        label="Nom:"
+                        label="* Nom:"
                         label-for="input-2"
                     >
                         <b-form-input
@@ -32,7 +32,7 @@
 
                     <b-form-group
                         id="input-group-3"
-                        label="Prenom:"
+                        label="* Prenom:"
                         label-for="input-3"
                     >
                         <b-form-input
@@ -45,7 +45,7 @@
 
                     <b-form-group
                         id="input-group-4"
-                        label="Téléphone:"
+                        label="* Téléphone:"
                         label-for="input-4"
                     >
                         <b-form-input
@@ -55,12 +55,25 @@
                             required
                         ></b-form-input>
                     </b-form-group>
+                    <p>* champs obligatoire</p>
                 </div>
             </div>
-<div class="row justify-content-end">
-            <b-button type="submit" variant="primary">Submit</b-button>
-            <b-button type="reset" variant="danger">Reset</b-button>
-</div>
+            <div class="row justify-content-end">
+                <b-button
+                    class="mb-2 mr-2"
+                    size="sm"
+                    type="reset"
+                    variant="danger"
+                    >Clear</b-button
+                >
+                <b-button
+                    class="mb-2 mr-2"
+                    size="sm"
+                    type="submit"
+                    variant="success"
+                    >Valider</b-button
+                >
+            </div>
         </b-form>
     </div>
 </template>
@@ -73,15 +86,16 @@ export default {
                 email: "",
                 name: "",
                 prenom: "",
-                telephone: "",
+                telephone: ""
             },
             show: true
         };
     },
     methods: {
-        onSubmit(event) {
-            event.preventDefault();
-            alert(JSON.stringify(this.form));
+        onSubmit() {
+            this.$sweetNotif("Enregistré avec suces");
+            // event.preventDefault();
+            // alert(JSON.stringify(this.form));
         },
         onReset(event) {
             event.preventDefault();
