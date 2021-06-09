@@ -94,7 +94,7 @@ export default {
             dots: true
         },
         form: {
-            servicesElement: '',
+            servicesElement: [],
             
         },
         roomDetailsData: roomDetailsData,
@@ -109,7 +109,7 @@ export default {
         onReset(event) {
             event.preventDefault()
             // Reset our form values
-            this.form.servicesElement = ''
+            this.form.servicesElement = []
             
             // Trick to reset/clear native browser form validation state
             this.show = false

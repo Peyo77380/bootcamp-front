@@ -30,9 +30,11 @@
                                         <b-card class="mb-5 nav-justified" no-body>
                                             <b-tabs class="card-header-tab-animation" card>
                                                 <b-tab title="Info salle" active>
-                                                    <div align="center">
-                                                        <h5>{{ roomDetail.floor }}</h5>
+                                                    <div class="row" align="center">
+                                                        <h3 class="col-5">{{ roomDetail.floor }} :</h3>
                                                         <h3>{{ roomDetail.name }}</h3>
+                                                    </div>
+                                                    <div>
                                                         <v-img :src="require('@/assets/images/salles/' + roomDetail.plan + '.jpeg')"></v-img>
                                                     </div>
                                                         
