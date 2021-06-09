@@ -2,7 +2,9 @@ import Vue from "vue";
 import "./plugins/vuetify";
 import sweetAlert from "./plugins/sweetAlert";
 import router from "./router";
-//import CKEditor from "@ckeditor/ckeditor5-vue2";
+import { TimeAgo } from 'vue2-timeago'
+import CKEditor from "@ckeditor/ckeditor5-vue2";
+
 
 import BootstrapVue from "bootstrap-vue";
 
@@ -16,11 +18,14 @@ Vue.config.productionTip = false;
 
 Vue.use(BootstrapVue);
 Vue.use(sweetAlert);
-//Vue.use(CKEditor);
+Vue.use(TimeAgo);
+Vue.use(CKEditor);
+
 
 Vue.component("default-layout", Default);
 Vue.component("userpages-layout", Pages);
 Vue.component("apps-layout", Apps);
+Vue.component("time-ago", TimeAgo)
 
 new Vue({
     el: "#app",
@@ -28,3 +33,4 @@ new Vue({
     template: "<App/>",
     components: { App }
 });
+

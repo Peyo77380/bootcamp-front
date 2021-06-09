@@ -53,10 +53,9 @@
                                     </v-form>  
                                 </div>   
                                 <h5 class="card-title">Contenu de l'email</h5>  
-                                <!-- <div>
-                                    <ckeditor v-model="editedEmail.content" ></ckeditor>
-                                   
-                                </div> -->
+                                <div class="main-card card col-12 mb-5 p-3">
+                                    <ckeditor v-model="editedEmail.content" :editor="editor" :config="editorConfig"></ckeditor>
+                                </div>
                             </div>
                              
                             <div class="col-3">
@@ -82,7 +81,7 @@
 import EmailCopy from "@/apps/ms-customField/LC-30/components/sub-components/EmailCopy";
 import HiddenCopy from "@/apps/ms-customField/LC-30/components/sub-components/HiddenCopy";
 import Variable from "@/apps/ms-customField/LC-30/components/sub-components/Variable";
-
+import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
 
 export default {
     name: "edit-email",
@@ -92,10 +91,14 @@ export default {
         Variable,
     },
     data() {
-    return {
-        icon: "pe-7s-mail-open-file",
-        newEmail: {},
-    };
+        return {
+            icon: "pe-7s-mail-open-file",
+            newEmail: {},
+            editor: ClassicEditor,
+            editorConfig: {
+                height: '500px'
+            }
+        }
     },
     props: {
         dialog: {
@@ -118,3 +121,8 @@ export default {
 };
 </script>
 
+<style>
+  .ck-editor__editable {
+    min-height: 500px;
+   }
+</style>
