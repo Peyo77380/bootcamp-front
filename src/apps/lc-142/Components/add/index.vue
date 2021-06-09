@@ -25,159 +25,12 @@
                                             <div class="nav-justified">
                                                 <!-- Contenu -->
                                                 <b-tabs class="card-header-tab-animation" card>
-                                                    <!-- Onglet 1 du wizard-->
-                                                    <b-tab title="Caractéristiques" class="p-2" active>
-                                                        <div class="scroll-gradient">
-                                                            <div class="scroll-area-lg">
-                                                                <VuePerfectScrollbar class="scrollbar-container" v-once>
-                                                                    <div class="mt-3">
-                                                                        <!-- Contenu 1er wizard-->
-                                                                        <b-form @submit="onSubmit" @reset="onReset" v-if="show">
-                                                                            <b-form-group id="input-group-1" label="Nom de la salle :" label-for="input-1">
-                                                                                <b-form-input
-                                                                                id="input-1"
-                                                                                v-model="form.name"
-                                                                                placeholder="Entrer de le nom de la salle"
-                                                                                required
-                                                                                ></b-form-input>
-                                                                            </b-form-group>
-
-                                                                            <b-form-group id="input-group-2" label="Surface de la salle :" label-for="input-2">
-                                                                                <b-form-input
-                                                                                id="input-2"
-                                                                                v-model="form.surface"
-                                                                                placeholder="Indiquer la surface en mètre carré"
-                                                                                required
-                                                                                ></b-form-input>
-                                                                            </b-form-group>
-
-                                                                            <b-form-group id="input-group-3" label="Niveau où se situe la salle :" label-for="input-3">
-                                                                                <b-form-select
-                                                                                id="input-3"
-                                                                                v-model="form.floor"
-                                                                                :options="floors"
-                                                                                required
-                                                                                ></b-form-select>
-                                                                            </b-form-group>
-
-                                                                            <b-form-group id="input-group-4" label="Capacité maximale d'accueil de la salle :" label-for="input-4">
-                                                                                <b-form-input
-                                                                                id="input-4"
-                                                                                v-model="form.maxCapacity"
-                                                                                placeholder="Nombre de personnes maximum"
-                                                                                required
-                                                                                ></b-form-input>
-                                                                            </b-form-group>
-
-                                                                            <b-form-group id="input-group-5" label="Durée minimale de location :" label-for="input-5">
-                                                                                <b-form-select
-                                                                                id="input-5"
-                                                                                v-model="form.minRentalDuration"
-                                                                                :options="minRentalDurations"
-                                                                                required
-                                                                                ></b-form-select>
-                                                                            </b-form-group>
-
-
-                                                                            <b-form-group id="input-group-6" v-slot="{ ariaDescribedby }">
-                                                                                <b-form-checkbox-group
-                                                                                v-model="form.typeBooking"
-                                                                                id="checkboxes-6"
-                                                                                :aria-describedby="ariaDescribedby"
-                                                                                >
-                                                                                <b-form-checkbox value="0">Membre</b-form-checkbox>
-                                                                                <b-form-checkbox value="1">Évènement</b-form-checkbox>
-                                                                                </b-form-checkbox-group>
-                                                                            </b-form-group>
-                                                                            
-                                                                            <b-form-group id="input-group-7" v-slot="{ ariaDescribedby }">
-                                                                                <b-form-radio-group
-                                                                                v-model="form.bookable"
-                                                                                id="checkboxes-7"
-                                                                                :aria-describedby="ariaDescribedby"
-                                                                                >
-                                                                                <b-form-radio value="0">Réservable</b-form-radio>
-                                                                                <b-form-radio value="1">Indisponible</b-form-radio>
-                                                                                </b-form-radio-group>
-                                                                            </b-form-group>
-
-                                                                            <b-button class="m-1 col-2" type="reset" variant="danger">Reset</b-button>
-                                                                            <b-button class="m-1 col-2" type="submit" variant="primary">Suivant</b-button>
-                                                                        </b-form>
-                                                                            
-                                                                        <b-card class="mt-3" header="Form Data Result">
-                                                                        <pre class="m-0">{{ form }}</pre>
-                                                                        </b-card>
-                                                                    </div>
-                                                                </VuePerfectScrollbar>
-                                                            </div>
-                                                        </div>
-                                                    </b-tab>
-                                                    <!-- Onglet 2 du wizard-->
-                                                    <b-tab title="Description" class="p-2">
-                                                        <div class="scroll-gradient">
-                                                            <div class="scroll-area-lg">
-                                                                <VuePerfectScrollbar class="scrollbar-container" v-once>
-                                                                    <div class="vertical-without-time vertical-timeline vertical-timeline--animate vertical-timeline--one-column">
-                                                                        <!-- Contenu 2e wizard-->
-                                                                        <p>Wizard 2</p>
-                                                                    </div>
-                                                                </VuePerfectScrollbar>
-                                                            </div>
-                                                        </div>
-                                                    </b-tab>
-                                                    <!-- Onglet 3 du wizard-->
-                                                    <b-tab title="Services" class="p-2">
-                                                        <div class="scroll-gradient">
-                                                            <div class="scroll-area-lg">
-                                                                <VuePerfectScrollbar class="scrollbar-container" v-once>
-                                                                    <div class="vertical-without-time vertical-timeline vertical-timeline--animate vertical-timeline--one-column">
-                                                                        <!-- Contenu 3e wizard-->
-                                                                        <p>Wizard 3</p>
-                                                                    </div>
-                                                                </VuePerfectScrollbar>
-                                                            </div>
-                                                        </div>
-                                                    </b-tab>
-                                                    <!-- Onglet 4 du wizard-->
-                                                    <b-tab title="Photos" class="p-2">
-                                                        <div class="scroll-gradient">
-                                                            <div class="scroll-area-lg">
-                                                                <VuePerfectScrollbar class="scrollbar-container" v-once>
-                                                                    <div class="vertical-without-time vertical-timeline vertical-timeline--animate vertical-timeline--one-column">
-                                                                        <!-- Contenu 3e wizard-->
-                                                                        <p>Wizard 4</p>
-                                                                    </div>
-                                                                </VuePerfectScrollbar>
-                                                            </div>
-                                                        </div>
-                                                    </b-tab>
-                                                    <!-- Onglet 5 du wizard-->
-                                                    <b-tab title="Tarifs et notes" class="p-2">
-                                                        <div class="scroll-gradient">
-                                                            <div class="scroll-area-lg">
-                                                                <VuePerfectScrollbar class="scrollbar-container" v-once>
-                                                                    <div class="vertical-without-time vertical-timeline vertical-timeline--animate vertical-timeline--one-column">
-                                                                        <!-- Contenu 3e wizard-->
-                                                                        <p>Wizard 5</p>
-                                                                    </div>
-                                                                </VuePerfectScrollbar>
-                                                            </div>
-                                                        </div>
-                                                    </b-tab>
-                                                    <!-- Onglet 6 du wizard-->
-                                                    <b-tab title="Plans" class="p-2">
-                                                        <div class="scroll-gradient">
-                                                            <div class="scroll-area-lg">
-                                                                <VuePerfectScrollbar class="scrollbar-container" v-once>
-                                                                    <div class="vertical-without-time vertical-timeline vertical-timeline--animate vertical-timeline--one-column">
-                                                                        <!-- Contenu 3e wizard-->
-                                                                        <p>Wizard 6</p>
-                                                                    </div>
-                                                                </VuePerfectScrollbar>
-                                                            </div>
-                                                        </div>
-                                                    </b-tab>
+                                                    <Wizard1/>
+                                                    <Wizard2/>
+                                                    <Wizard3/>
+                                                    <Wizard4/>
+                                                    <Wizard5/>
+                                                    <Wizard6/>
                                                 </b-tabs>
                                             </div>
                                         </b-card>
@@ -207,7 +60,12 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 
 import { roomDetailsData, Floors, Bookables, Days, MinRentalDurations } from "@/apps/lc-142/Components/data-roomDetails";
-
+import Wizard1 from './Sub-components/wizard1.vue';
+import Wizard2 from './Sub-components/wizard2.vue';
+import Wizard3 from './Sub-components/wizard3.vue';
+import Wizard4 from './Sub-components/wizard4.vue';
+import Wizard5 from './Sub-components/wizard5.vue';
+import Wizard6 from './Sub-components/wizard6.vue';
 
 library.add(faTrashAlt, faCheck, faAngleDown, faAngleUp, faTh, faCalendarAlt);
 
@@ -215,7 +73,12 @@ export default {
     name: 'RoomAdd',
     components: {
         PageTitle,
-        VuePerfectScrollbar,
+        Wizard1,
+        Wizard2,
+        Wizard3,
+        Wizard4,
+        Wizard5,
+        Wizard6
     },
     data: () => ({
         roomDetailsData: roomDetailsData,
