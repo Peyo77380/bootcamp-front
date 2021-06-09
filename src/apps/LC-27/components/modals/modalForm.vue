@@ -70,21 +70,10 @@
 export default {
     name: "Modale",
     props: {
-        user: {
-            type: Object,
-            default: function() {
-                return {
-                    ID: null,
-                    Photo: "",
-                    Nom: "",
-                    Societe: "",
-                    Statut: "",
-                    Activite: false,
-                    Credits: "",
-                    Temps: ""
-                };
+        updateUser: {
+            type: Object
             }
-        }
+        
     },
     data: () => ({
        /* updateUser: null,*/
@@ -107,6 +96,25 @@ export default {
                 return this.optionsChoices[0];
             }
             return this.optionsChoices[1];
+        },
+        
+    },
+    updated: {
+        user() {
+            if(this.updateUser) {
+                return this.updateUser
+            } else {
+                return {
+                    ID: null,
+                    Photo: "",
+                    Nom: "",
+                    Societe: "",
+                    Statut: "",
+                    Activite: false,
+                    Credits: "",
+                    Temps: ""
+                }
+            }
         }
     },
     methods: {
