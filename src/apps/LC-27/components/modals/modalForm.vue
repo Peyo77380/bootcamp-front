@@ -1,5 +1,5 @@
 <template>
-    <b-modal id="modal-scoped" :hide-backdrop="true" content-class="shadow">
+    <b-modal id="modal-scoped" :hide-backdrop="true" content-class="shadow" no-close-on-backdrop="true">
         <template #modal-title>
             Modification rapide
         </template>
@@ -97,9 +97,6 @@ export default {
             }
             return this.optionsChoices[1];
         },
-        
-    },
-    updated: {
         user() {
             if(this.updateUser) {
                 return this.updateUser
@@ -116,7 +113,27 @@ export default {
                 }
             }
         }
+        
+        
     },
+   /* updated: {
+        user() {
+            if(this.updateUser) {
+                return this.updateUser
+            } else {
+                return {
+                    ID: null,
+                    Photo: "",
+                    Nom: "",
+                    Societe: "",
+                    Statut: "",
+                    Activite: false,
+                    Credits: "",
+                    Temps: ""
+                }
+            }
+        }
+    },*/
     methods: {
         importActivite() {
             this.test = this.user.Activite;
@@ -127,7 +144,8 @@ export default {
         cancel() {
            /* this.updateUser = user,*/
            /* this.$bvModal.hide('modal-scoped')*/
-        }
+        },
+        
     }
 };
 </script>
