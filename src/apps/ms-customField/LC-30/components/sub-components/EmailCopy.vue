@@ -47,20 +47,38 @@
                 <v-card-text>
                     <v-form>
                         <v-flex xs12 sm12 md12>
-                            <v-text-field
-                                v-model="createdEmail.value"
-                                :rules="emailRules"
-                                label="Email en copie"
-                                required
-                            ></v-text-field>
+                            <div class="col-md-12">
+                                <div class="position-relative form-group">
+                                    <label>Email en copie</label>
+                                    <input name="email" id="exampleEmail11" 
+                                    placeholder="" 
+                                    type="email" 
+                                    class="form-control"
+                                    v-model="createdEmail.value"
+                                    required
+                                    >
+                                </div>
+                            </div>
                         </v-flex>
-                        <div class="col-md-12"><div class="position-relative form-group"><label for="exampleEmail11">Email</label><input name="email" id="exampleEmail11" placeholder="with a placeholder" type="email" class="form-control"></div></div>
                     </v-form>  
                 </v-card-text>
                 <v-card-actions>
                 <v-spacer></v-spacer>
-                    <v-btn color="red darken-1" flat @click="closeModalEmail">Annuler</v-btn>
-                    <v-btn color="blue darken-1" @click="saveEmail" flat >Enregistrer</v-btn>
+                    <button 
+                        type="button" 
+                        class="btn mr-2 mb-2 btn-danger"
+                        @click="closeModalEmail" 
+                        >
+                        Annuler
+                    </button>
+                    <button 
+                        type="button" 
+                        class="btn mr-2 mb-2 btn-primary"
+                        @click="saveEmail"  
+                        >
+                        Enregistrer
+                    </button>
+                    
                 </v-card-actions>
             </v-card>
         </v-dialog> 

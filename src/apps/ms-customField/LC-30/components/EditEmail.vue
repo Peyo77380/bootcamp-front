@@ -47,26 +47,40 @@
                                                 Envoyer un email test
                                             </button>
                                             <div>
-                                                <v-dialog v-model="modalEmailTest" persistent max-width="400">
+                                                <v-dialog v-model="modalEmailTest" persistent max-width="600">
                                                     <v-card>
                                                         <v-card-title class="headline">Saisir les destinataires</v-card-title>
                                                         <v-card-text>
                                                             <v-form>
                                                                 <v-flex xs12 sm12 md12>
-                                                                    <v-text-field
-                                                                        
-                                                                        
-                                                                        label="destinataires"
-                                                                        required
-                                                                    ></v-text-field>
+                                                                    <div class="col-md-12">
+                                                                        <div class="position-relative form-group">
+                                                                            <label>Destinataires</label>
+                                                                            <input name="email" id="exampleEmail11" 
+                                                                            placeholder="Séparer les adresses avec une virgule" 
+                                                                            type="email" 
+                                                                            class="form-control">
+                                                                        </div>
+                                                                    </div>
                                                                 </v-flex>
-                                                                <div class="col-md-12"><div class="position-relative form-group"><label for="exampleEmail11">Email</label><input name="email" id="exampleEmail11" placeholder="with a placeholder" type="email" class="form-control"></div></div>
                                                             </v-form>  
                                                         </v-card-text>
                                                         <v-card-actions>
                                                         <v-spacer></v-spacer>
-                                                            <v-btn color="red darken-1" flat >Annuler</v-btn>
-                                                            <v-btn color="blue darken-1" flat >Envoyer</v-btn>
+                                                            <button 
+                                                            type="button" 
+                                                            class="btn mr-2 mb-2 btn-danger"
+                                                            @click="closeModalEmailTest" 
+                                                            >
+                                                            Annuler
+                                                            </button>
+                                                            <button 
+                                                            type="button" 
+                                                            class="btn mr-2 mb-2 btn-primary"
+                                                            @click="sendEmailTest" 
+                                                            >
+                                                            Envoyer
+                                                            </button>
                                                         </v-card-actions>
                                                     </v-card>
                                                 </v-dialog> 
@@ -154,6 +168,13 @@ export default {
         },
         openModalEmailTest() {
             this.modalEmailTest = true;
+        },
+        closeModalEmailTest() {
+            this.modalEmailTest = false;
+        },
+        sendEmailTest() {
+            this.closeModalEmailTest()
+            //TODO API envoie email test 
         }
     },
 };

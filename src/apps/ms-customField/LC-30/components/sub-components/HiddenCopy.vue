@@ -100,7 +100,7 @@ export default {
               this.editedIndex=-1;
           }
           else {
-              this.editedEmail.hiddenCopie.push(this.createdEmail)
+              this.editedEmail.hiddenCopie.push(this.createdEmail.value)
               //TODO point API pour enregistrer nouveau email a mettre en copie caché 
           }
           this.createdEmail = {}
