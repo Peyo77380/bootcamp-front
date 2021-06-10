@@ -1,7 +1,7 @@
 <template>
 <div>
     
-<div class="row" >
+<div class="row" style="display: flex;justify-content: center; align-items: center;">
             <div class="col-md-3 col-xl-2" v-for="category in categories" :key="category.id" >
                 <div :class="category.color" class="card mb-3 widget-content">
                     <div class="widget-content-wrapper text-white">
@@ -12,7 +12,7 @@
                         </div>
                         <div class="widget-content-right">
                              <v-switch
-                             color="secondary"
+                             color="info"
                             v-model="selectedCategory"
                             :value='category.label'
                             ></v-switch>
@@ -40,12 +40,12 @@
                   
                     <tr v-for="item in filteredItems" :key="item.id">
                         
-                        <div style="display: flex;justify-content: center; align-items: center; margin-top : 10px; margin-left:30px" class="swatch-holder swatch-holder-md" :class=item.classcategory>
+                        <td style="display: flex;justify-content: center; align-items: center; margin-top : 10px; margin-left:30px" class="swatch-holder swatch-holder-md" :class=item.classcategory>
                          
-                            <td class="text-center" style="font-weight :bold; color:white; opacity: .9; font-size : 11px"> 
+                            <div class="text-center" style="font-weight :bold; color:white; opacity: .9; font-size : 11px"> 
                                 {{item.initial}}
-                            </td>
-                        </div>
+                            </div>
+                        </td>
                         <td class="text-center">{{item.key}}</td>
                         
                         <td class="text-center">{{item.value}} </td>
@@ -124,7 +124,7 @@ import modalDetail from "./modal_detail"
         { label: 'Modes de règlement', color:'bg-alternate' },
         { label: 'Salles de réunion', color:'bg-danger' },
         { label: 'Membres', color: 'bg-warning' },
-        { label: 'Toutes les catégories', color: 'bg-info' },
+        
       ],
         items: [
         { category: 'Édition de contenu', key: 'COWORKING_BOOK_INFO', value: "La colloc met à disposition de ses membres qui sont dans l'incapacité de faire du ...", info:'lorem ipsum', classcategory:'bg-success', initial:'ÉC' },
@@ -148,13 +148,18 @@ import modalDetail from "./modal_detail"
 			var vm = this;
 			var category = vm.selectedCategory;
 			
-			if(category === "Toutes les catégories") {
+            
+			if(category === "Toutes les catégories" || category === null) {
 				return vm.items;
 			} else {
 				return vm.items.filter(function(item) {
 					return item.category === category;
 				});
+                
 			}
+            
+            
+            
 		}
         },
     
