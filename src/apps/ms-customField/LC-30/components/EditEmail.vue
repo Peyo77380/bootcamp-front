@@ -21,21 +21,57 @@
                         <div class="row card-body"> 
                             <div class="col-9">
                                 <h5 class="card-title">Informations génerales</h5>
-                                <div class="main-card card col-12 mb-3 p-3">
-                                    <div class="card-shadow-primary col-3 mb-3 widget-chart widget-chart2 text-left card">
-                                        <div class="widget-chat-wrapper-outer">
-                                            <div class="widget-chart-content"><h6 class="widget-subheading">Clé</h6>
-                                                <div class="widget-chart-flex">
-                                                    <div class="widget-numbers mb-0 w-100">
-                                                        <div class="widget-chart-flex">
-                                                            <div class="fsize-2">
-                                                                {{ editedEmail.key }}
+                                <div class="main-card card col-12 mb-3 p-4">
+                                    <div class="row justify-content-between">
+                                        <div class="card-shadow-primary col-3 mb-3 widget-chart widget-chart2 text-left card">
+                                            <div class="widget-chat-wrapper-outer">
+                                                <div class="widget-chart-content"><h6 class="widget-subheading">Clé</h6>
+                                                    <div class="widget-chart-flex">
+                                                        <div class="widget-numbers mb-0 w-100">
+                                                            <div class="widget-chart-flex">
+                                                                <div class="fsize-2">
+                                                                    {{ editedEmail.key }}
+                                                                </div>
                                                             </div>
                                                         </div>
                                                     </div>
                                                 </div>
                                             </div>
                                         </div>
+                                        <div class="mt-3">
+                                            <button 
+                                            @click="openModalEmailTest"
+                                            type="button" 
+                                            class="btn mr-2 mb-2 btn-pill btn-icon btn-success">
+                                                <i class="btn-icon-wrapper lnr-location"></i>
+                                                Envoyer un email test
+                                            </button>
+                                            <div>
+                                                <v-dialog v-model="modalEmailTest" persistent max-width="400">
+                                                    <v-card>
+                                                        <v-card-title class="headline">Saisir les destinataires</v-card-title>
+                                                        <v-card-text>
+                                                            <v-form>
+                                                                <v-flex xs12 sm12 md12>
+                                                                    <v-text-field
+                                                                        
+                                                                        
+                                                                        label="destinataires"
+                                                                        required
+                                                                    ></v-text-field>
+                                                                </v-flex>
+                                                                <div class="col-md-12"><div class="position-relative form-group"><label for="exampleEmail11">Email</label><input name="email" id="exampleEmail11" placeholder="with a placeholder" type="email" class="form-control"></div></div>
+                                                            </v-form>  
+                                                        </v-card-text>
+                                                        <v-card-actions>
+                                                        <v-spacer></v-spacer>
+                                                            <v-btn color="red darken-1" flat >Annuler</v-btn>
+                                                            <v-btn color="blue darken-1" flat >Envoyer</v-btn>
+                                                        </v-card-actions>
+                                                    </v-card>
+                                                </v-dialog> 
+                                            </div>
+                                        </div>   
                                     </div>
                                     <v-form>
                                         <v-flex md8>
@@ -48,13 +84,14 @@
                                             <v-text-field
                                                 label="Description"
                                                 v-model="editedEmail.description"
-                                            > {{ editedEmail.description }}</v-text-field>
+                                            > {{ editedEmail.description }}
+                                            </v-text-field>
                                         </v-flex>
                                     </v-form>  
                                 </div>   
                                 <h5 class="card-title">Contenu de l'email</h5>  
                                 <div class="main-card card col-12 mb-5 p-3">
-                                    <ckeditor v-model="editedEmail.content" :editor="editor" :config="editorConfig"></ckeditor>
+                                    <ckeditor v-model="editedEmail.content" :editor="editor" ></ckeditor>
                                 </div>
                             </div>
                              
@@ -95,9 +132,7 @@ export default {
             icon: "pe-7s-mail-open-file",
             newEmail: {},
             editor: ClassicEditor,
-            editorConfig: {
-                height: '500px'
-            }
+            modalEmailTest: false,
         }
     },
     props: {
@@ -116,6 +151,9 @@ export default {
             this.closeEdit();
             this.$emit("saveModification", this.editedEmail)
 
+        },
+        openModalEmailTest() {
+            this.modalEmailTest = true;
         }
     },
 };
@@ -123,6 +161,6 @@ export default {
 
 <style>
   .ck-editor__editable {
-    min-height: 500px;
+    min-height: 400px;
    }
 </style>

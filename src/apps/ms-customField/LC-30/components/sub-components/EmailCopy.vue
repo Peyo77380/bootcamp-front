@@ -41,7 +41,7 @@
                 <button @click="openModalEmail" class="btn btn-primary">Ajouter</button>
             </div>
         </div>
-        <v-dialog v-model="modalEmail" persistent max-width="290">
+        <v-dialog v-model="modalEmail" persistent max-width="400">
             <v-card>
                 <v-card-title class="headline">Ajouter adresse Email</v-card-title>
                 <v-card-text>
@@ -54,6 +54,7 @@
                                 required
                             ></v-text-field>
                         </v-flex>
+                        <div class="col-md-12"><div class="position-relative form-group"><label for="exampleEmail11">Email</label><input name="email" id="exampleEmail11" placeholder="with a placeholder" type="email" class="form-control"></div></div>
                     </v-form>  
                 </v-card-text>
                 <v-card-actions>

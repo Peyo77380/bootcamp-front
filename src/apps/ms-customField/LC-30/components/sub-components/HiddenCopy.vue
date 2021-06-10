@@ -40,9 +40,9 @@
                 <button @click="openModalEmail" class="btn btn-primary">Ajouter</button>
             </div>
         </div>
-        <v-dialog v-model="modalEmail" persistent max-width="290">
+        <v-dialog v-model="modalEmail" persistent max-width="400">
             <v-card>
-                <v-card-title class="headline">Ajouter adresse Email en CC</v-card-title>
+                <v-card-title class="headline">Ajouter adresse Email en copie cachée</v-card-title>
                 <v-card-text>
                     <v-form>
                         <v-text-field
