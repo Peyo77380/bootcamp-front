@@ -24,7 +24,7 @@
 <div class="main-card mb-3 card">
             
     <div class="table-responsive">
-                <table class="align-middle mb-0 table table-striped table-borderless table-hover">
+                <table  class="align-middle mb-0 table table-striped table-borderless table-hover">
                     <thead>
                     <tr>
                         
@@ -38,14 +38,15 @@
                   
                     <tbody >
                   
-                    <tr v-for="item in filteredItems" :key="item.id">
-                        
-                        <td style="display: flex;justify-content: center; align-items: center; margin-top : 10px; margin-left:30px" class="swatch-holder swatch-holder-md" :class=item.classcategory>
+                    <tr  v-for="item in filteredItems" :key="item.id">
+                        <div style="display: flex;justify-content: center; align-items: center">
+                        <td style="display: flex;justify-content: center; align-items: center" class="swatch-holder swatch-holder-md" :class=item.classcategory>
                          
                             <div class="text-center" style="font-weight :bold; color:white; opacity: .9; font-size : 11px"> 
                                 {{item.initial}}
                             </div>
                         </td>
+                        </div>
                         <td class="text-center">{{item.key}}</td>
                         
                         <td class="text-center">{{item.value}} </td>
@@ -98,6 +99,7 @@
 </div>
 <modal @saveModification="modificationEmail" :items="keyValueEdit" @close2="closeModalEdit" :dialog2="dialog2"></modal>
      <modal-detail :items="keyValueDetails" @close="closeModal" :dialog="dialog"></modal-detail>
+     
 </div>
 
 </template>
@@ -109,10 +111,12 @@ import modalDetail from "./modal_detail"
 
 
 
+
     export default{
         components:{
             modal,
             modalDetail,
+            
             
                 
     },
@@ -134,13 +138,30 @@ import modalDetail from "./modal_detail"
         { category: 'Membres', key: 'WELCOME_CREDITS', value: '10', info:'Nombre de co offerts lors du premier abonnement à la Colloc', classcategory:'bg-warning', initial:'M' },
         { category: 'Modes de règlement', key: 'SEPA', value: '01009011', info:'lorem ipsum', classcategory:'bg-alternate', initial:'MR' },
         { category: 'Salles de réunion', key: 'MEETINGROOM_BOOKING_HOUR_START', value: '08:00:00', info:'Heure minimum de début de location des salles de réunion', classcategory:'bg-danger', initial:'SR' },
+        { category: 'Membres', key: 'FREETIME', value: '4', info:"Nombre d'heures de location de salle", classcategory:'bg-warning', initial:'M' },{ category: 'Édition de contenu', key: 'COWORKING_BOOK_INFO', value: "La colloc met à disposition de ses membres qui sont dans l'incapacité de faire du ...", info:'lorem ipsum', classcategory:'bg-success', initial:'ÉC' },
+        { category: 'Modes de règlement', key: 'PENDING', value: '01009017', info:'lorem ipsum', classcategory:'bg-alternate', initial:'MR' },
+        { category: 'Salles de réunion', key: 'REFUND_DEPOSIT_PERCENT', value: '30', info:'lorem ipsum', classcategory:'bg-danger', initial:'SR' },
+        { category: 'Réglages', key: 'COWORKING_NUMBER', value: '10', info:'lorem ipsum', classcategory:'bg-night-sky', initial:'R' },
+        { category: 'Membres', key: 'WELCOME_CREDITS', value: '10', info:'Nombre de co offerts lors du premier abonnement à la Colloc', classcategory:'bg-warning', initial:'M' },
+        { category: 'Modes de règlement', key: 'SEPA', value: '01009011', info:'lorem ipsum', classcategory:'bg-alternate', initial:'MR' },
+        { category: 'Salles de réunion', key: 'MEETINGROOM_BOOKING_HOUR_START', value: '08:00:00', info:'Heure minimum de début de location des salles de réunion', classcategory:'bg-danger', initial:'SR' },
+        { category: 'Membres', key: 'FREETIME', value: '4', info:"Nombre d'heures de location de salle", classcategory:'bg-warning', initial:'M' },{ category: 'Édition de contenu', key: 'COWORKING_BOOK_INFO', value: "La colloc met à disposition de ses membres qui sont dans l'incapacité de faire du ...", info:'lorem ipsum', classcategory:'bg-success', initial:'ÉC' },
+        { category: 'Modes de règlement', key: 'PENDING', value: '01009017', info:'lorem ipsum', classcategory:'bg-alternate', initial:'MR' },
+        { category: 'Salles de réunion', key: 'REFUND_DEPOSIT_PERCENT', value: '30', info:'lorem ipsum', classcategory:'bg-danger', initial:'SR' },
+        { category: 'Réglages', key: 'COWORKING_NUMBER', value: '10', info:'lorem ipsum', classcategory:'bg-night-sky', initial:'R' },
+        { category: 'Membres', key: 'WELCOME_CREDITS', value: '10', info:'Nombre de co offerts lors du premier abonnement à la Colloc', classcategory:'bg-warning', initial:'M' },
+        { category: 'Modes de règlement', key: 'SEPA', value: '01009011', info:'lorem ipsum', classcategory:'bg-alternate', initial:'MR' },
+        { category: 'Salles de réunion', key: 'MEETINGROOM_BOOKING_HOUR_START', value: '08:00:00', info:'Heure minimum de début de location des salles de réunion', classcategory:'bg-danger', initial:'SR' },
         { category: 'Membres', key: 'FREETIME', value: '4', info:"Nombre d'heures de location de salle", classcategory:'bg-warning', initial:'M' }
       ],
          dialog: false,
          dialog2: false,
          keyValueDetails: {},
          keyValueEdit: {},
-         selectedCategory: "Toutes les catégories"
+         selectedCategory: "Toutes les catégories",
+         perPage: 3,
+         currentPage: 1,
+       
     }
     },
     computed: {
@@ -160,7 +181,10 @@ import modalDetail from "./modal_detail"
             
             
             
-		}
+		},
+        prows() {
+        return this.filteredItems.length
+      }
         },
     
     methods: {
