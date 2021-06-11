@@ -71,26 +71,14 @@ export default {
     name: "Modale",
     props: {
         updateUser: {
-            type: Object,
-            default() {
-                return {
-                    ID: null,
-                    Photo: "",
-                    Nom: "",
-                    Societe: "",
-                    Statut: "",
-                    Activite: false,
-                    Credits: "",
-                    Temps: ""
-                }
-            }
+            type: Object
             }
         
     },
     data: () => ({
         userNom: "",
         userSociete: "",
-
+        beforeUpdate: null,
         optionsChoices: ["Actif", "Inactif"]
     }),
     computed: {
@@ -109,27 +97,28 @@ export default {
             return this.optionsChoices[1];
         },
         
-        
-        
-    },
-   /* updated: {
-        user() {
-            if(this.updateUser) {
+         user() {
+            if (this.updateUser) {
+                this.beforeUpdate = this.updateUser
                 return this.updateUser
-            } else {
-                return {
-                    ID: null,
-                    Photo: "",
-                    Nom: "",
-                    Societe: "",
-                    Statut: "",
-                    Activite: false,
-                    Credits: "",
-                    Temps: ""
-                }
+                
+            }
+
+            this.beforeUpdate = null
+            return {
+                ID: null,
+                Photo: "",
+                Nom: "",
+                Societe: "",
+                Statut: "",
+                Activite: false,
+                Credits: "",
+                Temps: ""
             }
         }
-    },*/
+    },
+   
+    
     methods: {
         importActivite() {
             this.test = this.user.Activite;
@@ -140,8 +129,7 @@ export default {
         cancel() {
            /* this.updateUser = user,*/
            /* this.$bvModal.hide('modal-scoped')*/
-        },
-        
+        }
     }
 };
 </script>
