@@ -2,9 +2,9 @@
     <!-- Onglet 6 du wizard-->
     <b-tab title="Plans salles/réunions" class="p-2">
         <div class="scroll-gradient">
-            <div class="scroll-area-lg">
+            <div class="scroll-area-xlg">
                 <VuePerfectScrollbar class="scrollbar-container" v-once>
-                    <div class="mt-3">
+                    <div class="mt-3 mb-3">
                         <!-- Contenu 6e wizard-->
                         <div class="position-relative form-group"><label for="exampleCustomFileBrowser" class="">File Browser with Custom Label</label>
                             <div class="custom-file"><input type="file" id="exampleCustomFileBrowser" name="customFile" class="custom-file-input"><label class="custom-file-label" for="exampleCustomFileBrowser">Yo, pick a file!</label></div>

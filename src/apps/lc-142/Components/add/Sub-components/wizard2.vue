@@ -4,7 +4,7 @@
         <div class="scroll-gradient">
             <div class="scroll-area-lg">
                 <VuePerfectScrollbar class="scrollbar-container" v-once>
-                    <div class="mt-3">
+                    <div class="mt-3 mb-3">
                         <!-- Contenu 2e wizard-->
                         <b-form @submit="onSubmit" @reset="onReset" v-if="show">
                             <p>Ajout de l'API CKEDITOR</p>
@@ -12,10 +12,6 @@
                             <b-button class="m-1 col-2" type="reset" variant="danger">Reset</b-button>
                             <b-button class="m-1 col-2" type="submit" variant="primary">Suivant</b-button>
                         </b-form>
-                            
-                        <b-card class="mt-3" header="Form Data Result">
-                        <pre class="m-0">{{ form }}</pre>
-                        </b-card>
                     </div>
                 </VuePerfectScrollbar>
             </div>

@@ -4,7 +4,7 @@
         <div class="scroll-gradient">
             <div class="scroll-area-xlg">
                 <VuePerfectScrollbar class="scrollbar-container" v-once>
-                    <div class="m-3">
+                    <div class="m-3 mb-3">
                         <!-- Contenu 1er wizard-->
                         <b-form @submit="onSubmit" @reset="onReset" v-if="show">
                             
@@ -147,14 +147,9 @@
                                 </div>
                                 </div>
                             </div>
-
                             <b-button class="m-1 col-2" type="reset" variant="danger">Reset</b-button>
                             <b-button class="m-1 col-2" type="submit" variant="primary">Suivant</b-button>
                         </b-form>
-                            
-                        <b-card class="mt-3" header="Form Data Result">
-                        <pre class="m-0">{{ form }}</pre>
-                        </b-card>
                     </div>
                 </VuePerfectScrollbar>
             </div>

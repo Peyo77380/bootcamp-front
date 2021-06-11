@@ -4,7 +4,7 @@
         <div class="scroll-gradient">
             <div class="scroll-area-xlg">
                 <VuePerfectScrollbar class="scrollbar-container" v-once>
-                    <div class="mt-3">
+                    <div class="mt-3 mb-3">
                         <!-- Contenu 3e wizard-->
                         <b-form @submit="onSubmit" @reset="onReset" v-if="show">
 
@@ -36,8 +36,8 @@
                                                 <td class="text-left">{{ serviceDetail.title }}</td>
                                                 <td class="text-center">
                                                     <div class="row">
-                                                        <b-button v-b-modal.modal-view class="mr-1 ml-2">
-                                                            <i class="pe-7s-look" variant="primary"></i>
+                                                        <b-button v-b-modal.modal-view class="mr-1 ml-2" variant="white">
+                                                            <i class="pe-7s-look icon-gradient bg-malibu-beach"></i>
                                                         </b-button>
                                                         
                                                         <b-modal id="modal-view" :title=serviceDetail.title>
@@ -46,8 +46,8 @@
                                                             </p>
                                                         </b-modal>
                                                         
-                                                        <b-button v-b-modal.modal-photo class="mr-1 ml-2">
-                                                            <i class="pe-7s-photo" variant="info"></i>
+                                                        <b-button v-b-modal.modal-photo class="mr-1 ml-2" variant="white">
+                                                            <i class="pe-7s-photo icon-gradient bg-sunny-morning"></i>
                                                         </b-button>
                                                         
                                                         <b-modal id="modal-photo" :title=serviceDetail.title>
@@ -63,14 +63,9 @@
                                 </div>
                             </div>
                         </div> 
-
                             <b-button class="m-1 col-2" type="reset" variant="danger">Reset</b-button>
                             <b-button class="m-1 col-2" type="submit" variant="primary">Suivant</b-button>
                         </b-form>
-
-                        <b-card class="mt-3" header="Form Data Result">
-                        <pre class="m-0">{{ form }}</pre>
-                        </b-card>
                     </div>
                 </VuePerfectScrollbar>
             </div>

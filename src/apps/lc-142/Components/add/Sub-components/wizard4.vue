@@ -2,9 +2,9 @@
     <!-- Onglet 4 du wizard-->
     <b-tab title="Photos" class="p-2">
         <div class="scroll-gradient">
-            <div class="scroll-area-lg">
+            <div class="scroll-area-xlg">
                 <VuePerfectScrollbar class="scrollbar-container" v-once>
-                    <div class="mt-3">
+                    <div class="mt-3 mb-3">
                         <!-- Contenu 4e wizard-->
                         <div class="row">
                             <div class="col-1"></div>
