@@ -2,7 +2,7 @@
     <!-- Onglet 3 du wizard-->
     <b-tab title="Services" class="p-2">
         <div class="scroll-gradient">
-            <div class="scroll-area-lg">
+            <div class="scroll-area-xlg">
                 <VuePerfectScrollbar class="scrollbar-container" v-once>
                     <div class="mt-3">
                         <!-- Contenu 3e wizard-->
@@ -15,8 +15,8 @@
                                     <table class="align-middle mb-5 table table-border bordered table-striped table-hover">
                                         <thead>
                                             <tr>
-                                                <th class="text-left col-1">checkbox</th>
-                                                <th class="text-left col-9">titre</th>
+                                                <th class="text-left col-1">Sélection</th>
+                                                <th class="text-left col-9">Titre du service</th>
                                                 <th class="text-left col-2">Actions</th>
                                             </tr>
                                         </thead>
@@ -36,12 +36,11 @@
                                                 <td class="text-left">{{ serviceDetail.title }}</td>
                                                 <td class="text-center">
                                                     <div class="row">
-                                                        
                                                         <b-button v-b-modal.modal-view class="mr-1 ml-2">
                                                             <i class="pe-7s-look" variant="primary"></i>
                                                         </b-button>
                                                         
-                                                        <b-modal id="modal-view">
+                                                        <b-modal id="modal-view" :title=serviceDetail.title>
                                                             <p class="my-4">
                                                                 {{ serviceDetail.description }}
                                                             </p>
@@ -51,7 +50,7 @@
                                                             <i class="pe-7s-photo" variant="info"></i>
                                                         </b-button>
                                                         
-                                                        <b-modal id="modal-photo">
+                                                        <b-modal id="modal-photo" :title=serviceDetail.title>
                                                             <p class="my-4">
                                                                 <v-img :src="require('@/assets/images/services/' + serviceDetail.photo + '.jpeg')"></v-img>
                                                             </p>
