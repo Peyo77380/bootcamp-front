@@ -50,7 +50,7 @@
                             <div class="col-md-12">
                                 <div class="position-relative form-group">
                                     <label>Email en copie</label>
-                                    <input name="email" id="exampleEmail11" 
+                                    <input name="email"
                                     placeholder="" 
                                     type="email" 
                                     class="form-control"

@@ -56,7 +56,7 @@
                                                                     <div class="col-md-12">
                                                                         <div class="position-relative form-group">
                                                                             <label>Destinataires</label>
-                                                                            <input name="email" id="exampleEmail11" 
+                                                                            <input name="email"
                                                                             placeholder="Séparer les adresses avec une virgule" 
                                                                             type="email" 
                                                                             class="form-control">
