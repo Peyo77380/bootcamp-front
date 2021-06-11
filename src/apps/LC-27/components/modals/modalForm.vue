@@ -1,5 +1,5 @@
 <template>
-    <b-modal id="modal-scoped" :hide-backdrop="true" content-class="shadow" no-close-on-backdrop="true">
+    <b-modal id="modal-scoped" :hide-backdrop="true" content-class="shadow" :no-close-on-backdrop="true">
         <template #modal-title>
             Modification rapide
         </template>
@@ -71,12 +71,23 @@ export default {
     name: "Modale",
     props: {
         updateUser: {
-            type: Object
+            type: Object,
+            default() {
+                return {
+                    ID: null,
+                    Photo: "",
+                    Nom: "",
+                    Societe: "",
+                    Statut: "",
+                    Activite: false,
+                    Credits: "",
+                    Temps: ""
+                }
+            }
             }
         
     },
     data: () => ({
-       /* updateUser: null,*/
         userNom: "",
         userSociete: "",
 
@@ -97,22 +108,7 @@ export default {
             }
             return this.optionsChoices[1];
         },
-        user() {
-            if(this.updateUser) {
-                return this.updateUser
-            } else {
-                return {
-                    ID: null,
-                    Photo: "",
-                    Nom: "",
-                    Societe: "",
-                    Statut: "",
-                    Activite: false,
-                    Credits: "",
-                    Temps: ""
-                }
-            }
-        }
+        
         
         
     },
