@@ -6,7 +6,40 @@
                 <VuePerfectScrollbar class="scrollbar-container" v-once>
                     <div class="mt-3">
                         <!-- Contenu 4e wizard-->
-                        <p>Wizard 4</p>
+                        <div class="row">
+                            <div class="col-1"></div>
+                            <div class="col-10">
+                                <div class="position-relative form-group"><label for="exampleCustomFileBrowser" class="">File Browser with Custom Label</label>
+                                    <div class="custom-file">
+                                        <input type="file" id="exampleCustomFileBrowser" name="customFile" class="custom-file-input">
+                                        <label class="custom-file-label" for="exampleCustomFileBrowser">Veuillez sélectionner une photo</label>
+                                    </div>
+                                </div>
+
+                                <div class="table-responsive">
+                                    <table class="align-middle mb-5 table table-border table-striped table-hover">
+                                        <thead>
+                                            <tr>
+                                                <th class="text-center col-1">Numero</th>
+                                                <th class="text-center col-4">Titre de la photo</th>
+                                                <th class="text-center col-6">Url</th>
+                                                <th class="text-center">Actions</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr>
+                                                <td class="text-center border">1</td>
+                                                <td class="text-center border">titre photo</td>
+                                                <td class="text-center border">url photo</td>
+                                                <td class="text-center border">voir / supprimer</td>
+                                            </tr>
+                                            
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        
+                        </div>
                     </div>
                 </VuePerfectScrollbar>
             </div>

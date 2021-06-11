@@ -10,65 +10,65 @@
 
                         <div class="row">
                             <div class="col-1"></div>
-                            <div class="col-10">
-                                <b-form-group id="input-group-9" v-slot="{ ariaDescribedby }" label="Services disponibles :" class="text-left" label-for="checkboxes-2">
-                                    <b-form-multiple-checkbox-group
-                                    v-model="form.servicesElement"
-                                    id="checkboxes-2"
-                                    :aria-describedby="ariaDescribedby"
-                                    >
-                                    <div class="row">
-                                    <div class="col-5">
-                                        <div class="row">
-                                        <b-form-checkbox value="0">Service 1</b-form-checkbox><p class="ml-5">Description du service 1 qui est récupéré dans la table Services !</p>
-                                        </div>
-                                        <div class="row">
-                                        <b-form-checkbox value="0">Service 2</b-form-checkbox><p class="ml-5">Description du service 2</p>
-                                        </div>
-                                        <div class="row">
-                                        <b-form-checkbox value="0">Service 3</b-form-checkbox><p class="ml-5">Description du service 3</p>
-                                        </div>
-                                        <div class="row">
-                                        <b-form-checkbox value="0">Service 4</b-form-checkbox><p class="ml-5">Description du service 4</p>
-                                        </div>
-                                        <div class="row">
-                                        <b-form-checkbox value="0">Service 5</b-form-checkbox><p class="ml-5">Description du service 5</p>
-                                        </div>
-                                        <div class="row">
-                                        <b-form-checkbox value="0">Service 6</b-form-checkbox><p class="ml-5">Description du service 6</p>
-                                        </div>
-                                    </div>
-                                    <div class="col-2"></div>
-                                    <div class="col-5">
-                                        <div class="row">
-                                        <b-form-checkbox value="0">Service 1</b-form-checkbox><p class="ml-5">Description du service 1</p>
-                                        </div>
-                                        <div class="row">
-                                        <b-form-checkbox value="0">Service 2</b-form-checkbox><p class="ml-5">Description du service 2</p>
-                                        </div>
-                                        <div class="row">
-                                        <b-form-checkbox value="0">Service 3</b-form-checkbox><p class="ml-5">Description du service 3</p>
-                                        </div>
-                                        <div class="row">
-                                        <b-form-checkbox value="0">Service 4</b-form-checkbox><p class="ml-5">Description du service 4</p>
-                                        </div>
-                                        <div class="row">
-                                        <b-form-checkbox value="0">Service 5</b-form-checkbox><p class="ml-5">Description du service 5</p>
-                                        </div>
-                                        <div class="row">
-                                        <b-form-checkbox value="0">Service 6</b-form-checkbox><p class="ml-5">Description du service 6</p>
-                                        </div>
-                                    </div>
-                                    </div>
-                                    </b-form-multiple-checkbox-group>
-                                </b-form-group>
+                                <div class="col-10">
+                                <div class="table-responsive">
+                                    <table class="align-middle mb-5 table table-border bordered table-striped table-hover">
+                                        <thead>
+                                            <tr>
+                                                <th class="text-left col-1">checkbox</th>
+                                                <th class="text-left col-9">titre</th>
+                                                <th class="text-left col-2">Actions</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr v-for="serviceDetail in serviceDetailsData" :key="serviceDetail.id">
+                                                <td>
+                                                    <b-form-group id="input-group-9" v-slot="{ ariaDescribedby }" label="" class="m-2" label-for="checkboxes-9">
+                                                        <b-form-checkbox-group
+                                                        v-model="form.selectedService"
+                                                        id="checkboxes-9"
+                                                        :aria-describedby="ariaDescribedby"
+                                                        >
+                                                        <b-form-checkbox value="selected"></b-form-checkbox>
+                                                        </b-form-checkbox-group>
+                                                    </b-form-group>
+                                                </td>
+                                                <td class="text-left">{{ serviceDetail.title }}</td>
+                                                <td class="text-center">
+                                                    <div class="row">
+                                                        
+                                                        <b-button v-b-modal.modal-view class="mr-1 ml-2">
+                                                            <i class="pe-7s-look" variant="primary"></i>
+                                                        </b-button>
+                                                        
+                                                        <b-modal id="modal-view">
+                                                            <p class="my-4">
+                                                                {{ serviceDetail.description }}
+                                                            </p>
+                                                        </b-modal>
+                                                        
+                                                        <b-button v-b-modal.modal-photo class="mr-1 ml-2">
+                                                            <i class="pe-7s-photo" variant="info"></i>
+                                                        </b-button>
+                                                        
+                                                        <b-modal id="modal-photo">
+                                                            <p class="my-4">
+                                                                <v-img :src="require('@/assets/images/services/' + serviceDetail.photo + '.jpeg')"></v-img>
+                                                            </p>
+                                                        </b-modal>
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
                             </div>
-                        </div>
+                        </div> 
 
-                        <b-button class="m-1 col-2" type="reset" variant="danger">Reset</b-button>
+                            <b-button class="m-1 col-2" type="reset" variant="danger">Reset</b-button>
                             <b-button class="m-1 col-2" type="submit" variant="primary">Suivant</b-button>
                         </b-form>
-                            
+
                         <b-card class="mt-3" header="Form Data Result">
                         <pre class="m-0">{{ form }}</pre>
                         </b-card>
@@ -80,7 +80,7 @@
 </template>
 
 <script>
-import { roomDetailsData } from "@/apps/lc-142/Components/data-roomDetails";
+import { serviceDetailsData } from "@/apps/lc-142/Components/data-serviceDetails";
 import VuePerfectScrollbar from "vue-perfect-scrollbar";
 
 export default {
@@ -94,10 +94,10 @@ export default {
             dots: true
         },
         form: {
-            servicesElement: [],
+            selectedService: [],
             
         },
-        roomDetailsData: roomDetailsData,
+        serviceDetailsData: serviceDetailsData,
         show: true
     }),
 
@@ -109,7 +109,7 @@ export default {
         onReset(event) {
             event.preventDefault()
             // Reset our form values
-            this.form.servicesElement = []
+            this.form.selectedService = []
             
             // Trick to reset/clear native browser form validation state
             this.show = false

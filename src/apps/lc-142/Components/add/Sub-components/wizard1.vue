@@ -65,14 +65,14 @@
                                 </b-form-group>
 
                                 <b-form-group id="input-group-6" v-slot="{ ariaDescribedby }" label="Type de réservation :" class="text-left" label-for="checkboxes-6">
-                                    <b-form-multiple-checkbox-group
+                                    <b-form-checkbox-group
                                     v-model="form.typeBooking"
                                     id="checkboxes-6"
                                     :aria-describedby="ariaDescribedby"
                                     >
                                     <b-form-checkbox value="0">Membre</b-form-checkbox>
                                     <b-form-checkbox value="1">Évènement</b-form-checkbox>
-                                    </b-form-multiple-checkbox-group>
+                                    </b-form-checkbox-group>
                                 </b-form-group>
                             
                                 <b-form-group id="input-group-7" v-slot="{ ariaDescribedby }" label="Statut :" class="text-left" label-for="radios-7">
@@ -99,6 +99,7 @@
                                             </tr>
                                         </thead>
                                         <tbody>
+                                            <!-- inserer les v-model pour chaque valeur a recuperer -->
                                             <tr>
                                                 <td class="text-center text-muted">Lundi</td>
                                                 <td><input type="text" class="text-center border"/></td>
@@ -182,7 +183,7 @@ export default {
             maxCapacity: '',
             minRentalDuration: '',
             day: [],
-            typeBooking: '',
+            typeBooking: [],
             bookable: []
         },
         roomDetailsData: roomDetailsData,
@@ -207,7 +208,7 @@ export default {
             this.form.maxCapacity = ''
             this.form.minRentalDuration = ''
             this.form.day = []
-            this.form.typeBooking = ''
+            this.form.typeBooking = []
             this.form.bookable = []
             // Trick to reset/clear native browser form validation state
             this.show = false

@@ -6,7 +6,10 @@
                 <VuePerfectScrollbar class="scrollbar-container" v-once>
                     <div class="mt-3">
                         <!-- Contenu 6e wizard-->
-                        <p>Wizard 6</p>
+                        <div class="position-relative form-group"><label for="exampleCustomFileBrowser" class="">File Browser with Custom Label</label>
+                            <div class="custom-file"><input type="file" id="exampleCustomFileBrowser" name="customFile" class="custom-file-input"><label class="custom-file-label" for="exampleCustomFileBrowser">Yo, pick a file!</label></div>
+                        </div>
+                        <p>Ajouter un tableau en v-for qui indiquera une liste de plans de la salle avec bouton pour modifier le titre ou supprimer la ligne</p>
                     </div>
                 </VuePerfectScrollbar>
             </div>

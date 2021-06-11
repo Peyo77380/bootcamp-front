@@ -35,7 +35,7 @@
                                                         <h3>{{ roomDetail.name }}</h3>
                                                     </div>
                                                     <div>
-                                                        <v-img :src="require('@/assets/images/salles/' + roomDetail.plan + '.jpeg')"></v-img>
+                                                        <v-img :src="require('@/assets/images/salles/' + roomDetail.roomListPhoto + '.jpeg')"></v-img>
                                                     </div>
                                                         
                                                     <div class="scroll-area-xm">
@@ -45,6 +45,19 @@
                                                 </b-tab>
                                                 <b-tab title="Plus...">
                                                     <div align="center">
+
+                                                        <v-tooltip right>
+                                                            <template v-slot:activator="{ on, attrs }">
+                                                            <v-btn
+                                                                color="primary"
+                                                                dark
+                                                                v-bind="attrs"
+                                                                v-on="on"
+                                                            >Right</v-btn>
+                                                            </template>
+                                                            <span>Right tooltip</span>
+                                                        </v-tooltip>
+                                                        
                                                             <b-button :to="{ name: 'RoomDetails', params: { id: roomDetail.id } }" class="mb-2 btn-wide btn-shadow btn btn-info btn-sm">
                                                                 Voir détails salle
                                                             </b-button>
