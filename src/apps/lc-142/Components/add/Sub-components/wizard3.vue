@@ -14,50 +14,38 @@
                                 <div class="table-responsive">
                                     <table class="align-middle mb-5 table table-border bordered table-striped table-hover">
                                         <thead>
-                                            <tr>
-                                                <th class="text-left col-1">Sélection</th>
-                                                <th class="text-left col-9">Titre du service</th>
-                                                <th class="text-left col-2">Actions</th>
-                                            </tr>
+                                        <tr>
+                                            <th class="text-left col-1">Sélection</th>
+                                            <th class="text-left col-9">Titre du service</th>
+                                            <th class="text-left col-2">Actions</th>
+                                        </tr>
                                         </thead>
                                         <tbody>
-                                            <tr v-for="serviceDetail in serviceDetailsData" :key="serviceDetail.id">
-                                                <td>
-                                                    <b-form-group id="input-group-9" v-slot="{ ariaDescribedby }" label="" class="m-2" label-for="checkboxes-9">
-                                                        <b-form-checkbox-group
-                                                        v-model="form.selectedService"
-                                                        id="checkboxes-9"
-                                                        :aria-describedby="ariaDescribedby"
-                                                        >
-                                                        <b-form-checkbox value="selected"></b-form-checkbox>
-                                                        </b-form-checkbox-group>
-                                                    </b-form-group>
-                                                </td>
-                                                <td class="text-left">{{ serviceDetail.title }}</td>
-                                                <td class="text-center">
-                                                    <div class="row">
-                                                        <b-button v-b-modal.modal-view class="mr-1 ml-2" variant="white">
-                                                            <i class="pe-7s-look icon-gradient bg-malibu-beach"></i>
-                                                        </b-button>
-                                                        
-                                                        <b-modal id="modal-view" :title=serviceDetail.title>
-                                                            <p class="my-4">
-                                                                {{ serviceDetail.description }}
-                                                            </p>
-                                                        </b-modal>
-                                                        
-                                                        <b-button v-b-modal.modal-photo class="mr-1 ml-2" variant="white">
-                                                            <i class="pe-7s-photo icon-gradient bg-sunny-morning"></i>
-                                                        </b-button>
-                                                        
-                                                        <b-modal id="modal-photo" :title=serviceDetail.title>
-                                                            <p class="my-4">
-                                                                <v-img :src="require('@/assets/images/services/' + serviceDetail.photo + '.jpeg')"></v-img>
-                                                            </p>
-                                                        </b-modal>
-                                                    </div>
-                                                </td>
-                                            </tr>
+                                        <tr v-for="serviceDetail in serviceDetailsData" :key="serviceDetail.id">
+                                            <td>
+                                               
+                                                <b-form-checkbox 
+                                                v-model="serviceDetail.checked"
+                                                value="1"></b-form-checkbox>
+                                              
+                                            </td>
+                                            <td class="text-left">{{ serviceDetail.title }}</td>
+                                            <td class="text-center">
+                                                <div class="row">
+                                                    <b-button @click="openViewModale(serviceDetail)" class="mr-1 ml-2" variant="white">
+                                                        <i class="pe-7s-look icon-gradient bg-malibu-beach"></i>
+                                                    </b-button>
+                                                    
+                                                   
+                                                    
+                                                    <b-button @click="openPhotoModale(serviceDetail)" class="mr-1 ml-2" variant="white">
+                                                        <i class="pe-7s-photo icon-gradient bg-sunny-morning"></i>
+                                                    </b-button>
+                                                    
+                                                    
+                                                </div>
+                                            </td>
+                                        </tr>
                                         </tbody>
                                     </table>
                                 </div>
@@ -67,10 +55,24 @@
                             <b-button class="m-1 col-2" type="submit" variant="primary">Suivant</b-button>
                         </b-form>
                     </div>
+                    
                 </VuePerfectScrollbar>
             </div>
         </div>
+         <b-modal v-model="viewModal" :title=modaleInfo.title>
+            <p class="my-4">
+                {{ modaleInfo.description }}
+            </p>
+        </b-modal>
+
+        <b-modal  v-model="photoModal" :title=modaleInfo.title>
+            <p class="my-4">
+                <v-img :src="require('@/assets/images/services/' + modaleInfo.photo + '.jpeg')"></v-img>
+            </p>
+        </b-modal>
     </b-tab>
+
+
 </template>
 
 <script>
@@ -92,6 +94,13 @@ export default {
             
         },
         serviceDetailsData: serviceDetailsData,
+        viewModal: false,
+        photoModal: false,
+        modaleInfo: {
+            title: '',
+            description: '',
+            photo: 'coworking'
+        },
         show: true
     }),
 
@@ -110,6 +119,16 @@ export default {
             this.$nextTick(() => {
                 this.show = true
             })
+        },
+        openViewModale(itemData) {
+            this.modaleInfo.title = itemData.title
+            this.modaleInfo.description = itemData.description
+            this.viewModal = true;
+        },
+        openPhotoModale(itemData) {
+            this.modaleInfo.title = itemData.title
+            this.modaleInfo.photo = itemData.photo
+            this.photoModal = true;
         }
     }
 };

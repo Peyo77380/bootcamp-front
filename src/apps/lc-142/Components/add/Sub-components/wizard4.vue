@@ -12,7 +12,7 @@
                                 <div class="position-relative form-group"><label for="exampleCustomFileBrowser" class="">File Browser with Custom Label</label>
                                     <div class="custom-file">
                                         <input type="file" id="exampleCustomFileBrowser" name="customFile" class="custom-file-input">
-                                        <label class="custom-file-label" for="exampleCustomFileBrowser">Veuillez sélectionner une photo</label>
+                                        <label class="custom-file-label text-left" for="exampleCustomFileBrowser">Veuillez sélectionner une photo</label>
                                     </div>
                                 </div>
 
@@ -33,12 +33,10 @@
                                                 <td class="text-center border">url photo</td>
                                                 <td class="text-center border">voir / supprimer</td>
                                             </tr>
-                                            
                                         </tbody>
                                     </table>
                                 </div>
                             </div>
-                        
                         </div>
                     </div>
                 </VuePerfectScrollbar>
