@@ -23,11 +23,9 @@
                                         <tbody>
                                         <tr v-for="serviceDetail in serviceDetailsData" :key="serviceDetail.id">
                                             <td>
-                                               
                                                 <b-form-checkbox 
                                                 v-model="serviceDetail.checked"
                                                 value="1"></b-form-checkbox>
-                                              
                                             </td>
                                             <td class="text-left">{{ serviceDetail.title }}</td>
                                             <td class="text-center">
@@ -51,11 +49,10 @@
                             <b-button class="m-1 col-2" type="submit" variant="primary">Suivant</b-button>
                         </b-form>
                     </div>
-                    
                 </VuePerfectScrollbar>
             </div>
         </div>
-        
+
         <!-- Modale -->
          <b-modal v-model="viewModal" :title=modaleInfo.title>
             <p class="my-4">
@@ -86,7 +83,7 @@ export default {
             dots: true
         },
         form: {
-            selectedService: [],
+            checked: [],
             
         },
         serviceDetailsData: serviceDetailsData,
@@ -108,7 +105,7 @@ export default {
         onReset(event) {
             event.preventDefault()
             // Reset our form values
-            this.form.selectedService = []
+            this.form.checked = []
             
             // Trick to reset/clear native browser form validation state
             this.show = false
