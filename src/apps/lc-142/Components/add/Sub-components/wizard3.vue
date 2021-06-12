@@ -36,13 +36,9 @@
                                                         <i class="pe-7s-look icon-gradient bg-malibu-beach"></i>
                                                     </b-button>
                                                     
-                                                   
-                                                    
                                                     <b-button @click="openPhotoModale(serviceDetail)" class="mr-1 ml-2" variant="white">
                                                         <i class="pe-7s-photo icon-gradient bg-sunny-morning"></i>
                                                     </b-button>
-                                                    
-                                                    
                                                 </div>
                                             </td>
                                         </tr>
@@ -59,6 +55,8 @@
                 </VuePerfectScrollbar>
             </div>
         </div>
+        
+        <!-- Modale -->
          <b-modal v-model="viewModal" :title=modaleInfo.title>
             <p class="my-4">
                 {{ modaleInfo.description }}
@@ -71,8 +69,6 @@
             </p>
         </b-modal>
     </b-tab>
-
-
 </template>
 
 <script>
