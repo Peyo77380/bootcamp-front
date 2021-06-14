@@ -33,7 +33,7 @@
                                     width="40px"
                                     height="40px"
                                     class="rounded-circle"
-                                    
+                                    :src="require(`@/assets/images/${user.Photo}`)"
                                     alt=""
                                 />
                             </td>
@@ -131,7 +131,7 @@
             </div>
         </div>
         <ModalForm :updateUser="updateUser" /> 
-        <!-- #TODO : tester <v-img :src="require('@/assets/images/salles/' + roomDetail.plan + '.jpeg')"></v-img>!-->
+        <!-- #TODO : mettre en place système de tri !-->
     </div>
 </template>
 <script>
@@ -175,7 +175,7 @@ export default {
             users: [
                 {
                     ID: 1,
-                    Photo: "../../../../../public/images/avatars/1.jpg",
+                    Photo: "avatars/1.jpg",
                     Nom: "Marvin Gaye",
                     Societe: "Motown",
                     Statut: "Société",
@@ -187,7 +187,7 @@ export default {
                 },
                 {
                     ID: 2,
-                    Photo: "../../../../assets/images/avatars/2.jpg",
+                    Photo: "avatars/2.jpg",
                     Nom: "Laurent Sauzet",
                     Societe: "Microsoft",
                     Statut: "Salarié",
@@ -199,7 +199,7 @@ export default {
                 },
                 {
                     ID: 3,
-                    Photo: "../../../../assets/images/avatars/3.jpg",
+                    Photo: "avatars/3.jpg",
                     Nom: "Curtis Mayfield",
                     Societe: "Hatchworks",
                     Statut: "Salarié",
@@ -211,7 +211,7 @@ export default {
                 },
                 {
                     ID: 4,
-                    Photo: "../../../../assets/images/avatars/4.jpg",
+                    Photo: "avatars/4.jpg",
                     Nom: "Roberta Flack",
                     Societe: "Riddle Electronics",
                     Statut: "Indépendant",
@@ -223,7 +223,7 @@ export default {
                 },
                 {
                     ID: 5,
-                    Photo: "../../../../assets/images/avatars/5.jpg",
+                    Photo: "avatars/5.jpg",
                     Nom: "Nancy Sinatra",
                     Societe: "Pixelcloud",
                     Statut: "Société",
@@ -249,7 +249,7 @@ export default {
         },
         
     },
-    // TODO: Faire le système de tri 
+    
     
 };
 

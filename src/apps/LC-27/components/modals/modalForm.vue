@@ -1,3 +1,5 @@
+const newLocal=this.beforeUpdate=null;
+const newLocal=this.beforeUpdate=this.updateUser;
 <template>
     <b-modal id="modal-scoped" :hide-backdrop="true" content-class="shadow" :no-close-on-backdrop="true">
         <template #modal-title>
@@ -97,14 +99,12 @@ export default {
             return this.optionsChoices[1];
         },
         
-         /*user() {
+         user() {
             if (this.updateUser) {
-                this.beforeUpdate = this.updateUser
                 return this.updateUser
                 
             }
 
-            this.beforeUpdate = null
             return {
                 ID: null,
                 Photo: "",
@@ -115,7 +115,7 @@ export default {
                 Credits: "",
                 Temps: ""
             }
-        }*/
+        }
     },
    
     
