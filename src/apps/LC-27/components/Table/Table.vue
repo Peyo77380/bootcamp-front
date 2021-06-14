@@ -132,8 +132,6 @@
         </div>
         <ModalForm :updateUser="updateUser" /> 
         <!-- #TODO : tester <v-img :src="require('@/assets/images/salles/' + roomDetail.plan + '.jpeg')"></v-img>!-->
-        <!-- #TODO : Ajouter bouton Rechercher à droite de la barre de filtre!-->
-        <!-- #TODO : A gauche de la barre de filtre, ajouter bouton Membres/Sociétés!-->
     </div>
 </template>
 <script>

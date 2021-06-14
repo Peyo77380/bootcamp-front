@@ -97,7 +97,7 @@ export default {
             return this.optionsChoices[1];
         },
         
-         user() {
+         /*user() {
             if (this.updateUser) {
                 this.beforeUpdate = this.updateUser
                 return this.updateUser
@@ -115,7 +115,7 @@ export default {
                 Credits: "",
                 Temps: ""
             }
-        }
+        }*/
     },
    
     
@@ -125,10 +125,6 @@ export default {
         },
         modifUpdate() {
             this.$sweetNotif("Modifications enregistrées !");
-        },
-        cancel() {
-           /* this.updateUser = user,*/
-           /* this.$bvModal.hide('modal-scoped')*/
         }
     }
 };
