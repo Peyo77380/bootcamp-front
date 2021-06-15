@@ -45,14 +45,13 @@
 
                     <b-form-group
                         id="input-group-4"
-                        label="* Téléphone:"
+                        label="Téléphone:"
                         label-for="input-4"
                     >
                         <b-form-input
                             id="input-4"
                             v-model="form.telephone"
                             placeholder="Entrez le numero de téléphone"
-                            required
                         ></b-form-input>
                     </b-form-group>
                     <p>* champs obligatoire</p>
@@ -93,7 +92,7 @@ export default {
     },
     methods: {
         onSubmit() {
-            this.$sweetNotif("Enregistré avec suces");
+            this.$sweetNotif("Enregistré avec succès");
             // event.preventDefault();
             // alert(JSON.stringify(this.form));
         },
