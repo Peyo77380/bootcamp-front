@@ -6,11 +6,12 @@
           <span class="headline">Modification - {{ items.key }}</span>
         </v-card-title>
         <v-card-text>
-          <b-form>
+          <b-form > 
             <b-form-group
               id="input-group-1"
               label="Activité:"
               label-for="input-1"
+              
             >
               <b-form-input
                 id="input-1"
