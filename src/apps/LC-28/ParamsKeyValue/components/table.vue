@@ -12,7 +12,8 @@
                         </div>
                         <div class="widget-content-right">
                              <v-switch
-                             color="info"
+                             color="primary"
+                             
                             v-model="selectedCategory"
                             :value='category.label'
                             ></v-switch>
@@ -54,20 +55,7 @@
                         
                         <td class="text-center">
                             <div role="group" class="btn-group-sm">
-                                <b-button
-                                        class="mb-2 mr-2  btn-pill btn-shadow"
-                                        variant="warning"
-                                        id="popover1"
-                                        @click="showDetails(item)"
-                                    >
-                                        <i class="lnr-magnifier"></i>
-                                    </b-button>
-                                    <b-popover
-                                    :target="'popover1'"
-                                    placement="bottomleft"
-                                    
-                                    triggers="hover focus"
-                                ></b-popover>
+                              
                                 <b-button
                                         class="mb-2 mr-2  btn-pill btn-shadow"
                                         variant="primary"
@@ -98,7 +86,7 @@
             </div>
 </div>
 <modal @saveModification="modificationEmail" :items="keyValueEdit" @close2="closeModalEdit" :dialog2="dialog2"></modal>
-     <modal-detail :items="keyValueDetails" @close="closeModal" :dialog="dialog"></modal-detail>
+     
      
 </div>
 
@@ -106,7 +94,7 @@
 
 <script>
 import modal from "./modal.vue"
-import modalDetail from "./modal_detail"
+
 
 
 
@@ -115,7 +103,7 @@ import modalDetail from "./modal_detail"
     export default{
         components:{
             modal,
-            modalDetail,
+            
             
             
                 
@@ -154,9 +142,9 @@ import modalDetail from "./modal_detail"
         { category: 'Salles de réunion', key: 'MEETINGROOM_BOOKING_HOUR_START', value: '08:00:00', info:'Heure minimum de début de location des salles de réunion', classcategory:'bg-danger', initial:'SR' },
         { category: 'Membres', key: 'FREETIME', value: '4', info:"Nombre d'heures de location de salle", classcategory:'bg-warning', initial:'M' }
       ],
-         dialog: false,
+        
          dialog2: false,
-         keyValueDetails: {},
+        
          keyValueEdit: {},
          selectedCategory: "Toutes les catégories",
          perPage: 3,
@@ -191,17 +179,12 @@ import modalDetail from "./modal_detail"
       closeModalEdit(){
           this.dialog2 = false
       },
-      closeModal() {
-        this.dialog = false;
-      },
+     
       showEdit(item){
         this.dialog2 = true;
         this.keyValueEdit = item;
       },
-      showDetails(item) {
-        this.dialog = true;
-        this.keyValueDetails = item;
-        },
+      
         modificationEmail() {
             //TODO point API modification email de services
             

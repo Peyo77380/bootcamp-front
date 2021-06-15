@@ -7,7 +7,86 @@
             primary-title>
         Modification - {{items.key}}
         </v-card-title>
+        <div class="card-header">
+                  <span slot="button-content"
+                        ><i
+                          class="
+                            header-icon
+                            lnr-earth
+                            mr-3
+                            text-muted
+                            opacity-6
+                          "
+                        ></i
+                      ></span>
+                  <div class="btn-actions-pane-right actions-icon-btn">
+                    <b-dropdown
+                      toggle-class="btn-icon"
+                      variant="link"
+                      right
+                    >
+                      
+                      <div>
+                        <button
+                          
+                          type="button"
+                          tabindex="0"
+                          class="dropdown-item"
+                        >
+                          <country-flag
+                            country="FR"
+                            size="small"
+                            class="mr-1"
+                          /><span>Français</span>
+                        </button>
+                        <button
+                        
+                          type="button"
+                          tabindex="0"
+                          class="dropdown-item"
+                        >
+                          <country-flag
+                            country="GB"
+                            size="small"
+                            class="mr-1"
+                          /><span>Anglais</span>
+                        </button>
+                        <button
+                          type="button"
+                          tabindex="0"
+                          class="dropdown-item"
+                        >
+                          <country-flag
+                            country="DE"
+                            size="small"
+                            class="mr-1"
+                          /><span>Allemand</span>
+                        </button>
+                      </div>
+                    </b-dropdown>
+                  </div>
+                </div>
         <v-card-text>
+            <v-form>
+    <v-container>
+      <v-layout row wrap>
+        <v-flex xs12 sm6>
+          <v-text-field
+            :value=items.category
+            label="Catégorie"
+            readonly
+          ></v-text-field>
+        </v-flex>
+        <v-flex xs12 sm6>
+          <v-text-field
+            :value=items.key
+            label="Clé"
+            readonly
+          ></v-text-field>
+        </v-flex>
+      </v-layout>
+    </v-container>
+            </v-form>
       <b-form >
       <b-form-group
         id="input-group-1"
@@ -43,8 +122,12 @@
 </template>
 
 <script>
+import CountryFlag from 'vue-country-flag'
   export default {
     name: "edit-keyvalue",
+    components:{
+        CountryFlag,
+    },
     props:{
         dialog2:{
             type:Boolean
