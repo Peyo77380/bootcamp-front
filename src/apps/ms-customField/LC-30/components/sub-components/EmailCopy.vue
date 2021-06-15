@@ -73,7 +73,7 @@
                     </button>
                     <button 
                         type="button" 
-                        class="btn mr-2 mb-2 btn-primary"
+                        class="btn mr-2 mb-2 btn-success"
                         @click="saveEmail"  
                         >
                         Enregistrer

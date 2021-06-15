@@ -45,18 +45,38 @@
                 <v-card-title class="headline">Ajouter adresse Email en copie cachée</v-card-title>
                 <v-card-text>
                     <v-form>
-                        <v-text-field
-                            v-model="createdEmail.value"
-                            :rules="emailRules"
-                            label="Email en copie cachée"
-                            required
-                        ></v-text-field>
+                        <v-flex xs12 sm12 md12>
+                            <div class="col-md-12">
+                                <div class="position-relative form-group">
+                                    <label>Email en copie</label>
+                                    <input name="email"
+                                    label="Email en copie cachée"
+                                    type="email" 
+                                    class="form-control"
+                                    v-model="createdEmail.value"
+                                    required
+                                    >
+                                </div>
+                            </div>
+                        </v-flex>
                     </v-form>  
                 </v-card-text>
                 <v-card-actions>
                 <v-spacer></v-spacer>
-                    <v-btn color="red darken-1" flat @click="closeModalEmail">Annuler</v-btn>
-                    <v-btn color="blue darken-1" @click="saveHiddenEmail" flat >Enregistrer</v-btn>
+                    <button 
+                        type="button" 
+                        class="btn mr-2 mb-2 btn-danger"
+                        @click="closeModalEmail" 
+                        >
+                        Annuler
+                    </button>
+                    <button 
+                        type="button" 
+                        class="btn mr-2 mb-2 btn-success"
+                        @click="saveHiddenEmail"
+                        >
+                        Enregistrer
+                    </button>
                 </v-card-actions>
             </v-card>
         </v-dialog> 
