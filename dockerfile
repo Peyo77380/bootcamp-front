@@ -1,14 +1,16 @@
-FROM node:12.2.0-alpine
+FROM node:lts-alpine
+
+# RUN apt-get update -y && apt-get install -y
 
 WORKDIR /app
 
-COPY package.json /app/
-
 ENV PATH /app/node_modules/.bin:$PATH
 
+COPY package.json /app/
 
-EXPOSE 8080
 RUN npm install
 RUN npm install @vue/cli@3.7.0 -g
+
+
 
 CMD ["npm", "run", "serve"]
