@@ -1,11 +1,9 @@
 <template>
-    <div id="headerContainer">
-        <Breadcrumb /> <br> <!-- Dédicace à Romain, en attendant les finitions !-->
-       <div class="app-page-title">
+    <div class="app-page-title">
         <div class="page-title-wrapper">
             <div class="page-title-heading">
                 <div class="page-title-icon">
-                    <img width="50px" height="50px" :src="require(`@/assets/images/Logo/${image}`)"/>
+                    <i :class="icon"/>
                 </div>
                 <div>
                     {{heading}}
@@ -26,11 +24,10 @@
             </div>
         </div>
     </div>
-    </div>
 </template>
+
 <script>
-import Breadcrumb from './Breadcrumb/breadcrumb.vue'
-import {library} from '@fortawesome/fontawesome-svg-core'
+    import {library} from '@fortawesome/fontawesome-svg-core'
     import {
         faStar,
         faPlus
@@ -42,16 +39,15 @@ import {library} from '@fortawesome/fontawesome-svg-core'
         faPlus,
     );
 
-export default {
-    components: {Breadcrumb, 'font-awesome-icon': FontAwesomeIcon,},
-    
-    data() {
-        return {
-            heading: 'Analytics Dashboard',
-            subheading: 'This is an example dashboard created using build-in elements and components.',
-            image: 'Logo bleue marine.png',
+    export default {
+        components: {
+            'font-awesome-icon': FontAwesomeIcon,
+        },
+        props: {
+            icon: String,
+            heading: String,
+            subheading: String,
 
-        }},
-    
-}
+        }
+    }
 </script>
