@@ -2,7 +2,7 @@
     <div>
         <page-title :heading=heading :icon=icon></page-title>
         <content-table></content-table>
-        <pagination></pagination>
+        <pagination></pagination> <!-- A remplacer plus tard par le futur composent header !-->
         
     </div>
 </template>

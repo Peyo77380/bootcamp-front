@@ -63,7 +63,8 @@
                                         @click="showEdit(item)" 
                                     >
                                         <i class="lnr-pencil"></i>
-                                    </b-button>
+                                    </b-button> <!-- Empecher la fermeture des modales quand on clic en dehors !-->
+                                    <!-- Standardiser taille des boutons !-->
                                     <b-popover
                                     :target="'popover2'"
                                     placement="bottomleft"

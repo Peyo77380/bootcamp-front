@@ -4,7 +4,7 @@
       v-model="page"
       :length="5"
       :total-visible="7"
-    ></v-pagination>
+    ></v-pagination> <!-- Parler de la standardisation à Florian !-->
   </div>
 </template>
 
