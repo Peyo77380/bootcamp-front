@@ -32,7 +32,7 @@
                 variant="danger"
                 class="ml-2"
                 >Fermer</b-button
-              >
+              > <!-- Standardiser les boutons et empecher que la modale se referme quand on clic à l'extérieur !-->
             </div>
           </b-form>
         </v-card-text>

@@ -17,7 +17,7 @@
       </div>
     </div>
 
-    <v-layout row justify-center>
+    <v-layout row justify-center> <!-- Remplacer style vuetify par style bootstrap et standardiser les boutons !-->
       <v-card class="col-8">
         <v-card-text class="col-10 offset-1">
           <h3 class="my-3">Ajouter une Activité</h3>

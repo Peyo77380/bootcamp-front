@@ -5,7 +5,7 @@
       :subheading="subheading"
       :icon="icon"
       :items="items"
-    ></page-title>
+    ></page-title><!-- A remplacer bientot par composant header !-->
 
     <div>
       <div>
@@ -127,7 +127,7 @@
                                 variant="outline-info"
                                 :to="{ name: 'EditList' }"
                                 ><i class="pe-7s-pen btn-icon-wrapper"> </i
-                              ></b-button>
+                              ></b-button> <!-- Standardiser les boutons !-->
                             </td>
                           </tr>
                         </tbody>
