@@ -50,7 +50,7 @@
                             <div class="col-md-12">
                                 <div class="position-relative form-group">
                                     <label>Email en copie</label>
-                                    <input name="email" id="exampleEmail11" 
+                                    <input name="email"
                                     placeholder="" 
                                     type="email" 
                                     class="form-control"
@@ -73,7 +73,7 @@
                     </button>
                     <button 
                         type="button" 
-                        class="btn mr-2 mb-2 btn-primary"
+                        class="btn mr-2 mb-2 btn-success"
                         @click="saveEmail"  
                         >
                         Enregistrer

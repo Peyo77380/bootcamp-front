@@ -79,7 +79,7 @@
                         </td>
                         <td class="text-center text-muted">{{ email.key }}</td>
                         <td class="text-center">{{ email.title }}</td>
-                        <td class="text-center"></td>
+                        <td class="text-center">2 jours</td>
                         <td class="text-center">
                             <div>
                                 <button
