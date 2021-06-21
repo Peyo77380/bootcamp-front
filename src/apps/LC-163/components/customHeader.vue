@@ -8,10 +8,10 @@
                     <img class="page-title-icon" :src="require(`@/assets/images/${image}`)"/>
                 </div>
                 <div>
-                    {{heading}}
+                    <h1>{{heading}}</h1>
                     <div
                         class="page-title-subheading">
-                        {{subheading}}
+                        <p>{{subheading}}</p>
                     </div>
                 </div>
             </div>
