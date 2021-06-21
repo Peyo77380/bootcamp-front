@@ -203,7 +203,7 @@ export default {
     },
     methods: {
         onSubmit() {
-            this.$sweetNotif("Enregistré avec suces");
+            this.$sweetNotif("Enregistré avec succès");
             // event.preventDefault();
             // alert(JSON.stringify(this.form));
         },

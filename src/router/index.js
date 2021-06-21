@@ -9,12 +9,6 @@ export default new Router({
     },
     routes: [
         // Dashboards
-
-        {
-            path: "/",
-            name: "analytics",
-            component: () => import("@/apps/dash-exemple/Analytics")
-        },
         {
             path: "/LC-31-RMC",
             name: "LC-31-RMC",
