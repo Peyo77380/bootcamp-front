@@ -86,8 +86,10 @@
         </v-flex>
       </v-layout>
     </v-container>
+   
             </v-form>
-      <b-form >
+             <v-container>
+      <b-form row wrap>
       <b-form-group
         id="input-group-1"
         label="Valeur :"
@@ -109,11 +111,13 @@
       </b-form-group>
     
         <div class="p-1 text-right btn-group-sm ">
-            <b-button style="margin-right:10px" type="submit" @click="saveModification" variant="success">Valider</b-button>
-            <b-button type="reset" @click="close2" variant="danger">Retour</b-button>
+            <b-button style="margin-right:10px" type="reset" @click="close2" variant="danger">Retour</b-button>
+            <b-button  type="submit" @click="saveModification" variant="success">Valider</b-button>
+            
         </div>
    
     </b-form>
+             </v-container>
     </v-card-text>
     </v-card>
     </v-dialog>
