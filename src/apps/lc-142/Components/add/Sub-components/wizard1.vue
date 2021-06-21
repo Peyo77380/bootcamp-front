@@ -67,7 +67,6 @@
                                 <b-form-group id="input-group-6" v-slot="{ ariaDescribedby }" label="Type de réservation :" class="text-left" label-for="checkboxes-6">
                                     <b-form-checkbox-group
                                     v-model="form.typeBooking"
-                                    id="checkboxes-6"
                                     :aria-describedby="ariaDescribedby"
                                     >
                                     <b-form-checkbox value="0">Membre</b-form-checkbox>
@@ -78,7 +77,6 @@
                                 <b-form-group id="input-group-7" v-slot="{ ariaDescribedby }" label="Statut :" class="text-left" label-for="radios-7">
                                     <b-form-radio-group
                                     v-model="form.bookable"
-                                    id="radio-7"
                                     :aria-describedby="ariaDescribedby"
                                     >
                                     <b-form-radio value="0">Réservable</b-form-radio>

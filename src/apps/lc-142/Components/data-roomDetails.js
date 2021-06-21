@@ -72,6 +72,54 @@ export const roomDetailsData = [
     },
 
     {
+        "id": 3,
+        "name": "Salle Grande jaune",
+        "floor": "1er étage",
+        "roomListPhoto": "grande-jaune",
+        "description": "description de la salle 1",
+        "building_id": "1",
+        "color": "#fff",
+        "bookable": "1",
+        "typeBooking": "membres",
+        "surface": "500",
+        "minRentalDuration": "2 heures",
+        "maxCapacity": "200",
+
+        "openingHours" : {
+            "day": "0",
+            "start": "8",
+            "end": "20"
+        },
+        
+        "services": [
+            {
+                "service_id":1,
+                "description": "description du service 1",
+                "photo": "photo principale choisie",
+                "selected": "0"
+            },
+            {
+                "service_id":2,
+                "description": "description du service 2",
+                "photo": "photo principale choisie",
+                "selected": "1"            
+            },
+            {
+                "service_id":3,
+                "description": "description du service 3",
+                "photo": "photo principale choisie",
+                "selected": "0"
+            },
+            {
+                "service_id":4,
+                "description": "description du service 4",
+                "photo": "photo principale choisie",
+                "selected": "1"            
+            }
+        ]
+    },
+
+    {
         "id": 4,
         "name": "Salle Grande verte",
         "floor": "1er étage",

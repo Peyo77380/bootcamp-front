@@ -24,7 +24,7 @@
                                         <tr v-for="serviceDetail in serviceDetailsData" :key="serviceDetail.id">
                                             <td>
                                                 <b-form-checkbox 
-                                                v-model="serviceDetail.checked"
+                                                v-model="form.checked"
                                                 value="1"></b-form-checkbox>
                                             </td>
                                             <td class="text-left">{{ serviceDetail.title }}</td>
@@ -83,8 +83,7 @@ export default {
             dots: true
         },
         form: {
-            checked: [],
-            
+            checked: []
         },
         serviceDetailsData: serviceDetailsData,
         viewModal: false,
@@ -96,7 +95,6 @@ export default {
         },
         show: true
     }),
-
     methods: {
         onSubmit(event) {
             event.preventDefault()
