@@ -24,7 +24,7 @@
                                             </div>
                                             <div class="nav-justified">
                                                 <!-- Contenu -->
-                                                <b-tabs class="card-header-tab-animation" card>
+                                                <b-tabs v-model="tabIndex" class="card-header-tab-animation" card>
                                                     <Wizard1/>
                                                     <Wizard2/>
                                                     <Wizard3/>
@@ -32,6 +32,13 @@
                                                     <Wizard5/>
                                                     <Wizard6/>
                                                 </b-tabs>
+                                            </div>
+                                            <!-- Control buttons -->
+                                            <div class="text-center">
+                                                <b-button-group>
+                                                    <b-button @click="tabIndex--" class="m-2 " variant="primary">Previous</b-button>
+                                                    <b-button @click="tabIndex++" class="m-2 " variant="primary">Next</b-button>
+                                                </b-button-group>
                                             </div>
                                         </b-card>
                                     </div>
@@ -58,7 +65,6 @@ import {
     faTh
 } from "@fortawesome/free-solid-svg-icons";
 
-import { roomDetailsData, Floors, Bookables, Days, MinRentalDurations } from "@/apps/lc-142/Components/data-roomDetails";
 import Wizard1 from './Sub-components/wizard1.vue';
 import Wizard2 from './Sub-components/wizard2.vue';
 import Wizard3 from './Sub-components/wizard3.vue';
@@ -80,7 +86,6 @@ export default {
         Wizard6
     },
     data: () => ({
-        roomDetailsData: roomDetailsData,
         heading: "Ajouter une salle dans l'espace de coworking",
         icon: "pe-7s-note2 icon-gradient bg-tempting-azure",
 
@@ -88,45 +93,8 @@ export default {
             slidesToShow: 1,
             dots: true
         },
-        form: {
-          name: '',
-          surface: '',
-          floor: '',
-          maxCapacity: '',
-          minRentalDuration: '',
-          day: [],
-          typeBooking: '',
-          bookable: []
-        },
-        floors: Floors,
-        bookable: Bookables,
-        days: Days,
-        minRentalDuration: MinRentalDurations,
-        show: true
-    }),
-
-    methods: {
-        onSubmit(event) {
-        event.preventDefault()
-        alert(JSON.stringify(this.form))
-      },
-      onReset(event) {
-        event.preventDefault()
-            // Reset our form values
-            this.form.name = ''
-            this.form.surface = ''
-            this.form.floor = ''
-            this.form.maxCapacity = ''
-            this.form.minRentalDuration = ''
-            this.form.day = []
-            this.form.typeBooking = ''
-            this.form.bookable = []
-            // Trick to reset/clear native browser form validation state
-            this.show = false
-            this.$nextTick(() => {
-            this.show = true
-        })
-      }
-    }
+        show: true,
+        tabIndex: 1
+    })
 };
 </script>

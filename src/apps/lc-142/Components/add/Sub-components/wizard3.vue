@@ -6,8 +6,7 @@
                 <VuePerfectScrollbar class="scrollbar-container" v-once>
                     <div class="mt-3 mb-3">
                         <!-- Contenu 3e wizard-->
-                        <b-form @submit="onSubmit" @reset="onReset" v-if="show">
-
+                        <b-form v-if="show">
                         <div class="row">
                             <div class="col-1"></div>
                                 <div class="col-10">
@@ -24,7 +23,7 @@
                                         <tr v-for="serviceDetail in serviceDetailsData" :key="serviceDetail.id">
                                             <td>
                                                 <b-form-checkbox 
-                                                v-model="form.checked"
+                                                v-model="room.checked"
                                                 value="1"></b-form-checkbox>
                                             </td>
                                             <td class="text-left">{{ serviceDetail.title }}</td>
@@ -44,9 +43,7 @@
                                     </table>
                                 </div>
                             </div>
-                        </div> 
-                            <b-button class="m-1 col-2" type="reset" variant="danger">Reset</b-button>
-                            <b-button class="m-1 col-2" type="submit" variant="primary">Suivant</b-button>
+                        </div>
                         </b-form>
                     </div>
                 </VuePerfectScrollbar>
@@ -82,7 +79,7 @@ export default {
             slidesToShow: 1,
             dots: true
         },
-        form: {
+        room: {
             checked: []
         },
         serviceDetailsData: serviceDetailsData,
@@ -96,21 +93,6 @@ export default {
         show: true
     }),
     methods: {
-        onSubmit(event) {
-            event.preventDefault()
-            alert(JSON.stringify(this.form))
-        },
-        onReset(event) {
-            event.preventDefault()
-            // Reset our form values
-            this.form.checked = []
-            
-            // Trick to reset/clear native browser form validation state
-            this.show = false
-            this.$nextTick(() => {
-                this.show = true
-            })
-        },
         openViewModale(itemData) {
             this.modaleInfo.title = itemData.title
             this.modaleInfo.description = itemData.description
