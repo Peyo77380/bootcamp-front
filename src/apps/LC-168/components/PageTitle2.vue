@@ -17,7 +17,7 @@
                
                 <button type="button" class="btn-shadow d-inline-flex align-items-center btn btn-success">
                     <font-awesome-icon class="mr-2" icon="plus"/>
-                    Ajouter un nouvel attribu
+                    Ajouter un nouvel attribut
                 </button>
             </div>
         </div>
