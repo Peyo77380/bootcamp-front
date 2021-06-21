@@ -12,15 +12,11 @@
                             <div class="col-1"></div>
                             <div class="col-10">
                                 <div class="row">
-                                    
                                     <div class="position-relative form-group col-10"><label for="customFileBrowser" class=""></label>
                                         <div class="custom-file">
-                                            <input type="file" class="custom-file-input">
+                                            <input type="file" @change="onFileSelected" class="custom-file-input">
                                             <label class="custom-file-label text-left" for="customFileBrowser"></label>
                                         </div>
-                                    </div>
-                                    <div class="col-2">
-                                        <b-button class="" type="text" variant="primary" @click="addPhoto()">ajouter</b-button>
                                     </div>
                                 </div>
 
@@ -90,6 +86,7 @@ export default {
             description: '',
             photo: 'coworking'
         },
+        selectedFile: null
     }),
 
     methods: {
@@ -103,8 +100,12 @@ export default {
             // remplacer le roomdetails par la liste des photos de la salle
             this.roomDetailsData = this.roomDetailsData.filter(roomDetail => roomDetail.roomListPhoto !== roomListPhoto)
         },
-        addPhoto () {
-            console.log("submit test photo");
+        //addPhoto () {
+        //    console.log("submit test photo");
+        //},
+        onFileSelected (event) {
+            this.selectedFile = event.target.files[0];
+            console.log(this.selectedFile);
         }
     }
 };

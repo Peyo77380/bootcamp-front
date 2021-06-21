@@ -69,29 +69,39 @@
                 </VuePerfectScrollbar>
             </div>
         </div>
-          <p>Ajout de l'API CKEDITOR</p>
+          <b-card class="main-card mb-3">
+            <ckeditor :editor="editor2" v-model="room.notes" :config="editorConfig"></ckeditor>
+        </b-card>
     </b-tab>
 </template>
 
 <script>
 import { roomDetailsData } from "@/apps/lc-142/Components/data-roomDetails";
 import VuePerfectScrollbar from "vue-perfect-scrollbar";
+import CKEditor from '@ckeditor/ckeditor5-vue';
+import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
 
 export default {
     name: 'Wizard5',
     components: {
         VuePerfectScrollbar,
+        ckeditor: CKEditor.component
     },
     data: () => ({
         slickOptions2: {
             slidesToShow: 1,
             dots: true
         },
-        form: {
-            name: ''
+        room: {
+            notes: ''
         },
         roomDetailsData: roomDetailsData,
-        show: true
+        show: true,
+        editor2: ClassicEditor,
+        editorData: '<p>Content of the editor.</p>',
+        editorConfig: {
+        // The configuration of the editor.
+        }
     }),
 
     methods: {
