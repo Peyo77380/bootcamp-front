@@ -1,7 +1,7 @@
 <template>
     <div>
         <div>
-            <breadcrumb1></breadcrumb1>
+            <breadcrumb1></breadcrumb1> <!-- Sera bientot remplacé par un composant header global !-->
         </div>
         <div>
             <h3>

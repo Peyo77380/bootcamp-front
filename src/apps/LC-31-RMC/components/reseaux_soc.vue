@@ -84,7 +84,7 @@
                     variant="success"
                     >Valider</b-button
                 >
-            </div>
+            </div> <!-- Standardiser les boutons !-->
         </b-form>
     </div>
 </template>
