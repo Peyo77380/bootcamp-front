@@ -1,8 +1,7 @@
 <template>
   <div id="headerContainer">
-    <Breadcrumb class="mb-4" />
-    <!-- Dédicace à Romain, en attendant les finitions !-->
-    <!-- Florian est-ce que je garde le br comme un easter egg dans la version finale ? mdr !-->
+    <Breadcrumb /><br>
+    <!-- Dédicace à Romain, validée par Florian pour rester dans la version finale ! !-->
     <div class="app-page-title">
       <div class="page-title-wrapper">
         <div class="page-title-heading">
