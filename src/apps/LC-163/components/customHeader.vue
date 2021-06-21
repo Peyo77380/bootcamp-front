@@ -4,8 +4,8 @@
        <div class="app-page-title">
         <div class="page-title-wrapper">
             <div class="page-title-heading">
-                <div class="page-title-icon">
-                    <img width="50px" height="50px" :src="require(`@/assets/images/Logo/${image}`)"/>
+                <div>
+                    <img class="page-title-icon" :src="require(`@/assets/images/${image}`)"/>
                 </div>
                 <div>
                     {{heading}}
@@ -21,7 +21,7 @@
                 </button>
                 <button type="button" class="btn-shadow d-inline-flex align-items-center btn btn-success">
                     <font-awesome-icon class="mr-2" icon="plus"/>
-                    Create New
+                    Créer
                 </button>
             </div>
         </div>
@@ -47,10 +47,9 @@ export default {
     
     data() {
         return {
-            heading: 'Analytics Dashboard',
-            subheading: 'This is an example dashboard created using build-in elements and components.',
-            image: 'Logo bleue marine.png',
-
+            heading: 'Recherche',
+            subheading: 'Ceci est un exemple de description pour la page de recherche',
+            image: 'Logo/Logo bleue marine.png',
         }},
     
 }
