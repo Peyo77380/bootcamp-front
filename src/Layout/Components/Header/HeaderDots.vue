@@ -1,6 +1,5 @@
 <template>
     <div class="header-dots">
-
         <b-dropdown toggle-class="p-0 mr-2" menu-class="dropdown-menu-xl" variant="link" no-caret right>
             <span slot="button-content">
                 <div class="icon-wrapper icon-wrapper-alt rounded-circle">
