@@ -4,34 +4,36 @@
     <div class="todo-box col-12">
         <ul class="todo-list-wrapper list-group list-group-flush">
             <li class="list-group-item">
-                <v-expansion-panels accordion>
-                    <v-expansion-panel>
-                        <v-expansion-panel-header>
-                            <div class="todo-indicator bg-warning"></div>
-                            <div class="widget-content p-0">
-                                <div class="widget-content-wrapper">
-                                    <div class="widget-content-left">
-                                        <div class="widget-heading"> Architecture07-Architecture dplg
-                                            <div class="badge badge-danger ml-2">En cours</div>
+                <v-expansion-panel>
+                    <v-expansion-panel-content>
+                            <template v-slot:header>
+                                <div class="todo-indicator bg-warning"></div>
+                                <div class="widget-content p-0">
+                                    <div class="widget-content-wrapper">
+                                        <div class="widget-content-left">
+                                            <div class="widget-heading"> Architecture07-Architecture dplg
+                                                <div class="badge badge-danger ml-2">En cours</div>
+                                            </div>
+                                            <div class="widget-subheading"><i>Rappel téléphonique</i></div>
                                         </div>
-                                        <div class="widget-subheading"><i>Rappel téléphonique</i></div>
-                                    </div>
-                                    <div class="widget-content-right">
-                                        <button type="button" class="btn mb-2 mr-2 btn-icon btn-icon-only btn-pill btn-primary">
-                                            <i class="lnr-pencil btn-icon-wrapper"></i>  
-                                        </button>
-                                        <button type="button" class=" btn mb-2 mr-2 btn-icon btn-icon-only btn-pill btn-warning">
-                                            <i class="lnr-trash btn-icon-wrapper"></i>  
-                                        </button>
+                                        <div class="widget-content-right">
+                                            <button type="button" class="btn mb-2 mr-2 btn-icon btn-icon-only btn-pill btn-primary">
+                                                <i class="lnr-pencil btn-icon-wrapper"></i>  
+                                            </button>
+                                            <button type="button" class=" btn mb-2 mr-2 btn-icon btn-icon-only btn-pill btn-warning">
+                                                <i class="lnr-trash btn-icon-wrapper"></i>  
+                                            </button>
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
-                        </v-expansion-panel-header>  
-                        <v-expansion-panel-content>         
-                            <div class="widget-subheading"><i>Rappel téléphonique</i></div>
-                        </v-expansion-panel-content>  
-                    </v-expansion-panel>
-                </v-expansion-panels>
+                            </template>  
+                            <v-card>  
+                                <v-card-text>
+                                    <div class="widget-subheading"><i>Rappel téléphonique</i></div>
+                                </v-card-text>          
+                            </v-card>  
+                    </v-expansion-panel-content>
+                </v-expansion-panel>
             </li>
             <li class="list-group-item">
                 <div class="todo-indicator bg-focus"></div>
