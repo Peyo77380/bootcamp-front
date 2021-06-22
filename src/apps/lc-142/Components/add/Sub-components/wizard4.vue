@@ -12,7 +12,7 @@
                         <div class="col-1"></div>
                         <div class="col-10">
                             <div class="row">
-                                <div class="position-relative form-group col-10"><label for="customFileBrowser" class=""></label>
+                                <div class="position-relative form-group col-10"><label for="customFileBrowser"></label>
                                     <div class="custom-file">
                                         <input type="file" @change="onFileSelected" class="custom-file-input">
                                         <label class="custom-file-label text-left" for="customFileBrowser"></label>

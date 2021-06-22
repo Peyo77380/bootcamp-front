@@ -43,32 +43,7 @@ export const roomDetailsData = [
             "end": "20"
         },
         
-        "services": [
-            {
-                "service_id":1,
-                "description": "description du service 1",
-                "photo": "photo principale choisie",
-                "selected": "0"
-            },
-            {
-                "service_id":2,
-                "description": "description du service 2",
-                "photo": "photo principale choisie",
-                "selected": "1"            
-            },
-            {
-                "service_id":3,
-                "description": "description du service 3",
-                "photo": "photo principale choisie",
-                "selected": "0"
-            },
-            {
-                "service_id":4,
-                "description": "description du service 4",
-                "photo": "photo principale choisie",
-                "selected": "1"            
-            }
-        ]
+        "services": ['service-1', 'service-2', 'service-3', 'service-4']
     },
 
     {
@@ -91,32 +66,7 @@ export const roomDetailsData = [
             "end": "20"
         },
         
-        "services": [
-            {
-                "service_id":1,
-                "description": "description du service 1",
-                "photo": "photo principale choisie",
-                "selected": "0"
-            },
-            {
-                "service_id":2,
-                "description": "description du service 2",
-                "photo": "photo principale choisie",
-                "selected": "1"            
-            },
-            {
-                "service_id":3,
-                "description": "description du service 3",
-                "photo": "photo principale choisie",
-                "selected": "0"
-            },
-            {
-                "service_id":4,
-                "description": "description du service 4",
-                "photo": "photo principale choisie",
-                "selected": "1"            
-            }
-        ]
+        "services": ['service-1', 'service-2', 'service-3', 'service-4']
     },
 
     {
@@ -139,32 +89,7 @@ export const roomDetailsData = [
             "end": "20"
         },
         
-        "services": [
-            {
-                "service_id":1,
-                "description": "description du service 1",
-                "photo": "photo principale choisie",
-                "selected": "0"
-            },
-            {
-                "service_id":2,
-                "description": "description du service 2",
-                "photo": "photo principale choisie",
-                "selected": "1"            
-            },
-            {
-                "service_id":3,
-                "description": "description du service 3",
-                "photo": "photo principale choisie",
-                "selected": "0"
-            },
-            {
-                "service_id":4,
-                "description": "description du service 4",
-                "photo": "photo principale choisie",
-                "selected": "1"            
-            }
-        ]
+        "services": ['service-1', 'service-2', 'service-3', 'service-4']
     },
 
     {
@@ -187,32 +112,7 @@ export const roomDetailsData = [
             "end": "20"
         },
         
-        "services": [
-            {
-                "id":1,
-                "title": "Service 1",
-                "photo": "coworking",
-                "selected": "0"
-            },
-            {
-                "id":2,
-                "title": "Service 2",
-                "photo": "location-bureau",
-                "selected": "1"            
-            },
-            {
-                "id":3,
-                "title": "Service 3",
-                "photo": "salle-reunion",
-                "selected": "0"
-            },
-            {
-                "id":4,
-                "title": "Service 4",
-                "photo": "seminaire",
-                "selected": "1"            
-            }
-        ]
+        "services": ['service-1', 'service-2', 'service-3', 'service-4']
     },
 
     {
@@ -235,32 +135,7 @@ export const roomDetailsData = [
             "end": "20"
         },
         
-        "services": [
-            {
-                "service_id":1,
-                "description": "description du service 1",
-                "photo": "photo principale choisie",
-                "selected": "0"
-            },
-            {
-                "service_id":2,
-                "description": "description du service 2",
-                "photo": "photo principale choisie",
-                "selected": "1"            
-            },
-            {
-                "service_id":3,
-                "description": "description du service 3",
-                "photo": "photo principale choisie",
-                "selected": "0"
-            },
-            {
-                "service_id":4,
-                "description": "description du service 4",
-                "photo": "photo principale choisie",
-                "selected": "1"            
-            }
-        ]
+        "services": ['service-1', 'service-2', 'service-3', 'service-4']
     }
 ];
 

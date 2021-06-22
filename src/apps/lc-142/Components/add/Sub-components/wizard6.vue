@@ -87,7 +87,10 @@ export default {
         room: {
             idPlan: '',
             titlePlan: '',
-            urlPlan: ''
+            urlPlan: '',
+            idPhoto: '',
+            titlePhoto: '',
+            urlPhoto: ''
         },
         roomDetailsData: roomDetailsData,
     }),
