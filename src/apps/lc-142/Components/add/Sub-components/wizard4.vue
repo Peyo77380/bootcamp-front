@@ -1,63 +1,63 @@
 <template>    
-    <!-- Onglet 4 du wizard-->
-    <b-tab title="Photos" class="p-2">
-        <div class="scroll-gradient">
-            <div class="scroll-area-xlg">
-                <VuePerfectScrollbar class="scrollbar-container" v-once>
-                    <div class="mt-3 mb-3">
-                        <!-- Contenu 4e wizard-->
-                        <b-form v-if="show">
+<!-- Onglet 4 du wizard-->
+<b-tab title="Photos" class="p-2">
+    <div class="scroll-gradient">
+        <div class="scroll-area-xlg">
+            <VuePerfectScrollbar class="scrollbar-container" v-once>
+                <div class="mt-3 mb-3">
+                    <!-- Contenu 4e wizard-->
+                    <b-form>
 
-                        <div class="row">
-                            <div class="col-1"></div>
-                            <div class="col-10">
-                                <div class="row">
-                                    <div class="position-relative form-group col-10"><label for="customFileBrowser" class=""></label>
-                                        <div class="custom-file">
-                                            <input type="file" @change="onFileSelected" class="custom-file-input">
-                                            <label class="custom-file-label text-left" for="customFileBrowser"></label>
-                                        </div>
+                    <div class="row">
+                        <div class="col-1"></div>
+                        <div class="col-10">
+                            <div class="row">
+                                <div class="position-relative form-group col-10"><label for="customFileBrowser" class=""></label>
+                                    <div class="custom-file">
+                                        <input type="file" @change="onFileSelected" class="custom-file-input">
+                                        <label class="custom-file-label text-left" for="customFileBrowser"></label>
                                     </div>
                                 </div>
+                            </div>
 
-                                <div class="table-responsive">
-                                    <table class="align-middle mb-5 table table-border table-striped table-hover">
-                                        <thead>
-                                            <tr>
-                                                <th class="text-center col-1">Numéro</th>
-                                                <th class="text-center col-4">Titre de la photo</th>
-                                                <th class="text-center col-6">Url</th>
-                                                <th class="text-center">Actions</th>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                            <tr>
-                                                <td class="text-center border">1</td>
-                                                <td class="text-center border"><input class="col-12" type="text" v-model="room.titlePhoto"></td>
-                                                <td class="text-center border"><input class="col-12" type="text" v-model="room.urlPhoto"></td>
-                                                <td class="text-center border">
-                                                    <div class="row">
-                                                        <b-button @click="openPhotoModale(roomListPhoto)" class="ml-3" variant="white">
-                                                            <i class="pe-7s-look icon-gradient bg-malibu-beach"></i>
-                                                        </b-button>
-                                                        
-                                                        <b-button  class="" @click="remove(roomDetailsData.roomListPhoto)" variant="white">
-                                                            <i class="pe-7s-trash icon-gradient bg-sunny-morning"></i>
-                                                        </b-button>
-                                                    </div>
-                                                </td>
-                                            </tr>
-                                        </tbody>
-                                    </table>
-                                </div>
+                            <div class="table-responsive">
+                                <table class="align-middle mb-5 table table-border table-striped table-hover">
+                                    <thead>
+                                        <tr>
+                                            <th class="text-center col-1">Numéro</th>
+                                            <th class="text-center col-4">Titre de la photo</th> <!-- Recuperer nom bât + salle + index photo -->
+                                            <th class="text-center col-6">Url</th>
+                                            <th class="text-center">Actions</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td class="text-center border"><input class="col-12" type="text" v-model="room.idPhoto"></td>
+                                            <td class="text-center border"><input class="col-12" type="text" v-model="room.titlePhoto"></td>
+                                            <td class="text-center border"><input class="col-12" type="text" v-model="room.urlPhoto"></td>
+                                            <td class="text-center border">
+                                                <div class="row">
+                                                    <b-button @click="openPhotoModale(roomListPhoto)" class="ml-3" variant="white">
+                                                        <i class="pe-7s-look icon-gradient bg-malibu-beach"></i>
+                                                    </b-button>
+                                                    
+                                                    <b-button  class="" @click="remove(roomDetailsData.roomListPhoto)" variant="white">
+                                                        <i class="pe-7s-trash icon-gradient bg-sunny-morning"></i>
+                                                    </b-button>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
                             </div>
                         </div>
-                        </b-form>
                     </div>
-                </VuePerfectScrollbar>
-            </div>
+                    </b-form>
+                </div>
+            </VuePerfectScrollbar>
         </div>
-    </b-tab>
+    </div>
+</b-tab>
 </template>
 
 <script>
@@ -75,15 +75,14 @@ export default {
             dots: true
         },
         room: {
+            idPhoto: '',
             titlePhoto: '',
             urlPhoto: ''
         },
         roomDetailsData: roomDetailsData,
-        show: true,
         photoModal: false,
         modaleInfo: {
-            title: '',
-            description: '',
+            titlePhoto: '',
             photo: 'coworking'
         },
         selectedFile: null
@@ -91,7 +90,7 @@ export default {
 
     methods: {
         openPhotoModale(itemData) {
-            this.modaleInfo.title = itemData.title
+            this.modaleInfo.titlePhoto = itemData.titlePhoto
             this.modaleInfo.photo = itemData.photo
             this.photoModal = true;
         },

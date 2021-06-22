@@ -1,23 +1,21 @@
 <template>    
-    <!-- Onglet 2 du wizard-->
-    <b-tab title="Description" class="p-2">
-        <div class="scroll-gradient">
-            <div class="scroll-area-xlg">
-                <VuePerfectScrollbar class="scrollbar-container" v-once>
-                    <div class="mt-3 mb-3">
-                        <!-- Contenu 2e wizard-->
-                        <b-form v-if="show">
-                            <p>Ajout de l'API CKEDITOR</p>
-                            <br>
-                            <b-card class="main-card mb-3">
-                                <ckeditor :editor="editor2" v-model="room.description" :config="editorConfig"></ckeditor>
-                            </b-card>
-                        </b-form>
-                    </div>
-                </VuePerfectScrollbar>
-            </div>
+<!-- Onglet 2 du wizard-->
+<b-tab title="Description" class="p-2">
+    <div class="scroll-gradient">
+        <div class="scroll-area-xlg">
+            <VuePerfectScrollbar class="scrollbar-container" v-once>
+                <div class="mt-3 mb-3">
+                    <!-- Contenu 2e wizard-->
+                    <b-form>
+                        <b-card class="main-card mb-3">
+                            <ckeditor :editor="editor2" v-model="room.description" :config="editorConfig"></ckeditor>
+                        </b-card>
+                    </b-form>
+                </div>
+            </VuePerfectScrollbar>
         </div>
-    </b-tab>
+    </div>
+</b-tab>
 </template>
 
 <script>
@@ -41,7 +39,6 @@ export default {
             description: '',
         },
         roomDetailsData: roomDetailsData,
-        show: true,
         editor2: ClassicEditor,
         editorData: '<p>Content of the editor.</p>',
         editorConfig: {

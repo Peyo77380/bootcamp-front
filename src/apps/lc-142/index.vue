@@ -116,6 +116,7 @@ export default {
         remove (id) {
       // l'appel vers API de Laravel devra etre fait ici
       this.roomDetailsData = this.roomDetailsData.filter(roomDetail => roomDetail.id !== id)
+      // this.$sweetNotif('Modifications enregistrées !')
         },
     }
 };
