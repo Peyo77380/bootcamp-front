@@ -64,28 +64,27 @@
                             </table>
                         </div>
                     </div>
+                    <h2>PLUGIN CKEDITOR</h2>
+                        <!-- <ckeditor :editor="editor2" v-model="room.notes" :config="editorConfig"></ckeditor> -->
                     </b-form>   
                 </div>
             </VuePerfectScrollbar>
         </div>
     </div>
-        <b-card class="main-card mb-3">
-        <ckeditor :editor="editor2" v-model="room.notes" :config="editorConfig"></ckeditor>
-    </b-card>
 </b-tab>
 </template>
 
 <script>
 import { roomDetailsData } from "@/apps/lc-142/Components/data-roomDetails";
 import VuePerfectScrollbar from "vue-perfect-scrollbar";
-import CKEditor from '@ckeditor/ckeditor5-vue';
-import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
+// import CKEditor from '@ckeditor/ckeditor5-vue';
+// import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
 
 export default {
     name: 'Wizard5',
     components: {
         VuePerfectScrollbar,
-        ckeditor: CKEditor.component
+        // ckeditor: CKEditor.component
     },
     data: () => ({
         slickOptions2: {
@@ -110,11 +109,11 @@ export default {
 
         },
         roomDetailsData: roomDetailsData,
-        editor2: ClassicEditor,
-        editorData: '<p>Content of the editor.</p>',
-        editorConfig: {
+        // editor2: ClassicEditor,
+        // editorData: '<p>Content of the editor.</p>',
+        // editorConfig: {
         // The configuration of the editor.
-        }
+        // }
     }),
 
     methods: {

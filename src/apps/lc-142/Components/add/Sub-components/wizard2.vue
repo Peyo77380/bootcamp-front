@@ -6,10 +6,9 @@
             <VuePerfectScrollbar class="scrollbar-container" v-once>
                 <div class="mt-3 mb-3">
                     <!-- Contenu 2e wizard-->
+                    <h2>PLUGIN CKEDITOR</h2>
                     <b-form>
-                        <b-card class="main-card mb-3">
-                            <ckeditor :editor="editor2" v-model="room.description" :config="editorConfig"></ckeditor>
-                        </b-card>
+                        <!-- <ckeditor :editor="editor2" v-model="room.description" :config="editorConfig"></ckeditor> -->
                     </b-form>
                 </div>
             </VuePerfectScrollbar>
@@ -21,14 +20,14 @@
 <script>
 import { roomDetailsData } from "@/apps/lc-142/Components/data-roomDetails";
 import VuePerfectScrollbar from "vue-perfect-scrollbar";
-import CKEditor from '@ckeditor/ckeditor5-vue';
-import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
+// import CKEditor from '@ckeditor/ckeditor5-vue';
+// import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
 
 export default {
     name: 'Wizard2',
     components: {
         VuePerfectScrollbar,
-        ckeditor: CKEditor.component
+        // ckeditor: CKEditor.component
     },
     data: () => ({
         slickOptions2: {
@@ -39,11 +38,11 @@ export default {
             description: '',
         },
         roomDetailsData: roomDetailsData,
-        editor2: ClassicEditor,
-        editorData: '<p>Content of the editor.</p>',
-        editorConfig: {
+        // editor2: ClassicEditor,
+        // editorData: '<p>Content of the editor.</p>',
+        // editorConfig: {
         // The configuration of the editor.
-      },
+        // },
     }),
 
     methods: {

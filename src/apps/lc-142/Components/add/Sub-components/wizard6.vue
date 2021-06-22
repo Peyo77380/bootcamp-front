@@ -35,9 +35,9 @@
                                     </thead>
                                     <tbody>
                                         <tr>
-                                            <td class="text-center border">1</td>
-                                            <td class="text-center border">titre plan</td>
-                                            <td class="text-center border">url plan</td>
+                                            <td class="text-center border"><input class="col-12" type="text" v-model="room.idPlan"></td>
+                                            <td class="text-center border"><input class="col-12" type="text" v-model="room.titlePlan"></td>
+                                            <td class="text-center border"><input class="col-12" type="text" v-model="room.urlPlan"></td>
                                             <td class="text-center border">
                                                 <div class="row">
                                                     <b-button @click="openPhotoModale(roomListPhoto)" class="ml-3" variant="white">
@@ -85,7 +85,9 @@ export default {
             },
         },
         room: {
-            name: '',
+            idPlan: '',
+            titlePlan: '',
+            urlPlan: ''
         },
         roomDetailsData: roomDetailsData,
     }),
