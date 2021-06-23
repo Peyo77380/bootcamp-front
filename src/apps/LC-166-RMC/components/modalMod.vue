@@ -2,35 +2,35 @@ const newLocal=this.beforeUpdate=null; const
 newLocal=this.beforeUpdate=this.updateUser;
 <template>
     <b-modal
-        id="modal-add"
+        id="modal-modif"
         :hide-backdrop="true"
         content-class="shadow"
         :no-close-on-backdrop="true"
     >
         <template #modal-title>
-            Ajouter un mode de réglement
+            Modification de mode de réglement
         </template>
         <template #default>
             <div>
-                <label for="user">Item</label>
+                <label for="feedback-nom">Nom</label>
                 <b-form-input
-                    v-model="user.Item"
-                    :state="validation"
-                    id="feedback-user"
+                    v-model="user.Nom"
+                    :state="validationNom"
+                    id="feedback-nom"
                 ></b-form-input>
-                <b-form-invalid-feedback :state="validation">
-                    nom doit faire entre 4 et 60 caractères.
+                <b-form-invalid-feedback :state="validationNom">
+                    Votre nom doit faire entre 4 et 60 caractères.
                 </b-form-invalid-feedback>
-                <b-form-valid-feedback :state="validation">
+                <b-form-valid-feedback :state="validationNom">
                     Parfait !
                 </b-form-valid-feedback>
             </div>
             <div>
-                <label for="feedback-society">Code compta</label>
+                <label for="feedback-codecompta">Code compta</label>
                 <b-form-input
                     v-model="user.Codecompta"
                     :state="validationCodecompta"
-                    id="feedback-society"
+                    id="feedback-codecompta"
                 ></b-form-input>
                 <b-form-invalid-feedback :state="validationCodecompta">
                     Le code compta doit faire entre 4 et 10 caractères.
@@ -41,11 +41,11 @@ newLocal=this.beforeUpdate=this.updateUser;
             </div>
 
             <div>
-                <label for="feedback-society">Clé</label>
+                <label for="feedback-cle">Clé</label>
                 <b-form-input
                     v-model="user.Cle"
                     :state="validationCle"
-                    id="feedback-society"
+                    id="feedback-cle"
                 ></b-form-input>
                 <b-form-invalid-feedback :state="validationCle">
                     La clé doit faire entre 3 et 10 caractères.
@@ -80,14 +80,14 @@ export default {
         }
     },
     data: () => ({
-        userItem: "",
+        userNom: "",
         userCodecompta: "",
         userCle: "",
         beforeUpdate: null
     }),
     computed: {
-        validation() {
-            return this.user.Item.length > 4 && this.user.Item.length < 60;
+        validationNom() {
+            return this.user.Nom.length > 4 && this.user.Nom.length < 60;
         },
         validationCodecompta() {
             return (
@@ -96,8 +96,15 @@ export default {
             );
         },
         validationCle() {
-            return this.user.Cle.length > 3 && this.user.Cle.length < 10;
+            return this.user.Cle.length >= 3 && this.user.Cle.length < 10;
         },
+        // test() {
+        //     if (this.user.Activite) {
+        //         return this.optionsChoices[0];
+        //     }
+        //     return this.optionsChoices[1];
+        // },
+
         user() {
             if (this.updateUser) {
                 return this.updateUser;
