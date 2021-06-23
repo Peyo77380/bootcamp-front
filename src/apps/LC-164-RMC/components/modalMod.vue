@@ -8,28 +8,29 @@ newLocal=this.beforeUpdate=this.updateUser;
         :no-close-on-backdrop="true"
     >
         <template #modal-title>
-            Modification de mode de réglement
+            Modification Taux de TVA
         </template>
         <template #default>
             <div>
-                <label for="feedback-society">Taux</label>
+                <label for="feedback-taux" >Taux</label>
                 <b-form-input
                     v-model="user.Taux"
-                    :state="validation"
+                    :state="validationTaux"
+                    id="feedback-taux"
                 ></b-form-input>
-                <b-form-invalid-feedback :state="validation">
-                    Votre nom doit faire entre 4 et 5 caractères.
+                <b-form-invalid-feedback :state="validationTaux">
+                    Le taux doit faire entre 1 et 6 caractères.
                 </b-form-invalid-feedback>
-                <b-form-valid-feedback :state="validation">
+                <b-form-valid-feedback :state="validationTaux">
                     Parfait !
                 </b-form-valid-feedback>
             </div>
             <div>
-                <label for="feedback-society">Code compta</label>
+                <label for="feedback-codecompta">Code compta</label>
                 <b-form-input
                     v-model="user.Codecompta"
                     :state="validationCodecompta"
-                    id="feedback-society"
+                    id="feedback-codecompta"
                 ></b-form-input>
                 <b-form-invalid-feedback :state="validationCodecompta">
                     Le code compta doit faire entre 4 et 10 caractères.
@@ -71,8 +72,8 @@ export default {
         beforeUpdate: null
     }),
     computed: {
-        validation() {
-            return this.user.Taux.length > 4 && this.user.Taux.length < 5;
+        validationTaux() {
+            return this.user.Taux.length > 1 && this.user.Taux.length < 6;
         },
         validationCodecompta() {
             return (
@@ -80,13 +81,6 @@ export default {
                 this.user.Codecompta.length < 10
             );
         },
-        
-        // test() {
-        //     if (this.user.Activite) {
-        //         return this.optionsChoices[0];
-        //     }
-        //     return this.optionsChoices[1];
-        // },
 
         user() {
             if (this.updateUser) {

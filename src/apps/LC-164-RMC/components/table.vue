@@ -7,8 +7,8 @@
                 >
                     <thead>
                         <tr>
-                           <th class="text-center">Taux</th>
-                            <th class="text-center">Code Compta</th>                          
+                            <th class="text-center">Taux</th>
+                            <th class="text-center">Code Compta</th>
                             <th class="text-center">Actions</th>
                         </tr>
                     </thead>
@@ -21,18 +21,14 @@
                                 {{ user.ID }}
                             </td> -->
 
-                           <td class="text-center">
-                                <a href="javascript:void(0)">{{
-                                    user.Taux
-                                }}</a>
+                            <td class="text-center">
+                                <a href="javascript:void(0)">{{ user.Taux }}</a>
                             </td>
                             <td class="text-center">
                                 <a href="javascript:void(0)">{{
                                     user.Codecompta
                                 }}</a>
                             </td>
-
-                            
 
                             <td class="text-center">
                                 <div role="group" class="btn-group-xl">
@@ -71,31 +67,35 @@
                 </table>
                 <div class="d-block p-4 text-center card-footer">
                     <b-pagination align="center" class="mb-0" />
-                </div>
-                <div class="row justify-content-end">
-                    <b-button class="mb-2 mr-2" variant="success" id="show-btn" @click="addForm(user)">ajouter un mode</b-button>
+                    <div class="row justify-content-end">
+                        <b-button
+                            class="mb-2 mr-2"
+                            variant="success"
+                            v-b-modal.modal-add
+                            >ajouter un mode</b-button
+                        >
+                    </div>
                 </div>
             </div>
         </div>
-        <modalForm :updateUser="updateUser" />
-        <modalFormaj :addUser="modaladd" />
+        <modalMod :updateUser="updateUser" />
+        <modalAdd :addUser="modaladd" />
     </div>
 </template>
 
 <script>
-
 import { FontAwesomeIcon } from "@fortawesome/vue-fontawesome";
 import VueNotifications from "vue-notifications";
-import modalForm from "./modalForm.vue";
-import modalFormaj from "./modalFormaj.vue";
+import modalMod from "./modalMod.vue";
+import modalAdd from "./modalAdd.vue";
 
 export default {
     components: {
         // eslint-disable-next-line vue/no-unused-components
         "font-awesome-icon": FontAwesomeIcon,
-        modalForm,
+        modalMod,
         // eslint-disable-next-line vue/no-unused-components
-        modalFormaj,
+        modalAdd
     },
     data() {
         return {
@@ -103,25 +103,24 @@ export default {
             users: [
                 {
                     Taux: "20.00",
-                    Codecompta: "154876",  
+                    Codecompta: "154876"
                 },
                 {
                     Taux: "10.00",
-                    Codecompta: "985647",  
+                    Codecompta: "985647"
                 },
                 {
                     Taux: "5.50",
-                    Codecompta: "1678594",  
+                    Codecompta: "1678594"
                 },
                 {
                     Taux: "00.00",
-                    Codecompta: "7668712",  
+                    Codecompta: "7668712"
                 },
                 {
                     Taux: "20.00",
-                    Codecompta: "154876",  
-                },
-                
+                    Codecompta: "154876"
+                }
             ]
         };
     },
@@ -131,16 +130,9 @@ export default {
         }
     },
     methods: {
-        addForm(user) {
-            this.$bvModal.show("modal-add")
-
-        },
-        
         updateForm(user) {
-          
-            this.updateUser = user, 
-            this.$bvModal.show("modal-scoped");
-        },
-    },
+            (this.updateUser = user), this.$bvModal.show("modal-scoped");
+        }
+    }
 };
 </script>

@@ -8,29 +8,29 @@ newLocal=this.beforeUpdate=this.updateUser;
         :no-close-on-backdrop="true"
     >
         <template #modal-title>
-            Ajouter un mode de réglement
+            Modification Taux de TVA
         </template>
         <template #default>
             <div>
-                <label for="user">Item</label>
+                <label for="feedback-taux" >Taux</label>
                 <b-form-input
-                    v-model="user.Item"
-                    :state="validation"
-                    id="feedback-user"
+                    v-model="user.Taux"
+                    :state="validationTaux"
+                    id="feedback-taux"
                 ></b-form-input>
-                <b-form-invalid-feedback :state="validation">
-                    nom doit faire entre 4 et 60 caractères.
+                <b-form-invalid-feedback :state="validationTaux">
+                    Le taux doit faire entre 1 et 6 caractères.
                 </b-form-invalid-feedback>
-                <b-form-valid-feedback :state="validation">
+                <b-form-valid-feedback :state="validationTaux">
                     Parfait !
                 </b-form-valid-feedback>
             </div>
             <div>
-                <label for="feedback-society">Code compta</label>
+                <label for="feedback-codecompta">Code compta</label>
                 <b-form-input
                     v-model="user.Codecompta"
                     :state="validationCodecompta"
-                    id="feedback-society"
+                    id="feedback-codecompta"
                 ></b-form-input>
                 <b-form-invalid-feedback :state="validationCodecompta">
                     Le code compta doit faire entre 4 et 10 caractères.
@@ -40,20 +40,7 @@ newLocal=this.beforeUpdate=this.updateUser;
                 </b-form-valid-feedback>
             </div>
 
-            <div>
-                <label for="feedback-society">Clé</label>
-                <b-form-input
-                    v-model="user.Cle"
-                    :state="validationCle"
-                    id="feedback-society"
-                ></b-form-input>
-                <b-form-invalid-feedback :state="validationCle">
-                    La clé doit faire entre 3 et 10 caractères.
-                </b-form-invalid-feedback>
-                <b-form-valid-feedback :state="validationCle">
-                    Bien joué !
-                </b-form-valid-feedback>
-            </div>
+            
         </template>
         <template #modal-footer="{ ok, cancel }">
             <b-button size="sm" variant="danger" @click="cancel()">
@@ -80,14 +67,13 @@ export default {
         }
     },
     data: () => ({
-        userItem: "",
+        userTaux: "",
         userCodecompta: "",
-        userCle: "",
         beforeUpdate: null
     }),
     computed: {
-        validation() {
-            return this.user.Item.length > 4 && this.user.Item.length < 60;
+        validationTaux() {
+            return this.user.Taux.length > 1 && this.user.Taux.length < 6;
         },
         validationCodecompta() {
             return (
@@ -95,9 +81,7 @@ export default {
                 this.user.Codecompta.length < 10
             );
         },
-        validationCle() {
-            return this.user.Cle.length > 3 && this.user.Cle.length < 10;
-        },
+
         user() {
             if (this.updateUser) {
                 return this.updateUser;
@@ -105,9 +89,8 @@ export default {
 
             return {
                 ID: null,
-                Nom: "",
+                Taux: "",
                 Codecompta: "",
-                Cle: ""
             };
         }
     },
