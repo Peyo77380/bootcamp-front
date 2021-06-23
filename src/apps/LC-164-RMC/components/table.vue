@@ -29,7 +29,7 @@
                                     user.Codecompta
                                 }}</a>
                             </td>
-
+                        
                             <td class="text-center">
                                 <div role="group" class="btn-group-xl">
                                     <b-button
@@ -51,7 +51,7 @@
                                         class="mb-2 mr-2 btn-icon btn-pill btn-shadow"
                                         variant="danger"
                                         id="popover2"
-                                        @click="showWarnMsg()"
+                                        @click="remove(user.Taux)"
                                         ><i class="pe-7s-trash"> </i
                                     ></b-button>
                                     <b-popover
@@ -85,7 +85,6 @@
 
 <script>
 import { FontAwesomeIcon } from "@fortawesome/vue-fontawesome";
-import VueNotifications from "vue-notifications";
 import modalMod from "./modalMod.vue";
 import modalAdd from "./modalAdd.vue";
 
@@ -124,15 +123,21 @@ export default {
             ]
         };
     },
-    notifications: {
-        showWarnMsg: {
-            type: VueNotifications.types.warn
-        }
-    },
+  
     methods: {
         updateForm(user) {
             (this.updateUser = user), this.$bvModal.show("modal-scoped");
-        }
+        },
+        async remove(activityId) {
+      // sweet alert sur la suppression
+      let title = "Confirmer la suppression de cet item";
+      if (await this.$sweetConfirmation({ title })) {
+        this.lists = this.lists.filter(
+          (activity) => activity.id !== activityId
+        );
+        this.$sweetNotif("Item supprimée");
+      }
+    },
     }
 };
 </script>
