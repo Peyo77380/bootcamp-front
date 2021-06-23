@@ -18,6 +18,11 @@ export default new Router({
             path: "/LC-166-RMC",
             name: "LC-166-RMC",
             component: () => import("@/apps/LC-166-RMC/index.vue")
+        },
+        {
+            path: "/LC-164-RMC",
+            name: "LC-164-RMC",
+            component: () => import("@/apps/LC-164-RMC/index.vue")
         }
     ]
 });
