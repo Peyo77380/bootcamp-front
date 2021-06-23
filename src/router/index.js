@@ -19,7 +19,7 @@ export default new Router({
             name: 'attributs',
             path: '/LC-168',
             component: () => import('../apps/LC-168'),
-        },
+        }
 
     ]
 });
