@@ -9,18 +9,14 @@ export const roomDetailsData = [
         "building_id": "1",
         "color": "#fff",
         "bookable": "1",
-        "typeBooking": "membres",
+        "typeBooking": "1",
         "surface": "500",
         "minRentalDuration": "2 heures",
         "maxCapacity": "200",
 
-        "openingHours" : {
-            "day": "0",
-            "start": "8",
-            "end": "20"
-        },
+        "openingHours" : ['0', '1', '2', '3', '4', '5', '6'],
         
-        "services": ['service-1', 'service-2', 'service-3', 'service-4']
+        "services": ['0', '1', '2', '3']
     },
 
     {
@@ -31,19 +27,15 @@ export const roomDetailsData = [
         "description": "description de la salle 1",
         "building_id": "1",
         "color": "#fff",
-        "bookable": "1",
-        "typeBooking": "membres",
+        "bookable": "0",
+        "typeBooking": "0",
         "surface": "500",
         "minRentalDuration": "2 heures",
         "maxCapacity": "200",
 
-        "openingHours" : {
-            "day": "0",
-            "start": "8",
-            "end": "20"
-        },
+        "openingHours" : ['0', '1', '2', '3', '4', '5', '6'],
         
-        "services": ['service-1', 'service-2', 'service-3', 'service-4']
+        "services": ['0', '1', '2', '3']
     },
 
     {
@@ -55,18 +47,14 @@ export const roomDetailsData = [
         "building_id": "1",
         "color": "#fff",
         "bookable": "1",
-        "typeBooking": "membres",
+        "typeBooking": "1",
         "surface": "500",
         "minRentalDuration": "2 heures",
         "maxCapacity": "200",
 
-        "openingHours" : {
-            "day": "0",
-            "start": "8",
-            "end": "20"
-        },
+        "openingHours" : ['0', '1', '2', '3', '4', '5', '6'],
         
-        "services": ['service-1', 'service-2', 'service-3', 'service-4']
+        "services": ['0', '1', '2', '3']
     },
 
     {
@@ -77,19 +65,15 @@ export const roomDetailsData = [
         "description": "description de la salle 1",
         "building_id": "1",
         "color": "#fff",
-        "bookable": "1",
-        "typeBooking": "membres",
+        "bookable": "0",
+        "typeBooking": "0",
         "surface": "500",
         "minRentalDuration": "2 heures",
         "maxCapacity": "200",
 
-        "openingHours" : {
-            "day": "0",
-            "start": "8",
-            "end": "20"
-        },
+        "openingHours" : ['0', '1', '2', '3', '4', '5', '6'],
         
-        "services": ['service-1', 'service-2', 'service-3', 'service-4']
+        "services": ['0', '1', '2', '3']
     },
 
     {
@@ -101,18 +85,14 @@ export const roomDetailsData = [
         "building_id": "1",
         "color": "#fff",
         "bookable": "1",
-        "typeBooking": "membres",
+        "typeBooking": "1",
         "surface": "500",
         "minRentalDuration": "2 heures",
         "maxCapacity": "200",
 
-        "openingHours" : {
-            "day": "0",
-            "start": "8",
-            "end": "20"
-        },
+        "openingHours" : ['0', '1', '2', '3', '4', '5', '6'],
         
-        "services": ['service-1', 'service-2', 'service-3', 'service-4']
+        "services": ['0', '1', '2', '3']
     },
 
     {
@@ -124,18 +104,14 @@ export const roomDetailsData = [
         "building_id": "1",
         "color": "#fff",
         "bookable": "1",
-        "typeBooking": "membres",
+        "typeBooking": "0",
         "surface": "500",
         "minRentalDuration": "2 heures",
         "maxCapacity": "200",
 
-        "openingHours" : {
-            "day": "0",
-            "start": "8",
-            "end": "20"
-        },
-        
-        "services": ['service-1', 'service-2', 'service-3', 'service-4']
+        "openingHours" : ['0', '1', '2', '3', '4', '5', '6'],
+
+        "services": ['0', '1', '2', '3']
     }
 ];
 
@@ -156,26 +132,9 @@ export const TypeBookings = [
     { 'value': '1', 'text': 'Évènement' }
 ];
 
-export const Days = [
-    { 'value': '1', 'text': 'Lundi' },
-    { 'value': '2', 'text': 'Mardi' },
-    { 'value': '3', 'text': 'Mercredi' },
-    { 'value': '4', 'text': 'Jeudi' },
-    { 'value': '5', 'text': 'Vendredi' },
-    { 'value': '6', 'text': 'Samedi' },
-    { 'value': '0', 'text': 'Dimanche' }
-];
-
 export const MinRentalDurations = [
     { 'value': '0', 'text': '1 heure' },
     { 'value': '1', 'text': '2 heures' },
     { 'value': '2', 'text': '1/2 journée' },
     { 'value': '3', 'text': '1 journée' }
-];
-
-export const ServicesElements = [
-    { 'value': '0', 'text': 'recuperer nom du service 1' },
-    { 'value': '1', 'text': 'recuperer nom du service 2' },
-    { 'value': '2', 'text': 'recuperer nom du service 3' },
-    { 'value': '3', 'text': 'recuperer nom du service 4' }
 ];

@@ -104,19 +104,14 @@ export default {
         buildingsData: buildingsData,
         heading: "Liste des salles de l'espace de coworking",
         icon: "pe-7s-note2 icon-gradient bg-tempting-azure",
-
-        slickOptions2: {
-            slidesToShow: 1,
-            dots: true
-        }
     }),
     computed: {},
 
     methods: {
         remove (id) {
-      // l'appel vers API de Laravel devra etre fait ici
-      this.roomDetailsData = this.roomDetailsData.filter(roomDetail => roomDetail.id !== id)
-      // this.$sweetNotif('Modifications enregistrées !')
+            // l'appel vers API de Laravel devra etre fait ici
+            this.roomDetailsData = this.roomDetailsData.filter(roomDetail => roomDetail.id !== id)
+            // this.$sweetSuccess('Modifications enregistrées !')
         },
     }
 };

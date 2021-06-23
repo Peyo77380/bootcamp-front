@@ -15,6 +15,8 @@
                             <div class="col-md-12">
                                 <div class="row" >
                                     <div class="col-md-12 col-lg-12 col-xl-12">
+                                        <!-- Mettre chaque form/wizard dans un autre form pour -->
+                                        <!-- mettre les boutons de navigation dans le form global -->
                                         <b-card class="mb-5 nav-justified" no-body>
                                             <div class="dropdown-menu-header-inner bg-deep-blue">
                                                 <div class="menu-header-content text-dark mb-1 mt-1">
@@ -38,6 +40,7 @@
                                                 <b-button-group>
                                                     <b-button @click="tabIndex--" class="m-2 " variant="primary">Previous</b-button>
                                                     <b-button @click="tabIndex++" class="m-2 " variant="primary">Next</b-button>
+                                                    <b-button @click="saveRoom" class="m-2" type="submit" variant="success">Sauvegarder</b-button>
                                                 </b-button-group>
                                             </div>
                                         </b-card>
@@ -88,13 +91,21 @@ export default {
     data: () => ({
         heading: "Ajouter une salle dans l'espace de coworking",
         icon: "pe-7s-note2 icon-gradient bg-tempting-azure",
-
-        slickOptions2: {
-            slidesToShow: 1,
-            dots: true
-        },
-        show: true,
         tabIndex: 1
-    })
+    }),
+    methods: {
+        saveRoom () {
+            this.$emit(
+                'onComplete1',
+                'onComplete2',
+                'onComplete3',
+                'onComplete4',
+                'onComplete5',
+                'onComplete6'
+            );
+            // this.$sweetSuccess("houraaaa");
+            console.log("onComplete1.room");
+        }
+    }
 };
 </script>

@@ -6,7 +6,7 @@
             <VuePerfectScrollbar class="scrollbar-container" v-once>
                 <div class="mt-3 mb-3">
                     <!-- Contenu 4e wizard-->
-                    <b-form @onComplete4="onComplete4">
+                    <b-form>
 
                     <div class="row">
                         <div class="col-1"></div>
@@ -105,9 +105,6 @@ export default {
         onFileSelected (event) {
             this.selectedFile = event.target.files[0];
             console.log(this.selectedFile);
-        },
-        onComplete4() {
-        // validation premier wizard, save enn bdd et passage au wizard suivant
         }
     }
 };

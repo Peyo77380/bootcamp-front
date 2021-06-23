@@ -24,85 +24,20 @@
                                             <div class="nav-justified">
                                                 <!-- Contenu -->
                                                 <b-tabs class="card-header-tab-animation" card>
-                                                    <!-- Onglet 1 du wizard-->
-                                                    <b-tab title="Caractéristiques" class="p-2" active>
-                                                        <div class="scroll-gradient">
-                                                            <div class="scroll-area-sm">
-                                                                <VuePerfectScrollbar class="scrollbar-container" v-once>
-                                                                    <div class="vertical-time-simple vertical-without-time vertical-timeline vertical-timeline--animate vertical-timeline--one-column">
-                                                                        <!-- Contenu 1er wizard-->
-                                                                        <p>Wizard 1</p>
-                                                                    </div>
-                                                                </VuePerfectScrollbar>
-                                                            </div>
-                                                        </div>
-                                                    </b-tab>
-                                                    <!-- Onglet 2 du wizard-->
-                                                    <b-tab title="Description" class="p-2">
-                                                        <div class="scroll-gradient">
-                                                            <div class="scroll-area-sm">
-                                                                <VuePerfectScrollbar class="scrollbar-container" v-once>
-                                                                    <div class="vertical-without-time vertical-timeline vertical-timeline--animate vertical-timeline--one-column">
-                                                                        <!-- Contenu 2e wizard-->
-                                                                        <p>Wizard 2</p>
-                                                                    </div>
-                                                                </VuePerfectScrollbar>
-                                                            </div>
-                                                        </div>
-                                                    </b-tab>
-                                                    <!-- Onglet 3 du wizard-->
-                                                    <b-tab title="Services" class="p-2">
-                                                        <div class="scroll-gradient">
-                                                            <div class="scroll-area-sm">
-                                                                <VuePerfectScrollbar class="scrollbar-container" v-once>
-                                                                    <div class="vertical-without-time vertical-timeline vertical-timeline--animate vertical-timeline--one-column">
-                                                                        <!-- Contenu 3e wizard-->
-                                                                        <p>Wizard 3</p>
-                                                                    </div>
-                                                                </VuePerfectScrollbar>
-                                                            </div>
-                                                        </div>
-                                                    </b-tab>
-                                                    <!-- Onglet 4 du wizard-->
-                                                    <b-tab title="Photos" class="p-2">
-                                                        <div class="scroll-gradient">
-                                                            <div class="scroll-area-sm">
-                                                                <VuePerfectScrollbar class="scrollbar-container" v-once>
-                                                                    <div class="vertical-without-time vertical-timeline vertical-timeline--animate vertical-timeline--one-column">
-                                                                        <!-- Contenu 3e wizard-->
-                                                                        <p>Wizard 4</p>
-                                                                    </div>
-                                                                </VuePerfectScrollbar>
-                                                            </div>
-                                                        </div>
-                                                    </b-tab>
-                                                    <!-- Onglet 5 du wizard-->
-                                                    <b-tab title="Tarifs et notes" class="p-2">
-                                                        <div class="scroll-gradient">
-                                                            <div class="scroll-area-sm">
-                                                                <VuePerfectScrollbar class="scrollbar-container" v-once>
-                                                                    <div class="vertical-without-time vertical-timeline vertical-timeline--animate vertical-timeline--one-column">
-                                                                        <!-- Contenu 3e wizard-->
-                                                                        <p>Wizard 5</p>
-                                                                    </div>
-                                                                </VuePerfectScrollbar>
-                                                            </div>
-                                                        </div>
-                                                    </b-tab>
-                                                    <!-- Onglet 6 du wizard-->
-                                                    <b-tab title="Plans" class="p-2">
-                                                        <div class="scroll-gradient">
-                                                            <div class="scroll-area-sm">
-                                                                <VuePerfectScrollbar class="scrollbar-container" v-once>
-                                                                    <div class="vertical-without-time vertical-timeline vertical-timeline--animate vertical-timeline--one-column">
-                                                                        <!-- Contenu 3e wizard-->
-                                                                        <p>Wizard 6</p>
-                                                                    </div>
-                                                                </VuePerfectScrollbar>
-                                                            </div>
-                                                        </div>
-                                                    </b-tab>
+                                                    <Wizard1/>
+                                                    <Wizard2/>
+                                                    <Wizard3/>
+                                                    <Wizard4/>
+                                                    <Wizard5/>
+                                                    <Wizard6/>
                                                 </b-tabs>
+                                            </div>
+                                            <!-- Control buttons -->
+                                            <div class="text-center">
+                                                <b-button-group>
+                                                    <b-button @click="tabIndex--" class="m-2 " variant="primary">Previous</b-button>
+                                                    <b-button @click="tabIndex++" class="m-2 " variant="primary">Next</b-button>
+                                                </b-button-group>
                                             </div>
                                         </b-card>
                                     </div>
@@ -118,7 +53,6 @@
 
 <script>
 import PageTitle from "@/Layout/Components/PageTitle.vue";
-import VuePerfectScrollbar from "vue-perfect-scrollbar";
 
 import { library } from "@fortawesome/fontawesome-svg-core";
 import {
@@ -130,8 +64,12 @@ import {
     faTh
 } from "@fortawesome/free-solid-svg-icons";
 
-import {roomDetailsData} from "@/apps/lc-142/Components/data-roomDetails";
-
+import Wizard1 from './Sub-components/wizard1.vue';
+import Wizard2 from './Sub-components/wizard2.vue';
+import Wizard3 from './Sub-components/wizard3.vue';
+import Wizard4 from './Sub-components/wizard4.vue';
+import Wizard5 from './Sub-components/wizard5.vue';
+import Wizard6 from './Sub-components/wizard6.vue';
 
 library.add(faTrashAlt, faCheck, faAngleDown, faAngleUp, faTh, faCalendarAlt);
 
@@ -139,19 +77,18 @@ export default {
     name: 'RoomDetails',
     components: {
         PageTitle,
-        VuePerfectScrollbar,
+        Wizard1,
+        Wizard2,
+        Wizard3,
+        Wizard4,
+        Wizard5,
+        Wizard6
     },
     data: () => ({
-        roomDetailsData: roomDetailsData,
         heading: "Détails d'une salle de l'espace de coworking",
         icon: "pe-7s-note2 icon-gradient bg-tempting-azure",
-
-        slickOptions2: {
-            slidesToShow: 1,
-            dots: true
-        }
+        tabIndex: 1
     }),
 
-    methods: {}
 };
 </script>

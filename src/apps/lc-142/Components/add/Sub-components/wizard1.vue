@@ -6,7 +6,7 @@
             <VuePerfectScrollbar class="scrollbar-container" v-once>
                 <div class="m-3 mb-3">
                     <!-- Contenu 1er wizard-->
-                    <b-form>
+                    <b-form @onComplete1="onComplete1">
                         
                         <div class="row">
                             <div class="col-1"></div>
@@ -68,9 +68,9 @@
                                 <b-form-checkbox-group
                                 v-model="room.typeBooking"
                                 :aria-describedby="ariaDescribedby"
+                                :options="typeBookings"
+                                required
                                 >
-                                <b-form-checkbox value="0">Membre</b-form-checkbox>
-                                <b-form-checkbox value="1">Évènement</b-form-checkbox>
                                 </b-form-checkbox-group>
                             </b-form-group>
                         
@@ -78,70 +78,89 @@
                                 <b-form-radio-group
                                 v-model="room.bookable"
                                 :aria-describedby="ariaDescribedby"
+                                :options="bookables"
+                                required
                                 >
-                                <b-form-radio value="0">Réservable</b-form-radio>
-                                <b-form-radio value="1">Indisponible</b-form-radio>
                                 </b-form-radio-group>
                             </b-form-group>
                             </div>
 
                             <div class="col-1"></div>
                             <div class="col-7">
-                            <div class="table-responsive">
-                                <table class="align-middle mb-5 table table-border table-striped table-hover">
-                                    <thead>
-                                        <tr>
-                                            <th class="text-center">Jours</th>
-                                            <th class="text-center">Heure ouverture</th>
-                                            <th class="text-center">Heure fermeture</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        <!-- inserer les v-model pour chaque valeur a recuperer -->
-                                        <tr>
-                                            <td class="text-center text-muted">Lundi</td>
-                                            <td><input type="text" v-model="room.starton" class="text-center border"/></td>
-                                            <td><input type="text" v-model="room.endMon" class="text-center border"/></td>
-                                            
-                                        </tr>
-                                        <tr>
-                                            <td class="text-center text-muted">Mardi</td>
-                                            <td><input type="text" v-model="room.startTue" class="text-center border"/></td>
-                                            <td><input type="text" v-model="room.endTue" class="text-center border"/></td>
-                                            
-                                        </tr>
-                                        <tr>
-                                            <td class="text-center text-muted">Mercredi</td>
-                                            <td><input type="text" v-model="room.startWen" class="text-center border"/></td>
-                                            <td><input type="text" v-model="room.endWen" class="text-center border"/></td>
-                                            
-                                        </tr>
-                                        <tr>
-                                            <td class="text-center text-muted">Jeudi</td>
-                                            <td><input type="text" v-model="room.startThu" class="text-center border"/></td>
-                                            <td><input type="text" v-model="room.endThu" class="text-center border"/></td>
-                                            
-                                        </tr>
-                                        <tr>
-                                            <td class="text-center text-muted">Vendredi</td>
-                                            <td><input type="text" v-model="room.startFri" class="text-center border"/></td>
-                                            <td><input type="text" v-model="room.endFri" class="text-center border"/></td>
-                                            
-                                        </tr>
-                                        <tr>
-                                            <td class="text-center text-muted">Samedi</td>
-                                            <td><input type="text" v-model="room.startSat" class="text-center border"/></td>
-                                            <td><input type="text" v-model="room.endSat" class="text-center border"/></td>
-                                            
-                                        </tr>
-                                        <tr>
-                                            <td class="text-center text-muted">Dimanche</td>
-                                            <td><input type="text" v-model="room.startSun" class="text-center border"/></td>
-                                            <td><input type="text" v-model="room.endSun" class="text-center border"/></td>
-                                        </tr>
-                                    </tbody>
-                                </table>
-                            </div>
+                                <div class="table-responsive">
+                                    <table class="align-middle mb-5 table table-border table-striped table-hover">
+                                        <thead>
+                                            <tr>
+                                                <th class="text-center">Jours</th>
+                                                <th class="text-center">Heure ouverture</th>
+                                                <th class="text-center">Heure fermeture</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <!-- inserer les v-model pour chaque valeur a recuperer -->
+                                            <tr>
+                                                <td class="text-center text-muted">Lundi</td>
+                                                <td><input type="text" v-model="room.starton" class="text-center border"/></td>
+                                                <td><input type="text" v-model="room.endMon" class="text-center border"/></td>
+                                                
+                                            </tr>
+                                            <tr>
+                                                <td class="text-center text-muted">Mardi</td>
+                                                <td><input type="text" v-model="room.startTue" class="text-center border"/></td>
+                                                <td><input type="text" v-model="room.endTue" class="text-center border"/></td>
+                                                
+                                            </tr>
+                                            <tr>
+                                                <td class="text-center text-muted">Mercredi</td>
+                                                <td><input type="text" v-model="room.startWen" class="text-center border"/></td>
+                                                <td><input type="text" v-model="room.endWen" class="text-center border"/></td>
+                                                
+                                            </tr>
+                                            <tr>
+                                                <td class="text-center text-muted">Jeudi</td>
+                                                <td><input type="text" v-model="room.startThu" class="text-center border"/></td>
+                                                <td><input type="text" v-model="room.endThu" class="text-center border"/></td>
+                                                
+                                            </tr>
+                                            <tr>
+                                                <td class="text-center text-muted">Vendredi</td>
+                                                <td><input type="text" v-model="room.startFri" class="text-center border"/></td>
+                                                <td><input type="text" v-model="room.endFri" class="text-center border"/></td>
+                                                
+                                            </tr>
+                                            <tr>
+                                                <td class="text-center text-muted">Samedi</td>
+                                                <td><input type="text" v-model="room.startSat" class="text-center border"/></td>
+                                                <td><input type="text" v-model="room.endSat" class="text-center border"/></td>
+                                                
+                                            </tr>
+                                            <tr>
+                                                <td class="text-center text-muted">Dimanche</td>
+                                                <td><input type="text" v-model="room.startSun" class="text-center border"/></td>
+                                                <td><input type="text" v-model="room.endSun" class="text-center border"/></td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                                
+                                <div class="table-responsive">
+                                    <table class="align-middle mb-5 table table-border bordered table-striped table-hover">
+                                        <thead>
+                                            <tr>
+                                                <th class="text-center">Jours</th>
+                                                <th class="text-center">Heure ouverture</th>
+                                                <th class="text-center">Heure fermeture</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr v-for="openingHoursDetail in openingHoursDetailsData" :key="openingHoursDetail.id">
+                                                <td class="text-center">{{ openingHoursDetail.id }}</td>
+                                                <td class="text-center">{{ openingHoursDetail.start }}</td>
+                                                <td class="text-center">{{ openingHoursDetail.end }}</td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
                             </div>
                         </div>
                     </b-form>
@@ -153,7 +172,8 @@
 </template>
 
 <script>
-import { roomDetailsData, Floors, Bookables, MinRentalDurations } from "@/apps/lc-142/Components/data-roomDetails";
+import { roomDetailsData, Floors, Bookables, MinRentalDurations, TypeBookings } from "@/apps/lc-142/Components/data-roomDetails";
+
 import VuePerfectScrollbar from "vue-perfect-scrollbar";
 
 export default {
@@ -162,10 +182,6 @@ export default {
         VuePerfectScrollbar,
     },
     data: () => ({
-        slickOptions2: {
-            slidesToShow: 1,
-            dots: true
-        },
         room: {
             name: '',
             surface: '',
@@ -174,6 +190,7 @@ export default {
             minRentalDuration: '',
             typeBooking: [],
             bookable: [],
+            openingHours: [],
             startMon: '',
             startTue: '',
             startWen: '',
@@ -191,8 +208,14 @@ export default {
         },
         roomDetailsData: roomDetailsData,
         floors: Floors,
-        bookable: Bookables,
-        minRentalDurations: MinRentalDurations
-    })
+        bookables: Bookables,
+        minRentalDurations: MinRentalDurations,
+        typeBookings: TypeBookings
+    }),
+    methods: {
+        onComplete1() {
+            // validation premier wizard, save enn bdd et passage au wizard suivant
+        }
+    }
 };
 </script>

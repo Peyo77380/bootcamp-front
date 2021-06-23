@@ -1,14 +1,14 @@
 export const buildingsData = [
     {
-        text: 'Nom du batiment 1'
+        'value': '0', text: 'Nom du batiment 1'
     },
     {
-        text: 'Nom du batiment 2'
+        'value': '1', text: 'Nom du batiment 2'
     },
     {
-        text: 'Nom du batiment 3'
+        'value': '2', text: 'Nom du batiment 3'
     },
     {
-        text: 'Nom du batiment 4'
+        'value': '3', text: 'Nom du batiment 4'
     }
 ];

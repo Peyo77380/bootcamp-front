@@ -6,7 +6,7 @@
             <VuePerfectScrollbar class="scrollbar-container" v-once>
                 <div class="mt-3 mb-3">
                     <!-- Contenu 5e wizard-->
-                    <b-form @onComplete5="onComplete5">
+                    <b-form>
                     <div class="row">
                         <div class="table-responsive">
                             <table class="align-middle mb-5 table table-border table-striped table-hover">
@@ -105,6 +105,8 @@ export default {
             memberPriceWeek: '',
             memberPriceMonth: '',
             memberPriceTrimester: ''
+
+
         },
         roomDetailsData: roomDetailsData,
         // editor2: ClassicEditor,
@@ -113,10 +115,8 @@ export default {
         // The configuration of the editor.
         // }
     }),
+
     methods: {
-        onComplete5() {
-        // validation premier wizard, save enn bdd et passage au wizard suivant
-        }
     }
 };
 </script>
