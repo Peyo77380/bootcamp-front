@@ -122,6 +122,7 @@ export default {
     components: {
         VuePerfectScrollbar,
     },
+    props: ['roomDetails'],
     data: () => ({
         room: {
             name: '',

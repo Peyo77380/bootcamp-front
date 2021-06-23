@@ -74,11 +74,8 @@ export default {
     components: {
         VuePerfectScrollbar,
     },
+    props: ['roomDetails'],
     data: () => ({
-        slickOptions2: {
-            slidesToShow: 1,
-            dots: true
-        },
         room: {
             checked: []
         },

@@ -15,6 +15,7 @@
                                 <b-form-input
                                 id="input-1"
                                 v-model="room.name"
+                                :value="room.name"
                                 placeholder="Entrer de le nom de la salle"
                                 required
                                 ></b-form-input>
@@ -27,6 +28,7 @@
                                 <b-form-input
                                 id="input-2"
                                 v-model="room.surface"
+                                :value="room.surface"
                                 placeholder="Indiquer la surface en m²"
                                 required
                                 ></b-form-input>
@@ -41,6 +43,7 @@
                                 <b-form-select
                                 id="input-3"
                                 v-model="room.floor"
+                                :value="room.floor"
                                 :options="floors"
                                 required
                                 ></b-form-select>
@@ -50,6 +53,7 @@
                                 <b-form-input
                                 id="input-4"
                                 v-model="room.maxCapacity"
+                                :value="room.maxCapacity"
                                 placeholder="Nombre de personnes maximum"
                                 required
                                 ></b-form-input>
@@ -59,6 +63,7 @@
                                 <b-form-select
                                 id="input-5"
                                 v-model="room.minRentalDuration"
+                                :value="room.minRentalDuration"
                                 :options="minRentalDurations"
                                 required
                                 ></b-form-select>
@@ -67,6 +72,7 @@
                             <b-form-group id="input-group-6" v-slot="{ ariaDescribedby }" label="Type de réservation :" class="text-left" label-for="checkboxes-6">
                                 <b-form-checkbox-group
                                 v-model="room.typeBooking"
+                                :value="room.typeBooking"
                                 :aria-describedby="ariaDescribedby"
                                 :options="typeBookings"
                                 required
@@ -77,6 +83,7 @@
                             <b-form-group id="input-group-7" v-slot="{ ariaDescribedby }" label="Statut :" class="text-left" label-for="radios-7">
                                 <b-form-radio-group
                                 v-model="room.bookable"
+                                :value="room.bookable"
                                 :aria-describedby="ariaDescribedby"
                                 :options="bookables"
                                 required

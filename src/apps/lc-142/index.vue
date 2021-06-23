@@ -111,7 +111,7 @@ export default {
         remove (id) {
             // l'appel vers API de Laravel devra etre fait ici
             this.roomDetailsData = this.roomDetailsData.filter(roomDetail => roomDetail.id !== id)
-            // this.$sweetSuccess('Modifications enregistrées !')
+            // this.$sweetConfirmation()
         },
     }
 };

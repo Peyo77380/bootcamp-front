@@ -49,35 +49,35 @@ export const serviceDetailsData = [
 
 // partie a revoir
 // ensuite tu vas faire une boucle for à l'intérieur de ta première boucle for de ton data-model
-export const dataModel = [
+export const photosData = [
     {
-         "id": 1,
-         "photoList": [
-              {
-                   "photo_id": 1,
-                   "url": "url-photo-1",
-                   "titre": "titre de la photo 1"
-              },
-              {
-                   "photo_id": 2,
-                   "url2": "url-photo-2",
-                   "titre2": "titre de la photo 2"
-              }
-         ]
+        "id": 1,
+        "photoList": [
+            {
+                "photo_id": 1,
+                "url": "url-photo-1",
+                "titre": "titre de la photo 1"
+            },
+            {
+                "photo_id": 2,
+                "url2": "url-photo-2",
+                "titre2": "titre de la photo 2"
+            }
+        ]
     },
     {
-         "id": 2,
-         "photoList": [
-              {
-                   "photo_id": 1,
-                   "url1": "url-photo-1",
-                   "titre1": "titre de la photo 1"
-              },
-              {
-                   "photo_id": 2,
-                   "url2": "url-photo-2",
-                   "titre2": "titre de la photo 2"
-              }
-         ]
+        "id": 2,
+        "photoList": [
+            {
+                "photo_id": 1,
+                "url1": "url-photo-1",
+                "titre1": "titre de la photo 1"
+            },
+            {
+                "photo_id": 2,
+                "url2": "url-photo-2",
+                "titre2": "titre de la photo 2"
+            }
+        ]
     },
     ];

@@ -23,13 +23,13 @@
                                             </div>
                                             <div class="nav-justified">
                                                 <!-- Contenu -->
-                                                <b-tabs class="card-header-tab-animation" card>
-                                                    <Wizard1/>
-                                                    <Wizard2/>
-                                                    <Wizard3/>
-                                                    <Wizard4/>
-                                                    <Wizard5/>
-                                                    <Wizard6/>
+                                                <b-tabs v-model="tabIndex" class="card-header-tab-animation" card>
+                                                    <Wizard1 v-bind:roomDetails="roomDetails"/>
+                                                    <Wizard2 v-bind:roomDetails="roomDetails"/>
+                                                    <Wizard3 v-bind:roomDetails="roomDetails"/>
+                                                    <Wizard4 v-bind:roomDetails="roomDetails"/>
+                                                    <Wizard5 v-bind:roomDetails="roomDetails"/>
+                                                    <Wizard6 v-bind:roomDetails="roomDetails"/>
                                                 </b-tabs>
                                             </div>
                                             <!-- Control buttons -->

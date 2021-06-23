@@ -1,25 +1,22 @@
 <template>    
-<!-- Onglet 6 du wizard-->
-<b-tab title="Plans salles/réunions" class="p-2">
+<!-- Onglet 4 du wizard-->
+<b-tab title="Photos" class="p-2">
     <div class="scroll-gradient">
         <div class="scroll-area-xlg">
             <VuePerfectScrollbar class="scrollbar-container" v-once>
                 <div class="mt-3 mb-3">
-                    <!-- Contenu 6e wizard-->
-                    <b-form @submit="onSubmit">
+                    <!-- Contenu 4e wizard-->
+                    <b-form @onComplete4="onComplete4">
 
                     <div class="row">
                         <div class="col-1"></div>
                         <div class="col-10">
                             <div class="row">
-                                <div class="position-relative form-group col-10"><label for="customFileBrowser" class=""></label>
+                                <div class="position-relative form-group col-10"><label for="customFileBrowser"></label>
                                     <div class="custom-file">
-                                        <input type="file" class="custom-file-input">
+                                        <input type="file" @change="onFileSelected" class="custom-file-input">
                                         <label class="custom-file-label text-left" for="customFileBrowser"></label>
                                     </div>
-                                </div>
-                                <div class="col-2">
-                                    <b-button class="" type="text" variant="primary" @click="addPhoto()">ajouter</b-button>
                                 </div>
                             </div>
 
@@ -27,24 +24,24 @@
                                 <table class="align-middle mb-5 table table-border table-striped table-hover">
                                     <thead>
                                         <tr>
-                                            <th class="text-center col-1">Numero</th>
-                                            <th class="text-center col-4">Titre de la photo</th>
+                                            <th class="text-center col-1">Numéro</th>
+                                            <th class="text-center col-4">Titre de la photo</th> <!-- Recuperer nom bât + salle + index photo -->
                                             <th class="text-center col-6">Url</th>
                                             <th class="text-center">Actions</th>
                                         </tr>
                                     </thead>
                                     <tbody>
                                         <tr>
-                                            <td class="text-center border"><input class="col-12" type="text" v-model="room.idPlan"></td>
-                                            <td class="text-center border"><input class="col-12" type="text" v-model="room.titlePlan"></td>
-                                            <td class="text-center border"><input class="col-12" type="text" v-model="room.urlPlan"></td>
+                                            <td class="text-center border"><input class="col-12" type="text" v-model="room.idPhoto"></td>
+                                            <td class="text-center border"><input class="col-12" type="text" v-model="room.titlePhoto"></td>
+                                            <td class="text-center border"><input class="col-12" type="text" v-model="room.urlPhoto"></td>
                                             <td class="text-center border">
                                                 <div class="row">
                                                     <b-button @click="openPhotoModale(roomListPhoto)" class="ml-3" variant="white">
                                                         <i class="pe-7s-look icon-gradient bg-malibu-beach"></i>
                                                     </b-button>
                                                     
-                                                    <b-button class="" @click="remove(roomDetailsData.roomListPhoto)" variant="white">
+                                                    <b-button  class="" @click="remove(roomDetailsData.roomListPhoto)" variant="white">
                                                         <i class="pe-7s-trash icon-gradient bg-sunny-morning"></i>
                                                     </b-button>
                                                 </div>
@@ -55,7 +52,6 @@
                             </div>
                         </div>
                     </div>
-                        <b-button class="m-1 col-2" type="submit" @click="onSubmit" variant="success">Valider</b-button>
                     </b-form>
                 </div>
             </VuePerfectScrollbar>
@@ -69,38 +65,32 @@ import { roomDetailsData } from "@/apps/lc-142/Components/data-roomDetails";
 import VuePerfectScrollbar from "vue-perfect-scrollbar";
 
 export default {
-    name: 'Wizard6',
+    name: 'Wizard4',
     components: {
         VuePerfectScrollbar,
     },
-    props: ['roomDetails'],
     data: () => ({
-        photoModal: false,
-        modaleInfo: {
-            title: '',
-            description: '',
-            photo: 'coworking'
+        slickOptions2: {
+            slidesToShow: 1,
+            dots: true
         },
         room: {
-            idPlan: '',
-            titlePlan: '',
-            urlPlan: '',
             idPhoto: '',
             titlePhoto: '',
             urlPhoto: ''
         },
         roomDetailsData: roomDetailsData,
+        photoModal: false,
+        modaleInfo: {
+            titlePhoto: '',
+            photo: 'coworking'
+        },
+        selectedFile: null
     }),
 
     methods: {
-        onSubmit(event) {
-            event.preventDefault()
-            // afficher les valeurs recueillies par le form global
-            alert(JSON.stringify(this.room))
-            // afficher le bouton de sweetalert
-        },
         openPhotoModale(itemData) {
-            this.modaleInfo.title = itemData.title
+            this.modaleInfo.titlePhoto = itemData.titlePhoto
             this.modaleInfo.photo = itemData.photo
             this.photoModal = true;
         },
@@ -109,8 +99,15 @@ export default {
             // remplacer le roomdetails par la liste des photos de la salle
             this.roomDetailsData = this.roomDetailsData.filter(roomDetail => roomDetail.roomListPhoto !== roomListPhoto)
         },
-        addPhoto () {
-            console.log("submit test photo");
+        //addPhoto () {
+        //    console.log("submit test photo");
+        //},
+        onFileSelected (event) {
+            this.selectedFile = event.target.files[0];
+            console.log(this.selectedFile);
+        },
+        onComplete4() {
+        // validation premier wizard, save enn bdd et passage au wizard suivant
         }
     }
 };

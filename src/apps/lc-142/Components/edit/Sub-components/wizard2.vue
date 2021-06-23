@@ -7,7 +7,7 @@
                 <div class="mt-3 mb-3">
                     <!-- Contenu 2e wizard-->
                     <h2>PLUGIN CKEDITOR</h2>
-                    <b-form>
+                    <b-form @onComplete2="onComplete2">
                         <!-- <ckeditor :editor="editor2" v-model="room.description" :config="editorConfig"></ckeditor> -->
                     </b-form>
                 </div>
@@ -29,7 +29,6 @@ export default {
         VuePerfectScrollbar,
         // ckeditor: CKEditor.component
     },
-    props: ['roomDetails'],
     data: () => ({
         room: {
             description: '',
@@ -43,6 +42,9 @@ export default {
     }),
 
     methods: {
+        onComplete2() {
+        // validation premier wizard, save enn bdd et passage au wizard suivant
+        }
     }
 };
 </script>

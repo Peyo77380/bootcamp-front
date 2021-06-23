@@ -6,7 +6,7 @@
             <VuePerfectScrollbar class="scrollbar-container" v-once>
                 <div class="mt-3 mb-3">
                     <!-- Contenu 6e wizard-->
-                    <b-form @submit="onSubmit">
+                    <b-form  @onComplete6="onComplete6">
 
                     <div class="row">
                         <div class="col-1"></div>
@@ -55,7 +55,6 @@
                             </div>
                         </div>
                     </div>
-                        <b-button class="m-1 col-2" type="submit" @click="onSubmit" variant="success">Valider</b-button>
                     </b-form>
                 </div>
             </VuePerfectScrollbar>
@@ -73,21 +72,16 @@ export default {
     components: {
         VuePerfectScrollbar,
     },
-    props: ['roomDetails'],
     data: () => ({
         photoModal: false,
         modaleInfo: {
             title: '',
-            description: '',
             photo: 'coworking'
         },
         room: {
             idPlan: '',
             titlePlan: '',
             urlPlan: '',
-            idPhoto: '',
-            titlePhoto: '',
-            urlPhoto: ''
         },
         roomDetailsData: roomDetailsData,
     }),
@@ -96,8 +90,6 @@ export default {
         onSubmit(event) {
             event.preventDefault()
             // afficher les valeurs recueillies par le form global
-            alert(JSON.stringify(this.room))
-            // afficher le bouton de sweetalert
         },
         openPhotoModale(itemData) {
             this.modaleInfo.title = itemData.title
@@ -111,6 +103,9 @@ export default {
         },
         addPhoto () {
             console.log("submit test photo");
+        },
+        onComplete6() {
+        // validation premier wizard, save enn bdd et passage au wizard suivant
         }
     }
 };
