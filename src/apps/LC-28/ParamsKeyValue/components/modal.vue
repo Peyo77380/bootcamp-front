@@ -133,10 +133,15 @@
 
 <script>
 import CountryFlag from "vue-country-flag";
+import { Parameters } from "@/mixins/parameter";
 export default {
     name: "edit-keyvalue",
     components: {
         CountryFlag
+    },
+    mixins: [Parameters],
+    async mounted() {
+        await this.update();
     },
     props: {
         dialog2: {
@@ -163,7 +168,6 @@ export default {
                 );
                 console.log(this.items);
             } catch (error) {}
-
             //this.close2();
             // this.$emit("saveModification", this.items);
         }
