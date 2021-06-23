@@ -138,6 +138,10 @@ export default {
       this.keyValueEdit = item;
     },
     modificationActivity() {
+      this.lists.push({
+        id: 123,
+        name: this.newItem.name,
+      });
       //TODO point API modification activité
       var title = "Modification réussie !";
       this.$sweetNotif(title);
