@@ -6,8 +6,7 @@
             <VuePerfectScrollbar class="scrollbar-container" v-once>
                 <div class="m-3 mb-3">
                     <!-- Contenu 1er wizard-->
-                    <b-form @onComplete1="onComplete1">
-                        
+                    <b-form>
                         <div class="row">
                             <div class="col-1"></div>
                             <div class="col-7">
@@ -15,8 +14,6 @@
                                 <b-form-input
                                 id="input-1"
                                 v-model="room.name"
-                                :value="room.name"
-                                placeholder="Entrer de le nom de la salle"
                                 required
                                 ></b-form-input>
                             </b-form-group>
@@ -28,8 +25,6 @@
                                 <b-form-input
                                 id="input-2"
                                 v-model="room.surface"
-                                :value="room.surface"
-                                placeholder="Indiquer la surface en m²"
                                 required
                                 ></b-form-input>
                             </b-form-group>
@@ -43,7 +38,6 @@
                                 <b-form-select
                                 id="input-3"
                                 v-model="room.floor"
-                                :value="room.floor"
                                 :options="floors"
                                 required
                                 ></b-form-select>
@@ -53,8 +47,6 @@
                                 <b-form-input
                                 id="input-4"
                                 v-model="room.maxCapacity"
-                                :value="room.maxCapacity"
-                                placeholder="Nombre de personnes maximum"
                                 required
                                 ></b-form-input>
                             </b-form-group>
@@ -63,7 +55,6 @@
                                 <b-form-select
                                 id="input-5"
                                 v-model="room.minRentalDuration"
-                                :value="room.minRentalDuration"
                                 :options="minRentalDurations"
                                 required
                                 ></b-form-select>
@@ -72,7 +63,6 @@
                             <b-form-group id="input-group-6" v-slot="{ ariaDescribedby }" label="Type de réservation :" class="text-left" label-for="checkboxes-6">
                                 <b-form-checkbox-group
                                 v-model="room.typeBooking"
-                                :value="room.typeBooking"
                                 :aria-describedby="ariaDescribedby"
                                 :options="typeBookings"
                                 required
@@ -83,7 +73,6 @@
                             <b-form-group id="input-group-7" v-slot="{ ariaDescribedby }" label="Statut :" class="text-left" label-for="radios-7">
                                 <b-form-radio-group
                                 v-model="room.bookable"
-                                :value="room.bookable"
                                 :aria-describedby="ariaDescribedby"
                                 :options="bookables"
                                 required
@@ -171,14 +160,14 @@ export default {
     },
     data: () => ({
         room: {
-            name: '',
-            surface: '',
-            floor: '',
-            maxCapacity: '',
-            minRentalDuration: '',
-            typeBooking: [],
-            bookable: [],
-            openingHours: [],
+            name: roomDetailsData[0].name,
+            surface: roomDetailsData[0].surface,
+            floor: roomDetailsData[0].floor,
+            maxCapacity: roomDetailsData[0].maxCapacity,
+            minRentalDuration: roomDetailsData[0].minRentalDuration,
+            typeBooking: [roomDetailsData[0].typeBooking],
+            bookable: [roomDetailsData[0].bookable],
+            openingHours: [roomDetailsData[0].openingHours],
             startMon: '',
             startTue: '',
             startWen: '',
@@ -201,9 +190,7 @@ export default {
         typeBookings: TypeBookings
     }),
     methods: {
-        onComplete1() {
-            // validation premier wizard, save enn bdd et passage au wizard suivant
-        }
+
     }
 };
 </script>

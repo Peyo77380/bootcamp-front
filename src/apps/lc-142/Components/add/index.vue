@@ -27,8 +27,8 @@
                                             <div class="nav-justified">
                                                 <!-- Contenu -->
                                                 <b-tabs v-model="tabIndex" class="card-header-tab-animation" card>
-                                                    <Wizard1/>
-                                                    <Wizard2/>
+                                                    <Wizard1 :getData="getData1" @roomInfo="pushRoomInfo"/>
+                                                    <Wizard2 :getData="getData2" @destInfo="pushDestInfo"/>
                                                     <Wizard3/>
                                                     <Wizard4/>
                                                     <Wizard5/>
@@ -39,8 +39,8 @@
                                             <div class="text-center">
                                                 <b-button-group>
                                                     <b-button @click="tabIndex--" class="m-2 " variant="primary">Previous</b-button>
-                                                    <b-button @click="tabIndex++" class="m-2 " variant="primary">Next</b-button>
-                                                    <b-button @click="saveRoom" class="m-2" type="submit" variant="success">Sauvegarder</b-button>
+                                                    <b-button @click="nextWizard()" class="m-2 " variant="primary">Next</b-button>
+                                                    <b-button @click="saveRoom" v-show="tabIndex == 5" class="m-2" type="submit" variant="success">Sauvegarder</b-button>
                                                 </b-button-group>
                                             </div>
                                         </b-card>
@@ -68,12 +68,12 @@ import {
     faTh
 } from "@fortawesome/free-solid-svg-icons";
 
-import Wizard1 from './Sub-components/wizard1.vue';
-import Wizard2 from './Sub-components/wizard2.vue';
-import Wizard3 from './Sub-components/wizard3.vue';
-import Wizard4 from './Sub-components/wizard4.vue';
-import Wizard5 from './Sub-components/wizard5.vue';
-import Wizard6 from './Sub-components/wizard6.vue';
+import Wizard1 from './Sub-components/addWizard1.vue';
+import Wizard2 from './Sub-components/addWizard2.vue';
+import Wizard3 from './Sub-components/addWizard3.vue';
+import Wizard4 from './Sub-components/addWizard4.vue';
+import Wizard5 from './Sub-components/addWizard5.vue';
+import Wizard6 from './Sub-components/addWizard6.vue';
 
 library.add(faTrashAlt, faCheck, faAngleDown, faAngleUp, faTh, faCalendarAlt);
 
@@ -91,7 +91,10 @@ export default {
     data: () => ({
         heading: "Ajouter une salle dans l'espace de coworking",
         icon: "pe-7s-note2 icon-gradient bg-tempting-azure",
-        tabIndex: 1
+        tabIndex: 1,
+        getData1: 0,
+        getData2: 0,
+        datas: {}
     }),
     methods: {
         saveRoom () {
@@ -105,6 +108,22 @@ export default {
             );
             // this.$sweetSuccess("houraaaa");
             console.log("onComplete1.room");
+        },
+        nextWizard () {
+            switch (this.tabIndex) {
+                case 0: this.getData1 = 1;
+                break;
+                case 1: this.getData2 = 1;
+                break;
+            }
+            this.tabIndex++;
+            console.log(this.datas);
+        },
+        pushRoomInfo(infos) {
+           this.datas.room = infos;
+        },
+        pushDestInfo(infos) {
+            this.datas.description = infos;
         }
     }
 };

@@ -6,7 +6,7 @@
             <VuePerfectScrollbar class="scrollbar-container" v-once>
                 <div class="mt-3 mb-3">
                     <!-- Contenu 3e wizard-->
-                    <b-form @onComplete3="onComplete3">
+                    <b-form>
                     <div class="row">
                         <div class="col-1"></div>
                             <div class="col-10">
@@ -101,9 +101,6 @@ export default {
             this.modaleInfo.title = itemData.title
             this.modaleInfo.photo = itemData.photo
             this.photoModal = true;
-        },
-        onComplete3() {
-        // validation premier wizard, save enn bdd et passage au wizard suivant
         }
     }
 };

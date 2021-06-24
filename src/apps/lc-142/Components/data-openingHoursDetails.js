@@ -1,40 +1,39 @@
 export const openingHoursDetailsData = [
     {
         "id": 1,
-        "start": "8",
-        "end": "23",
+        "start": "",
+        "end": "",
     },
     {
         "id": 2,
-        "start": "9",
-        "end": "22",
+        "start": "",
+        "end": "",
     },
     {
         "id": 3,
-        "start": "8",
-        "end": "22",
+        "start": "",
+        "end": "",
     },
     {
         "id": 4,
-        "start": "9",
-        "end": "23",
+        "start": "",
+        "end": "",
     },
     {
         "id": 5,
-        "start": "10",
-        "end": "20",
+        "start": "",
+        "end": "",
     },
     {
         "id": 6,
-        "start": "8",
-        "end": "20",
+        "start": "",
+        "end": "",
     },
     {
         "id": 0,
-        "start": "10",
-        "end": "20",
+        "start": "",
+        "end": "",
     },
-   
 ];
 
 export const Days = [

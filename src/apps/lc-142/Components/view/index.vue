@@ -24,12 +24,12 @@
                                             <div class="nav-justified">
                                                 <!-- Contenu -->
                                                 <b-tabs v-model="tabIndex" class="card-header-tab-animation" card>
-                                                    <Wizard1 v-bind:roomDetails="roomDetails"/>
-                                                    <Wizard2 v-bind:roomDetails="roomDetails"/>
-                                                    <Wizard3 v-bind:roomDetails="roomDetails"/>
-                                                    <Wizard4 v-bind:roomDetails="roomDetails"/>
-                                                    <Wizard5 v-bind:roomDetails="roomDetails"/>
-                                                    <Wizard6 v-bind:roomDetails="roomDetails"/>
+                                                    <Wizard1/>
+                                                    <Wizard2/>
+                                                    <Wizard3/>
+                                                    <Wizard4/>
+                                                    <Wizard5/>
+                                                    <Wizard6/>
                                                 </b-tabs>
                                             </div>
                                             <!-- Control buttons -->
@@ -64,12 +64,12 @@ import {
     faTh
 } from "@fortawesome/free-solid-svg-icons";
 
-import Wizard1 from './Sub-components/wizard1.vue';
-import Wizard2 from './Sub-components/wizard2.vue';
-import Wizard3 from './Sub-components/wizard3.vue';
-import Wizard4 from './Sub-components/wizard4.vue';
-import Wizard5 from './Sub-components/wizard5.vue';
-import Wizard6 from './Sub-components/wizard6.vue';
+import Wizard1 from './Sub-components/viewWizard1.vue';
+import Wizard2 from './Sub-components/viewWizard2.vue';
+import Wizard3 from './Sub-components/viewWizard3.vue';
+import Wizard4 from './Sub-components/viewWizard4.vue';
+import Wizard5 from './Sub-components/viewWizard5.vue';
+import Wizard6 from './Sub-components/viewWizard6.vue';
 
 library.add(faTrashAlt, faCheck, faAngleDown, faAngleUp, faTh, faCalendarAlt);
 

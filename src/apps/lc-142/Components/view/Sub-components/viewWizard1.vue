@@ -120,7 +120,7 @@ import VuePerfectScrollbar from "vue-perfect-scrollbar";
 export default {
     name: 'Wizard1',
     components: {
-        VuePerfectScrollbar,
+        VuePerfectScrollbar
     },
     props: ['roomDetails'],
     data: () => ({
@@ -132,6 +132,7 @@ export default {
             minRentalDuration: '',
             typeBooking: [],
             bookable: [],
+            openingHours: [], // lignes suivantes
             startMon: '',
             startTue: '',
             startWen: '',

@@ -54,7 +54,6 @@
 
 <script>
 import PageTitle from "@/Layout/Components/PageTitle.vue";
-import VuePerfectScrollbar from "vue-perfect-scrollbar";
 
 import { library } from "@fortawesome/fontawesome-svg-core";
 import {
@@ -66,12 +65,12 @@ import {
     faTh
 } from "@fortawesome/free-solid-svg-icons";
 
-import Wizard1 from './Sub-components/wizard1.vue';
-import Wizard2 from './Sub-components/wizard2.vue';
-import Wizard3 from './Sub-components/wizard3.vue';
-import Wizard4 from './Sub-components/wizard4.vue';
-import Wizard5 from './Sub-components/wizard5.vue';
-import Wizard6 from './Sub-components/wizard6.vue';
+import Wizard1 from './Sub-components/editWizard1.vue';
+import Wizard2 from './Sub-components/editWizard2.vue';
+import Wizard3 from './Sub-components/editWizard3.vue';
+import Wizard4 from './Sub-components/editWizard4.vue';
+import Wizard5 from './Sub-components/editWizard5.vue';
+import Wizard6 from './Sub-components/editWizard6.vue';
 
 import {roomDetailsData} from "@/apps/lc-142/Components/data-roomDetails";
 
@@ -95,6 +94,10 @@ export default {
         icon: "pe-7s-note2 icon-gradient bg-tempting-azure",
     }),
 
-    methods: {}
+    methods: {
+        saveRoom (){
+            //
+        }
+    }
 };
 </script>

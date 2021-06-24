@@ -29,6 +29,19 @@ export default {
         VuePerfectScrollbar,
         // ckeditor: CKEditor.component
     },
+     props : {
+        getData: {
+            type: Number,
+            default: 0
+        }
+    },
+    watch : {
+        getData(newVal) {
+            if(newVal==1) {
+                this.$emit('destInfo',this.room.description)
+            }
+        }
+    },
     data: () => ({
         room: {
             description: '',

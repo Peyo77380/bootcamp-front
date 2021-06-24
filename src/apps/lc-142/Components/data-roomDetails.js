@@ -38,6 +38,7 @@ export const roomDetailsData = [
         "notes": "notes commerciales",
 
         // wizard 6
+        // objet plan a un id, un titre et une url
         "roomListPlan": "atelier"
     },
     {
@@ -79,7 +80,8 @@ export const roomDetailsData = [
         "notes": "notes commerciales",
 
         // wizard 6
-        "roomListPlan": "atelier"
+        // objet plan a un id, un titre et une url
+        "roomListPlan": "conference"
     },
     {
         // Room List and wizard 1
@@ -120,7 +122,8 @@ export const roomDetailsData = [
         "notes": "notes commerciales",
 
         // wizard 6
-        "roomListPlan": "atelier"
+        // objet plan a un id, un titre et une url
+        "roomListPlan": "grande-jaune"
     },
     {
         // Room List and wizard 1
@@ -161,7 +164,8 @@ export const roomDetailsData = [
         "notes": "notes commerciales",
 
         // wizard 6
-        "roomListPlan": "atelier"
+        // objet plan a un id, un titre et une url
+        "roomListPlan": "grande-verte"
     },
     {
         // Room List and wizard 1
@@ -187,22 +191,11 @@ export const roomDetailsData = [
         // objet photo a un id, un titre et une url
 
         // wizard 5
-        "publicPriceHour": "20",
-        "publicPriceHalfDay": "100",
-        "publicPriceDay": "200",
-        "publicPriceWeek": "1000",
-        "publicPriceMonth": "4000",
-        "publicPriceTrimester": "12000",
-        "memberPriceHour": "15",
-        "memberPriceHalfDay": "80",
-        "memberPriceDay": "160",
-        "memberPriceWeek": "800",
-        "memberPriceMonth": "2400",
-        "memberPriceTrimester": "7200",
-        "notes": "notes commerciales",
+        "prices": ['1', '2'],
 
         // wizard 6
-        "roomListPlan": "atelier"
+        // objet plan a un id, un titre et une url
+        "roomListPlan": "moyenne-rouge"
     },
     {
         // Room List and wizard 1
@@ -243,7 +236,8 @@ export const roomDetailsData = [
         "notes": "notes commerciales",
 
         // wizard 6
-        "roomListPlan": "atelier"
+        // objet plan a un id, un titre et une url
+        "roomListPlan": "petite-bleu"
     }
 ];
 

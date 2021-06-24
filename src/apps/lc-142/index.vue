@@ -43,16 +43,16 @@
                                                 </b-tab>
                                                 <b-tab title="Plus...">
                                                     <div align="center">
-                                                            <b-button :to="{ name: 'RoomDetails', params: { id: roomDetail.id } }" class="mb-2 btn-wide btn-shadow btn btn-info btn-sm">
-                                                                Voir détails salle
+                                                            <b-button :to="{ name: 'RoomDetails', params: { id: roomDetail.id } }" class="mb-2 col-10 btn-wide btn-shadow btn btn-info btn-sm">
+                                                                Voir détails : {{roomDetail.name}}
                                                             </b-button>
                                                             <br>
-                                                            <b-button :to="{ name: 'RoomEdit', params: { id: roomDetail.id } }" class="mb-2 btn-wide btn-shadow btn btn-primary btn-sm">
-                                                                Editer salle
+                                                            <b-button :to="{ name: 'RoomEdit', params: { id: roomDetail.id } }" class="mb-2 col-10 btn-wide btn-shadow btn btn-primary btn-sm">
+                                                                Editer : {{roomDetail.name}}
                                                             </b-button>
                                                             <br>
-                                                            <b-button @click="remove(roomDetail.id)" class="mb-2 btn-wide btn-shadow btn btn-danger btn-sm" >
-                                                                Supprimer salle
+                                                            <b-button @click="remove(roomDetail.id)" class="mb-2 col-10 btn-wide btn-shadow btn btn-danger btn-sm" >
+                                                                Supprimer : {{roomDetail.name}}
                                                             </b-button>
                                                     </div>
                                                     <div class="scroll-area-xm">
