@@ -144,7 +144,6 @@ export default {
       saveDatas() {
           this.closeModal()
           this.$emit("saveDatas", this.newDatas)
-          console.log(this.newDatas)
       }
   },
 };

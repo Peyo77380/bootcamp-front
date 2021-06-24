@@ -39,15 +39,17 @@
                                                                 type="button"
                                                                 tabindex="0"
                                                                 class="dropdown-item"
+                                                                @click="changeToDo(data)"
                                                             >
                                                                 <div class="badge badge-primary ml-2">
-                                                                    a faire
+                                                                    à faire
                                                                 </div>
                                                             </button>
                                                             <button
                                                                 type="button"
                                                                 tabindex="0"
                                                                 class="dropdown-item"
+                                                                @click="changeProgress(data)"
                                                             >
                                                                 <div class="badge badge-success ml-2">
                                                                     en cours
@@ -57,6 +59,7 @@
                                                                 type="button"
                                                                 tabindex="0"
                                                                 class="dropdown-item"
+                                                                @click="changeOver(data)"
                                                             >
                                                                 <div class="badge badge-danger ml-2">
                                                                     terminé
@@ -70,6 +73,7 @@
                                                                 <button
                                                                     type="button"
                                                                     class="mr-2 btn-shadow btn-sm btn btn-warning"
+                                                                    @click="deleteAction(data)"
                                                                 >
                                                                     Supprimer
                                                                 </button>
@@ -85,6 +89,7 @@
                                                 <button 
                                                 type="button" 
                                                 class="btn mb-2 mr-2 btn-icon btn-icon-only btn-pill btn-primary"
+                                                @click="editAction(data)"
                                                 >
                                                     <i class="lnr-pencil btn-icon-wrapper"></i>  
                                                 </button>
@@ -135,6 +140,7 @@ export default {
             },
             dialog: false, 
             newDatas: {},
+            editedIndex: -1
         }  
     }, 
 
@@ -163,16 +169,50 @@ export default {
                 break;        
             }
         },
+        //Open Modal Add Commercial Action
         addModal() {
-            //Open Modal Add Commercial Action
             this.dialog = true
         },
+        //Close Add modal
         cancelModal() {
             this.dialog = false
         },
-        saveNewDatas(newDatas) {
-            this.commercialData.push(newDatas);
-            this.newDatas= {}
+        // Save Action commercial add and modification
+        saveNewDatas() {
+            this.cancelModal();
+            if (this.editedIndex>=0) {
+                Object.assign(this.commercialData[this.editedIndex], this.newDatas);
+                this.editedIndex=-1;
+                this.newDatas = {};
+            }
+            else {
+                this.commercialData.push(this.newDatas);
+                this.newDatas = {};
+                //TODO point API ajout action commerciale
+            }
+        },
+        editAction(data) {
+            this.addModal();
+            this.editedIndex = this.commercialData.indexOf(data);
+            // TODO Point API modification action commerciale 
+        },
+        deleteAction(data) {
+            this.editedIndex = this.commercialData.indexOf(data);
+            this.commercialData.splice(this.editedIndex,1)
+          //TODO point API pour supprimer action commerciale
+        },
+        changeToDo(data) {
+            //console.log (data); 
+            data.status = "à faire";
+            //TODO point API pour mettre status a 'a faire'
+        },
+        changeProgress(data) {
+            data.status = "en cours";
+            //TODO point API pour mettre status a 'en cours'
+        },
+        changeOver(data) {
+             data.status = "terminé";
+             //TODO point API pour mettre status a 'terminé'
         }
     }
 }
