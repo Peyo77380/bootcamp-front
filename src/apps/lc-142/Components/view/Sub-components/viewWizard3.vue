@@ -23,8 +23,10 @@
                                     <tr v-for="serviceDetail in serviceDetailsData" :key="serviceDetail.id">
                                         <td>
                                             <b-form-checkbox 
-                                            v-model="room.checked"
-                                            value="1"></b-form-checkbox>
+                                            v-model="room.services"
+                                            value="1"
+                                            disabled
+                                            ></b-form-checkbox>
                                         </td>
                                         <td class="text-left">{{ serviceDetail.title }}</td>
                                         <td class="text-center">
@@ -57,7 +59,7 @@
         </p>
     </b-modal>
 
-    <b-modal  v-model="photoModal" :title=modaleInfo.title>
+    <b-modal v-model="photoModal" :title=modaleInfo.title>
         <p class="my-4">
             <v-img :src="require('@/assets/images/services/' + modaleInfo.photo + '.jpeg')"></v-img>
         </p>
@@ -74,10 +76,23 @@ export default {
     components: {
         VuePerfectScrollbar,
     },
-    props: ['roomDetails'],
+    props : {
+        getData: {
+            type: Number,
+            default: 0
+        }
+    },
+    watch: {
+        getData(newVal) {
+            if(newVal==1) {
+                this.room.services = serviceDetailsData
+                this.$emit('servInfo', this.room.services)
+            }
+        }
+    },
     data: () => ({
         room: {
-            checked: []
+            services: [serviceDetailsData[0].services]
         },
         serviceDetailsData: serviceDetailsData,
         viewModal: false,

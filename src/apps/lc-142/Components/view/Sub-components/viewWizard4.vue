@@ -10,7 +10,7 @@
                         <div class="row">
                             <div class="col-1"></div>
                             <div class="col-10">
-                                <vue-dropzone multiple ref="myVueDropzone" id="dropzone" v-model="urlPhoto" :options="dropzoneOptions"></vue-dropzone>
+                                <vue-dropzone multiple disabled ref="myVueDropzone" id="dropzone" v-model="room.roomListPhoto" :options="dropzoneOptions"></vue-dropzone>
                             </div>
                         </div>
                     </b-form>
@@ -33,9 +33,22 @@ export default {
         VuePerfectScrollbar,
         vueDropzone: vue2Dropzone
     },
+    props : {
+        getData: {
+            type: Number,
+            default: 0
+        }
+    },
+    watch : {
+        getData(newVal) {
+            if(newVal==1) {
+                this.$emit('photoInfo', this.room.roomListPhoto)
+            }
+        }
+    },
     data: () => ({
         room: {
-            urlPhoto: ''
+            roomListPhoto: roomDetailsData[0].roomListPhoto
         },
         roomDetailsData: roomDetailsData,
         dropzoneOptions: {
@@ -44,10 +57,6 @@ export default {
             maxFilesize: 5,
             headers: { "My-Awesome-Header": "header value" }
         }
-    }),
-
-    methods: {
-        
-    }
+    })
 };
 </script>

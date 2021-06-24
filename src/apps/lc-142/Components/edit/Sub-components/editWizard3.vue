@@ -23,8 +23,9 @@
                                     <tr v-for="serviceDetail in serviceDetailsData" :key="serviceDetail.id">
                                         <td>
                                             <b-form-checkbox 
-                                            v-model="room.checked"
-                                            value="1"></b-form-checkbox>
+                                            v-model="room.services"
+                                            value="1"
+                                            ></b-form-checkbox>
                                         </td>
                                         <td class="text-left">{{ serviceDetail.title }}</td>
                                         <td class="text-center">
@@ -57,7 +58,7 @@
         </p>
     </b-modal>
 
-    <b-modal  v-model="photoModal" :title=modaleInfo.title>
+    <b-modal v-model="photoModal" :title=modaleInfo.title>
         <p class="my-4">
             <v-img :src="require('@/assets/images/services/' + modaleInfo.photo + '.jpeg')"></v-img>
         </p>
@@ -67,6 +68,7 @@
 
 <script>
 import { serviceDetailsData } from "@/apps/lc-142/Components/data-serviceDetails";
+import { roomDetailsData } from "@/apps/lc-142/Components/data-roomDetails";
 import VuePerfectScrollbar from "vue-perfect-scrollbar";
 
 export default {
@@ -74,15 +76,26 @@ export default {
     components: {
         VuePerfectScrollbar,
     },
+    props : {
+        getData: {
+            type: Number,
+            default: 0
+        }
+    },
+    watch: {
+        getData(newVal) {
+            if(newVal==1) {
+                this.room.services = serviceDetailsData
+                this.$emit('servInfo', this.room.services)
+            }
+        }
+    },
     data: () => ({
-        slickOptions2: {
-            slidesToShow: 1,
-            dots: true
-        },
         room: {
-            checked: []
+            services: [roomDetailsData[0].services]
         },
         serviceDetailsData: serviceDetailsData,
+        roomDetailsData:roomDetailsData,
         viewModal: false,
         photoModal: false,
         modaleInfo: {

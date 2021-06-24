@@ -45,7 +45,7 @@ export const roomDetailsData = [
         "openingHours" : ['0', '1', '2', '3', '4', '5', '6'],
         
         // wizard 2
-        "description": "description de la salle 1",
+        "description": "description de la salle 2",
 
         // wizard 3
         "services": ['0', '1', '2', '3'],
@@ -87,7 +87,7 @@ export const roomDetailsData = [
         "openingHours" : ['0', '1', '2', '3', '4', '5', '6'],
         
         // wizard 2
-        "description": "description de la salle 1",
+        "description": "description de la salle 3",
 
         // wizard 3
         "services": ['0', '1', '2', '3'],
@@ -129,7 +129,7 @@ export const roomDetailsData = [
         "openingHours" : ['0', '1', '2', '3', '4', '5', '6'],
         
         // wizard 2
-        "description": "description de la salle 1",
+        "description": "description de la salle 4",
 
         // wizard 3
         "services": ['0', '1', '2', '3'],
@@ -171,10 +171,10 @@ export const roomDetailsData = [
         "openingHours" : ['0', '1', '2', '3', '4', '5', '6'],
         
         // wizard 2
-        "description": "description de la salle 1",
+        "description": "description de la salle 5",
 
         // wizard 3
-        "services": ['0', '1', '2', '3'],
+        "selectedServices": ['0', '1', '2', '3'],
 
         // wizard 4
         // objet photo a un id, un titre et une url
@@ -201,7 +201,7 @@ export const roomDetailsData = [
         "openingHours" : ['0', '1', '2', '3', '4', '5', '6'],
         
         // wizard 2
-        "description": "description de la salle 1",
+        "description": "description de la salle 6",
 
         // wizard 3
         "services": ['0', '1', '2', '3'],
@@ -253,3 +253,4 @@ export const MinRentalDurations = [
     { 'value': '2', 'text': '1/2 journée' },
     { 'value': '3', 'text': '1 journée' }
 ];
+

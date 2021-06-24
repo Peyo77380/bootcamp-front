@@ -48,7 +48,7 @@ export default {
     },
     data: () => ({
         room: {
-            urlPlan: ''
+            roomListPlan: ''
         },
         roomDetailsData: roomDetailsData,
         dropzoneOptions: {

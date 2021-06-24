@@ -14,6 +14,7 @@
                                 <b-form-input
                                 id="input-1"
                                 v-model="room.name"
+                                placeholder="Entrer de le nom de la salle"
                                 required
                                 ></b-form-input>
                             </b-form-group>
@@ -25,6 +26,7 @@
                                 <b-form-input
                                 id="input-2"
                                 v-model="room.surface"
+                                placeholder="Surface en m²"
                                 required
                                 ></b-form-input>
                             </b-form-group>
@@ -47,6 +49,7 @@
                                 <b-form-input
                                 id="input-4"
                                 v-model="room.maxCapacity"
+                                placeholder="Nombre de personnes maximum"
                                 required
                                 ></b-form-input>
                             </b-form-group>
@@ -94,46 +97,10 @@
                                         </thead>
                                         <tbody>
                                             <!-- inserer les v-model pour chaque valeur a recuperer -->
-                                            <tr>
-                                                <td class="text-center text-muted">Lundi</td>
-                                                <td><input type="text" v-model="room.starton" class="text-center border"/></td>
-                                                <td><input type="text" v-model="room.endMon" class="text-center border"/></td>
-                                                
-                                            </tr>
-                                            <tr>
-                                                <td class="text-center text-muted">Mardi</td>
-                                                <td><input type="text" v-model="room.startTue" class="text-center border"/></td>
-                                                <td><input type="text" v-model="room.endTue" class="text-center border"/></td>
-                                                
-                                            </tr>
-                                            <tr>
-                                                <td class="text-center text-muted">Mercredi</td>
-                                                <td><input type="text" v-model="room.startWen" class="text-center border"/></td>
-                                                <td><input type="text" v-model="room.endWen" class="text-center border"/></td>
-                                                
-                                            </tr>
-                                            <tr>
-                                                <td class="text-center text-muted">Jeudi</td>
-                                                <td><input type="text" v-model="room.startThu" class="text-center border"/></td>
-                                                <td><input type="text" v-model="room.endThu" class="text-center border"/></td>
-                                                
-                                            </tr>
-                                            <tr>
-                                                <td class="text-center text-muted">Vendredi</td>
-                                                <td><input type="text" v-model="room.startFri" class="text-center border"/></td>
-                                                <td><input type="text" v-model="room.endFri" class="text-center border"/></td>
-                                                
-                                            </tr>
-                                            <tr>
-                                                <td class="text-center text-muted">Samedi</td>
-                                                <td><input type="text" v-model="room.startSat" class="text-center border"/></td>
-                                                <td><input type="text" v-model="room.endSat" class="text-center border"/></td>
-                                                
-                                            </tr>
-                                            <tr>
-                                                <td class="text-center text-muted">Dimanche</td>
-                                                <td><input type="text" v-model="room.startSun" class="text-center border"/></td>
-                                                <td><input type="text" v-model="room.endSun" class="text-center border"/></td>
+                                            <tr v-for="openingHoursDetail in openingHoursDetailsData" :key="openingHoursDetail.id">
+                                                <td class="text-center text-muted">{{openingHoursDetail.id}}</td>
+                                                <td><input type="text" v-model="openingHoursDetail.start" class="text-center border"/></td>
+                                                <td><input type="text" v-model="openingHoursDetail.end" class="text-center border"/></td>
                                             </tr>
                                         </tbody>
                                     </table>
@@ -150,6 +117,7 @@
 
 <script>
 import { roomDetailsData, Floors, Bookables, MinRentalDurations, TypeBookings } from "@/apps/lc-142/Components/data-roomDetails";
+import { openingHoursDetailsData } from "@/apps/lc-142/Components/data-openingHoursDetails";
 
 import VuePerfectScrollbar from "vue-perfect-scrollbar";
 
@@ -157,6 +125,20 @@ export default {
     name: 'Wizard1',
     components: {
         VuePerfectScrollbar,
+    },
+    props : {
+        getData: {
+            type: Number,
+            default: 0
+        }
+    },
+    watch : {
+        getData(newVal) {
+            if(newVal==1) {
+                this.room.openingHours = openingHoursDetailsData
+                this.$emit('roomInfo', this.room)
+            }
+        }
     },
     data: () => ({
         room: {
@@ -167,30 +149,14 @@ export default {
             minRentalDuration: roomDetailsData[0].minRentalDuration,
             typeBooking: [roomDetailsData[0].typeBooking],
             bookable: [roomDetailsData[0].bookable],
-            openingHours: [roomDetailsData[0].openingHours],
-            startMon: '',
-            startTue: '',
-            startWen: '',
-            startThu: '',
-            startFri: '',
-            startSat: '',
-            startSun: '',
-            endMon: '',
-            endTue: '',
-            endWen: '',
-            endThu: '',
-            endFri: '',
-            endSat: '',
-            endSun: ''
+            openingHours: [roomDetailsData[0].openingHours]
         },
         roomDetailsData: roomDetailsData,
+        openingHoursDetailsData: openingHoursDetailsData,
         floors: Floors,
         bookables: Bookables,
         minRentalDurations: MinRentalDurations,
         typeBookings: TypeBookings
-    }),
-    methods: {
-
-    }
+    })
 };
 </script>

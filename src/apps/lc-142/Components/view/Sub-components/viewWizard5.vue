@@ -12,24 +12,19 @@
                             <table class="align-middle mb-5 table table-border table-striped table-hover">
                                 <thead>
                                     <tr>
-                                        <th class="text-center">Tarifs clients</th>
+                                        <th class="text-center">Type clients</th>
                                         <th class="text-center">par heure</th>
                                         <th class="text-center">par 1/2 jour</th>
                                         <th class="text-center">par jour</th>
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <tr>
-                                        <td class="text-center text-muted">Prix public</td>
-                                        <td><input type="text" class="text-center border" v-model="room.publicPriceHour"/></td>
-                                        <td><input type="text" class="text-center border" v-model="room.publicPriceHalfDay"/></td>
-                                        <td><input type="text" class="text-center border" v-model="room.publicPriceDay"/></td>
-                                    </tr>
-                                    <tr>
-                                        <td class="text-center text-muted">Prix  membre</td>
-                                        <td><input type="text" class="text-center border" v-model="room.memberPriceHour"/></td>
-                                        <td><input type="text" class="text-center border" v-model="room.memberPriceHalfDay"/></td>
-                                        <td><input type="text" class="text-center border" v-model="room.memberPriceDay"/></td>
+                                    <tr v-for="priceDetail in priceDetailsData" :key="priceDetail.id">
+                                        <td class="text-center border">{{ priceDetail.id }}</td>
+                                        <td class="text-center border">{{ priceDetail.hour }}</td>
+                                        <td class="text-center border">{{ priceDetail.halfDay }}</td>
+                                        <td class="text-center border">{{ priceDetail.day }}</td>
+                                        
                                     </tr>
                                 </tbody>
                             </table>
@@ -40,25 +35,18 @@
                             <table class="align-middle mb-5 table table-border table-striped table-hover">
                                 <thead>
                                     <tr>
-                                        <th class="text-center">Tarifs clients</th>
+                                        <th class="text-center">Type clients</th>
                                         <th class="text-center">par semaine</th>
                                         <th class="text-center">par mois</th>
                                         <th class="text-center">par trimestre</th>
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <tr>
-                                        <td class="text-center text-muted">Prix public</td>
-                                        <td><input type="text" class="text-center border" v-model="room.publicPriceWeek"/></td>
-                                        <td><input type="text" class="text-center border" v-model="room.publicPriceMonth"/></td>
-                                        <td><input type="text" class="text-center border" v-model="room.publicPriceTrimester"/></td>
-                                        
-                                    </tr>
-                                    <tr>
-                                        <td class="text-center text-muted">Prix membre</td>
-                                        <td><input type="text" class="text-center border" v-model="room.memberPriceWeek"/></td>
-                                        <td><input type="text" class="text-center border" v-model="room.memberPriceMonth"/></td>
-                                        <td><input type="text" class="text-center border" v-model="room.memberPriceTrimester"/></td>
+                                    <tr v-for="priceDetail in priceDetailsData" :key="priceDetail.id">
+                                        <td class="text-center border">{{ priceDetail.id }}</td>
+                                        <td class="text-center border">{{ priceDetail.week }}</td>
+                                        <td class="text-center border">{{ priceDetail.month }}</td>
+                                        <td class="text-center border">{{ priceDetail.trimester }}</td>
                                     </tr>
                                 </tbody>
                             </table>
@@ -76,6 +64,7 @@
 
 <script>
 import { roomDetailsData } from "@/apps/lc-142/Components/data-roomDetails";
+import { priceDetailsData } from "@/apps/lc-142/Components/data-priceDetails";
 import VuePerfectScrollbar from "vue-perfect-scrollbar";
 // import CKEditor from '@ckeditor/ckeditor5-vue';
 // import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
@@ -86,34 +75,31 @@ export default {
         VuePerfectScrollbar,
         // ckeditor: CKEditor.component
     },
-    props: ['roomDetails'],
+    props : {
+        getData: {
+            type: Number,
+            default: 0
+        }
+    },
+    watch: {
+        getData(newVal) {
+            if(newVal==1) {
+                this.$emit('priceInfo', this.room)
+            }
+        }
+    },
     data: () => ({
         room: {
-            notes: '',
-            publicPriceHour: '',
-            publicPriceHalfDay: '',
-            publicPriceDay: '',
-            publicPriceWeek: '',
-            publicPriceMonth: '',
-            publicPriceTrimester: '',
-            memberPriceHour: '',
-            memberPriceHalfDay: '',
-            memberPriceDay: '',
-            memberPriceWeek: '',
-            memberPriceMonth: '',
-            memberPriceTrimester: ''
-
-
+            priceDetails: [roomDetailsData[0].priceDetails],
+            notes: roomDetailsData[0].notes
         },
         roomDetailsData: roomDetailsData,
+        priceDetailsData: priceDetailsData
         // editor2: ClassicEditor,
         // editorData: '<p>Content of the editor.</p>',
         // editorConfig: {
         // The configuration of the editor.
         // }
-    }),
-
-    methods: {
-    }
+    })
 };
 </script>

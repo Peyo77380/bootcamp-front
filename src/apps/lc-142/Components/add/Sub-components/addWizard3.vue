@@ -68,6 +68,7 @@
 
 <script>
 import { serviceDetailsData } from "@/apps/lc-142/Components/data-serviceDetails";
+import { roomDetailsData } from "@/apps/lc-142/Components/data-roomDetails";
 import VuePerfectScrollbar from "vue-perfect-scrollbar";
 
 export default {
@@ -85,7 +86,7 @@ export default {
         getData(newVal) {
             if(newVal==1) {
                 this.room.services = serviceDetailsData
-                this.$emit('servInfo', this.room.services)
+                this.$emit('servInfo', this.room)
             }
         }
     },
@@ -94,6 +95,7 @@ export default {
             services: []
         },
         serviceDetailsData: serviceDetailsData,
+        roomDetailsData: roomDetailsData,
         viewModal: false,
         photoModal: false,
         modaleInfo: {
