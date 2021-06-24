@@ -29,10 +29,10 @@
                                                 <b-tabs v-model="tabIndex" class="card-header-tab-animation" card>
                                                     <Wizard1 :getData="getData1" @roomInfo="pushRoomInfo"/>
                                                     <Wizard2 :getData="getData2" @destInfo="pushDestInfo"/>
-                                                    <Wizard3/>
-                                                    <Wizard4/>
-                                                    <Wizard5/>
-                                                    <Wizard6/>
+                                                    <Wizard3 :getData="getData3" @servInfo="pushServInfo"/>
+                                                    <Wizard4 :getData="getData4" @photoInfo="pushPhotoInfo"/>
+                                                    <Wizard5 :getData="getData5" @priceInfo="pushPriceInfo"/>
+                                                    <Wizard6 :getData="getData6" @planInfo="pushPlanInfo"/>
                                                 </b-tabs>
                                             </div>
                                             <!-- Control buttons -->
@@ -94,26 +94,29 @@ export default {
         tabIndex: 1,
         getData1: 0,
         getData2: 0,
+        getData3: 0,
+        getData4: 0,
+        getData5: 0,
+        getData6: 0,
         datas: {}
     }),
     methods: {
         saveRoom () {
-            this.$emit(
-                'onComplete1',
-                'onComplete2',
-                'onComplete3',
-                'onComplete4',
-                'onComplete5',
-                'onComplete6'
-            );
-            // this.$sweetSuccess("houraaaa");
-            console.log("onComplete1.room");
+            // TODO point API saveRoom ()
         },
         nextWizard () {
             switch (this.tabIndex) {
                 case 0: this.getData1 = 1;
                 break;
                 case 1: this.getData2 = 1;
+                break;
+                case 2: this.getData3 = 1;
+                break;
+                case 3: this.getData4 = 1;
+                break;
+                case 4: this.getData5 = 1;
+                break;
+                case 5: this.getData6 = 1;
                 break;
             }
             this.tabIndex++;
@@ -124,6 +127,18 @@ export default {
         },
         pushDestInfo(infos) {
             this.datas.description = infos;
+        },
+        pushServInfo(infos) {
+            this.datas.services = infos;
+        },
+        pushPhotoInfo(infos) {
+            this.datas.roomListPhoto = infos;
+        },
+        pushPriceInfo(infos) {
+            this.datas.prices = infos;
+        },
+        pushPlanInfo(infos) {
+            this.datas.roomListPlan = infos;
         }
     }
 };

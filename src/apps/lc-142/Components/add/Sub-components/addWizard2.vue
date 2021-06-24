@@ -7,7 +7,7 @@
                 <div class="mt-3 mb-3">
                     <!-- Contenu 2e wizard-->
                     <h2>PLUGIN CKEDITOR</h2>
-                    <b-form @onComplete2="onComplete2">
+                    <b-form>
                         <!-- <ckeditor :editor="editor2" v-model="room.description" :config="editorConfig"></ckeditor> -->
                     </b-form>
                 </div>
@@ -38,7 +38,7 @@ export default {
     watch : {
         getData(newVal) {
             if(newVal==1) {
-                this.$emit('destInfo',this.room.description)
+                this.$emit('destInfo', this.room.description)
             }
         }
     },
@@ -52,12 +52,6 @@ export default {
         // editorConfig: {
         // The configuration of the editor.
         // },
-    }),
-
-    methods: {
-        onComplete2() {
-        // validation premier wizard, save enn bdd et passage au wizard suivant
-        }
-    }
+    })
 };
 </script>

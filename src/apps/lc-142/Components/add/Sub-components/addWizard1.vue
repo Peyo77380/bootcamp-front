@@ -136,7 +136,7 @@ export default {
         getData(newVal) {
             if(newVal==1) {
                 this.room.openingHours = openingHoursDetailsData
-                this.$emit('roomInfo',this.room)
+                this.$emit('roomInfo', this.room)
             }
         }
     },
@@ -157,11 +157,6 @@ export default {
         bookables: Bookables,
         minRentalDurations: MinRentalDurations,
         typeBookings: TypeBookings
-    }),
-    methods: {
-        onComplete1() {
-            // validation premier wizard, save enn bdd et passage au wizard suivant
-        }
-    }
+    })
 };
 </script>

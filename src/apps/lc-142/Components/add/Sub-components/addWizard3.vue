@@ -6,7 +6,7 @@
             <VuePerfectScrollbar class="scrollbar-container" v-once>
                 <div class="mt-3 mb-3">
                     <!-- Contenu 3e wizard-->
-                    <b-form @onComplete3="onComplete3">
+                    <b-form>
                     <div class="row">
                         <div class="col-1"></div>
                             <div class="col-10">
@@ -24,7 +24,8 @@
                                         <td>
                                             <b-form-checkbox 
                                             v-model="room.services"
-                                            value="1"></b-form-checkbox>
+                                            value="1"
+                                            ></b-form-checkbox>
                                         </td>
                                         <td class="text-left">{{ serviceDetail.title }}</td>
                                         <td class="text-center">
@@ -57,7 +58,7 @@
         </p>
     </b-modal>
 
-    <b-modal  v-model="photoModal" :title=modaleInfo.title>
+    <b-modal v-model="photoModal" :title=modaleInfo.title>
         <p class="my-4">
             <v-img :src="require('@/assets/images/services/' + modaleInfo.photo + '.jpeg')"></v-img>
         </p>
@@ -73,6 +74,20 @@ export default {
     name: 'Wizard3',
     components: {
         VuePerfectScrollbar,
+    },
+    props : {
+        getData: {
+            type: Number,
+            default: 0
+        }
+    },
+    watch: {
+        getData(newVal) {
+            if(newVal==1) {
+                this.room.services = serviceDetailsData
+                this.$emit('servInfo', this.room.services)
+            }
+        }
     },
     data: () => ({
         room: {
@@ -97,9 +112,6 @@ export default {
             this.modaleInfo.title = itemData.title
             this.modaleInfo.photo = itemData.photo
             this.photoModal = true;
-        },
-        onComplete3() {
-        // validation premier wizard, save enn bdd et passage au wizard suivant
         }
     }
 };

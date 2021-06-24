@@ -20,21 +20,10 @@ export const roomDetailsData = [
         "services": ['0', '1', '2', '3'],
 
         // wizard 4
-        // objet photo a un id, un titre et une url
+        // roomListPhoto
 
         // wizard 5
-        "publicPriceHour": "20",
-        "publicPriceHalfDay": "100",
-        "publicPriceDay": "200",
-        "publicPriceWeek": "1000",
-        "publicPriceMonth": "4000",
-        "publicPriceTrimester": "12000",
-        "memberPriceHour": "15",
-        "memberPriceHalfDay": "80",
-        "memberPriceDay": "160",
-        "memberPriceWeek": "800",
-        "memberPriceMonth": "2400",
-        "memberPriceTrimester": "7200",
+        "prices": ['1', '2'],
         "notes": "notes commerciales",
 
         // wizard 6
