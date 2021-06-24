@@ -3,7 +3,11 @@
         <h3 class="drawer-heading">Mes actions commerciales</h3>
         <div class="card-header-tab card-header">
             <div class="btn-actions-pane-right text-capitalize actions-icon-btn">
-                <button type="button" class="btn mr-2 mb-2 p-2 mt-2 btn-pill btn-icon btn-success ">
+                <button 
+                type="button" 
+                class="btn mr-2 mb-2 p-2 mt-2 btn-pill btn-icon btn-success "
+                @click="addModal"
+                >
                     <i class="btn-icon-wrapper lnr-plus-circle"></i> Ajouter une nouvelle Action
                 </button>
             </div>
@@ -78,7 +82,10 @@
                                                 </div> 
                                             </div>
                                             <div class="widget-content-right">
-                                                <button type="button" class="btn mb-2 mr-2 btn-icon btn-icon-only btn-pill btn-primary">
+                                                <button 
+                                                type="button" 
+                                                class="btn mb-2 mr-2 btn-icon btn-icon-only btn-pill btn-primary"
+                                                >
                                                     <i class="lnr-pencil btn-icon-wrapper"></i>  
                                                 </button>
                                                 <!-- <button type="button" class=" btn mb-2 mr-2 btn-icon btn-icon-only btn-pill btn-warning">
@@ -108,11 +115,16 @@
                 </li>
             </ul>
         </div>
+        <action-commercial-add
+        :dialog="dialog"
+        @closeModal="cancelModal"
+        />
     </div>
 </template>
     
 <script>
 import { commercialData } from "@/apps/LC-172/commercialData";
+import ActionCommercialAdd from "@/apps/LC-172/components/ActionCommercialAdd";
 export default {
     data() {
         return {
@@ -121,11 +133,18 @@ export default {
                 start: "à faire",
                 progress: "en cours",
                 end: "terminé", 
-            } 
+            },
+            dialog: false, 
         }  
     }, 
+
+    components: {
+        ActionCommercialAdd
+    },
+
     methods: {
         getStatus(status) {
+            //selection of type of flage
             switch (status) {
                 case this.status.progress:
                     return {
@@ -144,7 +163,13 @@ export default {
                 break;        
             }
         },
-
+        addModal() {
+            //Open Modal Add Commercial Action
+            this.dialog = true
+        },
+        cancelModal() {
+            this.dialog = false
+        }
     }
 }
 </script>

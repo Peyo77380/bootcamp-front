@@ -33,7 +33,7 @@ const commercialData = [
        "responsable" : "Irwine MAGADUR",
        "detail" : "Si pas de news, renvoyer un email",
        "date" : "01/04/2020",
-       "status" : "a faire"
+       "status" : "à faire"
       },
 ]
 export { commercialData }
