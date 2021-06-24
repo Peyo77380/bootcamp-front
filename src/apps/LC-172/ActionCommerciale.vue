@@ -93,8 +93,8 @@
                                         <div class="widget-content p-0">
                                             <div class="widget-content-wrapper">
                                                 <div class="widget-content-left">
-                                                    <div class="widget-subheading"><i>{{ data.detail }}</i></div><br>
-                                                    <div class="widget-heading">{{ data.responsable }}</div>
+                                                    <div class="widget-subheading"><i>Détails: {{ data.detail }}</i></div><br>
+                                                    <div class="widget-heading">Résponsable: {{ data.responsable }}</div>
                                                 </div>
                                                 <div class="widget-content-right">
                                                     <div class="widget-subheading"><i>Échéance: {{ data.date }}</i></div>
@@ -117,24 +117,29 @@ export default {
     data() {
         return {
             commercialData: commercialData,
+            status: {
+                start: "à faire",
+                progress: "en cours",
+                end: "terminé", 
+            } 
         }  
     }, 
     methods: {
         getStatus(status) {
             switch (status) {
-                case "en cours":
+                case this.status.progress:
                     return {
-                        "ml-2 badge badge-success":true
+                        "ml-2 badge badge-success": true
                     };
                 break;    
-                case "terminé":
+                case this.status.end:
                     return {
-                        "ml-2 badge badge-danger":true
+                        "ml-2 badge badge-danger": true
                     };
                 break; 
-                case "a faire":
+                case this.status.start:
                     return {
-                        "ml-2 badge badge-primary":true
+                        "ml-2 badge badge-primary": true
                     };
                 break;        
             }
