@@ -6,53 +6,88 @@
                     Modification - {{ items.nom }}
                 </v-card-title>
                 <v-card-text>
-                    <v-form>
-                        <v-container>
-                            <v-layout row wrap>
-                                <v-flex xs12 sm6>
-                                    <v-text-field
-                                        :value="items.nom"
-                                        label="Nom"
-                                        readonly
-                                    ></v-text-field>
-                                </v-flex>
-                                <v-flex xs12 sm6>
-                                    <v-text-field
-                                        :value="items.identifiant"
-                                        label="Identifiant"
-                                        readonly
-                                    ></v-text-field>
-                                </v-flex>
-                            </v-layout>
-                        </v-container>
-                    </v-form>
+                    
                     <v-container>
                         <b-form row wrap>
-                            <b-form-group
+                            
+                                <v-select 
+                                v-model="selected"
+                                :items="types"
+                                item-text="label"
+                                item-value="label"
+                                persistent-hint
+                                return-object
+                                single-line
+                                @change="selectValue"
+                                
+                                >
+                                
+                            </v-select>
+                            
+                                <b-form-group
                                 id="input-group-1"
-                                label="Valeur :"
+                                label="Nom :"
                                 label-for="input-1"
                             >
                                 <b-form-input
                                     id="input-1"
-                                    v-model="items.type"
+                                    v-model="items.nom"
                                     required
                                 ></b-form-input>
                             </b-form-group>
-
-                            <b-form-group
-                                id="input-group-2"
-                                label="Infos :"
-                                label-for="input-2"
+                                <b-form-group
+                                id="input-group-1"
+                                label="Identifiant :"
+                                label-for="input-1"
                             >
                                 <b-form-input
-                                    id="input-2"
-                                    v-model="items.options"
+                                    id="input-1"
+                                    v-model="items.identifiant"
                                     required
                                 ></b-form-input>
                             </b-form-group>
 
-                            <div class="p-1 text-right btn-group-sm ">
+                            <div v-show="textArea">
+                    <b-form-group
+                    id="input-group-1"
+                    label="Options :"
+                    label-for="input-1"
+                    >
+                    <b-form-textarea
+                    id="input-1"
+                    placeholder="Informations complémentaires..."
+                
+                    required
+                    ></b-form-textarea>
+                    </b-form-group>
+                </div>
+                <div v-show="oneChoice"> 
+                    <label for="tags-pills">Différents choix possibles</label>
+                    <b-form-tags
+                    input-id="tags-pills"
+                    v-model="value"
+                    tag-variant="primary"
+                    tag-pills
+                    size="lg"
+                    separator=" "
+                    placeholder="Nouveau choix..."
+                    ></b-form-tags>
+                </div>
+                <div v-show="multipleChoice">
+                    <label for="tags-pills-2">Différents choix possibles</label>
+                    <b-form-tags
+                    input-id="tags-pills-2"
+                    v-model="value2"
+                    tag-variant="primary"
+                    tag-pills
+                    size="lg"
+                    separator=" "
+                    placeholder="Nouveau choix..."
+                    
+                    ></b-form-tags>
+                </div>
+
+                            <div class="p-1 text-right btn-group-sm">
                                 <b-button
                                     style="margin-right:10px"
                                     type="reset"
@@ -81,6 +116,24 @@ export default {
     components: {
    
     },
+    data ()  {
+            return{
+                selected : null,
+                model: 'tab-2',
+                
+                types: [
+                    { label: 'Champs texte'},
+                    { label: 'Un seul choix'},
+                    { label: 'Liste de sélection'},
+                
+                ],
+                textArea : false,
+                oneChoice : false,
+                multipleChoice : false,
+            }
+            
+
+        },
     props: {
         dialog: {
             type: Boolean
@@ -94,7 +147,36 @@ export default {
             this.$emit("close");
         },
         
+        selectValue(){
+            if(this.selected.label === "Champs texte"){
+                this.textArea = true;
+                this.oneChoice = false;
+                this.multipleChoice = false;
+
+            }
+            if(this.selected.label === "Un seul choix"){
+                this.oneChoice = true;
+                this.textArea = false;
+                this.multipleChoice = false;
+            }
+            if(this.selected.label === "Liste de sélection"){
+                this.multipleChoice = true;
+                this.textArea= false;
+                this.oneChoice=false;
+                
+            }
+        }
+    },
+    mounted() {
+    this.selected.label = items.type;
     }
+   
+    
+            
+            
+        
+    
+  
 };
 </script>
 <style>
