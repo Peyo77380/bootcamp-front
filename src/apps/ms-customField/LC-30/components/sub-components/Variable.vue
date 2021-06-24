@@ -49,7 +49,7 @@
                     <v-form>
                         <v-flex xs12 sm12 md12>
                             <v-text-field 
-                                v-model="createdEmail.value"
+                                v-model="createdVariable.value"
                                 label="Element variables de l'email">
                             </v-text-field>
                         </v-flex>
@@ -73,7 +73,7 @@ export default {
   data() {
     return {
         modalEmail: false,
-        createdEmail: {},
+        createdVariable: {},
         editedIndex: -1,
     };
   },
@@ -93,11 +93,11 @@ export default {
       saveEmail() {
           this.closeModalEmail()
           if(this.editedIndex>=0) {
-              Object.assign (this.editedEmail.variable[this.editedIndex], this.createdEmail),
+              Object.assign (this.editedEmail.variable[this.editedIndex], this.createdVariable),
               this.editedIndex=-1;
           }
           else {
-              this.editedEmail.variable.push(this.createdEmail)
+              this.editedEmail.variable.push(this.createdVariable)
               //TODO point API pour enregistrer une nouvelle variable 
           }
           this.createdEmail = {}

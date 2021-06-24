@@ -20,7 +20,7 @@
                                         <b-button 
                                             class="mb-2 mr-2 btn-icon btn-icon-only btn-pill" 
                                             variant="outline-primary"
-                                            @click="EditEmailCopy(email)">
+                                            @click="editEmailCopy(email)">
                                             <i class="lnr-pencil btn-icon-wrapper"></i>
                                         </b-button>
                                          <b-button 
@@ -51,12 +51,12 @@
                                 <div class="position-relative form-group">
                                     <label>Email en copie</label>
                                     <input name="email"
-                                    placeholder="" 
+                                    placeholder="Renseigner votre adresse email" 
                                     type="email" 
                                     class="form-control"
                                     v-model="createdEmail.value"
                                     required
-                                    >
+                                    > 
                                 </div>
                             </div>
                         </v-flex>
@@ -77,8 +77,7 @@
                         @click="saveEmail"  
                         >
                         Enregistrer
-                    </button>
-                    
+                    </button>  
                 </v-card-actions>
             </v-card>
         </v-dialog> 
@@ -94,11 +93,7 @@ export default {
     return {
         modalEmail: false,
         createdEmail: {},
-        editedIndex: -1,
-        emailRules: [
-        v => !!v || 'une adresse email est requise',
-        v => /.+@.+/.test(v) || "l'email doit avoir un format valide"
-      ]
+        editedIndex: -1
     };
   },
   props: {
@@ -113,7 +108,6 @@ export default {
       },
       closeModalEmail() {
           this.modalEmail = false;
-          this.createdEmail= {}
       },
       saveEmail() {
           this.closeModalEmail()
@@ -132,7 +126,7 @@ export default {
           this.editedEmail.emailCopy.splice(this.editedIndex,1)
           //TODO point API pour supprimer email a mettre en copie 
       },
-      EditEmailCopy(email) {
+      editEmailCopy(email) {
           this.openModalEmail();
           this.editedIndex = this.editedEmail.emailCopy.indexOf(email);
          //TODO point API pour modifier l'adresse mail a mettre en copie
