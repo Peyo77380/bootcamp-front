@@ -150,6 +150,7 @@
 import PageTitle from "../../Layout/Components/PageTitle";
 import EditList from "../LC-29/EditList";
 import CountryFlag from "vue-country-flag";
+import {Globals} from '@/mixins/global';
 
 export default {
   name: "home",
@@ -159,7 +160,11 @@ export default {
     EditList,
     CountryFlag,
   },
-
+  mixins: [Globals],
+  async mounted() {
+    const allLists = this.getGlobals();
+    console.log("from component: ", allLists)
+  },
   data: () => ({
     item: ["FR", "En", "SP"],
     heading: "LaColloc - Paramètres",

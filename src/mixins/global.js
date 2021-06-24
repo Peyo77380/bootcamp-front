@@ -7,7 +7,7 @@ export const Globals = {
         async getGlobals() {
 
             try {
-                const response = await api.get('list')
+                const response = await api.get('list/1/1/fr_FR')
                 console.log('from mixins', response);
                 return {
                     status: 1,
