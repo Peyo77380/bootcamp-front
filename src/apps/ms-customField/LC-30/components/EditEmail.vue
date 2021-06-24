@@ -1,5 +1,5 @@
 <template>
-    <v-layout row justify-center>
+    <v-layout row justify-center> <!-- Pour faire simple, bootstrapiser le tout !-->
         <v-dialog v-model="dialog" fullscreen hide-overlay transition="dialog-bottom-transition">
             <v-card> 
                 <div class="mb-5">

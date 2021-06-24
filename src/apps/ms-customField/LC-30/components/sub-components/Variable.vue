@@ -3,7 +3,7 @@
         <div class="card-hover-shadow-2x mb-3 card">
             <div class="card-header-tab card-header">
                 <div class="card-header-title font-size-lg text-capitalize font-weight-normal"><i class="header-icon lnr-sync icon-gradient bg-malibu-beach"> 
-                    </i>Variables de l'email</div>
+                    </i>Variables de l'email</div> <!-- Standardiser les boutons !-->
             </div>
             <div class="scroll-area-sm">
                 <div class="chat-wrapper p-1">
