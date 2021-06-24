@@ -163,7 +163,7 @@
 </script>
 <style>
 .app-drawer-wrapper.drawer-open {
-    width: 800px
+    width: 700px
 }
     
 </style>

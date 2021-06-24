@@ -88,9 +88,6 @@
                                                 >
                                                     <i class="lnr-pencil btn-icon-wrapper"></i>  
                                                 </button>
-                                                <!-- <button type="button" class=" btn mb-2 mr-2 btn-icon btn-icon-only btn-pill btn-warning">
-                                                    <i class="lnr-trash btn-icon-wrapper"></i>  
-                                                </button> -->
                                             </div>
                                         </div>
                                     </div>
@@ -118,6 +115,8 @@
         <action-commercial-add
         :dialog="dialog"
         @closeModal="cancelModal"
+        @saveDatas="saveNewDatas"
+        :newDatas="newDatas"
         />
     </div>
 </template>
@@ -135,6 +134,7 @@ export default {
                 end: "terminé", 
             },
             dialog: false, 
+            newDatas: {},
         }  
     }, 
 
@@ -169,6 +169,10 @@ export default {
         },
         cancelModal() {
             this.dialog = false
+        },
+        saveNewDatas(newDatas) {
+            this.commercialData.push(newDatas);
+            this.newDatas= {}
         }
     }
 }
