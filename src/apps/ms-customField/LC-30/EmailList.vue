@@ -152,13 +152,9 @@
     </div>
 </template>
 <script>
-<<<<<<< HEAD
 import CountryFlag from 'vue-country-flag'
 import moment from 'moment'
 
-=======
-import CountryFlag from "vue-country-flag";
->>>>>>> fa2bd05e1911cf39562ddc0cc5c2e507c8e407ff
 export default {
     name: "email-list",
 
@@ -211,16 +207,12 @@ export default {
             if (category[0]) {
                 return category[0].class;
             }
-<<<<<<< HEAD
             return ""
         },
         getElapsedTime(time){
             const moment = require('moment');
             moment.locale('fr');
             return moment(time).fromNow();
-=======
-            return "";
->>>>>>> fa2bd05e1911cf39562ddc0cc5c2e507c8e407ff
         }
     }
 };
