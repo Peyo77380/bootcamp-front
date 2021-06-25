@@ -4,7 +4,7 @@
         <div class="col-md-2" 
         v-for="category in categories" :key="category.id"
         >
-            <div class="card mb-3 widget-content" :class="category.color">
+            <div class="card mb-3 widget-content" :class="category.class">
                 <div class="widget-content-wrapper text-white">
                     <div class="widget-content-left">
                         <div class="widget-heading">{{ category.value }}</div>
@@ -73,7 +73,7 @@
                 <tbody>
                     <tr v-for="email in emails" :key="email.id"> 
                          <td class="row justify-content-center" style="font-weight :bold; color:white; opacity: .9; font-size : 11px"> 
-                             <div style="display: flex; justify-content: center" class="swatch-holder swatch-holder-md" :class="email.color">
+                             <div style="display: flex; justify-content: center" class="swatch-holder swatch-holder-md" :class="getClass(email.section)">
                                  {{getCategoryName(email.section)}}
                             </div>     
                         </td>
@@ -159,6 +159,15 @@ export default {
             })
             if(category[0]){
                 return category[0].value
+            }
+            return ""
+        },
+        getClass(id){
+            const category = this.categories.filter( item => {
+                return item.id = id
+            })
+            if(category[0]){
+                return category[0].class
             }
             return ""
         }
