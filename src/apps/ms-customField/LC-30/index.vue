@@ -9,8 +9,8 @@
         </div>
         <div>
             <email-list
-                :EmailData="EmailData"
-                :CategoryName="CategoryName"
+                :emails="emails"
+                :categories="categories"
                 @displayEmail="showDetails"
                 @edit="editEmail"
                 @changeUs="translateUs"
@@ -40,7 +40,9 @@ import PageTitle from "@/Layout/Components/PageTitle";
 import EmailList from "@/apps/ms-customField/LC-30/EmailList";
 import DisplayEmail from "@/apps/ms-customField/LC-30/components/DisplayEmail";
 import EditEmail from "@/apps/ms-customField/LC-30/components/EditEmail";
-import { EmailData } from "@/apps/ms-customField/LC-30/EmailData";
+//import { EmailData } from "@/apps/ms-customField/LC-30/EmailData";
+import {Emails} from "@/mixins/email";
+import {Globals} from "@/mixins/global";
 import { EmailDataUs } from "@/apps/ms-customField/LC-30/EmailDataUs";
 import { CategoryName } from "@/apps/ms-customField/LC-30/CategoryName";
 
@@ -51,17 +53,22 @@ export default {
         DisplayEmail,
         EditEmail
     },
+    mixins: [Emails,Globals],
+    async mounted() {
+        await this.loadEmails();
+        await this.loadCategories()
+    },
     data() {
         return {
             heading: "Email de services",
             subheading:
                 "Créer l'ensemble des modèles de vos email de services ici.",
             icon: "pe-7s-mail",
-            EmailData: EmailData,
+            emails: [],
             //TODO API affichage de l'ensemble des données 
             EmailDataUs: EmailDataUs,
-            EmailDataFr: EmailData,
-            CategoryName: CategoryName,
+            EmailDataFr: emails,
+            categories: [],
             //TODO API affichage de l'ensemble des catégories
             dialog: false,
             emailDetails: {},
@@ -91,19 +98,34 @@ export default {
         },
         modificationEmail() {
             //TODO point API modification email de services
-            this.editedIndex = this.EmailData.indexOf(this.editedEmail);
+            this.editedIndex = this.emails.indexOf(this.editedEmail);
             let title = "Modification de l'email réussie !";
             this.$sweetNotif(title);
         },
         translateUs() {
-            this.EmailData = this.EmailDataUs
+            this.emails = this.EmailDataUs
             //TODO point API pour importer les data en anglais
         },
         translateFr() {
-            this.EmailData = this.EmailDataFr
+            this.emails = this.EmailDataFr
             //TODO point API pour importer les data en francais
             
-        }
+        },
+        async loadEmails() {
+            try {
+                this.emails = await this.getAllEmails();
+            } catch (error) {
+                this.$sweetError('GLC-30');
+            }
+        },
+        async loadCategories() {
+            try {
+                this.categories = await this.getAllCategories();
+            } catch (error) {
+                this.$sweetError('GLC-30');
+            }
+        },
+
     }
 };
 </script>

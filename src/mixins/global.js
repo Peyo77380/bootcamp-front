@@ -6,9 +6,10 @@ export const Globals = {
 
         async getGlobals() {
             try {
-                const response = await api.get('email')
+                const response = await api.get('global')
+                return response.data.datas
             } catch (error) {
-                
+                throw new Error(error);         
             }
         }
 

@@ -2,7 +2,7 @@
 <div>
     <div class="row justify-content-center">
         <div class="col-md-2" 
-        v-for="category in CategoryName" :key="category.id"
+        v-for="category in categories" :key="category.id"
         >
             <div class="card mb-3 widget-content" :class="category.color">
                 <div class="widget-content-wrapper text-white">
@@ -71,10 +71,10 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <tr v-for="email in EmailData" :key="email.id"> 
+                    <tr v-for="email in emails" :key="email.id"> 
                          <td class="row justify-content-center" style="font-weight :bold; color:white; opacity: .9; font-size : 11px"> 
                              <div style="display: flex; justify-content: center" class="swatch-holder swatch-holder-md" :class="email.color">
-                                 {{email.category}}
+                                 {{getCategoryName(email.section)}}
                             </div>     
                         </td>
                         <td class="text-center text-muted">{{ email.key }}</td>
@@ -132,10 +132,10 @@ export default {
     },
 
     props: {
-        EmailData: {
+        emails: {
             type: Array
         },
-        CategoryName: {
+        categories: {
             type: Array
         }
     },
@@ -152,6 +152,15 @@ export default {
         },
         changeFr() {
             this.$emit("changeFr")
+        },
+        getCategoryName(id){
+            const category = this.categories.filter( item => {
+                return item.id = id
+            })
+            if(category[0]){
+                return category[0].value
+            }
+            return ""
         }
     }
 };
