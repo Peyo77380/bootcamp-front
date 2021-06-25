@@ -113,6 +113,7 @@ export default {
             this.roomDetailsData = this.roomDetailsData.filter(roomDetail => roomDetail.id !== id)
             // this.$sweetConfirmation()
         },
+        //TODO point API pour que a chaque batiment soit assosicé une liste de salle
     }
 };
 </script>
