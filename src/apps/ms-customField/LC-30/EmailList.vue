@@ -79,7 +79,7 @@
                         </td>
                         <td class="text-center text-muted">{{ email.key }}</td>
                         <td class="text-center">{{ email.title }}</td>
-                        <td class="text-center">2 jours</td>
+                        <td class="text-center">{{ getElapsedTime(email.updatedAt)}}</td>
                         <td class="text-center">
                             <div>
                                 <button
@@ -117,6 +117,8 @@
 </template>
 <script>
 import CountryFlag from 'vue-country-flag'
+import moment from 'moment'
+
 export default {
     name: "email-list",
 
@@ -170,6 +172,11 @@ export default {
                 return category[0].class
             }
             return ""
+        },
+        getElapsedTime(time){
+            const moment = require('moment');
+            moment.locale('fr');
+            return moment(time).fromNow();
         }
     }
 };
