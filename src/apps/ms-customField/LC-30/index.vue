@@ -44,7 +44,7 @@ import EditEmail from "@/apps/ms-customField/LC-30/components/EditEmail";
 import { Emails } from "@/mixins/email";
 import { Globals } from "@/mixins/global";
 import { EmailDataUs } from "@/apps/ms-customField/LC-30/EmailDataUs";
-import { CategoryName } from "@/apps/ms-customField/LC-30/CategoryName";
+// import { CategoryName } from "@/apps/ms-customField/LC-30/CategoryName";
 
 export default {
     components: {
@@ -55,8 +55,8 @@ export default {
     },
     mixins: [Emails, Globals],
     async mounted() {
-        await this.loadEmails();
         await this.loadCategories();
+        await this.loadEmails();
     },
     data() {
         return {
@@ -66,7 +66,7 @@ export default {
             icon: "pe-7s-mail",
             emails: [],
             //TODO API affichage de l'ensemble des données
-            EmailDataUs: Emails,
+            EmailDataUs: EmailDataUs,
             EmailDataFr: Emails,
             categories: [],
             //TODO API affichage de l'ensemble des catégories
@@ -119,7 +119,7 @@ export default {
         },
         async loadCategories() {
             try {
-                this.categories = await this.getAllCategories();
+                this.categories = await this.getGlobals();
             } catch (error) {
                 this.$sweetError("GLC-30");
             }
