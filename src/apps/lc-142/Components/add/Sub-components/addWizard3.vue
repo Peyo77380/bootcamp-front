@@ -23,9 +23,10 @@
                                     <tr v-for="serviceDetail in serviceDetailsData" :key="serviceDetail.id">
                                         <td>
                                             <b-form-checkbox 
-                                            v-model="room.services"
-                                            value="isSelected"
-                                            unchecked-value="notSelected"
+                                            :value="serviceDetail.title"
+                                            v-model="servicesChecked"
+                                            
+                                            
                                             ></b-form-checkbox>
                                         </td>
                                         <td class="text-left">{{ serviceDetail.title }}</td>
@@ -86,8 +87,8 @@ export default {
     watch: {
         getData(newVal) {
             if(newVal==1) {
-                this.room.services = serviceDetailsData
-                this.$emit('servInfo', this.room)
+                this.room.services = this.servicesChecked
+                this.$emit('servInfo', this.room.services)
             }
         }
     },
@@ -99,12 +100,24 @@ export default {
         roomDetailsData: roomDetailsData,
         viewModal: false,
         photoModal: false,
+        servicesChecked: [],
         modaleInfo: {
             title: '',
             description: '',
             photo: 'coworking'
         }
     }),
+    computed: {
+        servicesChecked: {
+            get() {
+                return this.servicesChecked;
+            },
+            set(newVal) {
+                console.log(newVal)
+                this.servicesChecked.push(newVal)
+            }
+        }
+    },
     methods: {
         openViewModale(itemData) {
             this.modaleInfo.title = itemData.title
