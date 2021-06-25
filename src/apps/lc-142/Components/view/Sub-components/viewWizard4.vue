@@ -57,7 +57,8 @@ export default {
             maxFilesize: 5,
             headers: { "My-Awesome-Header": "header value" },
             addRemoveLinks: false,
-            dictDefaultMessage: "<i class='pe-7s-upload'></i>UPLOAD PHOTO"
+            dictDefaultMessage: "<i class='pe-7s-upload'></i>ONLY CHECK PHOTO",
+            clickable: false
         }
     })
 };
