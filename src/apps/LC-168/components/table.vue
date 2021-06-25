@@ -29,7 +29,7 @@
                        <td class="text-center" v-if="item.type === 'Champs texte' "> {{item.options}} </td>
 
                        <td class="text-center" v-if="item.type === 'Un seul choix' || item.type === 'Liste de sélection' "  > 
-                           <v-chip close small v-for="option in item.options" :key="option.id" label color="blue" text-color="white">
+                           <v-chip small v-for="option in item.options" :key="option.id" label color="blue" text-color="white">
                             {{option.label}}
                             </v-chip> 
                         </td>
@@ -78,6 +78,7 @@
 <script>
 
     import {FontAwesomeIcon} from '@fortawesome/vue-fontawesome'
+    import {types} from '@/utils/globalAttribut';
     import modal from './newAttributModal.vue'
     import EditModal from './editModal.vue'
 
@@ -92,12 +93,12 @@
             return{
                 
         items: [
-        { id: 1, nom: 'Surface', identifiant: 'surface', type: "Champs texte", options:'Ceci est un champ texte ', classtype:'secondary'},
-        { id: 2, nom: 'Période de renouvellement', identifiant: 'period', type: "Un seul choix", options:[{label:'lorem ipsum'},{label:'lorem ipsum'}], classtype:'primary'},
-        { id: 3, nom: 'Étage', identifiant: 'level', type: "Liste de sélection", options:[{label:'sous-sol'},{label:'rez de chaussée'},{label:'1er étage'},{label:'2eme étage'}], classtype:'success'},
-        { id: 4, nom: 'Date de renouvellement', identifiant: 'renewall', type: "Un seul choix", options:[{label:'lorem ipsum'},{label:'lorem ipsum'}], classtype:'primary'},
+        { id: 1, nom: 'Surface', identifiant: 'surface', type: types[0].label, options:'Ceci est un champ texte ', classtype:'rgb(0, 0, 0)'},
+        { id: 2, nom: 'Période de renouvellement', identifiant: 'period', type: types[1].label, options:[{label:'lorem ipsum'},{label:'lorem ipsum'}], classtype:'rgb(0, 169, 255)'},
+        { id: 3, nom: 'Étage', identifiant: 'level', type: types[2].label, options:[{label:'sous-sol'},{label:'rez de chaussée'},{label:'1er étage'},{label:'2eme étage'}], classtype:'rgb(34, 94, 199)'},
+        { id: 4, nom: 'Date de renouvellement', identifiant: 'renewall', type: types[1].label, options:[{label:'lorem ipsum'},{label:'lorem ipsum'}], classtype:'rgb(0, 169, 255)'},
         
-        { id: 5, nom: 'Tarif demi journée membre', identifiant: 'price_member_halfday', type: "Champs texte", options:'Ceci est un deuxième champ texte', classtype:'secondary'},
+        { id: 5, nom: 'Tarif demi journée membre', identifiant: 'price_member_halfday', type: types[0].label, options:'Ceci est un deuxième champ texte', classtype:'rgb(0, 0, 0)'},
 
       ],
          dialog2: false,
@@ -120,6 +121,7 @@
       showEditModal(item){
         this.dialog=true;
         this.keyValueEdit = item;
+
       },
       async remove(Id) {
       // sweet alert sur la suppression

@@ -2,6 +2,7 @@
     <div>
         <page-title :heading=heading :icon=icon></page-title>
         <content-table></content-table>
+        <pagination></pagination>
        
         
     </div>
@@ -10,7 +11,7 @@
 
 <script>
 
-
+import pagination from './components/pagination.vue'
 import PageTitle from "./components/PageTitle2.vue"
 import ContentTable from './components/table'
 
@@ -20,7 +21,8 @@ import ContentTable from './components/table'
 
         components:{
         PageTitle, 
-        ContentTable
+        ContentTable,
+        pagination 
                 
         }, 
         data: () => ({

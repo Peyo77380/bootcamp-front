@@ -1,106 +1,93 @@
 <template>
     <div class="text-xs-center">
-        <v-dialog v-model="dialog" max-width="600px">
+        <v-dialog v-model="dialog" @click="close" max-width="800px">
             <v-card>
                 <v-card-title class="headline grey lighten-2" primary-title>
-                    Modification - {{ items.nom }}
+                    Modification - {{ editItem.nom }} 
                 </v-card-title>
                 <v-card-text>
                     
                     <v-container>
                         <b-form row wrap>
-                            
-                                <v-select 
-                                v-model="selected"
+                            <v-select 
+                                v-model="this.editItem.type"
                                 :items="types"
                                 item-text="label"
                                 item-value="label"
                                 persistent-hint
                                 return-object
                                 single-line
-                                @change="selectValue"
-                                
+                                outlined
+                                @change="selectValue"    
                                 >
                                 
                             </v-select>
                             
                                 <b-form-group
-                                id="input-group-1"
-                                label="Nom :"
-                                label-for="input-1"
-                            >
+                                label="Nom :">
                                 <b-form-input
-                                    id="input-1"
-                                    v-model="items.nom"
+                                    
+                                    v-model="editItem.nom"
                                     required
                                 ></b-form-input>
                             </b-form-group>
                                 <b-form-group
-                                id="input-group-1"
-                                label="Identifiant :"
-                                label-for="input-1"
-                            >
+                                label="Identifiant :" >
                                 <b-form-input
-                                    id="input-1"
-                                    v-model="items.identifiant"
+                                    
+                                    v-model="editItem.identifiant"
                                     required
                                 ></b-form-input>
                             </b-form-group>
 
-                            <div v-show="textArea">
-                    <b-form-group
-                    id="input-group-1"
-                    label="Options :"
-                    label-for="input-1"
-                    >
-                    <b-form-textarea
-                    id="input-1"
-                    placeholder="Informations complémentaires..."
-                
-                    required
-                    ></b-form-textarea>
-                    </b-form-group>
-                </div>
-                <div v-show="oneChoice"> 
+                            <div v-if="this.editItem.type === 'Champs texte'">
+                                <b-form-group
+                                id="input-group-1"
+                                label="Options :"
+                                label-for="input-1"
+                                >
+                                <b-form-textarea
+                                id="input-1"
+                                placeholder="Informations complémentaires..."
+                                required
+                                ></b-form-textarea>
+                                </b-form-group>
+                            </div>
+                <div v-if="this.editItem.type === 'Un seul choix'"> 
                     <label for="tags-pills">Différents choix possibles</label>
-                    <b-form-tags
-                    input-id="tags-pills"
-                    v-model="value"
-                    tag-variant="primary"
-                    tag-pills
-                    size="lg"
-                    separator=" "
-                    placeholder="Nouveau choix..."
-                    ></b-form-tags>
+                    <v-combobox
+                    v-model="model2"    
+                    :search-input.sync="search"
+                    hide-selected
+                    multiple
+                    persistent-hint
+                    small-chips
+                     ></v-combobox>
                 </div>
-                <div v-show="multipleChoice">
+                <div v-if="this.editItem.type === 'Liste de sélection'">
                     <label for="tags-pills-2">Différents choix possibles</label>
-                    <b-form-tags
-                    input-id="tags-pills-2"
-                    v-model="value2"
-                    tag-variant="primary"
-                    tag-pills
-                    size="lg"
-                    separator=" "
-                    placeholder="Nouveau choix..."
-                    
-                    ></b-form-tags>
+                    <v-combobox
+                    v-model="model3"    
+                    :search-input.sync="search"
+                    hide-selected
+                    multiple
+                    persistent-hint
+                    small-chips
+                     ></v-combobox>
                 </div>
 
-                            <div class="p-1 text-right btn-group-sm">
-                                <b-button
-                                    style="margin-right:10px"
-                                    type="reset"
-                                    @click="close"
-                                    variant="danger"
-                                    >Retour</b-button
-                                >
-                                <b-button
-                                    type="submit"
-                                    variant="success"
-                                    >Valider</b-button
-                                >
-                            </div>
+                <div class="p-1 text-right btn-group-sm" style="margin-top:10px">
+                    <b-button
+                        style="margin-right:10px"
+                        type="reset"
+                        @click="close"
+                        variant="danger">Retour
+                    </b-button>
+                    <b-button
+                        type="submit"
+                        variant="success">Valider
+                    </b-button>
+                </div>
                         </b-form>
                     </v-container>
                 </v-card-text>
@@ -110,30 +97,9 @@
 </template>
 
 <script>
-
+import {types} from '@/utils/globalAttribut';
 export default {
     name: "edit-attribut",
-    components: {
-   
-    },
-    data ()  {
-            return{
-                selected : null,
-                model: 'tab-2',
-                
-                types: [
-                    { label: 'Champs texte'},
-                    { label: 'Un seul choix'},
-                    { label: 'Liste de sélection'},
-                
-                ],
-                textArea : false,
-                oneChoice : false,
-                multipleChoice : false,
-            }
-            
-
-        },
     props: {
         dialog: {
             type: Boolean
@@ -142,41 +108,34 @@ export default {
             type: Object
         }
     },
+    
+    data ()  {
+            return{
+                value2:[],
+                value:[],
+                selected : {label : "Champs texte"},
+                model: 'tab-2',
+                model2:['Vuetify'],
+                model3:['VUETIFY'],
+                types: types,
+                
+            }
+            
+
+        },
+    computed: {
+        editItem() {
+            return {...this.items}
+            
+        }
+    },
     methods: {
         close() {
             this.$emit("close");
+            
         },
-        
-        selectValue(){
-            if(this.selected.label === "Champs texte"){
-                this.textArea = true;
-                this.oneChoice = false;
-                this.multipleChoice = false;
-
-            }
-            if(this.selected.label === "Un seul choix"){
-                this.oneChoice = true;
-                this.textArea = false;
-                this.multipleChoice = false;
-            }
-            if(this.selected.label === "Liste de sélection"){
-                this.multipleChoice = true;
-                this.textArea= false;
-                this.oneChoice=false;
-                
-            }
-        }
     },
-    mounted() {
-    this.selected.label = items.type;
-    }
-   
     
-            
-            
-        
-    
-  
 };
 </script>
 <style>

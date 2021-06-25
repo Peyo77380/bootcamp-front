@@ -1,6 +1,6 @@
 <template>
     <div class="text-xs-center">
-    <v-dialog  v-model="dialog2" max-width="600px">
+    <v-dialog  v-model="dialog2" @click="close2" max-width="800px">
             <div>
             <v-card>
                 <v-card-title class="headline grey lighten-2" primary-title>
@@ -57,28 +57,25 @@
                 </div>
                 <div v-show="oneChoice"> 
                     <label for="tags-pills">Différents choix possibles</label>
-                    <b-form-tags
-                    input-id="tags-pills"
-                    v-model="value"
-                    tag-variant="primary"
-                    tag-pills
-                    size="lg"
-                    separator=" "
-                    placeholder="Nouveau choix..."
-                    ></b-form-tags>
+                    <v-combobox
+                    v-model="model2"    
+                    :search-input.sync="search"
+                    hide-selected
+                    multiple
+                    persistent-hint
+                    small-chips
+                     ></v-combobox>
                 </div>
                 <div v-show="multipleChoice">
-                    <label for="tags-pills-2">Différents choix possibles</label>
-                    <b-form-tags
-                    input-id="tags-pills-2"
-                    v-model="value2"
-                    tag-variant="primary"
-                    tag-pills
-                    size="lg"
-                    separator=" "
-                    placeholder="Nouveau choix..."
-                    
-                    ></b-form-tags>
+                    <label>Différents choix possibles</label>
+                    <v-combobox
+                    v-model="model3"    
+                    :search-input.sync="search"
+                    hide-selected
+                    multiple
+                    persistent-hint
+                    small-chips
+                     ></v-combobox>
                 </div>
 
                
@@ -109,8 +106,12 @@
     },
     data ()  {
             return{
-                selected: { label: 'Champs texte'},
+                value2:[],
+                value:[],
+                selected: {label: 'Champs texte'},
                 model: 'tab-2',
+                model2: ['Vuetify'],
+                model3:['Vuetify'],
                 
                 items: [
                     { label: 'Champs texte'},
