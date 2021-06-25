@@ -121,7 +121,6 @@ export default {
         async loadCategories() {
             try {
                 this.categories = await this.getGlobals();
-                console.log(this.categories);
             } catch (error) {
                 this.$sweetError('GLC-30');
             }
