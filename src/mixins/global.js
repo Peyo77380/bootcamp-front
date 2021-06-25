@@ -2,7 +2,7 @@ import api from "@/services/axios";
 
 export const Globals = {
 
-    Methods: {
+    methods: {
 
         async getGlobals() {
             try {
