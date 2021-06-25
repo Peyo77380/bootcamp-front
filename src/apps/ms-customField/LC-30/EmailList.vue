@@ -74,7 +74,7 @@
                     <tr v-for="email in emails" :key="email.id"> 
                          <td class="row justify-content-center" style="font-weight :bold; color:white; opacity: .9; font-size : 11px"> 
                              <div style="display: flex; justify-content: center" class="swatch-holder swatch-holder-md" :class="getClass(email.section)">
-                                 {{getCategoryName(email.section)}}
+                                 {{getCategoryInitial(email.section)}}
                             </div>     
                         </td>
                         <td class="text-center text-muted">{{ email.key }}</td>
@@ -153,12 +153,12 @@ export default {
         changeFr() {
             this.$emit("changeFr")
         },
-        getCategoryName(id){
+        getCategoryInitial(id){
             const category = this.categories.filter( item => {
                 return item.id = id
             })
             if(category[0]){
-                return category[0].value
+                return category[0].initial
             }
             return ""
         },
