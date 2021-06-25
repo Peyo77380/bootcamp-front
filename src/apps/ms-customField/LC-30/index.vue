@@ -41,8 +41,8 @@ import EmailList from "@/apps/ms-customField/LC-30/EmailList";
 import DisplayEmail from "@/apps/ms-customField/LC-30/components/DisplayEmail";
 import EditEmail from "@/apps/ms-customField/LC-30/components/EditEmail";
 //import { EmailData } from "@/apps/ms-customField/LC-30/EmailData";
-import {Emails} from "@/mixins/email";
-import {Globals} from "@/mixins/global";
+import { Emails } from "@/mixins/email";
+import { Globals } from "@/mixins/global";
 import { EmailDataUs } from "@/apps/ms-customField/LC-30/EmailDataUs";
 // import { CategoryName } from "@/apps/ms-customField/LC-30/CategoryName";
 
@@ -53,7 +53,7 @@ export default {
         DisplayEmail,
         EditEmail
     },
-    mixins: [Emails,Globals],
+    mixins: [Emails, Globals],
     async mounted() {
         await this.loadCategories();
         await this.loadEmails();
@@ -65,7 +65,7 @@ export default {
                 "Créer l'ensemble des modèles de vos email de services ici.",
             icon: "pe-7s-mail",
             emails: [],
-            //TODO API affichage de l'ensemble des données 
+            //TODO API affichage de l'ensemble des données
             EmailDataUs: EmailDataUs,
             EmailDataFr: Emails,
             categories: [],
@@ -103,29 +103,27 @@ export default {
             this.$sweetNotif(title);
         },
         translateUs() {
-            this.emails = this.EmailDataUs
+            this.emails = this.EmailDataUs;
             //TODO point API pour importer les data en anglais
         },
         translateFr() {
-            this.emails = this.EmailDataFr
+            this.emails = this.EmailDataFr;
             //TODO point API pour importer les data en francais
-            
         },
         async loadEmails() {
             try {
                 this.emails = await this.getAllEmails();
             } catch (error) {
-                this.$sweetError('GLC-30');
+                this.$sweetError("GLC-30");
             }
         },
         async loadCategories() {
             try {
                 this.categories = await this.getGlobals();
             } catch (error) {
-                this.$sweetError('GLC-30');
+                this.$sweetError("GLC-30");
             }
-        },
-
+        }
     }
 };
 </script>
