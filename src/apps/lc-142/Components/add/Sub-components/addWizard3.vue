@@ -22,11 +22,11 @@
                                     <tbody>
                                     <tr v-for="serviceDetail in serviceDetailsData" :key="serviceDetail.id">
                                         <td>
-                                            <b-form-checkbox-group
+                                            <b-form-checkbox 
                                             v-model="room.services"
-                                            >
-                                            <b-form-checkbox value="isSelected"></b-form-checkbox>
-                                            </b-form-checkbox-group>
+                                            value="isSelected"
+                                            unchecked-value="notSelected"
+                                            ></b-form-checkbox>
                                         </td>
                                         <td class="text-left">{{ serviceDetail.title }}</td>
                                         <td class="text-center">
