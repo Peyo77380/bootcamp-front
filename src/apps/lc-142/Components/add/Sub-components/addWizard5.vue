@@ -65,6 +65,7 @@
 <script>
 import { roomDetailsData } from "@/apps/lc-142/Components/data-roomDetails";
 import { priceDetailsData } from "@/apps/lc-142/Components/data-priceDetails";
+
 import VuePerfectScrollbar from "vue-perfect-scrollbar";
 // import CKEditor from '@ckeditor/ckeditor5-vue';
 // import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
@@ -84,6 +85,7 @@ export default {
     watch: {
         getData(newVal) {
             if(newVal==1) {
+                this.room.prices = priceDetailsData
                 this.$emit('priceInfo', this.room)
             }
         }
