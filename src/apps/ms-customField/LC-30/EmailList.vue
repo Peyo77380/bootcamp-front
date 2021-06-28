@@ -125,6 +125,7 @@
                                         @click="edit(email)"
                                     >
                                         <i
+                                        
                                             class="lnr-pencil btn-icon-wrapper"
                                         ></i>
                                     </button>
@@ -210,7 +211,6 @@ export default {
             return ""
         },
         getElapsedTime(time){
-            const moment = require('moment');
             moment.locale('fr');
             return moment(time).fromNow();
         }
