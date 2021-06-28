@@ -33,7 +33,7 @@
                       label="Activité"
                       required
                       class="col-10 new-activity"
-                      v-model="newItem.name"
+                      v-model="newItem"
                     ></v-text-field>
                   </v-flex>
                 </v-layout>
@@ -138,20 +138,22 @@ export default {
       }
     },
     // ajout d'une activité
-    add() {
-      this.lists.push({
-        id: 123,
-        name: this.newItem.name,
-      });
-      this.$sweetNotif("Activité ajoutée");
-      this.newItem = { name: "", id: 0 };
+    async add() {
+        try {
+            const res = await this.storeDetailToList(this.$route.params.id, {text: this.newItem});
+            this.lists = res.data.datas.ObjectData.datas;
+            this.newItem = "";
+            this.$sweetNotif("Activité ajoutée");
+        } catch (error) {
+            console.log(error);
+        }
     },
     async modificationActivity(updatedItem) {
         try {
             const res = await this.updateDetailFromList(this.$route.params.id, updatedItem)
             
             this.lists = res.data.datas.ObjectData.datas;
-            
+
             var title = "Modification réussie !";
             this.$sweetNotif(title);
         } catch (error) {
@@ -173,7 +175,7 @@ export default {
     heading: "LaColloc - Paramètres",
     subheading: "Paramètrage de LaColloc",
     icon: "pe-7s-news-paper icon-gradient bg-night-fade",
-    newItem: { name: "", id: "" },
+    newItem: "",
     //data Modal
     dialog2: false,
     keyValueEdit: {},

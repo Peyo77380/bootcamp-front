@@ -55,6 +55,17 @@ export const Globals = {
                     error
                 }
             }
+        },
+        async storeDetailToList (listId, newItem) {
+            try {
+                const response = await api.post(`list/data/${listId}`, newItem);
+                return response;
+            } catch (error) {
+                return {
+                    status: 0,
+                    error
+                }
+            }
         }
 
     }
