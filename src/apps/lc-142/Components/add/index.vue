@@ -101,9 +101,15 @@ export default {
         datas: {}
     }),
     methods: {
-        saveRoom () {
-            // TODO point API saveRoom ()
-            this.$sweetNotif();
+        async saveRoom () {
+            if ( await this.$sweetConfirmation ({
+                    title: "Confirmer la création d'une nouvelle salle !",
+                    confirmText: "Confirmer ?",
+                    cancelText: "Annuler"})
+                ){
+                    // TODO point API saveRoom ()
+                    this.$sweetNotif();
+                }
         },
         nextWizard () {
             switch (this.tabIndex) {

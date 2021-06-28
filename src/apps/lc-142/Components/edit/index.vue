@@ -40,7 +40,7 @@
                                                 <b-button-group>
                                                     <b-button @click="tabIndex--" class="m-2 " variant="primary">Précédent</b-button>
                                                     <b-button @click="nextWizard()" class="m-2 " variant="primary">Suivant</b-button>
-                                                    <b-button @click="saveRoom" v-show="tabIndex == 5" class="m-2" type="submit" variant="success">Sauvegarder</b-button>
+                                                    <b-button @click="editRoom" v-show="tabIndex == 5" class="m-2" type="submit" variant="success">Sauvegarder</b-button>
                                                 </b-button-group>
                                             </div>
                                         </b-card>
@@ -101,8 +101,16 @@ export default {
         datas: {}
     }),
     methods: {
-        saveRoom () {
-            // TODO point API saveRoom ()
+        async editRoom () {
+            if ( await this.$sweetConfirmation ({
+                        title: "Confirmer la modification de la salle !",
+                        confirmText: "Confirmer ?",
+                        cancelText: "Annuler"})
+                ){
+                     // TODO point API editRoom ()
+                    
+                    this.$sweetNotif();
+                }
         },
         nextWizard () {
             switch (this.tabIndex) {

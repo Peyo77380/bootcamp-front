@@ -110,9 +110,9 @@ export default {
     methods: {
         async remove (id) {
             if ( await this.$sweetConfirmation ({
-                        title: "Vous allez supprimer et archiver une salle !",
-                        confirmText: "Confirmer ?",
-                        cancelText: "Annuler"})
+                    title: "Vous allez supprimer et archiver une salle !",
+                    confirmText: "Confirmer ?",
+                    cancelText: "Annuler"})
                 ){
                      // l'appel vers API de Laravel devra etre fait ici
                     this.roomDetailsData = this.roomDetailsData.filter(roomDetail => roomDetail.id !== id)
