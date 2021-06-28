@@ -40,11 +40,8 @@ import PageTitle from "@/Layout/Components/PageTitle";
 import EmailList from "@/apps/ms-customField/LC-30/EmailList";
 import DisplayEmail from "@/apps/ms-customField/LC-30/components/DisplayEmail";
 import EditEmail from "@/apps/ms-customField/LC-30/components/EditEmail";
-//import { EmailData } from "@/apps/ms-customField/LC-30/EmailData";
 import { Emails } from "@/mixins/email";
 import { Globals } from "@/mixins/global";
-import { EmailDataUs } from "@/apps/ms-customField/LC-30/EmailDataUs";
-// import { CategoryName } from "@/apps/ms-customField/LC-30/CategoryName";
 
 export default {
     components: {
@@ -65,11 +62,7 @@ export default {
                 "Créer l'ensemble des modèles de vos email de services ici.",
             icon: "pe-7s-mail",
             emails: [],
-            //TODO API affichage de l'ensemble des données
-            EmailDataUs: EmailDataUs,
-            EmailDataFr: Emails,
             categories: [],
-            //TODO API affichage de l'ensemble des catégories
             dialog: false,
             emailDetails: {},
             editedEmail: {},
