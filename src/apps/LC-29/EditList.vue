@@ -59,7 +59,7 @@
               <div class="widget-content p-0">
                 <div class="widget-content-wrapper">
                   <div class="widget-content-left">
-                    <div class="widget-heading">{{ item.name }}</div>
+                    <div class="widget-heading">{{ item.text }}</div>
                   </div>
 
                   <div class="widget-content-right">
@@ -102,6 +102,8 @@
 <script>
 import PageTitle from "../../Layout/Components/PageTitle.vue";
 import Modal from "@/apps/LC-29/Modal.vue";
+import {Globals} from '@/mixins/global';
+
 export default {
   name: "EditList",
   components: {
@@ -109,7 +111,20 @@ export default {
     // eslint-disable-next-line vue/no-unused-components
     Modal,
   },
+  mixins: [Globals],
+    async mounted () {
+      await this.loadListDetail();
+  },
   methods: {
+    async loadListDetail () {
+      try {
+        const res = await this.getListDetails(this.$route.params.id);
+        this.lists = res.datas
+        console.log(res);
+      } catch (error) {
+        console.log(error);
+      }
+    },
     async remove(activityId) {
       // sweet alert sur la suppression
       let title = "Confirmer la suppression de l'activité";
@@ -175,87 +190,88 @@ export default {
     ],
 
     //data Lists
-    lists: [
-      {
-        name: "Agroalimentaire",
-        id: 1,
-        modify: "24/05/2021",
-        createdAt: "19/05/2019",
-      },
-      {
-        name: "Banque / Assurances",
-        id: 2,
-        modify: "essai1",
-        createdAt: "essai1",
-      },
-      {
-        name: "Bois/Papier/Carton/Impimerie",
-        id: 3,
-        modify: "13/09/2020",
-        createdAt: "03/05/2018",
-      },
-      {
-        name: "BTP/Matériaux de construction",
-        id: 4,
-        value: "je vends",
-        modify: "14/08/2017",
-        createdAt: "09/08/2016",
-      },
-      {
-        name: "Chimie/Parapharmacie",
-        id: 5,
-        modify: "12/06/2021",
-        createdAt: "11/04/2019",
-      },
-      {
-        name: "Commerce/Négoce/Distribution",
-        id: 6,
-        modify: "24/05/2021",
-        createdAt: "19/05/2019",
-      },
-      {
-        name: "Edition/Communication/Multimédia",
-        id: 7,
-        modify: "04/05/2021",
-        createdAt: "09/05/2019",
-      },
-      {
-        name: "Edition/Communication/Multimédia",
-        id: 8,
-        modify: "04/05/2021",
-        createdAt: "09/05/2019",
-      },
-      {
-        name: "Electronique/Electricité",
-        id: 9,
-        modify: "04/05/2021",
-        createdAt: "09/05/2019",
-      },
-      {
-        name: "Etudes/Conseils",
-        id: 10,
-        modify: "04/05/2021",
-        createdAt: "09/05/2019",
-      },
-      {
-        name: "Informatiques / Télécoms",
-        id: 11,
-        modify: "04/05/2021",
-        createdAt: "09/05/2019",
-      },
-      {
-        name: "Machines / Equipements / Automobiles",
-        id: 12,
-        modify: "04/05/2021",
-        createdAt: "09/05/2019",
-      },
-      {
-        name: "Mettalurgie/ Travail du métal",
-        id: 13,
-        modify: "04/05/2021",
-        createdAt: "09/05/2019",
-      },
-    ],
+    lists: [],
+    // lists: [
+    //   {
+    //     name: "Agroalimentaire",
+    //     id: 1,
+    //     modify: "24/05/2021",
+    //     createdAt: "19/05/2019",
+    //   },
+    //   {
+    //     name: "Banque / Assurances",
+    //     id: 2,
+    //     modify: "essai1",
+    //     createdAt: "essai1",
+    //   },
+    //   {
+    //     name: "Bois/Papier/Carton/Impimerie",
+    //     id: 3,
+    //     modify: "13/09/2020",
+    //     createdAt: "03/05/2018",
+    //   },
+    //   {
+    //     name: "BTP/Matériaux de construction",
+    //     id: 4,
+    //     value: "je vends",
+    //     modify: "14/08/2017",
+    //     createdAt: "09/08/2016",
+    //   },
+    //   {
+    //     name: "Chimie/Parapharmacie",
+    //     id: 5,
+    //     modify: "12/06/2021",
+    //     createdAt: "11/04/2019",
+    //   },
+    //   {
+    //     name: "Commerce/Négoce/Distribution",
+    //     id: 6,
+    //     modify: "24/05/2021",
+    //     createdAt: "19/05/2019",
+    //   },
+    //   {
+    //     name: "Edition/Communication/Multimédia",
+    //     id: 7,
+    //     modify: "04/05/2021",
+    //     createdAt: "09/05/2019",
+    //   },
+    //   {
+    //     name: "Edition/Communication/Multimédia",
+    //     id: 8,
+    //     modify: "04/05/2021",
+    //     createdAt: "09/05/2019",
+    //   },
+    //   {
+    //     name: "Electronique/Electricité",
+    //     id: 9,
+    //     modify: "04/05/2021",
+    //     createdAt: "09/05/2019",
+    //   },
+    //   {
+    //     name: "Etudes/Conseils",
+    //     id: 10,
+    //     modify: "04/05/2021",
+    //     createdAt: "09/05/2019",
+    //   },
+    //   {
+    //     name: "Informatiques / Télécoms",
+    //     id: 11,
+    //     modify: "04/05/2021",
+    //     createdAt: "09/05/2019",
+    //   },
+    //   {
+    //     name: "Machines / Equipements / Automobiles",
+    //     id: 12,
+    //     modify: "04/05/2021",
+    //     createdAt: "09/05/2019",
+    //   },
+    //   {
+    //     name: "Mettalurgie/ Travail du métal",
+    //     id: 13,
+    //     modify: "04/05/2021",
+    //     createdAt: "09/05/2019",
+    //   },
+    // ],
     dialog: false,
   }),
 };
