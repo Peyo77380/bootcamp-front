@@ -86,7 +86,7 @@
                   </div>
                 </div>
                 <v-tabs>
-                  <v-tab-item v-for="i in items" :key="i">
+                  <v-tab-item v-for="i in items" :key="i._id">
                     <div class="table-responsive">
                       <table
                         class="
@@ -154,7 +154,7 @@
 import PageTitle from "../../Layout/Components/PageTitle";
 import EditList from "../LC-29/EditList";
 import CountryFlag from "vue-country-flag";
-import {Globals} from '@/mixins/global';
+import {Lists} from '@/mixins/list';
 
 export default {
   name: "home",
@@ -164,7 +164,7 @@ export default {
     EditList,
     CountryFlag,
   },
-  mixins: [Globals],
+  mixins: [Lists],
   data: () => ({
     item: ["FR", "En", "SP"],
     heading: "LaColloc - Paramètres",
@@ -235,8 +235,8 @@ export default {
     },
     async loadLists () {
         try {
-            const res = await this.getGlobals();
-            this.list = res.datas;
+            const res = await this.getAllLists();
+            this.list = res.datas.data.datas;
         } catch (error) {
             console.error(error);
         }

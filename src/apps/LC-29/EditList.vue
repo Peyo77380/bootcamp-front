@@ -102,7 +102,7 @@
 <script>
 import PageTitle from "../../Layout/Components/PageTitle.vue";
 import Modal from "@/apps/LC-29/Modal.vue";
-import {Globals} from '@/mixins/global';
+import {Lists} from '@/mixins/list';
 
 export default {
   name: "EditList",
@@ -111,7 +111,7 @@ export default {
     // eslint-disable-next-line vue/no-unused-components
     Modal,
   },
-  mixins: [Globals],
+  mixins: [Lists],
   async mounted () {
       await this.loadListDetail();
   },
@@ -119,7 +119,7 @@ export default {
     async loadListDetail () {
       try {
         const res = await this.getListDetails(this.$route.params.id);
-        this.lists = res.datas;
+        this.lists = res.datas.data.datas.datas;
       } catch (error) {
         console.log(error);
       }
