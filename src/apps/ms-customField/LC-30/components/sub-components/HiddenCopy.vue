@@ -8,7 +8,7 @@
             <div class="scroll-area-sm">
                 <div class="chat-wrapper p-1">
                     <ul class="todo-list-wrapper list-group list-group-flush">
-                        <li v-for="email in editedEmail.hiddenCopie" :key="email.id" class="list-group-item">
+                        <li v-for="email in editedEmail.hiddenCopy" :key="email.id" class="list-group-item">
                             <div class="widget-content p-0">
                                 <div class="widget-content-wrapper">
                                     <div class="widget-content-left">
@@ -112,23 +112,23 @@ export default {
       saveHiddenEmail() {
           this.closeModalEmail()
           if(this.editedIndex>=0) {
-              Object.assign (this.editedEmail.hiddenCopie[this.editedIndex], this.createdEmail),
+              Object.assign (this.editedEmail.hiddenCopy[this.editedIndex], this.createdEmail),
               this.editedIndex=-1;
           }
           else {
-              this.editedEmail.hiddenCopie.push(this.createdEmail)
+              this.editedEmail.hiddenCopy.push(this.createdEmail)
               //TODO point API pour enregistrer nouveau email a mettre en copie caché 
           }
           this.createdEmail = {}
       },
       deleteHiddenEmail(email) {
-          this.editedIndex = this.editedEmail.hiddenCopie.indexOf(email);
-          this.editedEmail.hiddenCopie.splice(this.editedIndex,1)
+          this.editedIndex = this.editedEmail.hiddenCopy.indexOf(email);
+          this.editedEmail.hiddenCopy.splice(this.editedIndex,1)
           //TODO point API pour supprimer email a mettre en copie 
       },
       editHiddenEmailCopy(email) {
           this.openModalEmail();
-          this.editedIndex = this.editedEmail.hiddenCopie.indexOf(email);
+          this.editedIndex = this.editedEmail.hiddenCopy.indexOf(email);
          //TODO point API pour modifier l'adresse mail a mettre en copie caché 
       }
   },
