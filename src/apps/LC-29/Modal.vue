@@ -3,7 +3,7 @@
     <v-dialog v-model="dialog2" max-width="600px">
       <v-card>
         <v-card-title>
-          <span class="headline">Modification - {{ items.key }}</span>
+          <span class="headline">Modification - {{ items._id }}</span>
         </v-card-title>
         <v-card-text>
           <b-form > 
@@ -15,7 +15,7 @@
             >
               <b-form-input
                 id="input-1"
-                :value="items.value"
+                v-model="items.text"
                 required
               ></b-form-input>
             </b-form-group>
@@ -60,7 +60,7 @@ export default {
     },
     saveModification() {
       this.close2();
-      this.$emit("saveModification", this.lists);
+      this.$emit("saveModification", this.items);
     },
   },
 };

@@ -53,7 +53,7 @@
             <li
               class="list-group-item rounded"
               v-for="item in lists"
-              :key="item.id"
+              :key="item._id"
               v-bind:class="{ completed: item.completed }"
             >
               <div class="widget-content p-0">
@@ -68,7 +68,7 @@
                         <b-button
                           class="ml-4 btn-icon btn-icon-only btn-pill"
                           variant="outline-info"
-                          @click="showEdit(item.id)"
+                          @click="showEdit(item)"
                           ><i class="pe-7s-pen btn-icon-wrapper"> </i
                         ></b-button>
                       </div>
@@ -77,7 +77,7 @@
                         <b-button
                           class="ml-4 btn-icon btn-icon-only btn-pill"
                           variant="outline-danger"
-                          @click="remove(item.id)"
+                          @click="remove(item._id)"
                           ><i class="pe-7s-trash btn-icon-wrapper"> </i
                         ></b-button>
                       </div>
@@ -119,8 +119,7 @@ export default {
     async loadListDetail () {
       try {
         const res = await this.getListDetails(this.$route.params.id);
-        this.lists = res.datas
-        console.log(res);
+        this.lists = res.datas;
       } catch (error) {
         console.log(error);
       }
@@ -129,10 +128,12 @@ export default {
       // sweet alert sur la suppression
       let title = "Confirmer la suppression de l'activité";
       if (await this.$sweetConfirmation({ title })) {
-        this.lists = this.lists.filter(
-          (activity) => activity.id !== activityId
-        );
-        this.$sweetNotif("Activité supprimée");
+        try {
+            await this.deleteDetailFromList(this.$route.params.id, activityId);
+            this.$sweetNotif("Activité supprimée");
+        } catch (error) {
+            console.error(error);
+        }
       }
     },
     // ajout d'une activité
@@ -144,23 +145,26 @@ export default {
       this.$sweetNotif("Activité ajoutée");
       this.newItem = { name: "", id: 0 };
     },
-    //Modal
-    closeModalEdit() {
-      this.dialog2 = false;
-    },
-    showEdit(item) {
-      this.dialog2 = true;
-      this.keyValueEdit = item;
-    },
-    modificationActivity() {
-      this.lists.push({
-        id: 123,
-        name: this.newItem.name,
-      });
+    async modificationActivity(updatedItem) {
+        try {
+            await this.updateDetailFromList(this.$route.params.id, updatedItem)
+            console.log(res)
+        } catch (error) {
+            console.log(error)
+        }
+      
       //TODO point API modification activité
       var title = "Modification réussie !";
       this.$sweetNotif(title);
     },
+    //Modal
+    closeModalEdit() {
+        this.dialog2 = false;
+    },
+    showEdit(item) {
+        this.dialog2 = true;
+        this.keyValueEdit = item;
+    }
   },
   data: () => ({
     heading: "LaColloc - Paramètres",

@@ -19,13 +19,39 @@ export const Globals = {
             }
         },
         async getListDetails (id) {
-            console.log('list details', id);
             try {
                 const response = await api.get(`list/${id}`);
                 return {
                     status: 1,
                     datas: response.data.datas.datas
                 }
+            } catch (error) {
+                return {
+                    status: 0,
+                    error
+                }
+            }
+        },
+        async deleteDetailFromList (listId, activityId) {
+            console.log(listId);
+            console.log(activityId);
+            try {
+                const response = await api.delete(`list/data/${listId}`, {_id: activityId});
+                console.log(response);
+            } catch (error) {
+                return {
+                    status: 0,
+                    error
+                }
+            }
+        },
+        async updateDetailFromList (listId, updatedItem) {
+            try {
+                const response = await api.put(`list/data/${listId}`, {
+                    _id: updatedItem._id,
+                    text: updatedItem.text
+                })
+                console.log(response);
             } catch (error) {
                 return {
                     status: 0,
