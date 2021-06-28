@@ -20,13 +20,11 @@
                                     </tr>
                                     </thead>
                                     <tbody>
-                                    <tr v-for="serviceDetail in serviceDetailsData" :key="serviceDetail.id">
+                                    <tr v-for="serviceDetail in serviceDetailsData" :key="serviceDetail.id" >
                                         <td class="text-center border">
                                             <b-form-checkbox 
                                             :value="serviceDetail.title"
                                             v-model="servicesChecked"
-                                            
-                                            
                                             ></b-form-checkbox>
                                         </td>
                                         <td class="text-left border">{{ serviceDetail.title }}</td>
@@ -108,12 +106,11 @@ export default {
         }
     }),
     computed: {
-        servicesChecked: {
+        serviceChecked: {
             get() {
                 return this.servicesChecked;
             },
             set(newVal) {
-                console.log(newVal)
                 this.servicesChecked.push(newVal)
             }
         }
