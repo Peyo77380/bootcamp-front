@@ -129,7 +129,7 @@
                               <b-button
                                 class="mb-2 btn-icon btn-icon-only btn-pill"
                                 variant="outline-info"
-                                :to="{ name: 'EditList' }"
+                                :to="{ name: 'EditList', params: {id: item._id}}"
                                 ><i class="pe-7s-pen btn-icon-wrapper"> </i
                               ></b-button> <!-- Standardiser les boutons !-->
                             </td>
@@ -201,6 +201,7 @@ export default {
       this.dialog = true;
     },
     getStatus(list) {
+        // TODO : gérer différentes couleurs en fonction du nom (traduction + nouveaux noms )
       switch (list) {
         case "activités":
           return {
@@ -225,9 +226,11 @@ export default {
       }
     },
     changeFr () {
+        // TODO : mettre en place?
         return;
     },
     changeUs () {
+        // TODO : mettre en place?
         return;
     },
     async loadLists () {

@@ -20,7 +20,7 @@ export default new Router({
             component: () => import('../apps/LC-29'),
         },
         {
-            path: "/LC-29/components/EditList",
+            path: "/LC-29/components/EditList/:id",
             name: "EditList",
             component: () => import('@/apps/LC-29/EditList.vue'),
         },
