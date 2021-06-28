@@ -10,6 +10,16 @@ export const Emails = {
             } catch (error) {
                 throw new Error(error);
             }
+        },
+        async modifyEmail(updatedEmail) {
+            try {
+                console.log("je suis dans le service modifyEmail")
+                console.log(updatedEmail)
+                const putResponse = await api.put(`email/${updatedEmail._id}`, updatedEmail);
+                putResponse.data.json;
+            } catch (error) {
+                throw new Error(error);
+            }
         }
     }
 }

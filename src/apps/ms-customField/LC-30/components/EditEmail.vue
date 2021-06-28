@@ -12,7 +12,7 @@
                     <v-toolbar-title>Modification de l'email</v-toolbar-title>
                     <v-spacer></v-spacer>
                         <v-toolbar-items>
-                            <v-btn dark flat @click="saveModification">Sauvegarder</v-btn>
+                            <v-btn dark flat @click="saveModification()">Sauvegarder</v-btn>
                         </v-toolbar-items>
                     </v-toolbar>
                 </div>
@@ -133,6 +133,7 @@ import EmailCopy from "@/apps/ms-customField/LC-30/components/sub-components/Ema
 import HiddenCopy from "@/apps/ms-customField/LC-30/components/sub-components/HiddenCopy";
 import Variable from "@/apps/ms-customField/LC-30/components/sub-components/Variable";
 import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
+import { Emails } from "@/mixins/email";
 
 export default {
     name: "edit-email",
@@ -140,6 +141,10 @@ export default {
         EmailCopy,
         HiddenCopy,
         Variable,
+    },
+    mixins: [Emails],
+    async mounted() {
+        await this.saveModification();
     },
     data() {
         return {
@@ -161,9 +166,19 @@ export default {
         closeEdit() {
             this.$emit("close")
         }, 
-        saveModification() {
-            this.closeEdit();
-            this.$emit("saveModification", this.editedEmail)
+        async saveModification() {
+            
+             try {
+                console.log("je vais appeller modifyEmail")
+                console.log(this.editedEmail)
+                await this.modifyEmail(this.editedEmail);
+                console.log("jej'ai fini axios")
+                this.closeEdit();
+                this.$emit("saveModification", this.editedEmail)
+            } catch (error) {
+                this.$sweetError("GLC-30");
+            }
+            
 
         },
         openModalEmailTest() {

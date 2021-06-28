@@ -92,8 +92,7 @@ export default {
         modificationEmail() {
             //TODO point API modification email de services
             this.editedIndex = this.emails.indexOf(this.editedEmail);
-            let title = "Modification de l'email réussie !";
-            this.$sweetNotif(title);
+            this.$sweetNotif("Modification de l'email réussie !");
         },
         translateUs() {
             this.emails = this.EmailDataUs;
