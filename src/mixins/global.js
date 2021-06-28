@@ -8,7 +8,6 @@ export const Globals = {
 
             try {
                 const response = await api.get('list/1/1/fr_FR')
-                console.log('from mixins', response);
                 return {
                     status: 1,
                     datas: response.data.datas
@@ -20,7 +19,7 @@ export const Globals = {
                 }
             }
 
-        }
+        },
 
     }
 

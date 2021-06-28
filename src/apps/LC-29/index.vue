@@ -47,6 +47,7 @@
                           type="button"
                           tabindex="0"
                           class="dropdown-item"
+                          disabled
                         >
                           <country-flag
                             country="FR"
@@ -59,6 +60,7 @@
                           type="button"
                           tabindex="0"
                           class="dropdown-item"
+                          disabled
                         >
                           <country-flag
                             country="US"
@@ -70,11 +72,13 @@
                           type="button"
                           tabindex="0"
                           class="dropdown-item"
+                          disabled
                         >
                           <country-flag
                             country="DE"
                             size="small"
                             class="mr-1"
+                            disabled
                           /><span>Allemand</span>
                         </button>
                       </div>
@@ -94,7 +98,7 @@
                         <thead>
                           <tr>
                             <th class="text-center">Listes</th>
-                            <th class="text-center">Clés</th>
+                            <!-- <th class="text-center">Clés</th> -->
                             <th class="text-center">Nombre</th>
                             <th class="text-center">Modifier</th>
                           </tr>
@@ -105,9 +109,9 @@
                               <b-btn
                                 id="exButton4"
                                 variant="outiline-info"
-                                :class="getStatus(item.name)"
+                                :class="getStatus(item.key)"
                               >
-                                {{ item.name }}
+                                {{ item.key }}
                                 <b-tooltip
                                   target="exButton4"
                                   variant="outline-primary"
@@ -117,9 +121,9 @@
                                 ></b-tooltip>
                               </b-btn>
                             </td>
-                            <td class="text-center">{{ item.key }}</td>
+                            <!-- <td class="text-center">{{ item.key }}</td> -->
                             <td class="text-center">
-                              <div class="text-center">{{ item.quantity }}</div>
+                              <div class="text-center">{{ item.datas.length }}</div>
                             </td>
                             <td class="text-center">
                               <b-button
@@ -161,10 +165,6 @@ export default {
     CountryFlag,
   },
   mixins: [Globals],
-  async mounted() {
-    const allLists = this.getGlobals();
-    console.log("from component: ", allLists)
-  },
   data: () => ({
     item: ["FR", "En", "SP"],
     heading: "LaColloc - Paramètres",
@@ -184,36 +184,12 @@ export default {
         href: "breadcrumbs_link_2#/LC-29/EditList",
       },
     ],
-    list: [
-      {
-        name: "activités",
-        key: 1,
-        quantity: 34,
-      },
-      {
-        name: "metiers",
-        key: 2,
-        quantity: 45,
-      },
-      {
-        name: "évènements",
-        key: 3,
-        quantity: 12,
-      },
-      {
-        name: "annonces",
-        key: 4,
-        quantity: 25,
-      },
-      {
-        name: "catégories",
-        key: 5,
-        quantity: 36,
-      },
-    ],
+    list: [],
     dialog: false,
-  }),
-
+    }),
+    async mounted () {
+        await this.loadLists();
+    },
   methods: {
     add() {
       this.dialog = true;
@@ -248,6 +224,20 @@ export default {
           };
       }
     },
+    changeFr () {
+        return;
+    },
+    changeUs () {
+        return;
+    },
+    async loadLists () {
+        try {
+            const res = await this.getGlobals();
+            this.list = res.datas;
+        } catch (error) {
+            console.error(error);
+        }
+    }
   },
 };
 </script>
