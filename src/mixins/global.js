@@ -33,8 +33,6 @@ export const Globals = {
             }
         },
         async deleteDetailFromList (listId, activityId) {
-            console.log(listId);
-            console.log(activityId);
             try {
                 const response = await api.delete(`list/data/${listId}`, {_id: activityId});
                 console.log(response);

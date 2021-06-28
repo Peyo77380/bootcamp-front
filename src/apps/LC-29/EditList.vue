@@ -148,7 +148,6 @@ export default {
     async modificationActivity(updatedItem) {
         try {
             await this.updateDetailFromList(this.$route.params.id, updatedItem)
-            console.log(res)
         } catch (error) {
             console.log(error)
         }
