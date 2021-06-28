@@ -125,12 +125,12 @@ export default {
       }
     },
     async remove(item) {
-        console.log(item);
       // sweet alert sur la suppression
       let title = "Confirmer la suppression de l'activité";
       if (await this.$sweetConfirmation({ title })) {
         try {
-            await this.deleteDetailFromList(this.$route.params.id, item);
+            const res = await this.deleteDetailFromList(this.$route.params.id, item);
+            this.lists = res.data.datas.ObjectData.datas;
             this.$sweetNotif("Activité supprimée");
         } catch (error) {
             console.error(error);
@@ -148,14 +148,17 @@ export default {
     },
     async modificationActivity(updatedItem) {
         try {
-            await this.updateDetailFromList(this.$route.params.id, updatedItem)
+            const res = await this.updateDetailFromList(this.$route.params.id, updatedItem)
+            
+            this.lists = res.data.datas.ObjectData.datas;
+            
+            var title = "Modification réussie !";
+            this.$sweetNotif(title);
         } catch (error) {
             console.log(error)
         }
       
       //TODO point API modification activité
-      var title = "Modification réussie !";
-      this.$sweetNotif(title);
     },
     //Modal
     closeModalEdit() {

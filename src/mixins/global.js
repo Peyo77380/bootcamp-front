@@ -34,7 +34,7 @@ export const Globals = {
         async deleteDetailFromList (listId, item) {
             try {
                 const response = await api.put(`list/data/rm/${listId}`, item);
-                console.log(response);
+                return response;
             } catch (error) {
                 return {
                     status: 0,
@@ -48,7 +48,7 @@ export const Globals = {
                     _id: updatedItem._id,
                     text: updatedItem.text
                 })
-                console.log(response);
+                return response;
             } catch (error) {
                 return {
                     status: 0,
