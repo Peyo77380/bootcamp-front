@@ -98,7 +98,7 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <tr v-for="email in emails" :key="email.id">
+                        <tr v-for="email in emails" :key="email._id">
                             <td
                                 class="row justify-content-center"
                                 style="font-weight :bold; color:white; opacity: .9; font-size : 11px"
