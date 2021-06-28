@@ -1,15 +1,14 @@
 import api from '@/services/axios';
 
-export const Globals = {
+export const Lists = {
 
     methods: {
-
-        async getGlobals() {
+        async getAllLists() {
             try {
                 const response = await api.get('list/1/1/fr_FR')
                 return {
                     status: 1,
-                    datas: response.data.datas
+                    datas: response
                 }
             } catch (error) {
                 return {
@@ -23,7 +22,7 @@ export const Globals = {
                 const response = await api.get(`list/${id}`);
                 return {
                     status: 1,
-                    datas: response.data.datas.datas
+                    datas: response
                 }
             } catch (error) {
                 return {
@@ -32,10 +31,10 @@ export const Globals = {
                 }
             }
         },
-        async deleteDetailFromList (listId, activityId) {
+        async deleteDetailFromList (listId, item) {
             try {
-                const response = await api.delete(`list/data/${listId}`, {_id: activityId});
-                console.log(response);
+                const response = await api.put(`list/data/rm/${listId}`, item);
+                return response;
             } catch (error) {
                 return {
                     status: 0,
@@ -49,7 +48,18 @@ export const Globals = {
                     _id: updatedItem._id,
                     text: updatedItem.text
                 })
-                console.log(response);
+                return response;
+            } catch (error) {
+                return {
+                    status: 0,
+                    error
+                }
+            }
+        },
+        async storeDetailToList (listId, newItem) {
+            try {
+                const response = await api.post(`list/data/${listId}`, newItem);
+                return response;
             } catch (error) {
                 return {
                     status: 0,
