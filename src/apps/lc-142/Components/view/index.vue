@@ -89,7 +89,7 @@ export default {
         Wizard6
     },
     data: () => ({
-        heading: "Ajouter une salle dans l'espace de coworking",
+        heading: "Afficher le détails d'une salle dans l'espace de coworking",
         icon: "pe-7s-note2 icon-gradient bg-tempting-azure",
         tabIndex: 1,
         getData1: 0,
@@ -120,7 +120,6 @@ export default {
                 break;
             }
             this.tabIndex++;
-            console.log(this.datas);
         },
         pushRoomInfo(infos) {
            this.datas.room = infos;

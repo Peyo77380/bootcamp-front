@@ -33,7 +33,7 @@
 
                         <div class="row">
                             <div class="col-1"></div>
-                            <div class="col-2">
+                            <div class="col-3">
                             <b-form-group id="input-group-3" label="Niveau où se situe la salle :" class="text-left" label-for="input-3">
                                 <b-form-select
                                 id="input-3"
@@ -81,21 +81,20 @@
                             </b-form-group>
                             </div>
 
-                            <div class="col-1"></div>
                             <div class="col-7">
                                 <div class="table-responsive">
                                     <table class="align-middle mb-5 table table-border table-striped table-hover">
                                         <thead>
                                             <tr>
-                                                <th class="text-center">Jours</th>
-                                                <th class="text-center">Heure ouverture</th>
-                                                <th class="text-center">Heure fermeture</th>
+                                                <th class="text-center border">Jours</th>
+                                                <th class="text-center border">Heure ouverture</th>
+                                                <th class="text-center border">Heure fermeture</th>
                                             </tr>
                                         </thead>
                                         <tbody>
                                             <!-- inserer les v-model pour chaque valeur a recuperer -->
                                             <tr v-for="openingHoursDetail in openingHoursDetailsData" :key="openingHoursDetail.id">
-                                                <td disabled class="text-center text-muted">{{ openingHoursDetail.id }}</td>
+                                                <td disabled class="text-center border text-muted">{{ openingHoursDetail.name }}</td>
                                                 <td disabled class="text-center border">{{ openingHoursDetail.start }}</td>
                                                 <td disabled class="text-center border">{{ openingHoursDetail.end }}</td>
                                             </tr>

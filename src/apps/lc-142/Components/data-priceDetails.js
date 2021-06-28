@@ -1,6 +1,7 @@
 export const priceDetailsData = [
     {
         "id": 1,
+        "name": "Public",
         "hour": "",
         "halfDay": "",
         "day": "",
@@ -10,6 +11,7 @@ export const priceDetailsData = [
     },
     {
         "id": 2,
+        "name": "Membre",
         "hour": "",
         "halfDay": "",
         "day": "",
@@ -17,9 +19,4 @@ export const priceDetailsData = [
         "month": "",
         "trimester": ""
     }
-];
-
-export const TypePrices = [
-    { 'value': '1', 'text': 'Public' },
-    { 'value': '2', 'text': 'Member' } 
 ];

@@ -14,22 +14,22 @@
                                 <table class="align-middle mb-5 table table-border bordered table-striped table-hover">
                                     <thead>
                                     <tr>
-                                        <th class="text-left col-1">Sélection</th>
-                                        <th class="text-left col-9">Titre du service</th>
-                                        <th class="text-left col-2">Actions</th>
+                                        <th class="text-left border col-1">Sélection</th>
+                                        <th class="text-left border col-9">Titre du service</th>
+                                        <th class="text-left border col-1">Actions</th>
                                     </tr>
                                     </thead>
                                     <tbody>
                                     <tr v-for="serviceDetail in serviceDetailsData" :key="serviceDetail.id">
-                                        <td>
+                                        <td class="text-center border">
                                             <b-form-checkbox 
                                             v-model="room.services"
                                             value="1"
                                             disabled
                                             ></b-form-checkbox>
                                         </td>
-                                        <td class="text-left">{{ serviceDetail.title }}</td>
-                                        <td class="text-center">
+                                        <td class="text-left border">{{ serviceDetail.title }}</td>
+                                        <td class="text-center border">
                                             <div class="row">
                                                 <b-button @click="openViewModale(serviceDetail)" class="mr-1 ml-2" variant="white">
                                                     <i class="pe-7s-look icon-gradient bg-malibu-beach"></i>

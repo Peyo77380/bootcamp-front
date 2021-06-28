@@ -43,11 +43,11 @@
                                                 </b-tab>
                                                 <b-tab title="Plus...">
                                                     <div align="center">
-                                                            <b-button :to="{ name: 'RoomDetails', params: { id: roomDetail.id } }" class="mb-2 col-10 btn-wide btn-shadow btn btn-info btn-sm">
+                                                            <b-button :to="{ name: 'RoomDetails', params: { id: roomDetail.id } }" class="mb-2 col-10 btn-wide btn-shadow btn btn-sm" variant="primary">
                                                                 Voir détails : {{roomDetail.name}}
                                                             </b-button>
                                                             <br>
-                                                            <b-button :to="{ name: 'RoomEdit', params: { id: roomDetail.id } }" class="mb-2 col-10 btn-wide btn-shadow btn btn-primary btn-sm">
+                                                            <b-button :to="{ name: 'RoomEdit', params: { id: roomDetail.id } }" class="mb-2 col-10 btn-wide btn-shadow btn btn-sm" variant="info">
                                                                 Editer : {{roomDetail.name}}
                                                             </b-button>
                                                             <br>
@@ -108,12 +108,18 @@ export default {
     computed: {},
 
     methods: {
-        remove (id) {
-            // l'appel vers API de Laravel devra etre fait ici
-            this.roomDetailsData = this.roomDetailsData.filter(roomDetail => roomDetail.id !== id)
-            // this.$sweetConfirmation()
+        async remove (id) {
+            if ( await this.$sweetConfirmation ({
+                        title: "Vous allez supprimer et archiver une salle !",
+                        confirmText: "Confirmer ?",
+                        cancelText: "Annuler"})
+                ){
+                     // l'appel vers API de Laravel devra etre fait ici
+                    this.roomDetailsData = this.roomDetailsData.filter(roomDetail => roomDetail.id !== id)
+                    this.$sweetNotif();
+                }
         },
-        //TODO point API pour que a chaque batiment soit assosicé une liste de salle
+        //TODO point API pour que a chaque batiment soit associé une liste de salle
     }
 };
 </script>

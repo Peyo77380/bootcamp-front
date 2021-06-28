@@ -38,8 +38,8 @@
                                             <!-- Control buttons -->
                                             <div class="text-center">
                                                 <b-button-group>
-                                                    <b-button @click="tabIndex--" class="m-2 " variant="primary">Précédent</b-button>
-                                                    <b-button @click="nextWizard()" class="m-2 " variant="primary">Suivant</b-button>
+                                                    <b-button @click="tabIndex--" class="m-2" variant="primary">Précédent</b-button>
+                                                    <b-button @click="nextWizard()" class="m-2" variant="primary">Suivant</b-button>
                                                     <b-button @click="saveRoom" v-show="tabIndex == 5" class="m-2" type="submit" variant="success">Sauvegarder</b-button>
                                                 </b-button-group>
                                             </div>
@@ -103,6 +103,7 @@ export default {
     methods: {
         saveRoom () {
             // TODO point API saveRoom ()
+            this.$sweetNotif();
         },
         nextWizard () {
             switch (this.tabIndex) {

@@ -89,7 +89,7 @@ export default {
         Wizard6
     },
     data: () => ({
-        heading: "Ajouter une salle dans l'espace de coworking",
+        heading: "Modifier une salle dans l'espace de coworking",
         icon: "pe-7s-note2 icon-gradient bg-tempting-azure",
         tabIndex: 1,
         getData1: 0,

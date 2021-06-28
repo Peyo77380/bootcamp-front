@@ -231,6 +231,8 @@ export const roomDetailsData = [
 ];
 
 export const Floors = [
+
+    { 'value': null, 'text': 'Choisir un niveau', 'disabled': true },
     { 'value': '0', 'text': 'Rez-de-chaussé' },
     { 'value': '1', 'text': '1er étage' },
     { 'value': '2', 'text': '2e  étage' },
@@ -248,6 +250,7 @@ export const TypeBookings = [
 ];
 
 export const MinRentalDurations = [
+    { 'value': null, 'text': 'Choisir une durée', 'disabled': true },
     { 'value': '0', 'text': '1 heure' },
     { 'value': '1', 'text': '2 heures' },
     { 'value': '2', 'text': '1/2 journée' },

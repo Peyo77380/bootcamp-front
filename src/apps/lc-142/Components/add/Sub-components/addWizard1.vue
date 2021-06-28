@@ -35,7 +35,7 @@
 
                         <div class="row">
                             <div class="col-1"></div>
-                            <div class="col-2">
+                            <div class="col-3">
                             <b-form-group id="input-group-3" label="Niveau où se situe la salle :" class="text-left" label-for="input-3">
                                 <b-form-select
                                 id="input-3"
@@ -84,23 +84,22 @@
                             </b-form-group>
                             </div>
 
-                            <div class="col-1"></div>
                             <div class="col-7">
                                 <div class="table-responsive">
                                     <table class="align-middle mb-5 table table-border table-striped table-hover">
                                         <thead>
                                             <tr>
-                                                <th class="text-center">Jours</th>
-                                                <th class="text-center">Heure ouverture</th>
-                                                <th class="text-center">Heure fermeture</th>
+                                                <th class="text-center border">Jours</th>
+                                                <th class="text-center border">Heure ouverture</th>
+                                                <th class="text-center border">Heure fermeture</th>
                                             </tr>
                                         </thead>
                                         <tbody>
                                             <!-- inserer les v-model pour chaque valeur a recuperer -->
                                             <tr v-for="openingHoursDetail in openingHoursDetailsData" :key="openingHoursDetail.id">
-                                                <td class="text-center text-muted">{{openingHoursDetail.id}}</td>
-                                                <td><input type="text" v-model="openingHoursDetail.start" class="text-center border"/></td>
-                                                <td><input type="text" v-model="openingHoursDetail.end" class="text-center border"/></td>
+                                                <td class="text-center text-muted border">{{ openingHoursDetail.name }}</td>
+                                                <td class="text-center border"><input type="text" v-model="openingHoursDetail.start" class="text-center border"/></td>
+                                                <td class="text-center border"><input type="text" v-model="openingHoursDetail.end" class="text-center border"/></td>
                                             </tr>
                                         </tbody>
                                     </table>
@@ -144,9 +143,9 @@ export default {
         room: {
             name: '',
             surface: '',
-            floor: '',
+            floor: null,
             maxCapacity: '',
-            minRentalDuration: '',
+            minRentalDuration: null,
             typeBooking: [],
             bookable: [],
             openingHours: [],

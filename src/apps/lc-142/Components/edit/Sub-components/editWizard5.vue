@@ -8,19 +8,19 @@
                     <!-- Contenu 5e wizard-->
                     <b-form>
                     <div class="row">
-                        <div class="table-responsive">
+                        <div class="table-responsive m-5">
                             <table class="align-middle mb-5 table table-border table-striped table-hover">
                                 <thead>
                                     <tr>
-                                        <th class="text-center">Type clients</th>
-                                        <th class="text-center">par heure</th>
-                                        <th class="text-center">par 1/2 jour</th>
-                                        <th class="text-center">par jour</th>
+                                        <th class="text-center border">Type clients</th>
+                                        <th class="text-center border">par heure</th>
+                                        <th class="text-center border">par 1/2 jour</th>
+                                        <th class="text-center border">par jour</th>
                                     </tr>
                                 </thead>
                                 <tbody>
                                     <tr v-for="priceDetail in priceDetailsData" :key="priceDetail.id">
-                                        <td class="text-center border">{{ priceDetail.id }}</td>
+                                        <td class="text-center border">{{ priceDetail.name }}</td>
                                         <td class="text-center border" ><input type="text" class="text-center border" v-model="priceDetail.hour"/></td>
                                         <td class="text-center border" ><input type="text" class="text-center border" v-model="priceDetail.halfDay"/></td>
                                         <td class="text-center border" ><input type="text" class="text-center border" v-model="priceDetail.day"/></td>
@@ -31,19 +31,19 @@
                         </div>
                     </div> 
                     <div class="row">
-                        <div class="table-responsive">
+                        <div class="table-responsive m-5">
                             <table class="align-middle mb-5 table table-border table-striped table-hover">
                                 <thead>
                                     <tr>
-                                        <th class="text-center">Type clients</th>
-                                        <th class="text-center">par semaine</th>
-                                        <th class="text-center">par mois</th>
-                                        <th class="text-center">par trimestre</th>
+                                        <th class="text-center border">Type clients</th>
+                                        <th class="text-center border">par semaine</th>
+                                        <th class="text-center border">par mois</th>
+                                        <th class="text-center border">par trimestre</th>
                                     </tr>
                                 </thead>
                                 <tbody>
                                     <tr v-for="priceDetail in priceDetailsData" :key="priceDetail.id">
-                                        <td class="text-center border">{{ priceDetail.id }}</td>
+                                        <td class="text-center border">{{ priceDetail.name }}</td>
                                         <td class="text-center border" ><input type="text" class="text-center border" v-model="priceDetail.week"/></td>
                                         <td class="text-center border" ><input type="text" class="text-center border" v-model="priceDetail.month"/></td>
                                         <td class="text-center border" ><input type="text" class="text-center border" v-model="priceDetail.trimester"/></td>
