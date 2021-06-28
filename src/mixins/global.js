@@ -3,7 +3,6 @@ import api from '@/services/axios';
 export const Globals = {
 
     methods: {
-
         async getGlobals() {
             try {
                 const response = await api.get('list/1/1/fr_FR')
@@ -32,9 +31,9 @@ export const Globals = {
                 }
             }
         },
-        async deleteDetailFromList (listId, activityId) {
+        async deleteDetailFromList (listId, item) {
             try {
-                const response = await api.delete(`list/data/${listId}`, {_id: activityId});
+                const response = await api.put(`list/data/rm/${listId}`, item);
                 console.log(response);
             } catch (error) {
                 return {
