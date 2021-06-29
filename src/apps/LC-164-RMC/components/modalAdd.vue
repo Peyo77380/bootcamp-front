@@ -1,5 +1,3 @@
-const newLocal=this.beforeUpdate=null; const
-newLocal=this.beforeUpdate=this.updateUser;
 <template>
     <b-modal
         id="modal-add"
@@ -12,35 +10,40 @@ newLocal=this.beforeUpdate=this.updateUser;
         </template>
         <template #default>
             <div>
-                <label for="feedback-taux" >Taux</label>
+                <label for="feedback-taux">Taux</label>
                 <b-form-input
-                    v-model="user.Taux"
-                    :state="validationTaux"
+                    v-model.number="newRateTva.rate"
+                    type="number"
+                    :state="validationTaux(newRateTva.rate)"
                     id="feedback-taux"
                 ></b-form-input>
-                <b-form-invalid-feedback :state="validationTaux">
+                <b-form-invalid-feedback
+                    :state="validationTaux(newRateTva.rate)"
+                >
                     Le taux doit faire entre 1 et 6 caractères.
                 </b-form-invalid-feedback>
-                <b-form-valid-feedback :state="validationTaux">
+                <b-form-valid-feedback :state="validationTaux(newRateTva.rate)">
                     Parfait !
                 </b-form-valid-feedback>
             </div>
             <div>
                 <label for="feedback-codecompta">Code compta</label>
                 <b-form-input
-                    v-model="user.Codecompta"
-                    :state="validationCodecompta"
+                    v-model="newRateTva.codeCompta"
+                    :state="validationCodecompta(newRateTva.codeCompta)"
                     id="feedback-codecompta"
                 ></b-form-input>
-                <b-form-invalid-feedback :state="validationCodecompta">
+                <b-form-invalid-feedback
+                    :state="validationCodecompta(newRateTva.codeCompta)"
+                >
                     Le code compta doit faire entre 4 et 10 caractères.
                 </b-form-invalid-feedback>
-                <b-form-valid-feedback :state="validationCodecompta">
+                <b-form-valid-feedback
+                    :state="validationCodecompta(newRateTva.codeCompta)"
+                >
                     Bien joué !
                 </b-form-valid-feedback>
             </div>
-
-            
         </template>
         <template #modal-footer="{ ok, cancel }">
             <b-button size="sm" variant="danger" @click="cancel()">
@@ -50,7 +53,7 @@ newLocal=this.beforeUpdate=this.updateUser;
                 type="submit"
                 size="sm"
                 variant="success"
-                @click="[ok(), modifUpdate($sweetNotif)]"
+                @click="[ok(), addUpdate($sweetNotif)]"
             >
                 Valider
             </b-button>
@@ -59,45 +62,33 @@ newLocal=this.beforeUpdate=this.updateUser;
 </template>
 
 <script>
+import { vatRates } from "@/mixins/vatRates";
 export default {
     name: "Modale",
     props: {
-        updateUser: {
-            type: Object
-        }
+        validationTaux: { type: Function },
+        validationCodecompta: { type: Function },
+        handleAdd: { type: Function }
     },
     data: () => ({
-        userTaux: "",
-        userCodecompta: "",
-        beforeUpdate: null
-    }),
-    computed: {
-        validationTaux() {
-            return this.user.Taux.length > 1 && this.user.Taux.length < 6;
-        },
-        validationCodecompta() {
-            return (
-                this.user.Codecompta.length > 4 &&
-                this.user.Codecompta.length < 10
-            );
-        },
-
-        user() {
-            if (this.updateUser) {
-                return this.updateUser;
-            }
-
-            return {
-                ID: null,
-                Taux: "",
-                Codecompta: "",
-            };
+        newRateTva: {
+            rate: "",
+            codeCompta: ""
         }
-    },
-
+    }),
+    mixins: [vatRates],
     methods: {
-        modifUpdate() {
-            this.$sweetNotif("Modifications enregistrées !");
+        async addUpdate() {
+            try {
+                const newRateWlAdded = Object.assign(
+                    { wl: 1 },
+                    this.newRateTva
+                );
+                await this.handleAdd(newRateWlAdded);
+                this.$sweetNotif("Modifications enregistrées !");
+            } catch (error) {
+                console.error(error);
+            }
         }
     }
 };

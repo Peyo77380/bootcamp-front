@@ -13,7 +13,7 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <tr v-for="user in users" :key="user.id">
+                        <tr v-for="vatRate in vatRates" :key="vatRate._id">
                             <!-- <td
                                 class="text-center text-muted"
                                 style="width: 80px;"
@@ -22,21 +22,23 @@
                             </td> -->
 
                             <td class="text-center">
-                                <a href="javascript:void(0)">{{ user.Taux }}</a>
+                                <a href="javascript:void(0)">{{
+                                    vatRate.rate
+                                }}</a>
                             </td>
                             <td class="text-center">
                                 <a href="javascript:void(0)">{{
-                                    user.Codecompta
+                                    vatRate.codeCompta
                                 }}</a>
                             </td>
-                        
+
                             <td class="text-center">
                                 <div role="group" class="btn-group-xl">
                                     <b-button
                                         class="mb-2 mr-2  btn-pill btn-shadow"
                                         variant="primary"
                                         id="popover1"
-                                        @click="updateForm(user)"
+                                        @click="updateForm(vatRate)"
                                     >
                                         <i class="lnr-pencil"></i>
                                     </b-button>
@@ -51,7 +53,7 @@
                                         class="mb-2 mr-2 btn-icon btn-pill btn-shadow"
                                         variant="danger"
                                         id="popover2"
-                                        @click="remove(user.Taux)"
+                                        @click="remove(vatRate._id)"
                                         ><i class="pe-7s-trash"> </i
                                     ></b-button>
                                     <b-popover
@@ -71,15 +73,24 @@
                         <b-button
                             class="mb-2 mr-2"
                             variant="success"
-                            v-b-modal.modal-add
+                            @click="addForm"
                             >ajouter un mode</b-button
                         >
                     </div>
                 </div>
             </div>
         </div>
-        <modalMod :updateUser="updateUser" />
-        <modalAdd :addUser="modaladd" />
+        <modalMod
+            :updatedVatRate="updatedVatRate"
+            :validationTaux="validationTaux"
+            :validationCodecompta="validationCodecompta"
+            :handleUpdate="handleUpdate"
+        />
+        <modalAdd
+            :validationTaux="validationTaux"
+            :validationCodecompta="validationCodecompta"
+            :handleAdd="handleAdd"
+        />
     </div>
 </template>
 
@@ -87,6 +98,7 @@
 import { FontAwesomeIcon } from "@fortawesome/vue-fontawesome";
 import modalMod from "./modalMod.vue";
 import modalAdd from "./modalAdd.vue";
+import { vatRates } from "@/mixins/vatRates";
 
 export default {
     components: {
@@ -96,48 +108,67 @@ export default {
         // eslint-disable-next-line vue/no-unused-components
         modalAdd
     },
+    mixins: [vatRates],
+    async mounted() {
+        await this.loadVatRates();
+    },
     data() {
         return {
-            updateUser: null,
-            users: [
-                {
-                    Taux: "20.00",
-                    Codecompta: "154876"
-                },
-                {
-                    Taux: "10.00",
-                    Codecompta: "985647"
-                },
-                {
-                    Taux: "5.50",
-                    Codecompta: "1678594"
-                },
-                {
-                    Taux: "00.00",
-                    Codecompta: "7668712"
-                },
-                {
-                    Taux: "20.00",
-                    Codecompta: "154876"
-                }
-            ]
+            updatedVatRate: null,
+            vatRates: []
         };
     },
-  
+
     methods: {
-        updateForm(user) {
-            (this.updateUser = user), this.$bvModal.show("modal-scoped");
+        validationTaux(rate) {
+            return rate.toString().length > 1 && rate.toString().length < 6;
+        },
+        validationCodecompta(codeCompta) {
+            return codeCompta.length > 4 && codeCompta.length < 10;
+        },
+        updateForm(vatRate) {
+            (this.updatedVatRate = vatRate), this.$bvModal.show("modal-scoped");
+        },
+        addForm(vatRate) {
+            this.$bvModal.show("modal-add");
         },
         async remove(activityId) {
-      // sweet alert sur la suppression
-      let title = "Confirmer la suppression de cet item";
-      if (await this.$sweetConfirmation({ title })) {
-        this.lists = this.lists.filter(
-          (activity) => activity.id !== activityId
-        );
-        this.$sweetNotif("Item supprimée");
-      }
-    },
+            // sweet alert sur la suppression
+            let title = "Confirmer la suppression de cet item";
+            if (await this.$sweetConfirmation({ title })) {
+                try {
+                    await this.deleteVatRate(activityId);
+                    this.loadVatRates();
+                    this.$sweetNotif("Item supprimée");
+                } catch (error) {
+                    console.error(error);
+                }
+            }
+        },
+        async loadVatRates() {
+            try {
+                const res = await this.getVatRates();
+                this.vatRates = res;
+            } catch (error) {
+                console.error(error);
+            }
+        },
+        async handleUpdate(vatRate) {
+            try {
+                const res = await this.modifyVatRate(vatRate);
+                this.loadVatRates();
+            } catch (error) {
+                console.error(error);
+            }
+        },
+        async handleAdd(vatRate) {
+            try {
+                const res = await this.addVatRate(vatRate);
+                this.loadVatRates();
+            } catch (error) {
+                console.error(error);
+            }
+        }
     }
 };
 </script>

@@ -1,5 +1,3 @@
-const newLocal=this.beforeUpdate=null; const
-newLocal=this.beforeUpdate=this.updateUser;
 <template>
     <b-modal
         id="modal-scoped"
@@ -12,35 +10,34 @@ newLocal=this.beforeUpdate=this.updateUser;
         </template>
         <template #default>
             <div>
-                <label for="feedback-taux" >Taux</label>
+                <label for="feedback-taux">Taux</label>
                 <b-form-input
-                    v-model="user.Taux"
-                    :state="validationTaux"
+                    v-model.number="updatedVatRate.rate"
+                    type="number"
+                    :state="validationTaux(updatedVatRate.rate)"
                     id="feedback-taux"
                 ></b-form-input>
-                <b-form-invalid-feedback :state="validationTaux">
+                <b-form-invalid-feedback>
                     Le taux doit faire entre 1 et 6 caractères.
                 </b-form-invalid-feedback>
-                <b-form-valid-feedback :state="validationTaux">
+                <b-form-valid-feedback>
                     Parfait !
                 </b-form-valid-feedback>
             </div>
             <div>
                 <label for="feedback-codecompta">Code compta</label>
                 <b-form-input
-                    v-model="user.Codecompta"
-                    :state="validationCodecompta"
+                    v-model="updatedVatRate.codeCompta"
+                    :state="validationCodecompta(updatedVatRate.codeCompta)"
                     id="feedback-codecompta"
                 ></b-form-input>
-                <b-form-invalid-feedback :state="validationCodecompta">
+                <b-form-invalid-feedback>
                     Le code compta doit faire entre 4 et 10 caractères.
                 </b-form-invalid-feedback>
-                <b-form-valid-feedback :state="validationCodecompta">
+                <b-form-valid-feedback>
                     Bien joué !
                 </b-form-valid-feedback>
             </div>
-
-            
         </template>
         <template #modal-footer="{ ok, cancel }">
             <b-button size="sm" variant="danger" @click="cancel()">
@@ -62,42 +59,19 @@ newLocal=this.beforeUpdate=this.updateUser;
 export default {
     name: "Modale",
     props: {
-        updateUser: {
-            type: Object
-        }
+        updatedVatRate: { type: Object },
+        validationTaux: { type: Function },
+        validationCodecompta: { type: Function },
+        handleUpdate: { type: Function }
     },
-    data: () => ({
-        userTaux: "",
-        userCodecompta: "",
-        beforeUpdate: null
-    }),
-    computed: {
-        validationTaux() {
-            return this.user.Taux.length > 1 && this.user.Taux.length < 6;
-        },
-        validationCodecompta() {
-            return (
-                this.user.Codecompta.length > 4 &&
-                this.user.Codecompta.length < 10
-            );
-        },
-
-        user() {
-            if (this.updateUser) {
-                return this.updateUser;
-            }
-
-            return {
-                ID: null,
-                Taux: "",
-                Codecompta: "",
-            };
-        }
-    },
-
     methods: {
-        modifUpdate() {
-            this.$sweetNotif("Modifications enregistrées !");
+        async modifUpdate() {
+            try {
+                await this.handleUpdate(this.updatedVatRate);
+                this.$sweetNotif("Modifications enregistrées !");
+            } catch (error) {
+                console.error(error);
+            }
         }
     }
 };
