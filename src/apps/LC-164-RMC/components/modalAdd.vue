@@ -62,7 +62,6 @@
 </template>
 
 <script>
-import { vatRates } from "@/mixins/vatRates";
 export default {
     name: "Modale",
     props: {
@@ -76,7 +75,6 @@ export default {
             codeCompta: ""
         }
     }),
-    mixins: [vatRates],
     methods: {
         async addUpdate() {
             try {
@@ -85,7 +83,7 @@ export default {
                     this.newRateTva
                 );
                 await this.handleAdd(newRateWlAdded);
-                this.$sweetNotif("Modifications enregistrées !");
+                this.$sweetNotif("Nouveau taux de TVA ajouté !");
             } catch (error) {
                 console.error(error);
             }
