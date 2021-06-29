@@ -7,7 +7,7 @@
                         <div class="">
                             <div class="row">
                                 <div class="col-md-12">
-                                    <h5 class="card-title mt-3">Création d'une action commerciale</h5>
+                                    <h5 class="card-title mt-3">Action commerciale</h5>
                                     <form class="mt-5">
                                         <div class="position-relative form-group">
                                             <label>Nom de la société*</label>
@@ -81,16 +81,12 @@
                     </v-card-text>
                     <v-card-actions>
                         <v-spacer></v-spacer>
-                        <v-btn color="blue darken-1" flat 
-                        @click="closeModal"
-                        >
-                        Close
-                        </v-btn>
-                        <v-btn color="blue darken-1" flat 
-                        @click="saveDatas"
-                        >
-                        Save
-                        </v-btn>
+                    <button type="button" class="btn mr-2 mb-2 btn-danger"
+                    @click="closeModal"
+                    > Annuler</button>
+                    <button type="button" class="btn mr-2 mb-2 btn-success"
+                    @click="saveDatas"
+                    > Valider</button>
                     </v-card-actions>
                 </v-card>
             </v-dialog>
