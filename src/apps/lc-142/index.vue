@@ -26,14 +26,14 @@
                         <div class="row">
                             <div class="col-md-12">
                                 <div class="row" >
-                                    <div class="col-md-4 col-lg-4 col-xl-4" v-for="roomDetail in roomDetailsData" :key="roomDetail.id">
+                                    <div class="col-md-4 col-lg-4 col-xl-4" v-for="roomDetail in roomDetailsData" :key="roomDetail._id">
                                         <b-card class="mb-5 nav-justified" no-body>
                                             <b-tabs class="card-header-tab-animation" card>
                                                 <b-tab title="Info salle" active>
-                                                    <h4>{{ roomDetail.floor }} :</h4>
+                                                    <h4>Etage {{ roomDetail.floorId }} :</h4>
                                                     <h4>{{ roomDetail.name }}</h4>
                                                     <div>
-                                                        <v-img :src="require('@/assets/images/salles/' + roomDetail.roomListPhoto + '.jpeg')"></v-img>
+                                                        <v-img src="https://place-puppy.com/300x300"></v-img>
                                                     </div>
                                                         
                                                     <div class="scroll-area-xm">
@@ -43,15 +43,15 @@
                                                 </b-tab>
                                                 <b-tab title="Plus...">
                                                     <div align="center">
-                                                            <b-button :to="{ name: 'RoomDetails', params: { id: roomDetail.id } }" class="mb-2 col-10 btn-wide btn-shadow btn btn-sm" variant="primary">
+                                                            <b-button :to="{ name: 'RoomDetails', params: { id: roomDetail._id } }" class="mb-2 col-10 btn-wide btn-shadow btn btn-sm" variant="primary">
                                                                 Voir détails : {{roomDetail.name}}
                                                             </b-button>
                                                             <br>
-                                                            <b-button :to="{ name: 'RoomEdit', params: { id: roomDetail.id } }" class="mb-2 col-10 btn-wide btn-shadow btn btn-sm" variant="info">
+                                                            <b-button :to="{ name: 'RoomEdit', params: { id: roomDetail._id } }" class="mb-2 col-10 btn-wide btn-shadow btn btn-sm" variant="info">
                                                                 Editer : {{roomDetail.name}}
                                                             </b-button>
                                                             <br>
-                                                            <b-button @click="remove(roomDetail.id)" class="mb-2 col-10 btn-wide btn-shadow btn btn-danger btn-sm" >
+                                                            <b-button @click="remove(roomDetail._id)" class="mb-2 col-10 btn-wide btn-shadow btn btn-danger btn-sm" >
                                                                 Supprimer : {{roomDetail.name}}
                                                             </b-button>
                                                     </div>
@@ -87,8 +87,8 @@ import {
     faTh
 } from "@fortawesome/free-solid-svg-icons";
 
-import {roomDetailsData} from "@/apps/lc-142/Components/data-roomDetails";
 import {buildingsData} from "@/apps/lc-142/Components/data-buildings";
+import {Rooms} from '@/mixins/room'
 
 
 library.add(faTrashAlt, faCheck, faAngleDown, faAngleUp, faTh, faCalendarAlt);
@@ -99,13 +99,25 @@ export default {
         PageTitle,
         VuePerfectScrollbar,
     },
+    mixins: [Rooms],
     data: () => ({
         heading: "Liste des salles de l'espace de coworking",
         icon: "pe-7s-note2 icon-gradient bg-tempting-azure",
-        roomDetailsData: roomDetailsData,
+        roomDetailsData: [],
         buildingsData: buildingsData
     }),
+    mounted () {
+        this.loadRooms();
+    },
     methods: {
+        async loadRooms () {
+            try {
+                const res = await this.getAllRooms();
+                this.roomDetailsData = res.datas;
+            } catch (err) {
+                console.log(err);
+            }
+        },
         async remove (id) {
             if ( await this.$sweetConfirmation ({
                     title: "Vous allez supprimer et archiver une salle !",
@@ -113,8 +125,13 @@ export default {
                     cancelText: "Annuler"})
                 ){
                      // l'appel vers API de Laravel devra etre fait ici
-                    this.roomDetailsData = this.roomDetailsData.filter(roomDetail => roomDetail.id !== id)
-                    this.$sweetNotif();
+                    try {
+                        const res = await this.deleteRoom(id);
+                        this.roomDetailsData = res.datas;
+                        this.$sweetNotif();
+                    } catch (err) {
+                        console.log(err);
+                    }
                 }
         },
         //TODO point API pour que a chaque batiment soit associé une liste de salle
