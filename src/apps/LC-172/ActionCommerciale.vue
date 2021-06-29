@@ -73,7 +73,7 @@
                                                                 <button
                                                                     type="button"
                                                                     class="mr-2 btn-shadow btn-sm btn btn-warning"
-                                                                    @click="deleteAction(data)"
+                                                                    @click="confirmDeleteAction(data)"
                                                                 >
                                                                     Supprimer
                                                                 </button>
@@ -183,11 +183,13 @@ export default {
             if (this.editedIndex>=0) {
                 Object.assign(this.commercialData[this.editedIndex], this.newDatas);
                 this.editedIndex=-1;
+                this.$sweetNotif("Modification réussie !");
                 this.newDatas = {};
             }
             else {
                 this.commercialData.push(this.newDatas);
                 this.newDatas = {};
+                this.$sweetNotif("Création action commerciale réussie !");
                 //TODO point API ajout action commerciale
             }
         },
@@ -200,6 +202,14 @@ export default {
             this.editedIndex = this.commercialData.indexOf(data);
             this.commercialData.splice(this.editedIndex,1)
           //TODO point API pour supprimer action commerciale
+        },
+        async confirmDeleteAction(data) {
+            if (
+                await this.$sweetConfirmation({
+                    value: data.name
+                })
+            )
+            this.deleteAction(data)
         },
         changeToDo(data) {
             //console.log (data); 
