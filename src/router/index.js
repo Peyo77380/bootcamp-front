@@ -14,6 +14,26 @@ export default new Router({
             path: "/",
             name: "analytics",
             component: () => import("@/apps/dash-exemple/Analytics")
+        },
+        {
+            path: "/our-buildings",
+            name: "our-buildings",
+            component: () => import("@/apps/LC-144/Buildings/all-buildings")
+        },
+        {
+            path: "/archive-building",
+            name: "archive-building",
+            component: () => import("@/apps/LC-144/Buildings/archive-building")
+        },
+        {
+            path: "/add-building",
+            name: "add-building",
+            component: () => import("@/apps/LC-144/Buildings/add-building")
+        },
+        {
+            path: "/edit-building",
+            name: "edit-building",
+            component: () => import("@/apps/LC-144/Buildings/edit-building")
         }
     ]
 });
