@@ -15,7 +15,7 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <tr v-for="user in users" :key="user.id">
+                        <tr v-for="payment in payments" :key="payment._id">
                             <!-- <td
                                 class="text-center text-muted"
                                 style="width: 80px;"
@@ -24,16 +24,20 @@
                             </td> -->
 
                             <td class="text-center">
-                                <a href="javascript:void(0)">{{ user.Nom }}</a>
+                                <a href="javascript:void(0)">{{
+                                    payment.name
+                                }}</a>
                             </td>
                             <td class="text-center">
                                 <a href="javascript:void(0)">{{
-                                    user.Codecompta
+                                    payment.codeCompta
                                 }}</a>
                             </td>
 
                             <td class="text-center">
-                                <a href="javascript:void(0)">{{ user.Cle }}</a>
+                                <a href="javascript:void(0)">{{
+                                    payment.key
+                                }}</a>
                             </td>
 
                             <td class="text-center">
@@ -42,7 +46,7 @@
                                         class="mb-2 mr-2  btn-pill btn-shadow"
                                         variant="primary"
                                         id="popover1"
-                                        @click="updateForm(user)"
+                                        @click="updateForm(payment)"
                                     >
                                         <i class="lnr-pencil"></i>
                                     </b-button>
@@ -57,7 +61,7 @@
                                         class="mb-2 mr-2 btn-icon btn-pill btn-shadow"
                                         variant="danger"
                                         id="popover2"
-                                        @click="remove(user.Nom)"
+                                        @click="remove(payment._id)"
                                         ><i class="pe-7s-trash"> </i
                                     ></b-button>
                                     <b-popover
@@ -84,8 +88,19 @@
                 </div>
             </div>
         </div>
-        <modalMod :updateUser="updateUser" />
-        <modalAdd :addUser="modalAdd" />
+        <modalMod
+            :updatedPayment="updatedPayment"
+            :validationName="validationName"
+            :validationCodeCompta="validationCodeCompta"
+            :validationKey="validationKey"
+            :handleUpdate="handleUpdate"
+        />
+        <modalAdd
+            :validationName="validationName"
+            :validationCodeCompta="validationCodeCompta"
+            :validationKey="validationKey"
+            :handleAdd="handleAdd"
+        />
     </div>
 </template>
 
@@ -93,6 +108,7 @@
 import { FontAwesomeIcon } from "@fortawesome/vue-fontawesome";
 import modalMod from "./modalMod.vue";
 import modalAdd from "./modalAdd.vue";
+import { payments } from "@/mixins/payments";
 
 export default {
     components: {
@@ -102,56 +118,67 @@ export default {
         // eslint-disable-next-line vue/no-unused-components
         modalAdd
     },
+    mixins: [payments],
+    async mounted() {
+        await this.loadPayments();
+    },
+
     data() {
         return {
-            updateUser: null,
-            users: [
-                {
-                    ID: 1,
-                    Nom: "En attente",
-                    Codecompta: "154876",
-                    Cle: "Pending"
-                },
-                {
-                    ID: 2,
-                    Nom: "Espèce",
-                    Codecompta: "15973657",
-                    Cle: "Liquide"
-                },
-                {
-                    ID: 3,
-                    Nom: "CB TPE ",
-                    Codecompta: "51236845",
-                    Cle: "TPE"
-                },
-                {
-                    ID: 4,
-                    Nom: "Cheque ",
-                    Codecompta: "24569825 ",
-                    Cle: "CHECK"
-                },
-                {
-                    ID: 5,
-                    Nom: "CB Auto ",
-                    Codecompta: "25469853",
-                    Cle: "Walet"
-                }
-            ]
+            updatedPayment: null,
+            payments: []
         };
     },
-    
+
     methods: {
-        updateForm(user) {
-            (this.updateUser = user), this.$bvModal.show("modal-modif");
+        validationName(name) {
+            return name.length > 4 && name.length < 60;
         },
-        async remove(activityId) {
+        validationCodeCompta(codeCompta) {
+            return codeCompta.length > 4 && codeCompta.length < 10;
+        },
+        validationKey(key) {
+            return key.length >= 3 && key.length < 10;
+        },
+        updateForm(payment) {
+            (this.updatedPayment = payment), this.$bvModal.show("modal-modif");
+        },
+        async remove(id) {
             // sweet alert sur la suppression
             let title = "Confirmer la suppression de cet item";
             if (await this.$sweetConfirmation({ title })) {
-                this.lists = this.lists.filter(
-                    activity => activity.id !== activityId
-                );
+                try {
+                    await this.deletePayment(id);
+                    this.loadPayments();
+                    this.$sweetNotif("Item supprimée");
+                } catch (error) {
+                    console.error(error);
+                }
+            }
+        },
+        async loadPayments() {
+            try {
+                const res = await this.getPayments();
+                this.payments = res;
+            } catch (error) {
+                console.error(error);
+            }
+        },
+        async handleUpdate(updatedPayment) {
+            try {
+                await this.modifyPayment(updatedPayment);
+                this.loadPayments();
                 this.$sweetNotif("Item supprimée");
+            } catch (error) {
+                console.error(error);
+            }
+        },
+        async handleAdd(payment) {
+            try {
+                const res = await this.addPayment(payment);
+                this.loadPayments();
+            } catch (error) {
+                console.error(error);
             }
         }
     }

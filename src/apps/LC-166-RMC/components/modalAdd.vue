@@ -14,28 +14,28 @@ newLocal=this.beforeUpdate=this.updateUser;
             <div>
                 <label for="feedback-nom">Nom</label>
                 <b-form-input
-                    v-model="user.Nom"
-                    :state="validationNom"
+                    v-model="newPayment.name"
+                    :state="validationName(newPayment.name)"
                     id="feedback-nom"
                 ></b-form-input>
-                <b-form-invalid-feedback :state="validationNom">
+                <b-form-invalid-feedback>
                     Votre nom doit faire entre 4 et 60 caractères.
                 </b-form-invalid-feedback>
-                <b-form-valid-feedback :state="validationNom">
+                <b-form-valid-feedback>
                     Parfait !
                 </b-form-valid-feedback>
             </div>
             <div>
                 <label for="feedback-codecompta">Code compta</label>
                 <b-form-input
-                    v-model="user.Codecompta"
-                    :state="validationCodecompta"
+                    v-model="newPayment.codeCompta"
+                    :state="validationCodeCompta(newPayment.codeCompta)"
                     id="feedback-codecompta"
                 ></b-form-input>
-                <b-form-invalid-feedback :state="validationCodecompta">
+                <b-form-invalid-feedback>
                     Le code compta doit faire entre 4 et 10 caractères.
                 </b-form-invalid-feedback>
-                <b-form-valid-feedback :state="validationCodecompta">
+                <b-form-valid-feedback>
                     Bien joué !
                 </b-form-valid-feedback>
             </div>
@@ -43,14 +43,14 @@ newLocal=this.beforeUpdate=this.updateUser;
             <div>
                 <label for="feedback-cle">Clé</label>
                 <b-form-input
-                    v-model="user.Cle"
-                    :state="validationCle"
+                    v-model="newPayment.key"
+                    :state="validationKey(newPayment.key)"
                     id="feedback-cle"
                 ></b-form-input>
-                <b-form-invalid-feedback :state="validationCle">
+                <b-form-invalid-feedback>
                     La clé doit faire entre 3 et 10 caractères.
                 </b-form-invalid-feedback>
-                <b-form-valid-feedback :state="validationCle">
+                <b-form-valid-feedback>
                     Bien joué !
                 </b-form-valid-feedback>
             </div>
@@ -63,7 +63,7 @@ newLocal=this.beforeUpdate=this.updateUser;
                 type="submit"
                 size="sm"
                 variant="success"
-                @click="[ok(), modifUpdate($sweetNotif)]"
+                @click="[ok(), modifAdd($sweetNotif)]"
             >
                 Valider
             </b-button>
@@ -75,53 +75,38 @@ newLocal=this.beforeUpdate=this.updateUser;
 export default {
     name: "Modale",
     props: {
-        updateUser: {
-            type: Object
+        validationName: {
+            type: Function
+        },
+        validationCodeCompta: {
+            type: Function
+        },
+        validationKey: {
+            type: Function
+        },
+        handleAdd: {
+            type: Function
         }
     },
     data: () => ({
-        userNom: "",
-        userCodecompta: "",
-        userCle: "",
-        beforeUpdate: null
-    }),
-    computed: {
-        validationNom() {
-            return this.user.Nom.length > 4 && this.user.Nom.length < 60;
-        },
-        validationCodecompta() {
-            return (
-                this.user.Codecompta.length > 4 &&
-                this.user.Codecompta.length < 10
-            );
-        },
-        validationCle() {
-            return this.user.Cle.length >= 3 && this.user.Cle.length < 10;
-        },
-        // test() {
-        //     if (this.user.Activite) {
-        //         return this.optionsChoices[0];
-        //     }
-        //     return this.optionsChoices[1];
-        // },
-
-        user() {
-            if (this.updateUser) {
-                return this.updateUser;
-            }
-
-            return {
-                ID: null,
-                Nom: "",
-                Codecompta: "",
-                Cle: ""
-            };
+        newPayment: {
+            name: "",
+            codeCompta: "",
+            key: ""
         }
-    },
-
+    }),
     methods: {
-        modifUpdate() {
-            this.$sweetNotif("Modifications enregistrées !");
+        async modifAdd() {
+            try {
+                const newPaymentWlAdded = Object.assign(
+                    { wl: 1 },
+                    this.newPayment
+                );
+                await this.handleAdd(newPaymentWlAdded);
+                this.$sweetNotif("Nouveau mode ajouté !");
+            } catch (error) {
+                console.error(error);
+            }
         }
     }
 };
