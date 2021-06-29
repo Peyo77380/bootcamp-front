@@ -6,9 +6,12 @@
             <VuePerfectScrollbar class="scrollbar-container" v-once>
                 <div class="mt-3 mb-3">
                     <!-- Contenu 2e wizard-->
-                    <h2>PLUGIN CKEDITOR</h2>
                     <b-form>
-                        <!-- <ckeditor :editor="editor2" v-model="room.description" :config="editorConfig"></ckeditor> -->
+                        <quill-editor v-model="room.description"
+                            class="m-5"
+                            ref="myQuillEditor"
+                            :options="editorOption">
+                        </quill-editor>
                     </b-form>
                 </div>
             </VuePerfectScrollbar>
@@ -20,14 +23,13 @@
 <script>
 import { roomDetailsData } from "@/apps/lc-142/Components/data-roomDetails";
 import VuePerfectScrollbar from "vue-perfect-scrollbar";
-// import CKEditor from '@ckeditor/ckeditor5-vue';
-// import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
+import { quillEditor } from 'vue-quill-editor';
 
 export default {
     name: 'Wizard2',
     components: {
         VuePerfectScrollbar,
-        // ckeditor: CKEditor.component
+        quillEditor
     },
      props : {
         getData: {
@@ -47,11 +49,9 @@ export default {
             description: roomDetailsData[0].description,
         },
         roomDetailsData: roomDetailsData,
-        // editor2: ClassicEditor,
-        // editorData: '<p>Content of the editor.</p>',
-        // editorConfig: {
-        // The configuration of the editor.
-        // },
+        editorOption: {
+            // some quill options
+        }
     })
 };
 </script>

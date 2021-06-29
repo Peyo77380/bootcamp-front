@@ -7,13 +7,20 @@
                 <div class="mt-3 mb-3">
                     <!-- Contenu 4e wizard-->
                     <b-form>
-                        <div class="row">
-                            <div class="col-1"></div>
-                            <div class="col-10">
-                                <vue-dropzone multiple ref="myVueDropzone" id="dropzone" v-model="room.roomListPhoto" :options="dropzoneOptions"></vue-dropzone>
-                            </div>
+                    <div class="main-card mb-3 card">
+                        <div class="card-body">
+                            <h5 class="card-title text-left">Photos de la salle :</h5>
+                            <vue-dropzone multiple ref="myVueDropzone" id="dropzone" v-model="room.roomListPhoto" :options="dropzoneOptions"></vue-dropzone>
                         </div>
-                    </b-form>
+                    </div>
+                    
+                    <div class="main-card mb-3 card">
+                        <div class="card-body">
+                            <h5 class="card-title text-left">Plans de réunion de la salle :</h5>
+                            <vue-dropzone multiple ref="myVueDropzone" id="dropzone" v-model="room.roomListPlan" :options="dropzoneOptions"></vue-dropzone>
+                        </div>
+                    </div>
+                </b-form>
                 </div>
             </VuePerfectScrollbar>
         </div>
@@ -42,22 +49,31 @@ export default {
     watch : {
         getData(newVal) {
             if(newVal==1) {
-                this.$emit('photoInfo', this.room.roomListPhoto)
+                this.$emit('photoInfo', this.room)
             }
         }
     },
     data: () => ({
         room: {
-            roomListPhoto: roomDetailsData[0].roomListPhoto
+            roomListPhoto: roomDetailsData[0].roomListPhoto,
+            roomListPlan: roomDetailsData[0].roomListPlan
         },
         roomDetailsData: roomDetailsData,
-        dropzoneOptions: {
+        dropzonePhotoOptions: {
             url: 'https://httpbin.org/post',
             thumbnailWidth: 150,
             maxFilesize: 5,
             headers: { "My-Awesome-Header": "header value" },
             addRemoveLinks: true,
-            dictDefaultMessage: "<i class='pe-7s-upload'></i>UPLOAD PHOTO"
+            dictDefaultMessage: "<i class='pe-7s-upload'></i>UPLOAD PHOTOS"
+        },
+        dropzonePlanOptions: {
+            url: 'https://httpbin.org/post',
+            thumbnailWidth: 150,
+            maxFilesize: 10,
+            headers: { "My-Awesome-Header": "header value" },
+            addRemoveLinks: true,
+            dictDefaultMessage: "<i class='pe-7s-upload'></i>UPLOAD PLANS"
         }
     })
 };

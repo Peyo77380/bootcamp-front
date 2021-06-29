@@ -32,7 +32,7 @@
                                                     <Wizard3 :getData="getData3" @servInfo="pushServInfo"/>
                                                     <Wizard4 :getData="getData4" @photoInfo="pushPhotoInfo"/>
                                                     <Wizard5 :getData="getData5" @priceInfo="pushPriceInfo"/>
-                                                    <Wizard6 :getData="getData6" @planInfo="pushPlanInfo"/>
+                                                    <Wizard6 :getData="getData6" @meetingInfo="pushMeetingInfo"/>
                                                 </b-tabs>
                                             </div>
                                             <!-- Control buttons -->
@@ -127,7 +127,6 @@ export default {
                 break;
             }
             this.tabIndex++;
-            console.log(this.datas);
         },
         pushRoomInfo(infos) {
            this.datas.room = infos;
@@ -139,13 +138,15 @@ export default {
             this.datas.services = infos;
         },
         pushPhotoInfo(infos) {
-            this.datas.roomListPhoto = infos;
+            // a modifier
+            this.datas.room = infos;
         },
         pushPriceInfo(infos) {
             this.datas.prices = infos;
         },
-        pushPlanInfo(infos) {
-            this.datas.roomListPlan = infos;
+        pushMeetingInfo(infos) {
+            // a modifier
+            this.datas.meetings = infos;
         }
     }
 };

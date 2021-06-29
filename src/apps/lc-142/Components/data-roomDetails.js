@@ -5,7 +5,9 @@ export const roomDetailsData = [
         "building_id": "1", // une salle est reliée a un batiment
         "name": "Salle L'atelier",
         "roomListPhoto": "atelier", // wizard 4
+        "roomListPlan": "atelier", // wirard 4
         "surface": "100",
+        "type": "0",
         "floor": "RDC",
         "maxCapacity": "10",
         "minRentalDuration": "2 heures",
@@ -17,7 +19,7 @@ export const roomDetailsData = [
         "description": "description de la salle 1",
 
         // wizard 3
-        "services": ['0', '1', '2', '3'],
+        "services": ['1', '2', '3', '4', '5', '6'],
 
         // wizard 4
         // roomListPhoto
@@ -27,8 +29,7 @@ export const roomDetailsData = [
         "notes": "notes commerciales",
 
         // wizard 6
-        // objet plan a un id, un titre et une url
-        "roomListPlan": "atelier"
+        "meetings": ['1', '2', '3', '4', '5', '6'],
     },
     {
         // Room List and wizard 1
@@ -230,8 +231,16 @@ export const roomDetailsData = [
     }
 ];
 
-export const Floors = [
+export const Types = [
+    { 'value': null, 'text': 'Choisir un type', 'disabled': true },
+    { 'value': '0', 'text': 'Bureau' },
+    { 'value': '1', 'text': 'Open space' },
+    { 'value': '2', 'text': 'Conférence' },
+    { 'value': '3', 'text': 'Salle de réunion' },
+    { 'value': '3', 'text': 'Bureau partagé' }
+];
 
+export const Floors = [
     { 'value': null, 'text': 'Choisir un niveau', 'disabled': true },
     { 'value': '0', 'text': 'Rez-de-chaussé' },
     { 'value': '1', 'text': '1er étage' },
@@ -240,12 +249,11 @@ export const Floors = [
 ];
 
 export const Bookables = [
-    { 'value': '0', 'text': 'Indisponible' },
-    { 'value': '1', 'text': 'Réservable' }
+    { 'value': '0', 'text': 'Indisponible' }
 ];
 
 export const TypeBookings = [
-    { 'value': '0', 'text': 'Membre' },
+    { 'value': '0', 'text': 'Utilisateurs' },
     { 'value': '1', 'text': 'Évènement' }
 ];
 

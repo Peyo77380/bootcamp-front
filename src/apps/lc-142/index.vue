@@ -100,13 +100,11 @@ export default {
         VuePerfectScrollbar,
     },
     data: () => ({
-        roomDetailsData: roomDetailsData,
-        buildingsData: buildingsData,
         heading: "Liste des salles de l'espace de coworking",
         icon: "pe-7s-note2 icon-gradient bg-tempting-azure",
+        roomDetailsData: roomDetailsData,
+        buildingsData: buildingsData
     }),
-    computed: {},
-
     methods: {
         async remove (id) {
             if ( await this.$sweetConfirmation ({

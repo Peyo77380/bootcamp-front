@@ -11,7 +11,7 @@ export const priceDetailsData = [
     },
     {
         "id": 2,
-        "name": "Membre",
+        "name": "Utilisateurs",
         "hour": "",
         "halfDay": "",
         "day": "",

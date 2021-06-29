@@ -12,7 +12,7 @@
                             <table class="align-middle mb-5 table table-border table-striped table-hover">
                                 <thead>
                                     <tr>
-                                        <th class="text-center border">Type clients</th>
+                                        <th class="text-center border">Tarif par type de clients</th>
                                         <th class="text-center border">par heure</th>
                                         <th class="text-center border">par 1/2 jour</th>
                                         <th class="text-center border">par jour</th>
@@ -52,8 +52,11 @@
                             </table>
                         </div>
                     </div>
-                    <h2>PLUGIN CKEDITOR</h2>
-                        <!-- <ckeditor :editor="editor2" v-model="room.notes" :config="editorConfig"></ckeditor> -->
+                        <quill-editor v-model="room.notes"
+                            class="m-5"
+                            ref="myQuillEditor"
+                            :options="editorOption">
+                        </quill-editor>
                     </b-form>   
                 </div>
             </VuePerfectScrollbar>
@@ -66,14 +69,13 @@
 import { roomDetailsData } from "@/apps/lc-142/Components/data-roomDetails";
 import { priceDetailsData } from "@/apps/lc-142/Components/data-priceDetails";
 import VuePerfectScrollbar from "vue-perfect-scrollbar";
-// import CKEditor from '@ckeditor/ckeditor5-vue';
-// import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
+import { quillEditor } from 'vue-quill-editor';
 
 export default {
     name: 'Wizard5',
     components: {
         VuePerfectScrollbar,
-        // ckeditor: CKEditor.component
+        quillEditor
     },
     props : {
         getData: {
@@ -89,18 +91,21 @@ export default {
             }
         }
     },
+    computed: {
+        editor() {
+            return this.$refs.myQuillEditor.quill
+        }
+    },
     data: () => ({
         room: {
             priceDetails: [roomDetailsData[0].priceDetails],
             notes: roomDetailsData[0].notes
         },
         roomDetailsData: roomDetailsData,
-        priceDetailsData: priceDetailsData
-        // editor2: ClassicEditor,
-        // editorData: '<p>Content of the editor.</p>',
-        // editorConfig: {
-        // The configuration of the editor.
-        // }
+        priceDetailsData: priceDetailsData,
+        editorOption: {
+            // some quill options
+        }
     })
 };
 </script>
