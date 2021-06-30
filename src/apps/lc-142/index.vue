@@ -113,6 +113,7 @@ export default {
         this.loadBuildings()
     },
     methods: {
+        // TODO : prévoir filtre des salles par batiment (v-overflow-button connecté mais pas encroe de comportement)
         async loadBuildings () {
             try {
                 const res = await this.getAllBuildings();
@@ -138,11 +139,12 @@ export default {
                     // l'appel vers API de Laravel devra etre fait ici
                 try {
                     const res = await this.deleteRoom(id);
+                    // TODO : ajouter un loader?
                     if (res.error) {
                         this.$sweetError('Il y a eu un problème.');
                         return;
                     }
-                    this.roomDetailsData = this.roomDetailsData.filter(roomDetail => roomDetail.id !== id)
+                    this.roomDetailsData = this.roomDetailsData.filter(roomDetail => roomDetail._id !== id)
                     this.$sweetNotif();
                 } catch (err) {
                     console.log(err);
