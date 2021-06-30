@@ -5,7 +5,7 @@
         <div class="scroll-area-xlg">
             <VuePerfectScrollbar class="scrollbar-container" v-once>
                 <div class="mt-3 mb-3">
-                    <!-- Contenu 6e wizard-->
+                    <!-- Contenu 6e wizard -->
                     <b-form>
                         <div class="row">
                         <div class="col-1"></div>
@@ -24,14 +24,14 @@
                                 <tr v-for="meetingRoomDetail in meetingRoomDetailsData" :key="meetingRoomDetail.id" >
                                     <td class="text-center border">
                                         <b-form-checkbox-group
-                                        v-model="meetingsChecked" 
+                                        v-model="meetingsChecked"
                                         multiple
                                         >
                                             <b-form-checkbox :value="meetingRoomDetail.id"></b-form-checkbox>
                                         </b-form-checkbox-group>
                                     </td>
                                     <td class="text-left border">{{ meetingRoomDetail.title }}</td>
-                                    <td class="text-center border"><input type="text" v-model="meetingRoomDetail.maxCapacity" class="text-center border"/></td>
+                                    <td class="text-center border"><input type="number" min="0" v-model="meetingRoomDetail.maxCapacity" class="text-center border"/></td>
                                     <td class="text-center border">
                                         <div class="row">
                                             <b-button @click="openMeetingModale(meetingRoomDetail)" class="m-auto" variant="white">

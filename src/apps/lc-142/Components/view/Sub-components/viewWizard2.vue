@@ -44,6 +44,11 @@ export default {
             }
         }
     },
+    computed: {
+        editor() {
+            return this.$refs.myQuillEditor.quill
+        }
+    },
     data: () => ({
         room: {
             description: roomDetailsData[0].description,
@@ -55,3 +60,9 @@ export default {
     })
 };
 </script>
+
+<style lang="css">
+  @import '~quill/dist/quill.core.css';
+  @import '~quill/dist/quill.snow.css';
+  @import '~quill/dist/quill.bubble.css';
+</style>

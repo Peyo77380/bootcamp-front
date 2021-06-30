@@ -1,6 +1,6 @@
 <template>    
 <!-- Onglet 4 du wizard-->
-<b-tab title="Photos" class="p-2">
+<b-tab title="Photos de la salle" class="p-2">
     <div class="scroll-gradient">
         <div class="scroll-area-xlg">
             <VuePerfectScrollbar class="scrollbar-container" v-once>

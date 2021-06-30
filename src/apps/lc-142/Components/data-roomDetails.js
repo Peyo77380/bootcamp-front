@@ -8,11 +8,11 @@ export const roomDetailsData = [
         "roomListPlan": "atelier", // wirard 4
         "surface": "100",
         "type": "0",
-        "floor": "RDC",
+        "floor": "0",
         "maxCapacity": "10",
-        "minRentalDuration": "2 heures",
+        "minRentalDuration": "1",
         "typeBooking": "1",
-        "bookable": "1",
+        "bookable": "0",
         "openingHours" : ['0', '1', '2', '3', '4', '5', '6'],
         
         // wizard 2
@@ -37,41 +37,32 @@ export const roomDetailsData = [
         "building_id": "1", // une salle est reliée a un batiment
         "name": "Salle Conférence",
         "roomListPhoto": "conference", // wizard 4
+        "roomListPlan": "conference", // wizard 4
         "surface": "200",
-        "floor": "RDC",
+        "type": "1",
+        "floor": "0",
         "maxCapacity": "20",
-        "minRentalDuration": "2 heures",
+        "minRentalDuration": "4",
         "typeBooking": "1",
-        "bookable": "1",
+        "bookable": "",
         "openingHours" : ['0', '1', '2', '3', '4', '5', '6'],
         
         // wizard 2
         "description": "description de la salle 2",
 
         // wizard 3
-        "services": ['0', '1', '2', '3'],
+        "services": ['1', '2', '3', '4', '5', '6'],
 
         // wizard 4
-        // objet photo a un id, un titre et une url
+        // roomListPhoto
 
         // wizard 5
-        "publicPriceHour": "20",
-        "publicPriceHalfDay": "100",
-        "publicPriceDay": "200",
-        "publicPriceWeek": "1000",
-        "publicPriceMonth": "4000",
-        "publicPriceTrimester": "12000",
-        "memberPriceHour": "15",
-        "memberPriceHalfDay": "80",
-        "memberPriceDay": "160",
-        "memberPriceWeek": "800",
-        "memberPriceMonth": "2400",
-        "memberPriceTrimester": "7200",
+        "prices": ['1', '2'],
         "notes": "notes commerciales",
 
         // wizard 6
-        // objet plan a un id, un titre et une url
-        "roomListPlan": "conference"
+        "meetings": ['1', '2', '3', '4', '5', '6'],
+        
     },
     {
         // Room List and wizard 1
@@ -79,8 +70,10 @@ export const roomDetailsData = [
         "building_id": "1", // une salle est reliée a un batiment
         "name": "Salle Grande jaune",
         "roomListPhoto": "grande-jaune", // wizard 4
+        "roomListPlan": "grande-jaune",
         "surface": "300",
-        "floor": "1er étage",
+        "type": "2",
+        "floor": "1",
         "maxCapacity": "30",
         "minRentalDuration": "2 heures",
         "typeBooking": "1",
@@ -91,29 +84,18 @@ export const roomDetailsData = [
         "description": "description de la salle 3",
 
         // wizard 3
-        "services": ['0', '1', '2', '3'],
+        "services": ['1', '2', '3', '4', '5', '6'],
 
         // wizard 4
-        // objet photo a un id, un titre et une url
+        // roomListPhoto
 
         // wizard 5
-        "publicPriceHour": "20",
-        "publicPriceHalfDay": "100",
-        "publicPriceDay": "200",
-        "publicPriceWeek": "1000",
-        "publicPriceMonth": "4000",
-        "publicPriceTrimester": "12000",
-        "memberPriceHour": "15",
-        "memberPriceHalfDay": "80",
-        "memberPriceDay": "160",
-        "memberPriceWeek": "800",
-        "memberPriceMonth": "2400",
-        "memberPriceTrimester": "7200",
+        "prices": ['1', '2'],
         "notes": "notes commerciales",
 
         // wizard 6
-        // objet plan a un id, un titre et une url
-        "roomListPlan": "grande-jaune"
+        "meetings": ['1', '2', '3', '4', '5', '6'],
+        
     },
     {
         // Room List and wizard 1
@@ -121,8 +103,10 @@ export const roomDetailsData = [
         "building_id": "1",
         "name": "Salle Grande verte",
         "roomListPhoto": "grande-verte",
+        "roomListPlan": "grande-verte",
         "surface": "400",
-        "floor": "1er étage",
+        "type": "3",
+        "floor": "1",
         "maxCapacity": "30",
         "minRentalDuration": "2 heures",
         "typeBooking": "1",
@@ -133,29 +117,18 @@ export const roomDetailsData = [
         "description": "description de la salle 4",
 
         // wizard 3
-        "services": ['0', '1', '2', '3'],
+        "services": ['1', '2', '3', '4', '5', '6'],
 
         // wizard 4
-        // objet photo a un id, un titre et une url
+        // roomListPhoto
 
         // wizard 5
-        "publicPriceHour": "20",
-        "publicPriceHalfDay": "100",
-        "publicPriceDay": "200",
-        "publicPriceWeek": "1000",
-        "publicPriceMonth": "4000",
-        "publicPriceTrimester": "12000",
-        "memberPriceHour": "15",
-        "memberPriceHalfDay": "80",
-        "memberPriceDay": "160",
-        "memberPriceWeek": "800",
-        "memberPriceMonth": "2400",
-        "memberPriceTrimester": "7200",
+        "prices": ['1', '2'],
         "notes": "notes commerciales",
 
         // wizard 6
-        // objet plan a un id, un titre et une url
-        "roomListPlan": "grande-verte"
+        "meetings": ['1', '2', '3', '4', '5', '6'],
+        
     },
     {
         // Room List and wizard 1
@@ -163,8 +136,10 @@ export const roomDetailsData = [
         "building_id": "1",
         "name": "Salle Moyenne rouge",
         "roomListPhoto": "moyenne-rouge",
+        "roomListPlan": "moyenne-rouge",
         "surface": "500",
-        "floor": "2e étage",
+        "type": "4",
+        "floor": "2",
         "maxCapacity": "30",
         "minRentalDuration": "2 heures",
         "typeBooking": "1",
@@ -175,17 +150,18 @@ export const roomDetailsData = [
         "description": "description de la salle 5",
 
         // wizard 3
-        "selectedServices": ['0', '1', '2', '3'],
+        "services": ['1', '2', '3', '4', '5', '6'],
 
         // wizard 4
-        // objet photo a un id, un titre et une url
+        // roomListPhoto
 
         // wizard 5
         "prices": ['1', '2'],
+        "notes": "notes commerciales",
 
         // wizard 6
-        // objet plan a un id, un titre et une url
-        "roomListPlan": "moyenne-rouge"
+        "meetings": ['1', '2', '3', '4', '5', '6'],
+        
     },
     {
         // Room List and wizard 1
@@ -193,8 +169,10 @@ export const roomDetailsData = [
         "building_id": "1",
         "name": "Salle Petite bleu",
         "roomListPhoto": "petite-bleu",
+        "roomListPlan": "petite-bleu",
         "surface": "600",
-        "floor": "2e étage",
+        "type": "3",
+        "floor": "2",
         "maxCapacity": "30",
         "minRentalDuration": "2 heures",
         "typeBooking": "1",
@@ -205,29 +183,18 @@ export const roomDetailsData = [
         "description": "description de la salle 6",
 
         // wizard 3
-        "services": ['0', '1', '2', '3'],
+        "services": ['1', '2', '3', '4', '5', '6'],
 
         // wizard 4
-        // objet photo a un id, un titre et une url
+        // roomListPhoto
 
         // wizard 5
-        "publicPriceHour": "20",
-        "publicPriceHalfDay": "100",
-        "publicPriceDay": "200",
-        "publicPriceWeek": "1000",
-        "publicPriceMonth": "4000",
-        "publicPriceTrimester": "12000",
-        "memberPriceHour": "15",
-        "memberPriceHalfDay": "80",
-        "memberPriceDay": "160",
-        "memberPriceWeek": "800",
-        "memberPriceMonth": "2400",
-        "memberPriceTrimester": "7200",
+        "prices": ['1', '2'],
         "notes": "notes commerciales",
 
         // wizard 6
-        // objet plan a un id, un titre et une url
-        "roomListPlan": "petite-bleu"
+        "meetings": ['1', '2', '3', '4', '5', '6'],
+        
     }
 ];
 
@@ -237,7 +204,7 @@ export const Types = [
     { 'value': '1', 'text': 'Open space' },
     { 'value': '2', 'text': 'Conférence' },
     { 'value': '3', 'text': 'Salle de réunion' },
-    { 'value': '3', 'text': 'Bureau partagé' }
+    { 'value': '4', 'text': 'Bureau partagé' }
 ];
 
 export const Floors = [

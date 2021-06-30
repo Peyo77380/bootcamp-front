@@ -2,44 +2,58 @@ export const openingHoursDetailsData = [
     {
         "id": 1,
         "name": "Lundi",
-        "start": "",
-        "end": "",
+        "startHour": "",
+        "startMinutes": "",
+        "endHour": "",
+        "endMinutes": ""
     },
     {
         "id": 2,
         "name": "Mardi",
-        "start": "",
-        "end": "",
+        "startHour": "",
+        "startMinutes": "",
+        "endHour": "",
+        "endMinutes": ""
     },
     {
         "id": 3,
         "name": "Mercredi",
-        "start": "",
-        "end": "",
+        "startHour": "",
+        "startMinutes": "",
+        "endHour": "",
+        "endMinutes": ""
     },
     {
         "id": 4,
         "name": "Jeudi",
-        "start": "",
-        "end": "",
+        "startHour": "",
+        "startMinutes": "",
+        "endHour": "",
+        "endMinutes": ""
     },
     {
         "id": 5,
         "name": "Vendredi",
-        "start": "",
-        "end": "",
+        "startHour": "",
+        "startMinutes": "",
+        "endHour": "",
+        "endMinutes": ""
     },
     {
         "id": 6,
         "name": "Samedi",
-        "start": "",
-        "end": "",
+        "startHour": "",
+        "startMinutes": "",
+        "endHour": "",
+        "endMinutes": ""
     },
     {
         "id": 0,
         "name": "Dimanche",
-        "start": "",
-        "end": "",
+        "startHour": "",
+        "startMinutes": "",
+        "endHour": "",
+        "endMinutes": ""
     },
 ];
 

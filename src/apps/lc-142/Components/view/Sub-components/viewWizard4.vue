@@ -10,14 +10,14 @@
                     <div class="main-card mb-3 card">
                         <div class="card-body">
                             <h5 class="card-title text-left">Photos de la salle :</h5>
-                            <vue-dropzone multiple disabled ref="myVueDropzone" id="dropzone" v-model="room.roomListPhoto" :options="dropzoneOptions"></vue-dropzone>
+                            <vue-dropzone multiple disabled ref="myVueDropzone" id="dropzone" v-model="room.roomListPhoto" :options="dropzonePhotoOptions"></vue-dropzone>
                         </div>
                     </div>
                     
                     <div class="main-card mb-3 card">
                         <div class="card-body">
                             <h5 class="card-title text-left">Plans de réunion de la salle :</h5>
-                            <vue-dropzone multiple disabled ref="myVueDropzone" id="dropzone" v-model="room.roomListPlan" :options="dropzoneOptions"></vue-dropzone>
+                            <vue-dropzone multiple disabled ref="myVueDropzone" id="dropzone" v-model="room.roomListPlan" :options="dropzonePlanOptions"></vue-dropzone>
                         </div>
                     </div>
                 </b-form>

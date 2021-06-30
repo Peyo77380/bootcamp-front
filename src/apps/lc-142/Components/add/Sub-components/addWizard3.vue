@@ -14,13 +14,13 @@
                             <table class="align-middle mb-5 table table-border bordered table-striped table-hover">
                                 <thead>
                                 <tr>
-                                    <th class="text-left border col-1">Sélection</th>
+                                    <th class="text-left border col-1">Selection</th>
                                     <th class="text-left border col-9">Titre du service</th>
                                     <th class="text-left border col-1">Actions</th>
                                 </tr>
                                 </thead>
                                 <tbody>
-                                <tr v-for="serviceDetail in serviceDetailsData" :key="serviceDetail.id" >
+                                <tr v-for="serviceDetail in serviceDetailsData" :key="serviceDetail.id">
                                     <td class="text-center border">
                                         <b-form-checkbox-group
                                         v-model="servicesChecked"
@@ -54,7 +54,7 @@
     </div>
 
     <!-- Modale -->
-        <b-modal v-model="viewModal" :title=modaleInfo.title :hide-backdrop="true">
+    <b-modal v-model="viewModal" :title=modaleInfo.title :hide-backdrop="true">
         <p class="my-4">
             {{ modaleInfo.description }}
         </p>
