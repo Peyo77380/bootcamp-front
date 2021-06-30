@@ -140,9 +140,7 @@ export default {
         CountryFlag
     },
     mixins: [Parameters],
-    async mounted() {
-        await this.update();
-    },
+
     props: {
         dialog2: {
             type: Boolean

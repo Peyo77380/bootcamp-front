@@ -4,7 +4,6 @@ export const Parameters = {
     methods: {
         async getAllParameters() {
             try {
-                // TODO : adapte WL + Language
                 const response = await api.get("parameter/1/FR_fr");
                 return response.data.datas;
             } catch (error) {

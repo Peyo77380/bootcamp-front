@@ -6,6 +6,7 @@ import router from "./router";
 import BootstrapVue from "bootstrap-vue";
 
 import App from "./App";
+import store from "./store/store";
 
 import Default from "./Layout/Wrappers/baseLayout.vue";
 import Pages from "./Layout/Wrappers/pagesLayout.vue";
@@ -23,6 +24,7 @@ Vue.component("apps-layout", Apps);
 new Vue({
     el: "#app",
     router,
+    store,
     template: "<App/>",
     components: { App }
 });
