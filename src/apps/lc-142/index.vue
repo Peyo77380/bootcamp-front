@@ -32,7 +32,7 @@
                                         <b-card class="mb-5 nav-justified" no-body>
                                             <b-tabs class="card-header-tab-animation" card>
                                                 <b-tab title="Info salle" active>
-                                                    <h4>Etage {{ roomDetail.floorId }} :</h4>
+                                                    <h4>Etage {{ roomDetail.floorId }} : {{ roomDetail.type }}</h4>
                                                     <h4>{{ roomDetail.name }}</h4>
                                                     <div>
                                                         <v-img src="https://place-puppy.com/300x300"></v-img>
