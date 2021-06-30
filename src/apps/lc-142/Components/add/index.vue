@@ -138,14 +138,12 @@ export default {
             this.datas.services = infos;
         },
         pushPhotoInfo(infos) {
-            // a modifier
             this.datas.room = infos;
         },
         pushPriceInfo(infos) {
             this.datas.prices = infos;
         },
         pushMeetingInfo(infos) {
-            // a modifier
             this.datas.meetings = infos;
         }
     }

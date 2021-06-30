@@ -1,11 +1,11 @@
 <template>    
 <!-- Onglet 6 du wizard-->
-<b-tab title="Plans salles/réunions" class="p-2">
+<b-tab title="Plan de salles de réunion" class="p-2">
     <div class="scroll-gradient">
         <div class="scroll-area-xlg">
             <VuePerfectScrollbar class="scrollbar-container" v-once>
                 <div class="mt-3 mb-3">
-                    <!-- Ancien Contenu 6e wizard -->
+                    <!-- Contenu 6e wizard -->
                     <b-form>
                         <div class="row">
                         <div class="col-1"></div>
@@ -14,7 +14,7 @@
                             <table class="align-middle mb-5 table table-border bordered table-striped table-hover">
                                 <thead>
                                 <tr>
-                                    <th class="text-center border col-1">Sélection</th>
+                                    <th class="text-center border col-1">Selection</th>
                                     <th class="text-left border col-7">Type de plan de salle</th>
                                     <th class="text-center border col-2">Capacité maximale</th>
                                     <th class="text-center border col-1">Plan</th>
@@ -24,14 +24,14 @@
                                 <tr v-for="meetingRoomDetail in meetingRoomDetailsData" :key="meetingRoomDetail.id" >
                                     <td class="text-center border">
                                         <b-form-checkbox-group
-                                        
+                                        v-model="meetingsChecked"
                                         multiple
                                         >
-                                            <b-form-checkbox v-model="meetingsChecked" :value="meetingRoomDetail.id"></b-form-checkbox>
+                                            <b-form-checkbox :value="meetingRoomDetail.id"></b-form-checkbox>
                                         </b-form-checkbox-group>
                                     </td>
                                     <td class="text-left border">{{ meetingRoomDetail.title }}</td>
-                                    <td class="text-center border"><input type="text" v-model="meetingRoomDetail.maxCapacity" class="text-center border"/></td>
+                                    <td class="text-center border"><input type="number" min="0" v-model="meetingRoomDetail.maxCapacity" class="text-center border"/></td>
                                     <td class="text-center border">
                                         <div class="row">
                                             <b-button @click="openMeetingModale(meetingRoomDetail)" class="m-auto" variant="white">
@@ -100,7 +100,7 @@ export default {
         }
     }),
     computed: {
-        meetingChecked: {
+        meetingsChecked: {
             get() {
                 return this.meetingsChecked;
             },

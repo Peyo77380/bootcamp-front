@@ -68,6 +68,7 @@
 <script>
 import { roomDetailsData } from "@/apps/lc-142/Components/data-roomDetails";
 import { priceDetailsData } from "@/apps/lc-142/Components/data-priceDetails";
+
 import VuePerfectScrollbar from "vue-perfect-scrollbar";
 import { quillEditor } from 'vue-quill-editor';
 
@@ -109,3 +110,9 @@ export default {
     })
 };
 </script>
+
+<style lang="css">
+  @import '~quill/dist/quill.core.css';
+  @import '~quill/dist/quill.snow.css';
+  @import '~quill/dist/quill.bubble.css';
+</style>

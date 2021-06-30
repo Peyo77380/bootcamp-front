@@ -14,7 +14,7 @@
                             <table class="align-middle mb-5 table table-border bordered table-striped table-hover">
                                 <thead>
                                 <tr>
-                                    <th class="text-center border col-1">Sélection</th>
+                                    <th class="text-center border col-1">Selection</th>
                                     <th class="text-left border col-7">Type de plan de salle</th>
                                     <th class="text-center border col-2">Capacité maximale</th>
                                     <th class="text-center border col-1">Plan</th>

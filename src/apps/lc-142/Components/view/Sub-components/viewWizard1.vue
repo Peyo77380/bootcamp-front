@@ -97,15 +97,47 @@
                                         <thead>
                                             <tr>
                                                 <th class="text-center border">Jours</th>
-                                                <th class="text-center border">Heure ouverture</th>
-                                                <th class="text-center border">Heure fermeture</th>
+                                                <th class="text-center border">Heures d'ouverture</th>
+                                                <th class="text-center border">Heures de fermeture</th>
                                             </tr>
                                         </thead>
                                         <tbody>
                                             <tr v-for="openingHoursDetail in openingHoursDetailsData" :key="openingHoursDetail.id">
                                                 <td disabled class="text-center border text-muted">{{ openingHoursDetail.name }}</td>
-                                                <td disabled class="text-center border">{{ openingHoursDetail.start }}</td>
-                                                <td disabled class="text-center border">{{ openingHoursDetail.end }}</td>
+                                                <td class="text-center border">
+                                                    <div class="row ml-1">
+                                                        <b-form-input 
+                                                            id="input-9" 
+                                                            class="text-center border col-3" 
+                                                            v-model="openingHoursDetail.startHour"
+                                                            disabled
+                                                        ></b-form-input>
+                                                        <p class="col-4">heures</p>
+                                                        <b-form-input 
+                                                            id="input-10" 
+                                                            class="text-center border col-3"
+                                                            v-model="openingHoursDetail.startMinutes"
+                                                            disabled
+                                                        ></b-form-input>
+                                                    </div>
+                                                </td>
+                                                <td class="text-center border">
+                                                    <div class="row ml-1">
+                                                        <b-form-input 
+                                                            id="input-11"
+                                                            class="text-center border col-3"
+                                                            v-model="openingHoursDetail.endHour" 
+                                                            disabled
+                                                        ></b-form-input>
+                                                        <p class="col-4">heures</p>
+                                                        <b-form-input 
+                                                            id="input-12"
+                                                            class="text-center border col-3"
+                                                            v-model="openingHoursDetail.endMinutes"  
+                                                            disabled
+                                                        ></b-form-input>
+                                                    </div>
+                                                </td>
                                             </tr>
                                         </tbody>
                                     </table>

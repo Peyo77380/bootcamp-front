@@ -30,7 +30,7 @@
                                         <b-card class="mb-5 nav-justified" no-body>
                                             <b-tabs class="card-header-tab-animation" card>
                                                 <b-tab title="Info salle" active>
-                                                    <h4>{{ roomDetail.floor }} :</h4>
+                                                    <h4>{{ roomDetail.floor }} : {{ roomDetail.type }}</h4>
                                                     <h4>{{ roomDetail.name }}</h4>
                                                     <div>
                                                         <v-img :src="require('@/assets/images/salles/' + roomDetail.roomListPhoto + '.jpeg')"></v-img>
@@ -87,8 +87,8 @@ import {
     faTh
 } from "@fortawesome/free-solid-svg-icons";
 
-import {roomDetailsData} from "@/apps/lc-142/Components/data-roomDetails";
-import {buildingsData} from "@/apps/lc-142/Components/data-buildings";
+import { roomDetailsData, Types, Floors } from "@/apps/lc-142/Components/data-roomDetails";
+import { buildingsData } from "@/apps/lc-142/Components/data-buildings";
 
 
 library.add(faTrashAlt, faCheck, faAngleDown, faAngleUp, faTh, faCalendarAlt);
@@ -103,7 +103,14 @@ export default {
         heading: "Liste des salles de l'espace de coworking",
         icon: "pe-7s-note2 icon-gradient bg-tempting-azure",
         roomDetailsData: roomDetailsData,
-        buildingsData: buildingsData
+        buildingsData: buildingsData,
+        types: Types,
+        floors: Floors,
+        room: {
+            type: null,
+            floor: null
+        }
+        
     }),
     methods: {
         async remove (id) {
