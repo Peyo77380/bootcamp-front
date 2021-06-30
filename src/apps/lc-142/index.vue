@@ -127,7 +127,12 @@ export default {
                      // l'appel vers API de Laravel devra etre fait ici
                     try {
                         const res = await this.deleteRoom(id);
-                        this.roomDetailsData = res.datas;
+                        
+                        if (res.error) {
+                            this.$sweetNotif();
+                            return;
+                        }
+                        
                         this.$sweetNotif();
                     } catch (err) {
                         console.log(err);
