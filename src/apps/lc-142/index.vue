@@ -13,7 +13,9 @@
                         <v-overflow-btn
                         label="Choisir un bâtiment"
                         :items="buildingsData"
-                        item-value="text"
+                        item-value="_id"
+                        item-text="description"
+                        
                         editable
                         ></v-overflow-btn>
                     </v-flex>
@@ -87,8 +89,8 @@ import {
     faTh
 } from "@fortawesome/free-solid-svg-icons";
 
-import {buildingsData} from "@/apps/lc-142/Components/data-buildings";
 import {Rooms} from '@/mixins/room'
+import {Buildings} from '@/mixins/building'
 
 
 library.add(faTrashAlt, faCheck, faAngleDown, faAngleUp, faTh, faCalendarAlt);
@@ -99,17 +101,26 @@ export default {
         PageTitle,
         VuePerfectScrollbar,
     },
-    mixins: [Rooms],
+    mixins: [Rooms, Buildings],
     data: () => ({
         heading: "Liste des salles de l'espace de coworking",
         icon: "pe-7s-note2 icon-gradient bg-tempting-azure",
         roomDetailsData: [],
-        buildingsData: buildingsData
+        buildingsData: []
     }),
     mounted () {
         this.loadRooms();
+        this.loadBuildings()
     },
     methods: {
+        async loadBuildings () {
+            try {
+                const res = await this.getAllBuildings();
+                this.buildingsData = res.datas;
+            } catch (err) {
+                console.log(err);
+            }
+        },
         async loadRooms () {
             try {
                 const res = await this.getAllRooms();
@@ -123,21 +134,20 @@ export default {
                     title: "Vous allez supprimer et archiver une salle !",
                     confirmText: "Confirmer ?",
                     cancelText: "Annuler"})
-                ){
-                     // l'appel vers API de Laravel devra etre fait ici
-                    try {
-                        const res = await this.deleteRoom(id);
-                        
-                        if (res.error) {
-                            this.$sweetNotif();
-                            return;
-                        }
-                        
-                        this.$sweetNotif();
-                    } catch (err) {
-                        console.log(err);
+            ){
+                    // l'appel vers API de Laravel devra etre fait ici
+                try {
+                    const res = await this.deleteRoom(id);
+                    if (res.error) {
+                        this.$sweetError('Il y a eu un problème.');
+                        return;
                     }
+                    this.roomDetailsData = this.roomDetailsData.filter(roomDetail => roomDetail.id !== id)
+                    this.$sweetNotif();
+                } catch (err) {
+                    console.log(err);
                 }
+            }
         },
         //TODO point API pour que a chaque batiment soit associé une liste de salle
     }
