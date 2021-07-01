@@ -43,7 +43,7 @@
                                                 </b-tab>
                                                 <b-tab title="Plus...">
                                                     <div align="center">
-                                                            <b-button @click="loadRoom(roomDetail._id)" class="mb-2 col-10 btn-wide btn-shadow btn btn-sm" variant="primary">
+                                                            <b-button @click="loadRoom(roomDetail._id)" :to="{ name: 'RoomView', params: { id: roomDetail._id } }" class="mb-2 col-10 btn-wide btn-shadow btn btn-sm" variant="primary">
                                                                 Voir détails : {{roomDetail.name}}
                                                             </b-button>
                                                             <br>
@@ -87,8 +87,8 @@ import {
     faTh
 } from "@fortawesome/free-solid-svg-icons";
 
-import {Rooms} from '@/mixins/room';
-import {Buildings} from '@/mixins/building';
+import { Rooms } from '@/mixins/room';
+import { Buildings } from '@/mixins/building';
 
 
 library.add(faTrashAlt, faCheck, faAngleDown, faAngleUp, faTh, faCalendarAlt);
@@ -99,7 +99,10 @@ export default {
         PageTitle,
         VuePerfectScrollbar,
     },
-    mixins: [Rooms, Buildings],
+    mixins: [
+        Rooms,
+        Buildings
+    ],
     data: () => ({
         heading: "Liste des salles de l'espace de coworking",
         icon: "pe-7s-note2 icon-gradient bg-tempting-azure",
@@ -107,7 +110,7 @@ export default {
         buildingsData: []
     }),
     mounted () {
-        this.loadRooms();
+        this.loadAllRooms();
         this.loadBuildings();
         this.loadRoom();
     },
@@ -121,7 +124,7 @@ export default {
                 console.log(err);
             }
         },
-        async loadRooms () {
+        async loadAllRooms () {
             try {
                 const res = await this.getAllRooms();
                 this.roomDetailsData = res.datas;
@@ -145,7 +148,8 @@ export default {
                     confirmText: "Confirmer ?",
                     cancelText: "Annuler"})
             ){
-                    // l'appel vers API de Laravel devra etre fait ici
+                    // l'appel vers API de Laravel devra etre fait ici 
+                    // archivage a faire ou changer statut => bookable : archivé au lieu de indisponible
                 try {
                     const res = await this.deleteRoom(id);
                     // TODO : ajouter un loader?
@@ -154,7 +158,7 @@ export default {
                         return;
                     }
                     this.roomDetailsData = this.roomDetailsData.filter(roomDetail => roomDetail._id !== id)
-                    this.$sweetNotif();
+                    this.$sweetNotif({title: "La salle a été archivée avec succès"});
                 } catch (err) {
                     console.log(err);
                 }

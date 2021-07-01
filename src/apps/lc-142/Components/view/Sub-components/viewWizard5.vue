@@ -35,7 +35,7 @@
                             <table class="align-middle mb-5 table table-border table-striped table-hover">
                                 <thead>
                                     <tr>
-                                        <th class="text-center border">Type clients</th>
+                                        <th class="text-center border">Tarif par type de clients</th>
                                         <th class="text-center border">par semaine</th>
                                         <th class="text-center border">par mois</th>
                                         <th class="text-center border">par trimestre</th>

@@ -1,7 +1,7 @@
 export const roomDetailsData = [
     {
         // Room List and wizard 1
-        "id": 1,
+        "_id": 1,
         "building_id": "1", // une salle est reliée a un batiment
         "name": "Salle L'atelier",
         "roomListPhoto": "atelier", // wizard 4
@@ -33,7 +33,7 @@ export const roomDetailsData = [
     },
     {
         // Room List and wizard 1
-        "id": 2,
+        "_id": 2,
         "building_id": "1", // une salle est reliée a un batiment
         "name": "Salle Conférence",
         "roomListPhoto": "conference", // wizard 4
@@ -66,7 +66,7 @@ export const roomDetailsData = [
     },
     {
         // Room List and wizard 1
-        "id": 3,
+        "_id": 3,
         "building_id": "1", // une salle est reliée a un batiment
         "name": "Salle Grande jaune",
         "roomListPhoto": "grande-jaune", // wizard 4
@@ -99,7 +99,7 @@ export const roomDetailsData = [
     },
     {
         // Room List and wizard 1
-        "id": 4,
+        "_id": 4,
         "building_id": "1",
         "name": "Salle Grande verte",
         "roomListPhoto": "grande-verte",
@@ -132,7 +132,7 @@ export const roomDetailsData = [
     },
     {
         // Room List and wizard 1
-        "id": 5,
+        "_id": 5,
         "building_id": "1",
         "name": "Salle Moyenne rouge",
         "roomListPhoto": "moyenne-rouge",
@@ -165,7 +165,7 @@ export const roomDetailsData = [
     },
     {
         // Room List and wizard 1
-        "id": 6,
+        "_id": 6,
         "building_id": "1",
         "name": "Salle Petite bleu",
         "roomListPhoto": "petite-bleu",

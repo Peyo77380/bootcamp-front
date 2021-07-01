@@ -108,7 +108,7 @@ export default {
                     cancelText: "Annuler"})
                 ){
                     // TODO point API saveRoom ()
-                    this.$sweetNotif();
+                    this.$sweetNotif({title: "La salle a été créée avec succès"});
                 }
         },
         nextWizard () {

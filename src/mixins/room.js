@@ -47,6 +47,36 @@ export const Rooms = {
                     error
                 }
             }
+        },
+        async updateRoom(id, datas) {
+            try {
+                const response = await api.put(`room/edit/${id}`, datas);
+                console.log(response);
+                return {
+                    status: 1,
+                    datas: response.data.datas
+                }
+            } catch (error) {
+                return {
+                    status: 0,
+                    error
+                }
+            }
+        },
+        async createRoom(datas) {
+            try {
+                const response = await api.post("room/add", datas);
+                console.log(response);
+                return {
+                    status: 1,
+                    datas: response.data.datas
+                }
+            } catch (error) {
+                return {
+                    status: 0,
+                    error
+                }
+            }
         }
         // Fin Thomas
     }
