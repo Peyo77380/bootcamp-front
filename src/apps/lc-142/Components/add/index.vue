@@ -115,34 +115,46 @@ export default {
                 confirmText: "Confirmer ?",
                 cancelText: "Annuler"})
             ){
-                // TODO point API saveRoom ()
-                var datas = {
-                    name: this.datas.name,
-                    type: this.datas.type,
-                    surface: this.datas.surface,
-                    floor: this.datas.floor,
-                    maxCapacity:  this.datas.maxCapacity,
-                    minRentalDuration: this.datas.minRentalDuration,
-                    typeBooking: this.datas.typeBooking,
-                    bookable: this.datas.bookable,
-                    openingHours: this.datas.openingHours,
-                    description: this.datas.description,
-                    services: this.datas.services,
-                    roomListPhoto: this.datas.roomListPhoto,
-                    roomListPlan: this.datas.roomListPlan,
-                    prices: this.datas.prices,
-                    notes: this.datas.notes,
-                    meetings: this.datas.meetings
-                };
+                try {
+                    const res = await this.createRoom(id);
+                    // TODO : ajouter un loader?
+                    if (res.error) {
+                        this.$sweetError('Il y a eu un problème.');
+                        return;
+                    }
 
-                Rooms.createRoom(datas).then(response => {
-                    this.room.id = response.datas.id;
-                    console.log(response.datas);
-                    this.submitted = true;
-                    this.$sweetNotif({ title: "La salle a été créée avec succès" });
-                }).catch(err => {
+                    // TODO point API saveRoom ()
+                    var datas = {
+                        name: this.datas.name,
+                        type: this.datas.type,
+                        surface: this.datas.surface,
+                        floor: this.datas.floor,
+                        maxCapacity:  this.datas.maxCapacity,
+                        minRentalDuration: this.datas.minRentalDuration,
+                        typeBooking: this.datas.typeBooking,
+                        bookable: this.datas.bookable,
+                        openingHours: this.datas.openingHours,
+                        description: this.datas.description,
+                        services: this.datas.services,
+                        roomListPhoto: this.datas.roomListPhoto,
+                        roomListPlan: this.datas.roomListPlan,
+                        prices: this.datas.prices,
+                        notes: this.datas.notes,
+                        meetings: this.datas.meetings
+                    };
+
+                    Rooms.createRoom(datas).then(response => {
+                        this.room.id = response.datas.id;
+                        console.log(response.datas);
+                        this.submitted = true;
+                        this.$sweetNotif({ title: "La salle a été créée avec succès" });
+                    }).catch(err => {
+                        console.log(err);
+                    });
+
+                } catch (err) {
                     console.log(err);
-                });
+                }
             }
         },
         nextWizard () {
