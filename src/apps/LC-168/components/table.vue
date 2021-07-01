@@ -1,41 +1,68 @@
 <template>
-<div>
-    <div class="page-title-actions" style="margin-bottom: 10px;">
-        <button @click="showNewAttributModal" type="button"  class="btn-shadow d-inline-flex align-items-center btn btn-success">
-            <font-awesome-icon class="mr-2" icon="plus"/>
-            Ajouter un nouvel attribut
-        </button>
-    </div>
-<div class="main-card mb-3 card">
-    
-    <div class="table-responsive">
-        <table  class="align-middle mb-0 table table-striped table-borderless table-hover">
-            <thead>
-                <tr>
-                        
-                    <th class="text-center">Nom</th>
-                    <th class="text-center">Identifiant</th>
-                    <th class="text-center">Type</th> 
-                    <th class="text-center">Options</th>
-                    <th class="text-center">Actions</th>
-                </tr>
-            </thead>
-                <tbody>
-                    <tr  v-for="item in items" :key="item.id">
-                        <td class="text-center">{{item.nom}}</td>
-                        <td class="text-center">{{item.identifiant}}</td>
-                        
-                        <td class="text-center"><v-chip outline :color=item.classtype>{{item.type}}</v-chip> </td>
-                       <td class="text-center" v-if="item.type === 'Champs texte' "> {{item.options}} </td>
+    <div>
+        <div class="page-title-actions" style="margin-bottom: 10px;">
+            <button
+                @click="showNewAttributModal"
+                type="button"
+                class="btn-shadow d-inline-flex align-items-center btn btn-success"
+            >
+                <font-awesome-icon class="mr-2" icon="plus" />
+                Ajouter un nouvel attribut
+            </button>
+        </div>
+        <div class="main-card mb-3 card">
+            <div class="table-responsive">
+                <table
+                    class="align-middle mb-0 table table-striped table-borderless table-hover"
+                >
+                    <thead>
+                        <tr>
+                            <th class="text-center">Nom</th>
+                            <th class="text-center">Identifiant</th>
+                            <th class="text-center">Type</th>
+                            <th class="text-center">Options</th>
+                            <th class="text-center">Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr v-for="item in items" :key="item._id">
+                            <td class="text-center">{{ item.name }}</td>
+                            <td class="text-center">{{ item.key }}</td>
 
-                       <td class="text-center" v-if="item.type === 'Un seul choix' || item.type === 'Liste de sélection' "  > 
-                           <v-chip small v-for="option in item.options" :key="option.id" label color="blue" text-color="white">
-                            {{option.label}}
-                            </v-chip> 
-                        </td>
+                            <td class="text-center">
+                                <v-chip
+                                    outline
+                                    :color="getClassType(item.typeData)"
+                                    >{{ item.typeData }}</v-chip
+                                >
+                            </td>
+                            <td
+                                class="text-center"
+                                v-if="item.typeData === 'Champs texte'"
+                            >
+                                {{ item.options }}
+                            </td>
 
-                        
-                        <td class="text-center">
+                            <td
+                                class="text-center"
+                                v-if="
+                                    item.typeData === 'Un seul choix' ||
+                                        item.typeData === 'Liste de sélection'
+                                "
+                            >
+                                <v-chip
+                                    small
+                                    v-for="(option, index) in item.datas"
+                                    :key="index"
+                                    label
+                                    color="blue"
+                                    text-color="white"
+                                >
+                                    {{ option }}
+                                </v-chip>
+                            </td>
+
+                            <td class="text-center">
                                 <div role="group" class="btn-group-xl">
                                     <b-button
                                         class="mb-2 mr-2  btn-pill btn-shadow"
@@ -54,7 +81,7 @@
                                         class="mb-2 mr-2 btn-icon btn-pill btn-shadow"
                                         variant="danger"
                                         id="popover2"
-                                        @click="remove(item.id)"
+                                        @click="remove(item._id)"
                                         ><i class="pe-7s-trash"> </i
                                     ></b-button>
                                     <b-popover
@@ -64,77 +91,116 @@
                                     ></b-popover>
                                 </div>
                             </td>
-                    </tr>
+                        </tr>
                     </tbody>
                 </table>
             </div>
-</div>
-<modal @close2="closeModalNew" :dialog2="dialog2"></modal>
-<edit-modal @close="closeModalEdit" :items="keyValueEdit" :dialog="dialog"></edit-modal>
-</div>
-
+        </div>
+        <add-modal
+            :closeAddModal="closeModalNew"
+            :isAddMode="isAddMode"
+            :handleAdd="handleAdd"
+        ></add-modal>
+        <edit-modal
+            :closeEditModal="closeModalEdit"
+            :editedItem="keyValueEdit"
+            :isEditMode="isEditMode"
+            :handleUpdate="handleUpdate"
+            :key="componentKey"
+        ></edit-modal>
+    </div>
 </template>
 
 <script>
+import { FontAwesomeIcon } from "@fortawesome/vue-fontawesome";
+import { typesData } from "@/utils/globalAttribut";
+import AddModal from "./newAttributModal.vue";
+import EditModal from "./editModal.vue";
+import { attributes } from "@/mixins/attributes";
 
-    import {FontAwesomeIcon} from '@fortawesome/vue-fontawesome'
-    import {types} from '@/utils/globalAttribut';
-    import modal from './newAttributModal.vue'
-    import EditModal from './editModal.vue'
-
-    export default{
-
-        components:{
-        'font-awesome-icon': FontAwesomeIcon,
-        modal,
-        EditModal,
+export default {
+    components: {
+        "font-awesome-icon": FontAwesomeIcon,
+        AddModal,
+        EditModal
     },
-        data ()  {
-            return{
-                
-        items: [
-        { id: 1, nom: 'Surface', identifiant: 'surface', type: types[0].label, options:'Ceci est un champ texte ', classtype:'rgb(0, 0, 0)'},
-        { id: 2, nom: 'Période de renouvellement', identifiant: 'period', type: types[1].label, options:[{label:'lorem ipsum'},{label:'lorem ipsum'}], classtype:'rgb(0, 169, 255)'},
-        { id: 3, nom: 'Étage', identifiant: 'level', type: types[2].label, options:[{label:'sous-sol'},{label:'rez de chaussée'},{label:'1er étage'},{label:'2eme étage'}], classtype:'rgb(34, 94, 199)'},
-        { id: 4, nom: 'Date de renouvellement', identifiant: 'renewall', type: types[1].label, options:[{label:'lorem ipsum'},{label:'lorem ipsum'}], classtype:'rgb(0, 169, 255)'},
-        
-        { id: 5, nom: 'Tarif demi journée membre', identifiant: 'price_member_halfday', type: types[0].label, options:'Ceci est un deuxième champ texte', classtype:'rgb(0, 0, 0)'},
-
-      ],
-         dialog2: false,
-         dialog:false,
-         keyValueEdit: {},
-    }
+    mixins: [attributes],
+    async mounted() {
+        await this.loadAttributes();
     },
-
+    data() {
+        return {
+            items: [],
+            isEditMode: false,
+            isAddMode: false,
+            keyValueEdit: {},
+            componentKey: 0
+        };
+    },
     methods: {
-
-      closeModalNew(){
-          this.dialog2 = false;
-      },
-      closeModalEdit(){
-          this.dialog=false;
-      },
-      showNewAttributModal(){
-        this.dialog2 = true;
-      },
-      showEditModal(item){
-        this.dialog=true;
-        this.keyValueEdit = item;
-
-      },
-      async remove(Id) {
-      // sweet alert sur la suppression
-      
-        this.items = this.items.filter(
-          (item) => item.id !== Id
-        );
-    },
-
-      
-
+        getClassType(label) {
+            const typeC = typesData.filter(item => {
+                return item.label == label;
+            });
+            if (typeC[0]) {
+                return typeC[0].classType;
+            }
+            return "";
+        },
+        closeModalNew() {
+            this.isAddMode = false;
+        },
+        closeModalEdit() {
+            this.isEditMode = false;
+        },
+        showNewAttributModal() {
+            this.isAddMode = true;
+        },
+        showEditModal(item) {
+            this.isEditMode = true;
+            this.keyValueEdit = item;
+            this.forceRerender();
+        },
+        async remove(Id) {
+            // sweet alert sur la suppression
+            let title = "Confirmer la suppression de cet item";
+            if (await this.$sweetConfirmation({ title })) {
+                try {
+                    const res = await this.deleteAttribute(Id);
+                    this.loadAttributes();
+                    this.$sweetNotif("Item supprimée");
+                } catch (error) {
+                    console.error(error);
+                }
+            }
+        },
+        async loadAttributes() {
+            try {
+                const res = await this.getAttributes();
+                this.items = res;
+            } catch (error) {
+                console.error(error);
+            }
+        },
+        async handleUpdate(attr) {
+            try {
+                const res = await this.modifyAttribute(attr);
+                this.loadAttributes();
+            } catch (error) {
+                console.error(error);
+            }
+        },
+        async handleAdd(attr) {
+            try {
+                const res = await this.addAttribute(attr);
+                this.loadAttributes();
+            } catch (error) {
+                console.error(error);
+            }
+        },
+        forceRerender() {
+            this.componentKey += 1;
+        }
     }
-}
-
+};
 </script>
-

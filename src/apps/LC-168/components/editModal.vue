@@ -1,93 +1,105 @@
 <template>
     <div class="text-xs-center">
-        <v-dialog v-model="dialog" @click="close" max-width="800px">
+        <v-dialog
+            v-model="isEditMode"
+            @click="closeEditModal"
+            max-width="800px"
+            persistent
+            no-click-animation
+        >
             <v-card>
                 <v-card-title class="headline grey lighten-2" primary-title>
-                    Modification - {{ editItem.nom }} 
+                    Modification - {{ editItem.name }}
                 </v-card-title>
                 <v-card-text>
-                    
                     <v-container>
                         <b-form row wrap>
-                            <v-select 
-                                v-model="this.editItem.type"
+                            <v-select
+                                v-model="editItem.typeData"
                                 :items="types"
                                 item-text="label"
                                 item-value="label"
-                                persistent-hint
+                                persistent
                                 return-object
                                 single-line
                                 outlined
-                                @change="selectValue"    
-                                >
-                                
+                            >
                             </v-select>
-                            
-                                <b-form-group
-                                label="Nom :">
+
+                            <b-form-group label="Nom :">
                                 <b-form-input
-                                    
-                                    v-model="editItem.nom"
+                                    v-model="editItem.name"
                                     required
                                 ></b-form-input>
                             </b-form-group>
-                                <b-form-group
-                                label="Identifiant :" >
+                            <b-form-group label="Identifiant :">
                                 <b-form-input
-                                    
-                                    v-model="editItem.identifiant"
+                                    v-model="editItem.key"
                                     required
                                 ></b-form-input>
                             </b-form-group>
 
-                            <div v-if="this.editItem.type === 'Champs texte'">
+                            <div v-if="editItem.typeData === 'Champs texte'">
                                 <b-form-group
-                                id="input-group-1"
-                                label="Options :"
-                                label-for="input-1"
+                                    id="input-group-1"
+                                    label="Options :"
+                                    label-for="input-1"
                                 >
-                                <b-form-textarea
-                                id="input-1"
-                                placeholder="Informations complémentaires..."
-                                required
-                                ></b-form-textarea>
+                                    <b-form-textarea
+                                        id="input-1"
+                                        placeholder="Informations complémentaires..."
+                                        v-model="editItem.unity"
+                                        required
+                                    ></b-form-textarea>
                                 </b-form-group>
                             </div>
-                <div v-if="this.editItem.type === 'Un seul choix'"> 
-                    <label for="tags-pills">Différents choix possibles</label>
-                    <v-combobox
-                    v-model="model2"    
-                    :search-input.sync="search"
-                    hide-selected
-                    multiple
-                    persistent-hint
-                    small-chips
-                     ></v-combobox>
-                </div>
-                <div v-if="this.editItem.type === 'Liste de sélection'">
-                    <label for="tags-pills-2">Différents choix possibles</label>
-                    <v-combobox
-                    v-model="model3"    
-                    :search-input.sync="search"
-                    hide-selected
-                    multiple
-                    persistent-hint
-                    small-chips
-                     ></v-combobox>
-                </div>
+                            <div v-if="editedItem.typeData === 'Un seul choix'">
+                                <label for="tags-pills"
+                                    >Différents choix possibles</label
+                                >
+                                <v-combobox
+                                    v-model="editItem.datas[0]"
+                                    hide-selected
+                                    :multiple="false"
+                                    persistent
+                                    small-chips
+                                ></v-combobox>
+                            </div>
+                            <div
+                                v-if="
+                                    editedItem.typeData === 'Liste de sélection'
+                                "
+                            >
+                                <label for="tags-pills-2"
+                                    >Différents choix possibles</label
+                                >
+                                <v-combobox
+                                    v-model="editItem.datas"
+                                    hide-selected
+                                    multiple
+                                    persistent
+                                    small-chips
+                                ></v-combobox>
+                            </div>
 
-                <div class="p-1 text-right btn-group-sm" style="margin-top:10px">
-                    <b-button
-                        style="margin-right:10px"
-                        type="reset"
-                        @click="close"
-                        variant="danger">Retour
-                    </b-button>
-                    <b-button
-                        type="submit"
-                        variant="success">Valider
-                    </b-button>
-                </div>
+                            <div
+                                class="p-1 text-right btn-group-sm"
+                                style="margin-top:10px"
+                            >
+                                <b-button
+                                    style="margin-right:10px"
+                                    type="reset"
+                                    @click="closeEditModal"
+                                    variant="danger"
+                                    >Retour
+                                </b-button>
+                                <b-button
+                                    type="submit"
+                                    variant="success"
+                                    @click="modifUpdate"
+                                    >Valider
+                                </b-button>
+                            </div>
                         </b-form>
                     </v-container>
                 </v-card-text>
@@ -97,45 +109,43 @@
 </template>
 
 <script>
-import {types} from '@/utils/globalAttribut';
+import { typeArray } from "@/utils/globalAttribut";
 export default {
     name: "edit-attribut",
     props: {
-        dialog: {
+        isEditMode: {
             type: Boolean
         },
-        items: {
+        editedItem: {
             type: Object
+        },
+        handleUpdate: {
+            type: Function
+        },
+        closeEditModal: {
+            type: Function
         }
     },
-    
-    data ()  {
-            return{
-                value2:[],
-                value:[],
-                selected : {label : "Champs texte"},
-                model: 'tab-2',
-                model2:['Vuetify'],
-                model3:['VUETIFY'],
-                types: types,
-                
-            }
-            
-
-        },
+    data() {
+        return {
+            types: typeArray
+        };
+    },
     computed: {
         editItem() {
-            return {...this.items}
-            
+            return { ...this.editedItem };
         }
     },
     methods: {
-        close() {
-            this.$emit("close");
-            
-        },
-    },
-    
+        async modifUpdate() {
+            try {
+                await this.handleUpdate(this.editItem);
+                this.closeEditModal();
+            } catch (error) {
+                console.error(error);
+            }
+        }
+    }
 };
 </script>
 <style>

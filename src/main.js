@@ -1,6 +1,7 @@
 import Vue from 'vue'
 import './plugins/vuetify'
 import router from './router'
+import sweetAlert from "./plugins/sweetAlert";
 
 import BootstrapVue from "bootstrap-vue"
 
@@ -13,6 +14,7 @@ import Apps from './Layout/Wrappers/appLayout.vue';
 Vue.config.productionTip = false;
 
 Vue.use(BootstrapVue);
+Vue.use(sweetAlert);
 
 Vue.component('default-layout', Default);
 Vue.component('userpages-layout', Pages);

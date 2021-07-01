@@ -1,184 +1,188 @@
 <template>
     <div class="text-xs-center">
-    <v-dialog  v-model="dialog2" @click="close2" max-width="800px">
+        <v-dialog
+            v-model="isAddMode"
+            @click="closeAddModal"
+            max-width="800px"
+            persistent
+            no-click-animation
+        >
             <div>
-            <v-card>
-                <v-card-title class="headline grey lighten-2" primary-title>
-                    Création nouvel attribut
-                </v-card-title>
-             <v-container>
-                 <v-select 
-                    v-model="selected"
-                    :items="items"
-                    item-text="label"
-                    item-value="label"
-                    persistent-hint
-                    return-object
-                    single-line
-                    @change="selectValue"
-                    >
-                    
-                 </v-select>
-                
-                <b-form row wrap>
-                <b-form-group
-                    id="input-group-1"
-                    label="Nom :"
-                    label-for="input-1"
-                    >
-                    <b-form-input
-                    id="input-1"
-                
-                    required
-                    ></b-form-input>
-                </b-form-group>
+                <v-card>
+                    <v-card-title class="headline grey lighten-2" primary-title>
+                        Création nouvel attribut
+                    </v-card-title>
+                    <v-container>
+                        <v-select
+                            v-model="newAttribute.typeData"
+                            :items="types"
+                            item-text="label"
+                            item-value="label"
+                            persistent-hint
+                            return-object
+                            single-line
+                        >
+                        </v-select>
 
-                <b-form-group id="input-group-2" label="Identifiant :" label-for="input-2">
-                    <b-form-input
-                    id="input-2"
-                    
-                    required
-                    ></b-form-input>
-                </b-form-group>
-                
-                <div v-show="textArea">
-                    <b-form-group
-                    id="input-group-1"
-                    label="Options :"
-                    label-for="input-1"
-                    >
-                    <b-form-textarea
-                    id="input-1"
-                    placeholder="Informations complémentaires..."
-                
-                    required
-                    ></b-form-textarea>
-                    </b-form-group>
-                </div>
-                <div v-show="oneChoice"> 
-                    <label for="tags-pills">Différents choix possibles</label>
-                    <v-combobox
-                    v-model="model2"    
-                    :search-input.sync="search"
-                    hide-selected
-                    multiple
-                    persistent-hint
-                    small-chips
-                     ></v-combobox>
-                </div>
-                <div v-show="multipleChoice">
-                    <label>Différents choix possibles</label>
-                    <v-combobox
-                    v-model="model3"    
-                    :search-input.sync="search"
-                    hide-selected
-                    multiple
-                    persistent-hint
-                    small-chips
-                     ></v-combobox>
-                </div>
+                        <b-form row wrap>
+                            <b-form-group
+                                id="input-group-1"
+                                label="Nom :"
+                                label-for="input-1"
+                            >
+                                <b-form-input
+                                    id="input-1"
+                                    v-model="newAttribute.name"
+                                    required
+                                ></b-form-input>
+                            </b-form-group>
 
-               
-    
-        <div class="p-1 text-right btn-group-sm " style="margin-top:10px">
-            <b-button style="margin-right:10px" type="reset" @click="close2" variant="danger">Retour</b-button>
-            <b-button  type="submit" @click="saveModification" variant="success">Valider</b-button>
-        </div>
-    </b-form>
-             </v-container>
-    
-    </v-card>
-            
-        </div>
-        
-    </v-dialog>
-  </div>
+                            <b-form-group
+                                id="input-group-2"
+                                label="Identifiant :"
+                                label-for="input-2"
+                            >
+                                <b-form-input
+                                    id="input-2"
+                                    v-model="newAttribute.key"
+                                    required
+                                ></b-form-input>
+                            </b-form-group>
+
+                            <div
+                                v-if="newAttribute.typeData === 'Champs texte'"
+                            >
+                                <b-form-group
+                                    id="input-group-1"
+                                    label="Options :"
+                                    label-for="input-1"
+                                >
+                                    <b-form-textarea
+                                        id="input-1"
+                                        v-model="newAttribute.unity"
+                                        placeholder="Informations complémentaires..."
+                                        required
+                                    ></b-form-textarea>
+                                </b-form-group>
+                            </div>
+                            <div
+                                v-if="newAttribute.typeData === 'Un seul choix'"
+                            >
+                                <label for="tags-pills"
+                                    >Différents choix possibles</label
+                                >
+                                <v-combobox
+                                    v-model="newAttribute.datas"
+                                    hide-selected
+                                    :multiple="false"
+                                    persistent-hint
+                                    small-chips
+                                ></v-combobox>
+                            </div>
+                            <div
+                                v-if="
+                                    newAttribute.typeData ===
+                                        'Liste de sélection'
+                                "
+                            >
+                                <label for="tags-pills-2"
+                                    >Différents choix possibles</label
+                                >
+                                <v-combobox
+                                    v-model="newAttribute.datas"
+                                    hide-selected
+                                    multiple
+                                    persistent-hint
+                                    small-chips
+                                ></v-combobox>
+                            </div>
+
+                            <div
+                                class="p-1 text-right btn-group-sm "
+                                style="margin-top:10px"
+                            >
+                                <b-button
+                                    style="margin-right:10px"
+                                    type="reset"
+                                    @click="closeAddModal"
+                                    variant="danger"
+                                    >Retour</b-button
+                                >
+                                <b-button
+                                    type="submit"
+                                    @click="saveModification"
+                                    variant="success"
+                                    >Valider</b-button
+                                >
+                            </div>
+                        </b-form>
+                    </v-container>
+                </v-card>
+            </div>
+        </v-dialog>
+    </div>
 </template>
 
 <script>
-
-
-  export default {
-    
+import { typeArray } from "@/utils/globalAttribut";
+export default {
     name: "new-attribut-modal",
-    components:{
-        
+    components: {},
+    data() {
+        return {
+            newAttribute: {
+                typeData: "Champs texte",
+                name: "",
+                key: ""
+            },
+            types: typeArray
+        };
     },
-    data ()  {
-            return{
-                value2:[],
-                value:[],
-                selected: {label: 'Champs texte'},
-                model: 'tab-2',
-                model2: ['Vuetify'],
-                model3:['Vuetify'],
-                
-                items: [
-                    { label: 'Champs texte'},
-                    { label: 'Un seul choix'},
-                    { label: 'Liste de sélection'},
-                
-                ],
-                textArea : true,
-                oneChoice : false,
-                multipleChoice : false,
-            }
-            
-
+    props: {
+        isAddMode: {
+            type: Boolean
         },
-        
-    props:{
-        dialog2:{
-            type:Boolean
+        handleAdd: {
+            type: Function
         },
-        
+        closeAddModal: {
+            type: Function
+        }
     },
-    methods:{
-        close2(){
-            this.$emit("close2")
-        },
-
-        saveModification() {
-            this.close2();
-            this.$emit("saveModification", this.items)
-        },
-
-        selectValue(){
-            if(this.selected.label === "Champs texte"){
-                this.textArea = true;
-                this.oneChoice = false;
-                this.multipleChoice = false;
-
-            }
-            if(this.selected.label === "Un seul choix"){
-                this.oneChoice = true;
-                this.textArea = false;
-                this.multipleChoice = false;
-            }
-            if(this.selected.label === "Liste de sélection"){
-                this.multipleChoice = true;
-                this.textArea= false;
-                this.oneChoice=false;
-                
+    methods: {
+        async saveModification() {
+            try {
+                const newAttrWlAdded = Object.assign(
+                    { wl: 1, lang: "fr_FR" },
+                    this.newAttribute
+                );
+                await this.handleAdd(newAttrWlAdded);
+                this.closeAddModal();
+                this.newAttribute = {
+                    typeData: "Champs texte",
+                    name: "",
+                    key: ""
+                };
+            } catch (error) {
+                console.error(error);
             }
         }
     }
-
-  }
+};
 </script>
 <style>
-.outlined{
-    border: 1px solid #1967C0;
-    border-radius:50%;
+.outlined {
+    border: 1px solid #1967c0;
+    border-radius: 50%;
 }
 
-.outlined:hover{
-    background-color: #1967C0;
+.outlined:hover {
+    background-color: #1967c0;
 }
-.icon-color{
-    color:#1967C0;
+.icon-color {
+    color: #1967c0;
 }
-.icon-color:hover{
-    color:white;
+.icon-color:hover {
+    color: white;
 }
 </style>
