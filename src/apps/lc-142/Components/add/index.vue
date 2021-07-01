@@ -75,6 +75,8 @@ import Wizard4 from './Sub-components/addWizard4.vue';
 import Wizard5 from './Sub-components/addWizard5.vue';
 import Wizard6 from './Sub-components/addWizard6.vue';
 
+import { Rooms } from '@/mixins/room';
+
 library.add(faTrashAlt, faCheck, faAngleDown, faAngleUp, faTh, faCalendarAlt);
 
 export default {
@@ -88,6 +90,9 @@ export default {
         Wizard5,
         Wizard6
     },
+    mixins: [
+        Rooms
+    ],
     data: () => ({
         heading: "Ajouter une salle dans l'espace de coworking",
         icon: "pe-7s-note2 icon-gradient bg-tempting-azure",
@@ -100,6 +105,9 @@ export default {
         getData6: 0,
         datas: {}
     }),
+    mounted () {
+        this.saveRoom();
+    },
     methods: {
         async saveRoom () {
             if ( await this.$sweetConfirmation ({
@@ -108,7 +116,35 @@ export default {
                     cancelText: "Annuler"})
                 ){
                     // TODO point API saveRoom ()
-                    this.$sweetNotif({title: "La salle a été créée avec succès"});
+                    var datas = {
+                        name: this.datas.name,
+                        type: this.datas.type,
+                        surface: this.datas.surface,
+                        floor: this.datas.floor,
+                        maxCapacity:  this.datas.maxCapacity,
+                        minRentalDuration: this.datas.minRentalDuration,
+                        typeBooking: this.datas.typeBooking,
+                        bookable: this.datas.bookable,
+                        openingHours: this.datas.openingHours,
+                        description: this.datas.description,
+                        services: this.datas.services,
+                        roomListPhoto: this.datas.roomListPhoto,
+                        roomListPlan: this.datas.roomListPlan,
+                        prices: this.datas.prices,
+                        notes: this.datas.notes,
+                        meetings: this.datas.meetings
+                    };
+
+                    Rooms.create(datas)
+                        .then(response => {
+                            this.room._id = response.datas._id;
+                            console.log(response.datas);
+                            this.submitted = true;
+                        })
+                        .catch(err => {
+                            console.log(err);
+                        });
+                    this.$sweetNotif({ title: "La salle a été créée avec succès" });
                 }
         },
         nextWizard () {

@@ -4,7 +4,7 @@
             :heading="heading"
             :icon="icon"
         ></page-title>
-        <b-button :to="{ name: 'RoomAdd'}" class="mt-2 btn-wide btn-shadow btn btn-success btn-sm" align="right">Ajouter salle</b-button>
+        <b-button @click="newRoom()" class="mt-2 btn-wide btn-shadow btn btn-success btn-sm" align="right">Ajouter salle</b-button>
         <div class="mb-3 card">
             <!-- Bouton select -->
             <div class="mt-2 card-header-tab card-header">
@@ -137,6 +137,14 @@ export default {
             try {
                 const res = await this.getRoom(id);
                 this.roomData = res.datas;
+            } catch (err) {
+                console.log(err);
+            }
+        },
+        async newRoom () {
+            try {
+                this.submitted = false;
+                this.room = {};
             } catch (err) {
                 console.log(err);
             }
