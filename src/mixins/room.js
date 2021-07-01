@@ -35,7 +35,7 @@ export const Rooms = {
         // Thomas
         async getRoom(id) {
             try {
-                const response = await api.get(`room/view/${id}`);
+                const response = await api.get(`room/${id}`);
                 console.log(response);
                 return {
                     status: 1,
@@ -50,7 +50,7 @@ export const Rooms = {
         },
         async updateRoom(id, datas) {
             try {
-                const response = await api.put(`room/edit/${id}`, datas);
+                const response = await api.put(`room/${id}`, datas);
                 console.log(response);
                 return {
                     status: 1,
@@ -65,7 +65,7 @@ export const Rooms = {
         },
         async createRoom(datas) {
             try {
-                const response = await api.post("room/add", datas);
+                const response = await api.post("room", datas);
                 console.log(response);
                 return {
                     status: 1,

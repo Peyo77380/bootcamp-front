@@ -49,7 +49,7 @@ export default {
     watch : {
         getData(newVal) {
             if(newVal==1) {
-                this.$emit('photoInfo', this.room)
+                this.$emit('photoInfo', this.room.photos)
             }
         }
     },

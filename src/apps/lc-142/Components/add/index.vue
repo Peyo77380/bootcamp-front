@@ -102,7 +102,7 @@ export default {
         getData3: 0,
         getData4: 0,
         getData5: 0,
-        getData6: 0,
+        getData6: 1,
         datas: {}
     }),
     mounted () {
@@ -125,7 +125,13 @@ export default {
 
                     // TODO point API saveRoom ()
                     var datas = {
-                        name: this.datas.name,
+                        room: this.datas.room,
+                        description: this.datas.description,
+                        services: this.datas.services,
+                        room: this.datas.room,
+                        prices: this.datas.prices,
+                        meetings: this.datas.meetings,
+                        /* name: this.datas.name,
                         type: this.datas.type,
                         surface: this.datas.surface,
                         floor: this.datas.floor,
@@ -140,7 +146,7 @@ export default {
                         roomListPlan: this.datas.roomListPlan,
                         prices: this.datas.prices,
                         notes: this.datas.notes,
-                        meetings: this.datas.meetings
+                        meetings: this.datas.meetings */
                     };
 
                     Rooms.createRoom(datas).then(response => {
@@ -184,7 +190,7 @@ export default {
             this.datas.services = infos;
         },
         pushPhotoInfo(infos) {
-            this.datas.room = infos;
+            this.datas.photos = infos;
         },
         pushPriceInfo(infos) {
             this.datas.prices = infos;
