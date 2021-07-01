@@ -1,5 +1,5 @@
 import api from "@/services/axios";
-import store from "@/store/store";
+import store from "../store/store";
 
 export const Globals = {
     methods: {
@@ -12,9 +12,11 @@ export const Globals = {
             try {
                 if (store.getters.globalEmpty) {
                     const response = await api.get("global");
-                    store.dispatch("pushParamsGlobal", response.data.datas);
+                    console.log(response.data.datas)
+                    store.dispatch("paramsStore/pushParamsGlobal", response.data.datas);
                 }
-                return store.state.paramsGlobal;
+                console.log(store.state.paramsGlobal)
+                return store.state.parameters.paramsGlobal;
             } catch (error) {
                 throw new Error(error);
             }

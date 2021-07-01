@@ -1,6 +1,6 @@
 import Vue from "vue";
 import Vuex from "vuex";
-import paramsModule from "./modules/parameters/parameters";
+import paramsModule from "./modules/parameters/paramsStore";
 import loginModule from "./modules/login/login";
 
 

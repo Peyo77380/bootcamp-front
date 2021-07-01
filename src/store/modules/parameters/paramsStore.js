@@ -19,7 +19,9 @@ export default {
         }
     },
     actions: {
-        pushParamsGlobal({ commit }, params) {
+        pushParamsGlobal({
+            commit
+        }, params) {
             commit("setParamsGlobal", params);
         }
     },
