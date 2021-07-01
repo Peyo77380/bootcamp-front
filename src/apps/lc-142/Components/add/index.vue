@@ -128,7 +128,7 @@ export default {
                         room: this.datas.room,
                         description: this.datas.description,
                         services: this.datas.services,
-                        room: this.datas.room,
+                        photos: this.datas.photos,
                         prices: this.datas.prices,
                         meetings: this.datas.meetings,
                         /* name: this.datas.name,
