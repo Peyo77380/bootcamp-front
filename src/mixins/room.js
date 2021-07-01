@@ -31,6 +31,23 @@ export const Rooms = {
                     error
                 }
             }
+        },
+        // Thomas
+        async getRoom(id) {
+            try {
+                const response = await api.get(`room/view/${id}`);
+                console.log(response);
+                return {
+                    status: 1,
+                    datas: response.data.datas
+                }
+            } catch (error) {
+                return {
+                    status: 0,
+                    error
+                }
+            }
         }
+        // Fin Thomas
     }
 }

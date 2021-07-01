@@ -13,9 +13,7 @@
                         <v-overflow-btn
                         label="Choisir un bâtiment"
                         :items="buildingsData"
-                        item-value="_id"
-                        item-text="description"
-                        
+                        item-value="text"
                         editable
                         ></v-overflow-btn>
                     </v-flex>
@@ -45,7 +43,7 @@
                                                 </b-tab>
                                                 <b-tab title="Plus...">
                                                     <div align="center">
-                                                            <b-button :to="{ name: 'RoomDetails', params: { id: roomDetail._id } }" class="mb-2 col-10 btn-wide btn-shadow btn btn-sm" variant="primary">
+                                                            <b-button @click="loadRoom(roomDetail._id)" class="mb-2 col-10 btn-wide btn-shadow btn btn-sm" variant="primary">
                                                                 Voir détails : {{roomDetail.name}}
                                                             </b-button>
                                                             <br>
@@ -89,8 +87,8 @@ import {
     faTh
 } from "@fortawesome/free-solid-svg-icons";
 
-import {Rooms} from '@/mixins/room'
-import {Buildings} from '@/mixins/building'
+import {Rooms} from '@/mixins/room';
+import {Buildings} from '@/mixins/building';
 
 
 library.add(faTrashAlt, faCheck, faAngleDown, faAngleUp, faTh, faCalendarAlt);
@@ -110,7 +108,8 @@ export default {
     }),
     mounted () {
         this.loadRooms();
-        this.loadBuildings()
+        this.loadBuildings();
+        this.loadRoom();
     },
     methods: {
         // TODO : prévoir filtre des salles par batiment (v-overflow-button connecté mais pas encroe de comportement)
@@ -130,6 +129,16 @@ export default {
                 console.log(err);
             }
         },
+        // Thomas
+        async loadRoom (id) {
+            try {
+                const res = await this.getRoom(id);
+                this.roomData = res.datas;
+            } catch (err) {
+                console.log(err);
+            }
+        },
+        // Fin Thomas
         async remove (id) {
             if ( await this.$sweetConfirmation ({
                     title: "Vous allez supprimer et archiver une salle !",
