@@ -10,14 +10,14 @@
                     <div class="main-card mb-3 card">
                         <div class="card-body">
                             <h5 class="card-title text-left">Photos de la salle :</h5>
-                            <vue-dropzone multiple ref="myVueDropzone" id="dropzone" v-model="room.roomListPhoto" :options="dropzonePhotoOptions"></vue-dropzone>
+                            <vue-dropzone multiple ref="myVueDropzone" id="dropzone" v-model="photos.roomListPhoto" :options="dropzonePhotoOptions"></vue-dropzone>
                         </div>
                     </div>
                     
                     <div class="main-card mb-3 card">
                         <div class="card-body">
                             <h5 class="card-title text-left">Plans de réunion de la salle :</h5>
-                            <vue-dropzone multiple ref="myVueDropzone" id="dropzone" v-model="room.roomListPlan" :options="dropzonePlanOptions"></vue-dropzone>
+                            <vue-dropzone multiple ref="myVueDropzone" id="dropzone" v-model="photos.roomListPlan" :options="dropzonePlanOptions"></vue-dropzone>
                         </div>
                     </div>
                 </b-form>
@@ -49,12 +49,12 @@ export default {
     watch : {
         getData(newVal) {
             if(newVal==1) {
-                this.$emit('photoInfo', this.room.photos)
+                this.$emit('photoInfo', this.photos)
             }
         }
     },
     data: () => ({
-        room: {
+        photos: {
             roomListPhoto: [],
             roomListPlan: []
         },
