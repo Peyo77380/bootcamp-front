@@ -10,9 +10,8 @@
                         <div class="row">
                             <div class="col-1"></div>
                             <div class="col-5">
-                            <b-form-group id="input-group-1" label="Nom de la salle :" class="text-left" label-for="input-1">
+                            <b-form-group label="Nom de la salle :" class="text-left">
                                 <b-form-input
-                                id="input-1"
                                 v-model="room.name"
                                 disabled
                                 ></b-form-input>
@@ -20,9 +19,8 @@
                             </div>
                             
                             <div class="col-3">
-                                <b-form-group id="input-group-3" label="Type :" class="text-left" label-for="input-2">
+                                <b-form-group label="Type :" class="text-left" >
                                 <b-form-select
-                                id="input-2"
                                 v-model="room.type"
                                 :options="types"
                                 disabled
@@ -31,9 +29,8 @@
                             </div>
 
                             <div class="col-2">
-                            <b-form-group id="input-group-3" label="Surface salle :" class="text-left" label-for="input-3">
+                            <b-form-group label="Surface salle :" class="text-left">
                                 <b-form-input
-                                id="input-3"
                                 v-model="room.surface"
                                 disabled
                                 ></b-form-input>
@@ -44,33 +41,30 @@
                         <div class="row">
                             <div class="col-1"></div>
                             <div class="col-3">
-                            <b-form-group id="input-group-4" label="Niveau où se situe la salle :" class="text-left" label-for="input-4">
+                            <b-form-group label="Niveau où se situe la salle :" class="text-left" >
                                 <b-form-select
-                                id="input-4"
                                 v-model="room.floor"
                                 :options="floors"
                                 disabled
                                 ></b-form-select>
                             </b-form-group>
 
-                            <b-form-group id="input-group-5" label="Capacité maximale d'accueil :" class="text-left" label-for="input-5">
+                            <b-form-group label="Capacité maximale d'accueil :" class="text-left">
                                 <b-form-input
-                                id="input-5"
                                 v-model="room.maxCapacity"
                                 disabled
                                 ></b-form-input>
                             </b-form-group>
 
-                            <b-form-group id="input-group-6" label="Durée minimale de location :" class="text-left" label-for="input-6">
+                            <b-form-group label="Durée minimale de location :" class="text-left">
                                 <b-form-select
-                                id="input-6"
                                 v-model="room.minRentalDuration"
                                 :options="minRentalDurations"
                                 disabled
                                 ></b-form-select>
                             </b-form-group>
 
-                            <b-form-group id="input-group-7" v-slot="{ ariaDescribedby }" label="Type de réservation :" class="text-left" label-for="checkboxes-7">
+                            <b-form-group v-slot="{ ariaDescribedby }" label="Type de réservation :" class="text-left">
                                 <b-form-checkbox-group
                                 v-model="room.typeBooking"
                                 :aria-describedby="ariaDescribedby"
@@ -80,7 +74,7 @@
                                 </b-form-checkbox-group>
                             </b-form-group>
                         
-                            <b-form-group id="input-group-8" v-slot="{ ariaDescribedby }" label="Statut :" class="text-left" label-for="radios-8">
+                            <b-form-group v-slot="{ ariaDescribedby }" label="Statut :" class="text-left">
                                 <b-form-radio-group
                                 v-model="room.bookable"
                                 :aria-describedby="ariaDescribedby"
@@ -106,15 +100,13 @@
                                                 <td disabled class="text-center border text-muted">{{ openingHoursDetail.name }}</td>
                                                 <td class="text-center border">
                                                     <div class="row ml-1">
-                                                        <b-form-input 
-                                                            id="input-9" 
+                                                        <b-form-input
                                                             class="text-center border col-3" 
                                                             v-model="openingHoursDetail.startHour"
                                                             disabled
                                                         ></b-form-input>
                                                         <p class="col-4">heures</p>
                                                         <b-form-input 
-                                                            id="input-10" 
                                                             class="text-center border col-3"
                                                             v-model="openingHoursDetail.startMinutes"
                                                             disabled
@@ -124,14 +116,12 @@
                                                 <td class="text-center border">
                                                     <div class="row ml-1">
                                                         <b-form-input 
-                                                            id="input-11"
                                                             class="text-center border col-3"
                                                             v-model="openingHoursDetail.endHour" 
                                                             disabled
                                                         ></b-form-input>
                                                         <p class="col-4">heures</p>
                                                         <b-form-input 
-                                                            id="input-12"
                                                             class="text-center border col-3"
                                                             v-model="openingHoursDetail.endMinutes"  
                                                             disabled

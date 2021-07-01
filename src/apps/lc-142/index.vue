@@ -4,7 +4,7 @@
             :heading="heading"
             :icon="icon"
         ></page-title>
-        <b-button @click="newRoom()" class="mt-2 btn-wide btn-shadow btn btn-success btn-sm" align="right">Ajouter salle</b-button>
+        <b-button @click="newRoom()" :to="{ name: 'RoomAdd'}" class="mt-2 btn-wide btn-shadow btn btn-success btn-sm" align="right">Ajouter salle</b-button>
         <div class="mb-3 card">
             <!-- Bouton select -->
             <div class="mt-2 card-header-tab card-header">
@@ -113,6 +113,7 @@ export default {
         this.loadAllRooms();
         this.loadBuildings();
         this.loadRoom();
+        this.newRoom();
     },
     methods: {
         // TODO : prévoir filtre des salles par batiment (v-overflow-button connecté mais pas encroe de comportement)

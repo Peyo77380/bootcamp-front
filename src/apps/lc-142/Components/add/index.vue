@@ -40,7 +40,7 @@
                                                 <b-button-group>
                                                     <b-button @click="tabIndex--" class="m-2" variant="primary">Précédent</b-button>
                                                     <b-button @click="nextWizard()" class="m-2" variant="primary">Suivant</b-button>
-                                                    <b-button @click="saveRoom" v-show="tabIndex == 5" class="m-2" type="submit" variant="success">Sauvegarder</b-button>
+                                                    <b-button @click="saveRoom()" v-show="tabIndex == 5" class="m-2" type="submit" variant="success">Sauvegarder</b-button>
                                                 </b-button-group>
                                             </div>
                                         </b-card>
@@ -135,9 +135,9 @@ export default {
                         meetings: this.datas.meetings
                     };
 
-                    Rooms.create(datas)
+                    Rooms.createRoom(datas)
                         .then(response => {
-                            this.room._id = response.datas._id;
+                            this.room.id = response.datas.id;
                             console.log(response.datas);
                             this.submitted = true;
                         })
