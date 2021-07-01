@@ -10,12 +10,10 @@ export const Globals = {
 
         async getGlobals() {
             try {
-                if (store.getters.globalEmpty) {
+                if (store.getters['parameters/globalEmpty']) {
                     const response = await api.get("global");
-                    console.log(response.data.datas)
-                    store.dispatch("paramsStore/pushParamsGlobal", response.data.datas);
+                    store.dispatch("parameters/pushParamsGlobal", response.data.datas);
                 }
-                console.log(store.state.paramsGlobal)
                 return store.state.parameters.paramsGlobal;
             } catch (error) {
                 throw new Error(error);
