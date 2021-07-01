@@ -167,7 +167,7 @@ export default {
                         return;
                     }
                     this.roomDetailsData = this.roomDetailsData.filter(roomDetail => roomDetail._id !== id)
-                    this.$sweetNotif({title: "La salle a été archivée avec succès"});
+                    this.$sweetNotif();
                 } catch (err) {
                     console.log(err);
                 }
