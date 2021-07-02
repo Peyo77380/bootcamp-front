@@ -10,10 +10,15 @@ export default new Router({
     routes: [
         // Dashboards
 
+        // {
+        //     path: "/",
+        //     name: "analytics",
+        //     component: () => import("@/apps/dash-exemple/Analytics")
+        // },
         {
             path: "/",
-            name: "analytics",
-            component: () => import("@/apps/dash-exemple/Analytics")
+            name: "facturation_section_add",
+            component: () => import("@/apps/facturation/index")
         }
     ]
 });
