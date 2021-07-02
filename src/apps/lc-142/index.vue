@@ -43,6 +43,7 @@
                                                 </b-tab>
                                                 <b-tab title="Plus...">
                                                     <div align="center">
+                                                       
                                                             <b-button @click="loadRoom(roomDetail._id)" :to="{ name: 'RoomView', params: { id: roomDetail._id } }" class="mb-2 col-10 btn-wide btn-shadow btn btn-sm" variant="primary">
                                                                 Voir détails : {{roomDetail.name}}
                                                             </b-button>
@@ -157,8 +158,7 @@ export default {
                     confirmText: "Confirmer ?",
                     cancelText: "Annuler"})
             ){
-                    // l'appel vers API de Laravel devra etre fait ici 
-                    // archivage a faire ou changer statut => bookable : archivé au lieu de indisponible
+                // archivage a faire ou changer statut => bookable : archivé au lieu de indisponible
                 try {
                     const res = await this.deleteRoom(id);
                     // TODO : ajouter un loader?

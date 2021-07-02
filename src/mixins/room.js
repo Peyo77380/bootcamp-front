@@ -23,7 +23,6 @@ export const Rooms = {
                 console.log(response);
                 return {
                     status: 1,
-                    datas: response.data.datas
                 }
             } catch (error) {
                 return {
