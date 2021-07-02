@@ -175,7 +175,6 @@ export default {
             try {
                 this.loading = true;
                 this.items = await this.getAllParameters();
-                //this.$store.dispatch('paramsStore/pushParamsGlobal');
                 this.loading = false;
             } catch (error) {
                 this.$sweetError("GPA-98");
