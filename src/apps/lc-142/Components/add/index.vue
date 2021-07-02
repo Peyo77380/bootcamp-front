@@ -15,8 +15,6 @@
                             <div class="col-md-12">
                                 <div class="row" >
                                     <div class="col-md-12 col-lg-12 col-xl-12">
-                                        <!-- Mettre chaque form/wizard dans un autre form pour -->
-                                        <!-- mettre les boutons de navigation dans le form global -->
                                         <b-card class="mb-5 nav-justified" no-body>
                                             <div class="dropdown-menu-header-inner bg-deep-blue">
                                                 <div class="menu-header-content text-dark mb-1 mt-1">
@@ -38,8 +36,8 @@
                                             <!-- Control buttons -->
                                             <div class="text-center">
                                                 <b-button-group>
-                                                    <b-button @click="tabIndex--" class="m-2" variant="primary">Précédent</b-button>
-                                                    <b-button @click="nextWizard()" class="m-2" variant="primary">Suivant</b-button>
+                                                    <b-button @click="tabIndex--" v-show="tabIndex > 0" class="m-2" variant="primary">Précédent</b-button>
+                                                    <b-button @click="nextWizard()" v-show="tabIndex < 5" class="m-2" variant="primary">Suivant</b-button>
                                                     <b-button @click="saveRoom()" v-show="tabIndex == 5" class="m-2" type="submit" variant="success">Sauvegarder</b-button>
                                                 </b-button-group>
                                             </div>
@@ -106,7 +104,8 @@ export default {
         datas: {}
     }),
     mounted () {
-        this.saveRoom();
+        this.loadRoom();
+        this.newRoom();
     },
     methods: {
         async saveRoom () {
@@ -116,7 +115,7 @@ export default {
                 cancelText: "Annuler"})
             ){
                 try {
-                    const res = await this.createRoom(id);
+                    const res = await this.createRoom();
                     // TODO : ajouter un loader?
                     if (res.error) {
                         this.$sweetError('Il y a eu un problème.');
@@ -131,22 +130,6 @@ export default {
                         photos: this.datas.photos,
                         prices: this.datas.prices,
                         meetings: this.datas.meetings,
-                        /* name: this.datas.name,
-                        type: this.datas.type,
-                        surface: this.datas.surface,
-                        floor: this.datas.floor,
-                        maxCapacity:  this.datas.maxCapacity,
-                        minRentalDuration: this.datas.minRentalDuration,
-                        typeBooking: this.datas.typeBooking,
-                        bookable: this.datas.bookable,
-                        openingHours: this.datas.openingHours,
-                        description: this.datas.description,
-                        services: this.datas.services,
-                        roomListPhoto: this.datas.roomListPhoto,
-                        roomListPlan: this.datas.roomListPlan,
-                        prices: this.datas.prices,
-                        notes: this.datas.notes,
-                        meetings: this.datas.meetings */
                     };
 
                     Rooms.createRoom(datas).then(response => {
@@ -161,6 +144,22 @@ export default {
                 } catch (err) {
                     console.log(err);
                 }
+            }
+        },
+        async loadRoom (id) {
+            try {
+                const res = await this.getRoom(id);
+                this.roomData = res.datas;
+            } catch (err) {
+                console.log(err);
+            }
+        },
+        async newRoom () {
+            try {
+                this.submitted = false;
+                this.room = {};
+            } catch (err) {
+                console.log(err);
             }
         },
         nextWizard () {

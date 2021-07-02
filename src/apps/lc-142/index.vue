@@ -4,7 +4,7 @@
             :heading="heading"
             :icon="icon"
         ></page-title>
-        <b-button @click="newRoom()" :to="{ name: 'RoomAdd'}" class="mt-2 btn-wide btn-shadow btn btn-success btn-sm" align="right">Ajouter salle</b-button>
+        <b-button :to="{ name: 'RoomAdd'}" class="mt-2 btn-wide btn-shadow btn btn-success btn-sm" align="right">Ajouter salle</b-button>
         <div class="mb-3 card">
             <!-- Bouton select -->
             <div class="mt-2 card-header-tab card-header">
@@ -44,7 +44,7 @@
                                                 <b-tab title="Plus...">
                                                     <div align="center">
                                                        
-                                                            <b-button @click="loadRoom(roomDetail._id)" :to="{ name: 'RoomView', params: { id: roomDetail._id } }" class="mb-2 col-10 btn-wide btn-shadow btn btn-sm" variant="primary">
+                                                            <b-button @click="loadRoom(roomDetail._id)" :to="{ name: 'RoomDetails', params: { id: roomDetail._id } }" class="mb-2 col-10 btn-wide btn-shadow btn btn-sm" variant="primary">
                                                                 Voir détails : {{roomDetail.name}}
                                                             </b-button>
                                                             <br>
@@ -113,8 +113,6 @@ export default {
     mounted () {
         this.loadAllRooms();
         this.loadBuildings();
-        this.loadRoom();
-        this.newRoom();
     },
     methods: {
         // TODO : prévoir filtre des salles par batiment (v-overflow-button connecté mais pas encroe de comportement)
@@ -122,43 +120,24 @@ export default {
             try {
                 const res = await this.getAllBuildings();
                 this.buildingsData = res.datas;
-            } catch (err) {
-                console.log(err);
+            } catch (error) {
+                console.log(error);
             }
         },
         async loadAllRooms () {
             try {
                 const res = await this.getAllRooms();
                 this.roomDetailsData = res.datas;
-            } catch (err) {
-                console.log(err);
+            } catch (error) {
+                console.log(error);
             }
         },
-        // Thomas
-        async loadRoom (id) {
-            try {
-                const res = await this.getRoom(id);
-                this.roomData = res.datas;
-            } catch (err) {
-                console.log(err);
-            }
-        },
-        async newRoom () {
-            try {
-                this.submitted = false;
-                this.room = {};
-            } catch (err) {
-                console.log(err);
-            }
-        },
-        // Fin Thomas
         async remove (id) {
             if ( await this.$sweetConfirmation ({
                     title: "Vous allez supprimer et archiver une salle !",
                     confirmText: "Confirmer ?",
                     cancelText: "Annuler"})
             ){
-                // archivage a faire ou changer statut => bookable : archivé au lieu de indisponible
                 try {
                     const res = await this.deleteRoom(id);
                     // TODO : ajouter un loader?
@@ -168,8 +147,8 @@ export default {
                     }
                     this.roomDetailsData = this.roomDetailsData.filter(roomDetail => roomDetail._id !== id)
                     this.$sweetNotif();
-                } catch (err) {
-                    console.log(err);
+                } catch (error) {
+                    console.log(error);
                 }
             }
         },
