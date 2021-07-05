@@ -129,6 +129,7 @@ export default {
         };
         await this.updateParameter(this.items._id, payload);
         this.close2();
+      // eslint-disable-next-line no-empty
       } catch (error) {}
       //this.close2();
       // this.$emit("saveModification", this.items);
