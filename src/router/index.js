@@ -23,12 +23,12 @@ export default new Router({
         {
             path: "/room/edit/:id",
             name: "RoomEdit",
-            component: () => import("@/apps/lc-142/Components/edit/index")
+            component: () => import("@/apps/lc-142/Components/add/index")
         },
         {
             path: "/room/view/:id",
-            name: "RoomDetails",
-            component: () => import("@/apps/lc-142/Components/view/index")
+            name: "RoomView",
+            component: () => import("@/apps/lc-142/Components/add/index")
         },
         {
             path: "/room/add",

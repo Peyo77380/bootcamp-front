@@ -4,7 +4,7 @@
             :heading="heading"
             :icon="icon"
         ></page-title>
-        <b-button :to="{ name: 'RoomAdd'}" class="mt-2 btn-wide btn-shadow btn btn-success btn-sm" align="right">Ajouter salle</b-button>
+        <b-button @click="disabled = !disabled" :to="{ name: 'RoomAdd' }" class="mt-2 btn-wide btn-shadow btn btn-success btn-sm" align="right">Ajouter salle</b-button>
         <div class="mb-3 card">
             <!-- Bouton select -->
             <div class="mt-2 card-header-tab card-header">
@@ -44,7 +44,7 @@
                                                 <b-tab title="Plus...">
                                                     <div align="center">
                                                        
-                                                            <b-button @click="loadRoom(roomDetail._id)" :to="{ name: 'RoomDetails', params: { id: roomDetail._id } }" class="mb-2 col-10 btn-wide btn-shadow btn btn-sm" variant="primary">
+                                                            <b-button :to="{ name: 'RoomView', params: { id: roomDetail._id } }" class="mb-2 col-10 btn-wide btn-shadow btn btn-sm" variant="primary">
                                                                 Voir détails : {{roomDetail.name}}
                                                             </b-button>
                                                             <br>

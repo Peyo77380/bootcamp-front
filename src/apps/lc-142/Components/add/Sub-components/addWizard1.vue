@@ -15,7 +15,10 @@
                                 v-model="room.name"
                                 type="text"
                                 placeholder="Entrer de le nom de la salle"
-                                required
+                                class="inputRoom"
+                                :required=required
+                                :disabled=disabled
+                                
                                 ></b-form-input>
                             </b-form-group>
                             </div>
@@ -25,7 +28,9 @@
                                 <b-form-select
                                 v-model="room.type"
                                 :options="types"
-                                required
+                                class="inputRoom"
+                                v-bind:required=true
+                                v-bind:disabled=false
                                 ></b-form-select>
                                 </b-form-group>
                             </div>
@@ -37,7 +42,9 @@
                                 type="number"
                                 min="0"
                                 placeholder="en m²"
-                                required
+                                class="inputRoom"
+                                :required=true
+                                :disabled=false
                                 ></b-form-input>
                             </b-form-group>
                             </div>
@@ -50,7 +57,9 @@
                                 <b-form-select
                                 v-model="room.floor"
                                 :options="floors"
-                                required
+                                class="inputRoom"
+                                :required=true
+                                :disabled=false
                                 ></b-form-select>
                             </b-form-group>
 
@@ -60,7 +69,9 @@
                                 type="number"
                                 min="0"
                                 placeholder="Nombre de personnes maximum"
-                                required
+                                class="inputRoom"
+                                :required=true
+                                :disabled=false
                                 ></b-form-input>
                             </b-form-group>
 
@@ -68,7 +79,9 @@
                                 <b-form-select
                                 v-model="room.minRentalDuration"
                                 :options="minRentalDurations"
-                                required
+                                class="inputRoom"
+                                :required=true
+                                :disabled=false
                                 ></b-form-select>
                             </b-form-group>
 
@@ -77,7 +90,9 @@
                                 v-model="room.typeBooking"
                                 :aria-describedby="ariaDescribedby"
                                 :options="typeBookings"
-                                required
+                                class="inputRoom"
+                                :required=true
+                                :disabled=false
                                 >
                                 </b-form-checkbox-group>
                             </b-form-group>
@@ -87,6 +102,8 @@
                                 v-model="room.bookable"
                                 :aria-describedby="ariaDescribedby"
                                 :options="bookables"
+                                class="inputRoom"
+                                :disabled=false
                                 >
                                 </b-form-checkbox-group>
                             </b-form-group>
@@ -108,42 +125,50 @@
                                                 <td class="text-center border">
                                                     <div class="row ml-1">
                                                         <b-form-input
-                                                            type="number"
-                                                            class="text-center border col-3"  
-                                                            min="0" 
-                                                            max="24" 
                                                             v-model="openingHoursDetail.startHour"
+                                                            class="inputRoom text-center border col-3" 
+                                                            type="number"
+                                                            min="0"
+                                                            max="24"
                                                             placeholder="8"
+                                                            :required=true
+                                                            :disabled=false
                                                         ></b-form-input>
                                                         <p class="col-4">heures</p>
                                                         <b-form-input
-                                                            type="number"
-                                                            class="text-center border col-3"
-                                                            min="0" 
-                                                            max="45" 
                                                             v-model="openingHoursDetail.startMinutes"
+                                                            class="inputRoom text-center border col-3"
+                                                            type="number"
+                                                            min="0"
+                                                            max="45"
                                                             placeholder="45"
+                                                            :required=true
+                                                            :disabled=false
                                                         ></b-form-input>
                                                     </div>
                                                 </td>
                                                 <td class="text-center border">
                                                     <div class="row ml-1">
                                                         <b-form-input
-                                                            class="text-center border col-3"
-                                                            type="number" 
-                                                            min="0" 
-                                                            max="24" 
                                                             v-model="openingHoursDetail.endHour" 
+                                                            class="inputRoom text-center border col-3"
+                                                            type="number"
+                                                            min="0"
+                                                            max="24"
                                                             placeholder="20"
+                                                            :required=true
+                                                            :disabled=false
                                                         ></b-form-input>
                                                         <p class="col-4">heures</p>
                                                         <b-form-input
-                                                            class="text-center border col-3"
-                                                            type="number" 
-                                                            min="0" 
-                                                            max="45" 
-                                                            v-model="openingHoursDetail.endMinutes"  
+                                                            v-model="openingHoursDetail.endMinutes"
+                                                            class="inputRoom text-center border col-3"
+                                                            type="number"
+                                                            min="0"
+                                                            max="45"
                                                             placeholder="15"
+                                                            :required=true
+                                                            :disabled=false
                                                         ></b-form-input>
                                                     </div>
                                                 </td>
@@ -204,7 +229,9 @@ export default {
         floors: Floors,
         bookables: Bookables,
         minRentalDurations: MinRentalDurations,
-        typeBookings: TypeBookings
+        typeBookings: TypeBookings,
+        disabled: false,
+        required: true
     })
 };
 </script>

@@ -24,6 +24,7 @@
                                     <td class="text-center border">
                                         <b-form-checkbox-group
                                         v-model="servicesChecked"
+                                        :value="true"
                                         multiple
                                         >
                                             <b-form-checkbox :value="serviceDetail.id"></b-form-checkbox>

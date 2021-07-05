@@ -92,6 +92,7 @@ export default {
         Rooms
     ],
     data: () => ({
+        editionMode: false,
         heading: "Ajouter une salle dans l'espace de coworking",
         icon: "pe-7s-note2 icon-gradient bg-tempting-azure",
         tabIndex: 1,
@@ -104,10 +105,23 @@ export default {
         datas: {}
     }),
     mounted () {
-        this.loadRoom();
-        this.newRoom();
+        this.switchMode();
+        // this.loadRoom(id);
+        // this.newRoom();
     },
     methods: {
+        async switchMode () {
+            console.log(this.$route);
+            if (this.$route.params.id && this.$route.params.name === 'RoomView') {
+                this.editionMode = true;
+                this.loadRoom(this.$route.params.id);
+                this.disabled = !this.disabled;
+                this.required = !this.required;
+            } else {
+                this.editionMode = false;
+            }
+
+        },
         async saveRoom () {
             if ( await this.$sweetConfirmation ({
                 title: "Confirmer la création d'une nouvelle salle !",
@@ -137,12 +151,12 @@ export default {
                         console.log(response.datas);
                         this.submitted = true;
                         this.$sweetNotif({ title: "La salle a été créée avec succès" });
-                    }).catch(err => {
-                        console.log(err);
+                    }).catch(error => {
+                        console.log(error);
                     });
 
-                } catch (err) {
-                    console.log(err);
+                } catch (error) {
+                    console.log(error);
                 }
             }
         },
@@ -150,16 +164,17 @@ export default {
             try {
                 const res = await this.getRoom(id);
                 this.roomData = res.datas;
-            } catch (err) {
-                console.log(err);
+                console.log(res)
+            } catch (error) {
+                console.log(error);
             }
         },
         async newRoom () {
             try {
                 this.submitted = false;
                 this.room = {};
-            } catch (err) {
-                console.log(err);
+            } catch (error) {
+                console.log(error);
             }
         },
         nextWizard () {

@@ -87,7 +87,7 @@ export default {
     watch: {
         getData(newVal) {
             if(newVal==1) {
-                this.room.prices = priceDetailsData
+                // this.room.prices = priceDetailsData
                 this.$emit('priceInfo', this.room)
             }
         }

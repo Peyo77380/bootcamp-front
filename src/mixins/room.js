@@ -31,7 +31,6 @@ export const Rooms = {
                 }
             }
         },
-        // Thomas
         async getRoom(id) {
             try {
                 const response = await api.get(`room/${id}`);
@@ -77,6 +76,5 @@ export const Rooms = {
                 }
             }
         }
-        // Fin Thomas
     }
 }
