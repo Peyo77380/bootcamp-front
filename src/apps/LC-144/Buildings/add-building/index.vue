@@ -140,9 +140,29 @@
                         <div>Photos</div>
                     </template>
                     <v-card>
-                        <v-card-text class="grey lighten-3"
-                            >ici les photos du bâtiment</v-card-text
-                        >
+                        <v-card-text class="grey lighten-3">
+                            <div class="position-relative form-group">
+                                <!--
+                                    
+                                <label for="addingNewImageBrowser" class=""
+                                    >Ajoutez les photos du bâtiment ici</label
+                                >
+
+                                -->
+                                <div class="custom-file">
+                                    <input
+                                        type="file"
+                                        id="addingNewImageBrowser"
+                                        name="customFile"
+                                        class="custom-file-input"
+                                    /><label
+                                        class="custom-file-label"
+                                        for="addingNewImageBrowser"
+                                        >Télécharger un fichier</label
+                                    >
+                                </div>
+                            </div>
+                        </v-card-text>
                     </v-card>
                 </v-expansion-panel-content>
             </v-expansion-panel>
