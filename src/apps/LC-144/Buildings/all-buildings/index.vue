@@ -41,6 +41,35 @@
                                         </h6>
                                     </div>
                                 </b-tab>
+                                <b-tab title="Détail">
+                                    <div>
+                                        <v-layout align-center>
+                                            <v-flex xs12 sm4 text-xs-center>
+                                                <div>
+                                                    <v-btn depressed small
+                                                        >Afficher</v-btn
+                                                    >
+                                                </div>
+                                                <div>
+                                                    <v-btn
+                                                        depressed
+                                                        small
+                                                        color="primary"
+                                                        >Editer</v-btn
+                                                    >
+                                                </div>
+                                                <div>
+                                                    <v-btn
+                                                        depressed
+                                                        small
+                                                        color="error"
+                                                        >Archiver</v-btn
+                                                    >
+                                                </div>
+                                            </v-flex>
+                                        </v-layout>
+                                    </div>
+                                </b-tab>
                             </b-tabs>
                         </b-card>
 
@@ -60,6 +89,35 @@
                                         <h6 class="text-center">
                                             informations
                                         </h6>
+                                    </div>
+                                </b-tab>
+                                <b-tab title="Détail">
+                                    <div>
+                                        <v-layout align-center>
+                                            <v-flex xs12 sm4 text-xs-center>
+                                                <div>
+                                                    <v-btn depressed small
+                                                        >Afficher</v-btn
+                                                    >
+                                                </div>
+                                                <div>
+                                                    <v-btn
+                                                        depressed
+                                                        small
+                                                        color="primary"
+                                                        >Editer</v-btn
+                                                    >
+                                                </div>
+                                                <div>
+                                                    <v-btn
+                                                        depressed
+                                                        small
+                                                        color="error"
+                                                        >Archiver</v-btn
+                                                    >
+                                                </div>
+                                            </v-flex>
+                                        </v-layout>
                                     </div>
                                 </b-tab>
                             </b-tabs>
@@ -85,6 +143,36 @@
                                         </h6>
                                     </div>
                                 </b-tab>
+
+                                <b-tab title="Détail">
+                                    <div>
+                                        <v-layout align-center>
+                                            <v-flex xs12 sm4 text-xs-center>
+                                                <div>
+                                                    <v-btn depressed small
+                                                        >Afficher</v-btn
+                                                    >
+                                                </div>
+                                                <div>
+                                                    <v-btn
+                                                        depressed
+                                                        small
+                                                        color="primary"
+                                                        >Editer</v-btn
+                                                    >
+                                                </div>
+                                                <div>
+                                                    <v-btn
+                                                        depressed
+                                                        small
+                                                        color="error"
+                                                        >Archiver</v-btn
+                                                    >
+                                                </div>
+                                            </v-flex>
+                                        </v-layout>
+                                    </div>
+                                </b-tab>
                             </b-tabs>
                         </b-card>
                         <b-card class="mb-3 nav-justified" no-body>
@@ -103,6 +191,36 @@
                                         <h6 class="text-center">
                                             informations
                                         </h6>
+                                    </div>
+                                </b-tab>
+
+                                <b-tab title="Détail">
+                                    <div>
+                                        <v-layout align-center>
+                                            <v-flex xs12 sm4 text-xs-center>
+                                                <div>
+                                                    <v-btn depressed small
+                                                        >Afficher</v-btn
+                                                    >
+                                                </div>
+                                                <div>
+                                                    <v-btn
+                                                        depressed
+                                                        small
+                                                        color="primary"
+                                                        >Editer</v-btn
+                                                    >
+                                                </div>
+                                                <div>
+                                                    <v-btn
+                                                        depressed
+                                                        small
+                                                        color="error"
+                                                        >Archiver</v-btn
+                                                    >
+                                                </div>
+                                            </v-flex>
+                                        </v-layout>
                                     </div>
                                 </b-tab>
                             </b-tabs>
@@ -127,6 +245,36 @@
                                         </h6>
                                     </div>
                                 </b-tab>
+
+                                <b-tab title="Détail">
+                                    <div>
+                                        <v-layout align-center>
+                                            <v-flex xs12 sm4 text-xs-center>
+                                                <div>
+                                                    <v-btn depressed small
+                                                        >Afficher</v-btn
+                                                    >
+                                                </div>
+                                                <div>
+                                                    <v-btn
+                                                        depressed
+                                                        small
+                                                        color="primary"
+                                                        >Editer</v-btn
+                                                    >
+                                                </div>
+                                                <div>
+                                                    <v-btn
+                                                        depressed
+                                                        small
+                                                        color="error"
+                                                        >Archiver</v-btn
+                                                    >
+                                                </div>
+                                            </v-flex>
+                                        </v-layout>
+                                    </div>
+                                </b-tab>
                             </b-tabs>
                         </b-card>
 
@@ -146,6 +294,36 @@
                                         <h6 class="text-center">
                                             informations
                                         </h6>
+                                    </div>
+                                </b-tab>
+
+                                <b-tab title="Détail">
+                                    <div>
+                                        <v-layout align-center>
+                                            <v-flex xs12 sm4 text-xs-center>
+                                                <div>
+                                                    <v-btn depressed small
+                                                        >Afficher</v-btn
+                                                    >
+                                                </div>
+                                                <div>
+                                                    <v-btn
+                                                        depressed
+                                                        small
+                                                        color="primary"
+                                                        >Editer</v-btn
+                                                    >
+                                                </div>
+                                                <div>
+                                                    <v-btn
+                                                        depressed
+                                                        small
+                                                        color="error"
+                                                        >Archiver</v-btn
+                                                    >
+                                                </div>
+                                            </v-flex>
+                                        </v-layout>
                                     </div>
                                 </b-tab>
                             </b-tabs>
@@ -177,6 +355,36 @@
                                         </h6>
                                     </div>
                                 </b-tab>
+
+                                <b-tab title="Détail">
+                                    <div>
+                                        <v-layout align-center>
+                                            <v-flex xs12 sm4 text-xs-center>
+                                                <div>
+                                                    <v-btn depressed small
+                                                        >Afficher</v-btn
+                                                    >
+                                                </div>
+                                                <div>
+                                                    <v-btn
+                                                        depressed
+                                                        small
+                                                        color="primary"
+                                                        >Editer</v-btn
+                                                    >
+                                                </div>
+                                                <div>
+                                                    <v-btn
+                                                        depressed
+                                                        small
+                                                        color="error"
+                                                        >Archiver</v-btn
+                                                    >
+                                                </div>
+                                            </v-flex>
+                                        </v-layout>
+                                    </div>
+                                </b-tab>
                             </b-tabs>
                         </b-card>
 
@@ -196,6 +404,36 @@
                                         <h6 class="text-center">
                                             informations
                                         </h6>
+                                    </div>
+                                </b-tab>
+
+                                <b-tab title="Détail">
+                                    <div>
+                                        <v-layout align-center>
+                                            <v-flex xs12 sm4 text-xs-center>
+                                                <div>
+                                                    <v-btn depressed small
+                                                        >Afficher</v-btn
+                                                    >
+                                                </div>
+                                                <div>
+                                                    <v-btn
+                                                        depressed
+                                                        small
+                                                        color="primary"
+                                                        >Editer</v-btn
+                                                    >
+                                                </div>
+                                                <div>
+                                                    <v-btn
+                                                        depressed
+                                                        small
+                                                        color="error"
+                                                        >Archiver</v-btn
+                                                    >
+                                                </div>
+                                            </v-flex>
+                                        </v-layout>
                                     </div>
                                 </b-tab>
                             </b-tabs>
@@ -221,6 +459,36 @@
                                         </h6>
                                     </div>
                                 </b-tab>
+
+                                <b-tab title="Détail">
+                                    <div>
+                                        <v-layout align-center>
+                                            <v-flex xs12 sm4 text-xs-center>
+                                                <div>
+                                                    <v-btn depressed small
+                                                        >Afficher</v-btn
+                                                    >
+                                                </div>
+                                                <div>
+                                                    <v-btn
+                                                        depressed
+                                                        small
+                                                        color="primary"
+                                                        >Editer</v-btn
+                                                    >
+                                                </div>
+                                                <div>
+                                                    <v-btn
+                                                        depressed
+                                                        small
+                                                        color="error"
+                                                        >Archiver</v-btn
+                                                    >
+                                                </div>
+                                            </v-flex>
+                                        </v-layout>
+                                    </div>
+                                </b-tab>
                             </b-tabs>
                         </b-card>
                         <b-card class="mb-3 nav-justified" no-body>
@@ -239,6 +507,36 @@
                                         <h6 class="text-center">
                                             informations
                                         </h6>
+                                    </div>
+                                </b-tab>
+
+                                <b-tab title="Détail">
+                                    <div>
+                                        <v-layout align-center>
+                                            <v-flex xs12 sm4 text-xs-center>
+                                                <div>
+                                                    <v-btn depressed small
+                                                        >Afficher</v-btn
+                                                    >
+                                                </div>
+                                                <div>
+                                                    <v-btn
+                                                        depressed
+                                                        small
+                                                        color="primary"
+                                                        >Editer</v-btn
+                                                    >
+                                                </div>
+                                                <div>
+                                                    <v-btn
+                                                        depressed
+                                                        small
+                                                        color="error"
+                                                        >Archiver</v-btn
+                                                    >
+                                                </div>
+                                            </v-flex>
+                                        </v-layout>
                                     </div>
                                 </b-tab>
                             </b-tabs>
@@ -263,6 +561,36 @@
                                         </h6>
                                     </div>
                                 </b-tab>
+
+                                <b-tab title="Détail">
+                                    <div>
+                                        <v-layout align-center>
+                                            <v-flex xs12 sm4 text-xs-center>
+                                                <div>
+                                                    <v-btn depressed small
+                                                        >Afficher</v-btn
+                                                    >
+                                                </div>
+                                                <div>
+                                                    <v-btn
+                                                        depressed
+                                                        small
+                                                        color="primary"
+                                                        >Editer</v-btn
+                                                    >
+                                                </div>
+                                                <div>
+                                                    <v-btn
+                                                        depressed
+                                                        small
+                                                        color="error"
+                                                        >Archiver</v-btn
+                                                    >
+                                                </div>
+                                            </v-flex>
+                                        </v-layout>
+                                    </div>
+                                </b-tab>
                             </b-tabs>
                         </b-card>
 
@@ -282,6 +610,36 @@
                                         <h6 class="text-center">
                                             informations
                                         </h6>
+                                    </div>
+                                </b-tab>
+
+                                <b-tab title="Détail">
+                                    <div>
+                                        <v-layout align-center>
+                                            <v-flex xs12 sm4 text-xs-center>
+                                                <div>
+                                                    <v-btn depressed small
+                                                        >Afficher</v-btn
+                                                    >
+                                                </div>
+                                                <div>
+                                                    <v-btn
+                                                        depressed
+                                                        small
+                                                        color="primary"
+                                                        >Editer</v-btn
+                                                    >
+                                                </div>
+                                                <div>
+                                                    <v-btn
+                                                        depressed
+                                                        small
+                                                        color="error"
+                                                        >Archiver</v-btn
+                                                    >
+                                                </div>
+                                            </v-flex>
+                                        </v-layout>
                                     </div>
                                 </b-tab>
                             </b-tabs>
