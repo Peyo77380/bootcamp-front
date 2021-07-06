@@ -42,12 +42,28 @@
                                     label="Identifiant"
                                 ></v-text-field>
                             </v-layout>
-
-                            <v-text-field
-                                v-model="formItem.variation"
-                                label="Variation"
-                            ></v-text-field>
-
+                            <v-layout>
+                                <v-text-field
+                                    v-model="formItem.variation"
+                                    label="Variation"
+                                ></v-text-field>
+                                <v-flex>
+                                    <v-text-field
+                                        label="Image"
+                                        @click="onPickFile"
+                                        v-model="imageProduct"
+                                        prepend-icon="attach_file"
+                                    ></v-text-field>
+                                    <!-- Hidden -->
+                                    <input
+                                        type="file"
+                                        style="display: none"
+                                        ref="fileInput"
+                                        accept="image/*"
+                                        @change="onFilePicked"
+                                    />
+                                </v-flex>
+                            </v-layout>
                             <v-layout>
                                 <v-text-field
                                     v-model="formItem.priceTTC"
@@ -179,13 +195,63 @@ export default {
                 "Location bureau partagé"
             ],
             radioDisplays: ["Admin", "Membres", "Boutique"],
-            states: ["Actif", "Désactivé"]
+            states: ["Actif", "Désactivé"],
+            imageProduct: "",
+            url: "",
+            fileObject: null,
+            cardResult: "",
+            name: "",
+            size: "",
+            type: "",
+            lastModifiedDate: "",
+            loading: false
         };
     },
     methods: {
         confirmer() {
             this.handleRegister(this.formMode, this.formItem);
             this.closeForm();
+        },
+        onPickFile() {
+            this.$refs.fileInput.click();
+        },
+        onFilePicked(event) {
+            const files = event.target.files;
+            if (files[0] !== undefined) {
+                this.imageProduct = files[0].name;
+                // Check validity of file
+                if (this.imageProduct.lastIndexOf(".") <= 0) {
+                    return;
+                }
+                // If valid, continue
+                const fr = new FileReader();
+                fr.readAsDataURL(files[0]);
+                fr.addEventListener("load", () => {
+                    this.url = fr.result;
+                    this.fileObject = files[0]; // this is an file that can be sent to server...
+                });
+            } else {
+                this.imageProduct = "";
+                this.fileObject = null;
+                this.url = "";
+            }
+        },
+        onUploadSelectedFileClick() {
+            this.loading = true;
+
+            console.log(this.fileObject);
+            // A file is not chosen!
+            if (!this.fileObject) {
+                alert("No file!!");
+            }
+            // DO YOUR JOB HERE with fileObjectToUpload
+            // https://developer.mozilla.org/en-US/docs/Web/API/File/File
+            this.name = this.fileObject.name;
+            this.size = this.fileObject.size;
+            this.type = this.fileObject.type;
+            this.lastModifiedDate = this.fileObject.lastModifiedDate;
+            // DO YOUR JOB HERE with fileObjectToUpload
+            this.loading = false;
         }
     }
 };

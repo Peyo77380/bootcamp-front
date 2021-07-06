@@ -93,7 +93,6 @@ export default {
                 ? (this.formLayout.title = "Modifier un service/produit")
                 : (this.formLayout.title = "Ajouter un service/produit");
         },
-
         closeForm() {
             this.isFormOpen = false;
         },
@@ -105,7 +104,7 @@ export default {
                 // await this.deleteProductService(id)
                 //  this.loadProductsServices()
             } catch (error) {
-                console.error(error);
+                console.log(id);
             }
         },
         async handleRegister(item, mode) {
