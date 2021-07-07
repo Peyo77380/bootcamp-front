@@ -10,10 +10,12 @@ export default new Router({
     routes: [
         // Dashboards
 
+       
         {
-            path: "/",
-            name: "analytics",
-            component: () => import("@/apps/dash-exemple/Analytics")
-        }
+            name: 'faq',
+            path: '/LC-186',
+            component: () => import('../apps/LC-186'),
+        },
+
     ]
 });
