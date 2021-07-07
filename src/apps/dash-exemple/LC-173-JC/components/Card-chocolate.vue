@@ -4,7 +4,7 @@
             <b-card-group>
                 <b-card no-body class="overflow-hidden">
                     <b-row no-gutters align-v="center" class="p-0">
-                        <b-col class="avatarCardInfo">
+                        <b-col cols="12" class="avatarCardInfo">
                             <b-img :src="item.avatar"
                                    alt=""
                                    height="80"
@@ -13,34 +13,24 @@
                                    class="avatar mx-3 mt-1 border-chocolate">
                             </b-img>
                         </b-col>
-                        <b-col class="mainCardInfo mt-3">
+                        <b-col class="mainCardInfo mt-3 overflow-x-hidden no-wrap">
                             <p class="firstnameCardInfo text-chocolate">{{ item.firstname }} {{ item.lastname }}</p>
                             <p class="nameCardInfo"></p>
                             <p class="mailCardInfo">whatsgoingon@gmail.com</p>
                             <p class="phoneCardInfo">(+33) ## ## ## ## ##</p>
                         </b-col>
-                        <b-col class="addsCardInfo overflow-hidden pt-3 pb-2 bg-chocolate">
-                            <p class="pr-3 mb-2 font-weight-bold">Société
-                                <b-icon icon="building" aria-hidden="true" class="iconCardsInfo ml-1 mt-n1"></b-icon>
+                        <b-col cols="12" class="addsCardInfo overflow-hidden ml-1 pt-3 pb-1 bg-chocolate">
+                            <p class="pr-3 mb-1 font-weight-bold">Société
+                                <b-icon icon="building" aria-hidden="true" class="iconCardsInfo ml-1"></b-icon>
                             </p>
                             <hr>
-                            <p class="pr-3 mb-2">325
-                                <b-icon icon="wallet-2" aria-hidden="true" class="iconCardsInfo ml-1 mt-n1"></b-icon>
+                            <p class="pr-3 mb-2"><span class="addsCardInfo-optional">325</span>
+                                <b-icon icon="wallet-2" aria-hidden="true" class="iconCardsInfo ml-1"></b-icon>
                             </p>
-                            <p class="pr-3 mb-2">1 h 30 min
-                                <b-icon icon="clock" aria-hidden="true" class="iconCardsInfo ml-1 mt-n1"></b-icon>
+                            <p class="pr-3 mb-2"><span class="addsCardInfo-optional">1 h 30 min</span>
+                                <b-icon icon="clock" aria-hidden="true" class="iconCardsInfo ml-1"></b-icon>
                             </p>
-                            <!--                            <b-row align-h="center" class="mx-0">-->
-                            <!--                                &lt;!&ndash; Using modifiers &ndash;&gt;-->
-                            <!--                                <b-button v-b-toggle.collapse-2 class="btn-outline-sunglo">-->
-                            <!--                                    <b-icon icon="card-text"-->
-                            <!--                                            aria-hidden="true"-->
-                            <!--                                            class="iconCardsInfo mr-1"></b-icon>-->
-                            <!--                                    Détails-->
-                            <!--                                </b-button>-->
-                            <!--                            </b-row>-->
                         </b-col>
-
                     </b-row>
                     <!-- Element to collapse -->
                     <b-collapse id="collapse-2">
@@ -245,44 +235,16 @@ export default {
 
 <style scoped>
 .wallCard {
-    letter-spacing: 0.025rem;
-}
-
-.card-group {
-    width : 100%;
-    min-width: 440px;
-    font-weight:  500;
-
+    letter-spacing : 0.025rem;
 }
 
 .card-group > .card:only-child {
     border-radius : 6px;
 }
 
-hr {
-    //margin-top    : 20px;
-    //margin-bottom : 20px;
-}
-
-.wallCard > div {
-
-}
-
-.wallCard > div:nth-child(3) {
-
-}
-
-.card-body {
-    //padding : 0;
-}
-
 .avatar {
     border     : 2px solid;
     box-sizing : border-box;
-}
-
-.avatarCardInfo {
-    max-width : 110px;
 }
 
 .mainCardInfo {
@@ -291,60 +253,28 @@ hr {
     width       : auto;
 }
 
-.addsCardInfo {
-    //background-color : #EC6465;
-    text-align       : right;
-    max-width        : 130px;
-    min-width        : 120px;
+.mailCardInfo {
+    font-size : 0.85rem;
 }
 
+.avatarCardInfo {
+    max-width : max-content;
+}
+
+.addsCardInfo {
+    text-align : right;
+    max-width  : max-content;
+//box-sizing : border-box;
+}
+
+.addsCardInfo-optional {
+    font-size     : 0.85rem;
+    padding-right : 4px;
+    padding-left  : 16px;
+}
 
 p > .iconCardsInfo {
     color : #FFF;
-}
-
-.addsCardInfo button {
-    border           : 1px solid #FFF;
-    background-color : rgba(236, 100, 101, 0);
-    color            : #FFF;
-    letter-spacing: 0.025rem;
-    font-weight:  500;
-    font-size: 1rem;
-}
-
-.addsCardInfo button:hover {
-    //color            : #EC6465;
-    //background-color : rgba(255, 255, 255, 1);
-}
-
-.addsCardInfo button:active {
-    //background-color : rgba(236, 100, 101, 1);
-    //color            : #FFF;
-}
-
-.iconCardsInfo {
-    position  : relative;
     font-size : 1.3rem;
-    top       : -1px;
-}
-
-@media (min-width : 980px) {
-    .wallCard > div:nth-child(odd) {
-    //padding-right : 20px;
-    }
-
-    .wallCard > div:nth-child(even) {
-    //padding-left : 20px;
-    }
-}
-
-@media (min-width : 980px) {
-    .wallCard > div:nth-child(odd) {
-    //padding-right : 20px;
-    }
-
-    .wallCard > div:nth-child(even) {
-    //padding-left : 20px;
-    }
 }
 </style>
