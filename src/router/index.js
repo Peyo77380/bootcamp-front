@@ -163,6 +163,13 @@ export default new Router({
             path: "/LC-31-RMC",
             name: "LC-31-RMC",
             component: () => import("@/apps/LC-31-RMC/index.vue")
+            name: "analytics",
+            component: () => import("@/apps/dash-exemple/Analytics")
+        },
+        {
+            path: "/wallCard",
+            name: "wallCard",
+            component: () => import("@/apps/dash-exemple/LC-173-JC/WallCard")
         }
     ]
 });
