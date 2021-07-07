@@ -32,7 +32,8 @@
                                                     <b-dropdown
                                                         toggle-class="btn-icon btn-icon-only"
                                                         variant="link"
-                                                        left
+                                                        text="Left align"
+                                                        toggle
                                                     >
                                                         <span slot="button-content"></span>
                                                         <div>
@@ -67,7 +68,6 @@
                                                                 </div>
                                                             </button>
                                                             <div
-                                                                tabindex="-1"
                                                                 class="dropdown-divider"
                                                             ></div>
                                                             <div class="p-1 ml-4">
