@@ -9,7 +9,7 @@
                 @click="addModal"
                 >
                     <i class="btn-icon-wrapper lnr-plus-circle"></i> Ajouter une nouvelle Action
-                    
+
                 </button>
             </div>
         </div>
@@ -177,6 +177,7 @@ export default {
         //Close Add modal
         cancelModal() {
             this.dialog = false
+            this.newDatas = {};
         },
         // Save Action commercial add and modification
         saveNewDatas() {
@@ -198,6 +199,9 @@ export default {
             this.addModal();
             this.editedIndex = this.commercialData.indexOf(data);
             // TODO Point API modification action commerciale 
+            console.log (data.name)
+            this.newDatas = data
+
         },
         deleteAction(data) {
             this.editedIndex = this.commercialData.indexOf(data);
