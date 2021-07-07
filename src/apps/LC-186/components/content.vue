@@ -14,17 +14,17 @@
       <template v-slot:header >
         <div class="question_font"><i style="margin-right:10px" class="header-icon lnr-question-circle icon-gradient bg-ripe-malin"></i>{{question.label}}</div>
       </template>
-      <v-card style="display:flex; justify-content:space-between">
+      <v-card style="display:flex; justify-content:space-around">
         <v-card-text  class="answer_font">
             {{question.answer}}
         </v-card-text>
       
-        <div style="margin-bottom : 10px" class="btn-group-xl">
+        <div style="display:flex; align-items: end" class="btn-group-xl">
             <b-button
                 class="mb-2 mr-2  btn-pill btn-shadow"
                 variant="primary"
                 id="popover1"
-                @click="showEditModal(item)"
+                @click="showEdit(question)"
                                     >
                 <i class="lnr-pencil"></i>
             </b-button>
@@ -56,15 +56,25 @@
     </v-expansion-panel-content>
     
   </v-expansion-panel>
+  <modal
+        @saveModification="modificationEmail"
+        :questions="QuestionEdit"
+        @close2="closeModalEdit"
+        :dialog2="dialog2"
+        ></modal>
+
   </div>
   
 </template>
 
 <script>
-
+import modal from "./modal.vue"
 export default{
+    components:{
+        modal,
+    },
      data: () => ({
-
+            dialog2: false,
             categories:
             [
             { label:'Au sujet de La Colloc', id:1, classname:'#ec6465' },
@@ -93,7 +103,18 @@ export default{
         this.questions = this.questions.filter(
           (question) => question.id !== Id
         );
+        
+
     },
+        closeModalEdit() {
+                this.dialog2 = false;
+            },
+        showEdit(question) {
+            this.dialog2 = true;
+            this.QuestionEdit = question;
+            
+        },
+
 
 
 
