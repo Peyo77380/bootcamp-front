@@ -14,6 +14,11 @@ export default new Router({
             path: "/",
             name: "analytics",
             component: () => import("@/apps/dash-exemple/Analytics")
+        },
+        {
+            path: "/wallCard",
+            name: "wallCard",
+            component: () => import("@/apps/dash-exemple/LC-173-JC/WallCard")
         }
     ]
 });

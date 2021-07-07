@@ -29,8 +29,8 @@
 </template>
 
 <script>
-import { SidebarMenu } from "vue-sidebar-menu";
-import VuePerfectScrollbar from "vue-perfect-scrollbar";
+import { SidebarMenu } from 'vue-sidebar-menu';
+import VuePerfectScrollbar from 'vue-perfect-scrollbar';
 
 export default {
     components: {
@@ -39,21 +39,25 @@ export default {
     },
     data() {
         return {
-            isOpen: false,
+            isOpen       : false,
             sidebarActive: false,
 
-            menu: [
+            menu     : [
                 {
                     header: true,
-                    title: "Main Navigation"
+                    title : 'Main Navigation'
                 },
                 {
-                    title: "Dashboards",
-                    icon: "pe-7s-rocket",
+                    title: 'Dashboards',
+                    icon : 'pe-7s-rocket',
                     child: [
                         {
-                            href: "/",
-                            title: "Demo page"
+                            href : '/',
+                            title: 'Demo page'
+                        },
+                        {
+                            href : '/wallCard',
+                            title: 'Wall Cards'
                         }
                     ]
                 }
@@ -63,31 +67,31 @@ export default {
             windowWidth: 0
         };
     },
-    props: {
+    props  : {
         sidebarbg: String
     },
     methods: {
-        toggleBodyClass(className) {
+        toggleBodyClass( className ) {
             const el = document.body;
             this.isOpen = !this.isOpen;
 
-            if (this.isOpen) {
-                el.classList.add(className);
+            if ( this.isOpen ) {
+                el.classList.add( className );
             } else {
-                el.classList.remove(className);
+                el.classList.remove( className );
             }
         },
-        toggleSidebarHover(add, className) {
+        toggleSidebarHover( add, className ) {
             const el = document.body;
             this.sidebarActive = !this.sidebarActive;
 
             this.windowWidth = document.documentElement.clientWidth;
 
-            if (this.windowWidth > "992") {
-                if (add === "add") {
-                    el.classList.add(className);
+            if ( this.windowWidth > '992' ) {
+                if ( add === 'add' ) {
+                    el.classList.add( className );
                 } else {
-                    el.classList.remove(className);
+                    el.classList.remove( className );
                 }
             }
         },
@@ -96,24 +100,24 @@ export default {
 
             this.windowWidth = document.documentElement.clientWidth;
 
-            if (this.windowWidth < "1350") {
-                el.classList.add("closed-sidebar", "closed-sidebar-md");
+            if ( this.windowWidth < '1350' ) {
+                el.classList.add( 'closed-sidebar', 'closed-sidebar-md' );
             } else {
-                el.classList.remove("closed-sidebar", "closed-sidebar-md");
+                el.classList.remove( 'closed-sidebar', 'closed-sidebar-md' );
             }
         }
     },
     mounted() {
-        this.$nextTick(function() {
-            window.addEventListener("resize", this.getWindowWidth);
+        this.$nextTick( function () {
+            window.addEventListener( 'resize', this.getWindowWidth );
 
             //Init
             this.getWindowWidth();
-        });
+        } );
     },
 
     beforeDestroy() {
-        window.removeEventListener("resize", this.getWindowWidth);
+        window.removeEventListener( 'resize', this.getWindowWidth );
     }
 };
 </script>
