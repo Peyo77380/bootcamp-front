@@ -55,8 +55,32 @@ export default {
                             title: 'Demo page'
                         },
                         {
-                            href : '/wallCard',
-                            title: 'Wall Cards'
+                            href : '/wallCardSunglo-1',
+                            title: 'Wall Cards - sunglo v1'
+                        },
+                        {
+                            href : '/wallCardSunglo-2',
+                            title: 'Wall Cards - sunglo v2'
+                        },
+                        {
+                            href : '/wallCardSunglo-3',
+                            title: 'Wall Cards - sunglo v3'
+                        },
+                        {
+                            href : '/wallCardChocolate',
+                            title: 'Wall Cards - chocolate'
+                        },
+                        {
+                            href : '/wallCardTradewind',
+                            title: 'Wall Cards - tradewind'
+                        },
+                        {
+                            href : '/wallCardCorn',
+                            title: 'Wall Cards - corn'
+                        },
+                        {
+                            href : '/wallCardMidnightBlue',
+                            title: 'Wall Cards - midnightBlue'
                         }
                     ]
                 },
