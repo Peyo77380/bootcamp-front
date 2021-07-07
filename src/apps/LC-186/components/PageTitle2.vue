@@ -13,12 +13,7 @@
                     </div>
                 </div>
             </div>
-            <div class="page-title-actions">
-               <button type="button" class="btn-shadow d-inline-flex align-items-center btn btn-success">
-                    <font-awesome-icon class="mr-2" icon="plus"/>
-                    Créer Question
-                </button>
-            </div>
+            
         </div>
     </div>
 </template>

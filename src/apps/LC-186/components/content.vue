@@ -1,4 +1,23 @@
 <template>
+<div>
+<div class="col-12 page-title-actions" style="margin-bottom: 10px;">
+            <button style="margin-right: 15px"
+                @click="showNewQuestionModal"
+                type="button"
+                class="btn-shadow d-inline-flex align-items-center btn btn-success"
+            >
+                <font-awesome-icon class="mr-2" icon="plus" />
+                Ajouter une question
+            </button>
+            <button
+                @click="showNewCategoryModal"
+                type="button"
+                class="btn-shadow d-inline-flex align-items-center btn btn-success"
+            >
+                <font-awesome-icon class="mr-2" icon="plus" />
+                Ajouter une catégorie
+            </button>
+</div>
 <div class="col-12 ">
   <v-expansion-panel   :style="{background:category.classname}"
   v-for="category in categories" :key="category.id"
@@ -56,25 +75,46 @@
     </v-expansion-panel-content>
     
   </v-expansion-panel>
-  <modal
-        @saveModification="modificationEmail"
+    <modal
+        @saveModification="modificationQuestion"
         :questions="QuestionEdit"
         @close2="closeModalEdit"
         :dialog2="dialog2"
-        ></modal>
+    ></modal>
+    <add-modal-category
+        :closeAddModalCategory="closeModalNewCategory"
+        :isAddModeCategory="isAddCategory"
+        :handleAddCategory="handleAddCategory"
+    ></add-modal-category>
+    <add-modal-question
+        :closeAddModalQuestion="closeModalNewQuestion"
+        :isAddModeQuestion="isAddQuestion"
+        :handleAddQuestion="handleAddQuestion"
+    ></add-modal-question>
+
 
   </div>
-  
+  </div>
 </template>
 
 <script>
-import modal from "./modal.vue"
+import modal from "./EditModal.vue"
+import AddModalCategory from './AddModalCategory.vue'
+import AddModalQuestion from './AddModalQuestion.vue'
+import { FontAwesomeIcon } from "@fortawesome/vue-fontawesome";
+
 export default{
     components:{
+        "font-awesome-icon": FontAwesomeIcon,
         modal,
+        AddModalCategory,
+        AddModalQuestion
     },
      data: () => ({
+            isAddQuestion: false,
+            isAddCategory: false,
             dialog2: false,
+            QuestionEdit: {},
             categories:
             [
             { label:'Au sujet de La Colloc', id:1, classname:'#ec6465' },
@@ -107,13 +147,52 @@ export default{
 
     },
         closeModalEdit() {
-                this.dialog2 = false;
-            },
+            this.dialog2 = false;
+        },
+        async handleAddQuestion(question) {
+            try {
+                const res = await this.addQuestion(question);
+                this.loadQuestions();
+            } catch (error) {
+                console.error(error);
+            }
+        },
+        async handleAddCategory(category) {
+                    try {
+                        const res = await this.addCategory(category);
+                        this.loadCategories();
+                    } catch (error) {
+                        console.error(error);
+                    }
+                },
+
+        closeModalNewQuestion() {
+            this.isAddQuestion = false;
+        },
+        closeModalNewCategory() {
+            this.isAddCategory = false;
+        },
+        showNewQuestionModal() {
+            this.isAddQuestion = true;
+        },
+
+        showNewCategoryModal() {
+            this.isAddCategory = true;
+        },
+
+
         showEdit(question) {
             this.dialog2 = true;
             this.QuestionEdit = question;
             
         },
+        modificationQuestion() {
+            //TODO point API modification email de services
+
+            var title = "Modification de la question réussie !";
+            this.$sweetNotif(title);
+        }
+
 
 
 

@@ -10,6 +10,18 @@
           
           <v-container>
             <b-form row wrap>
+                <v-select
+                                
+                                :items="categories"
+                                item-text="label"
+                                item-value="label"
+                                persistent
+                                return-object
+                                single-line
+                                outlined
+                            >
+                            </v-select>
+
               <b-form-group
                 id="input-group-1"
                 label="Question :"
@@ -71,7 +83,16 @@ export default {
     questions: {
       type: Object,
     },
+    categories:{
+        type: Object,
+    }
   },
+  computed: {
+        editCategory() {
+            return { ...this.categories };
+        }
+    },
+
   methods: {
     close2() {
       this.$emit("close2");
