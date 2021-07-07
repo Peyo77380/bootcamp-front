@@ -70,12 +70,12 @@
 </template>
 
 <script>
-import Card2 from '@/apps/dash-exemple/LC-173-JC/components/Card-tradewind.vue';
+import Card from '@/apps/dash-exemple/LC-173-JC/components/Card-tradewind.vue';
 
 export default {
-    name      : 'WallCard2',
+    name      : 'WallCard',
     components: {
-        'card': Card2
+        'card': Card
     },
     data() {
         return {
