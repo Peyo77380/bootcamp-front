@@ -9,6 +9,7 @@
                 @click="addModal"
                 >
                     <i class="btn-icon-wrapper lnr-plus-circle"></i> Ajouter une nouvelle Action
+                    
                 </button>
             </div>
         </div>
