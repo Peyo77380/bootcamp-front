@@ -6,6 +6,7 @@ export const Buildings = {
         async getAllBuildings() {
             try {
                 const response = await api.get('building')
+                console.log(response.data.datas);
                 return {
                     status: 1,
                     datas: response.data.datas

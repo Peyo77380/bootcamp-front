@@ -654,6 +654,7 @@
 <script>
 import PageTitle from "@/Layout/Components/PageTitle.vue";
 import Tabs from "vue-tabs-with-active-line";
+import { Buildings } from "@/mixins/building"
 
 const TABS = [
     {
@@ -671,18 +672,30 @@ export default {
         PageTitle,
         Tabs
     },
+    mixins: [ Buildings ],
     data: () => ({
         heading: "LA COLLOC - UNE FABRIQUE DE TRANSITION(S)",
         subheading: "listing des espaces de coworking",
         icon: "pe-7s-paper-plane icon-gradient bg-happy-itmeo",
 
         tabs: TABS,
-        currentTab: "building1"
+        currentTab: "building1",
+        buildings: []
     }),
-
+    mounted () {
+        this.getBuildings();
+    },
     methods: {
         handleClick(newTab) {
             this.currentTab = newTab;
+        },
+        async getBuildings () {
+            const res = await this.getAllBuildings();
+            if (res.error) {
+                return console.log(res.error);
+            }
+            this.buildings = res.datas;
+            console.log(this.buildings);
         }
     }
 };
