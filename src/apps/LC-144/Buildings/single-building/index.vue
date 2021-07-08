@@ -17,7 +17,7 @@
                                 <div>
                                     <div class="input-group">
                                         <v-text-field
-                                            v-model="buildingname"
+                                            v-model="building.name"
                                             label="Nom du bâtiment"
                                             data-vv-name="buildingname"
                                             value="valeur à récupérer"
@@ -28,7 +28,7 @@
                                     <br />
                                     <div class="input-group">
                                         <v-text-field
-                                            v-model="nbstreet"
+                                            v-model="building.location.address"
                                             label="Numéro et rue"
                                             data-vv-name="nbstreet"
                                             disabled
@@ -38,7 +38,7 @@
                                     <br />
                                     <div class="input-group">
                                         <v-text-field
-                                            v-model="pcode"
+                                            v-model="building.location.zipCode"
                                             label="Code postal"
                                             data-vv-name="pcode"
                                             disabled
@@ -48,7 +48,7 @@
                                     <br />
                                     <div class="input-group">
                                         <v-text-field
-                                            v-model="city"
+                                            v-model="building.location.city"
                                             label="Ville"
                                             data-vv-name="city"
                                             disabled
@@ -58,7 +58,7 @@
                                     <br />
                                     <div class="input-group">
                                         <v-text-field
-                                            v-model="country"
+                                            v-model="building.location.country"
                                             label="Pays"
                                             data-vv-name="country"
                                             disabled
