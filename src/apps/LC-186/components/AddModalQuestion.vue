@@ -14,9 +14,20 @@
                     </v-card-title>
                     <v-container>
                         <b-form row wrap>
+                         <v-select
+                            v-model="newQuestion.category"
+                            :items="categories"
+                            item-text="label"
+                            item-value="label"
+                            persistent-hint
+                            return-object
+                            single-line
+                        >
+                        </v-select>
+
                             <b-form-group
                                 id="input-group-1"
-                                label="Label :"
+                                label="Question :"
                                 label-for="input-1"
                             >
                                 <b-form-input
@@ -24,6 +35,17 @@
                                     v-model="newQuestion.label"
                                     required
                                 ></b-form-input>
+                            </b-form-group>
+                            <b-form-group
+                                id="input-group-1"
+                                label="Réponse :"
+                                label-for="input-1"
+                            >
+                                <b-form-textarea
+                                    id="input-1"
+                                    v-model="newQuestion.answer"
+                                    required
+                                ></b-form-textarea>
                             </b-form-group>
                             <div
                                 class="p-1 text-right btn-group-sm "
@@ -52,17 +74,19 @@
 </template>
 
 <script>
-
+import { categories } from "@/utils/globalCategories";
 export default {
     name: "new-question-modal",
     components: {},
     data() {
         return {
             newQuestion: {
-                answer: "Champs texte",
-                label: "Champs texte",
-                key: ""
+                answer: "Réponse",
+                label: "Question ?",
+            category : "Au sujet de La Colloc"
+                
             },
+            categories:categories
             
         };
     },
@@ -75,7 +99,8 @@ export default {
         },
         closeAddModalQuestion: {
             type: Function
-        }
+        },
+        
     },
     methods: {
         async saveModification() {
@@ -87,7 +112,7 @@ export default {
                 await this.handleAddQuestion(newQuestWlAdded);
                 this.closeAddModalQuestion();
                 this.newQuestion = {
-                    answer: "Champs texte",
+                    answer: "",
                     label: "",
                     key: ""
                 };

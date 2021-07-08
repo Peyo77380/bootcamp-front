@@ -62,7 +62,7 @@ export default {
     data() {
         return {
             newCategory: {
-                label: "Champs texte",
+                label: "Nom de la catégorie",
                
             },
         };

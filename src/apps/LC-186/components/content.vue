@@ -22,7 +22,21 @@
   <v-expansion-panel   :style="{background:category.classname}"
   v-for="category in categories" :key="category.id"
   >
-  <div style="margin-bottom:10px; margin-top:10px" class="title_font">{{category.label}}</div>
+  <div style="margin-bottom:10px; margin-top:10px" class="title_font">{{category.label}} 
+            <b-button style="margin-left:20px"
+                class="mb-2 mr-2  btn-pill btn-shadow"
+                variant="primary"
+                id="popover1"
+                @click="showEditCategory(category)"
+                                    >
+                <i class="lnr-pencil"></i>
+            </b-button>
+            <b-popover
+                :target="'popover1'"
+                placement="bottomleft"
+                triggers="hover focus"
+                                    >
+            </b-popover></div>
  
       
     <v-expansion-panel-content 
@@ -38,7 +52,7 @@
             {{question.answer}}
         </v-card-text>
       
-        <div style="display:flex; align-items: end" class="btn-group-xl">
+        <div style="display:flex; align-items: end; margin-right:20px" class="btn-group-xl">
             <b-button
                 class="mb-2 mr-2  btn-pill btn-shadow"
                 variant="primary"
@@ -80,7 +94,15 @@
         :questions="QuestionEdit"
         @close2="closeModalEdit"
         :dialog2="dialog2"
+    
     ></modal>
+    <edit-category-modal
+        @saveModification="modificationCategory"
+        @close="closeModalEditCategory"
+        :dialog="dialog"
+        :categories="CategoryEdit"
+    
+    ></edit-category-modal>
     <add-modal-category
         :closeAddModalCategory="closeModalNewCategory"
         :isAddModeCategory="isAddCategory"
@@ -98,7 +120,8 @@
 </template>
 
 <script>
-import modal from "./EditModal.vue"
+import EditCategoryModal from './EditCategoryModal.vue'
+import modal from "./EditQuestionModal.vue"
 import AddModalCategory from './AddModalCategory.vue'
 import AddModalQuestion from './AddModalQuestion.vue'
 import { FontAwesomeIcon } from "@fortawesome/vue-fontawesome";
@@ -108,13 +131,17 @@ export default{
         "font-awesome-icon": FontAwesomeIcon,
         modal,
         AddModalCategory,
-        AddModalQuestion
+        AddModalQuestion,
+        EditCategoryModal
     },
      data: () => ({
             isAddQuestion: false,
             isAddCategory: false,
             dialog2: false,
             QuestionEdit: {},
+            dialog:false,
+            CategoryEdit:{},
+            
             categories:
             [
             { label:'Au sujet de La Colloc', id:1, classname:'#ec6465' },
@@ -149,6 +176,9 @@ export default{
         closeModalEdit() {
             this.dialog2 = false;
         },
+        closeModalEditCategory() {
+            this.dialog = false;
+        },
         async handleAddQuestion(question) {
             try {
                 const res = await this.addQuestion(question);
@@ -174,10 +204,12 @@ export default{
         },
         showNewQuestionModal() {
             this.isAddQuestion = true;
+           
         },
 
         showNewCategoryModal() {
             this.isAddCategory = true;
+            
         },
 
 
@@ -186,10 +218,21 @@ export default{
             this.QuestionEdit = question;
             
         },
+        showEditCategory(category) {
+            this.dialog = true;
+            this.CategoryEdit = category;
+            
+        },
         modificationQuestion() {
             //TODO point API modification email de services
 
             var title = "Modification de la question réussie !";
+            this.$sweetNotif(title);
+        },
+        modificationCategory() {
+            //TODO point API modification email de services
+
+            var title = "Modification de la catégorie réussie !";
             this.$sweetNotif(title);
         }
 

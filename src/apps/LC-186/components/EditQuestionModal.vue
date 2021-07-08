@@ -67,14 +67,26 @@
 </template>
 
 <script>
-
+import { categories } from "@/utils/globalCategories";
 
 export default {
   name: "edit-question",
   components: {
     
   },
-  
+  data() {
+        return {
+            
+            categories:categories
+            
+        };
+    },
+  computed: {
+        editCategory() {
+            return { ...this.editedCategory };
+        }
+    },
+
 
   props: {
     dialog2: {
@@ -83,9 +95,10 @@ export default {
     questions: {
       type: Object,
     },
-    categories:{
-        type: Object,
-    }
+    editedCategory: {
+            type: Object
+        },
+
   },
   computed: {
         editCategory() {
