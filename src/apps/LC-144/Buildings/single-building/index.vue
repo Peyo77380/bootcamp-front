@@ -198,6 +198,7 @@
 import PageTitle from "@/Layout/Components/PageTitle.vue";
 import Vue from "vue";
 import VeeValidate from "vee-validate";
+import { Buildings } from "@/mixins/building"
 
 Vue.use(VeeValidate);
 
@@ -210,34 +211,37 @@ export default {
         validator: "new"
     },
 
-    data: () => (
-        {
-            name: "",
-            buildingname: "",
-            nbstreet: "",
-            pcode: "",
-            country: "",
-            city: ""
-        },
-        {
+    mixins: [ Buildings ],
+
+    data () {
+        return {
+            building: {},     
             heading: "LA COLLOC - UNE FABRIQUE DE TRANSITION(S)",
             subheading: "afficher un espace de coworking",
             icon: "pe-7s-paper-plane icon-gradient bg-happy-itmeo"
         }
-    ),
+    },
+    mounted () {
+        this.getBuilding();
+    },
 
     methods: {
+        async getBuilding () {
+            const id = this.$route.params.id
+            if (!id) {
+                return;
+            }
+            const res = await this.getBuildingById(id);
+            
+            if (res.error) {
+                console.log(res.error)
+            }
+            this.building = res.datas
+            console.log(this.building)
+        },
         submit() {
             this.$validator.validateAll();
         },
-        clear() {
-            this.buildingname = "";
-            this.nbstreet = "";
-            this.pcode = "";
-            this.country = "";
-            this.city = "";
-            this.$validator.reset();
-        }
     }
 };
 </script>

@@ -6,7 +6,6 @@ export const Buildings = {
         async getAllBuildings() {
             try {
                 const response = await api.get('building')
-                console.log(response.data.datas);
                 return {
                     status: 1,
                     datas: response.data.datas
@@ -18,5 +17,19 @@ export const Buildings = {
                 }
             }
         },
+        async getBuildingById(id) {
+            try {
+                const response = await api.get(`building/${id}`);
+                return {
+                    status: 1,
+                    datas: response.data.datas
+                }
+            } catch (error) {
+                return {
+                    status: 0,
+                    error
+                }
+            }
+        }
     }
 }

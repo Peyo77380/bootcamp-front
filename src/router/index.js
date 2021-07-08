@@ -26,7 +26,7 @@ export default new Router({
             component: () => import("@/apps/LC-144/Buildings/add-building")
         },
         {
-            path: "/show-building",
+            path: "/show-building/:id",
             name: "show-building",
             component: () => import("@/apps/LC-144/Buildings/single-building")
         },
