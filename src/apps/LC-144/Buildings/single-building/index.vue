@@ -5,7 +5,7 @@
             :subheading="subheading"
             :icon="icon"
         ></page-title>
-        <form class="form" method="POST">
+        <form>
             <v-expansion-panel v-model="panel" expand>
                 <v-expansion-panel-content>
                     <template v-slot:header>
@@ -20,7 +20,8 @@
                                             v-model="buildingname"
                                             label="Nom du bâtiment"
                                             data-vv-name="buildingname"
-                                            required
+                                            value="valeur à récupérer"
+                                            disabled
                                         ></v-text-field>
                                     </div>
 
@@ -30,7 +31,7 @@
                                             v-model="nbstreet"
                                             label="Numéro et rue"
                                             data-vv-name="nbstreet"
-                                            required
+                                            disabled
                                         ></v-text-field>
                                     </div>
 
@@ -40,7 +41,7 @@
                                             v-model="pcode"
                                             label="Code postal"
                                             data-vv-name="pcode"
-                                            required
+                                            disabled
                                         ></v-text-field>
                                     </div>
 
@@ -50,7 +51,7 @@
                                             v-model="city"
                                             label="Ville"
                                             data-vv-name="city"
-                                            required
+                                            disabled
                                         ></v-text-field>
                                     </div>
 
@@ -60,7 +61,7 @@
                                             v-model="country"
                                             label="Pays"
                                             data-vv-name="country"
-                                            required
+                                            disabled
                                         ></v-text-field>
                                     </div>
 
@@ -87,13 +88,22 @@
                                     </v-layout>
                                     <v-layout row wrap>
                                         <v-flex xs4>
-                                            <v-checkbox value></v-checkbox>
+                                            <v-checkbox
+                                                value
+                                                disabled
+                                            ></v-checkbox>
                                         </v-flex>
                                         <v-flex xs4>
-                                            <v-checkbox value></v-checkbox>
+                                            <v-checkbox
+                                                value
+                                                disabled
+                                            ></v-checkbox>
                                         </v-flex>
                                         <v-flex xs4>
-                                            <v-checkbox value></v-checkbox>
+                                            <v-checkbox
+                                                value
+                                                disabled
+                                            ></v-checkbox>
                                         </v-flex>
                                     </v-layout>
                                     <v-layout row wrap class="light--text">
@@ -103,7 +113,10 @@
                                     </v-layout>
                                     <v-layout row wrap>
                                         <v-flex xs4>
-                                            <v-checkbox value></v-checkbox>
+                                            <v-checkbox
+                                                value
+                                                disabled
+                                            ></v-checkbox>
                                         </v-flex>
                                         <v-flex xs4>
                                             <v-checkbox
@@ -113,7 +126,10 @@
                                         </v-flex>
 
                                         <v-flex xs4>
-                                            <v-checkbox value></v-checkbox>
+                                            <v-checkbox
+                                                value
+                                                disabled
+                                            ></v-checkbox>
                                         </v-flex>
                                     </v-layout>
                                 </v-container>
@@ -205,7 +221,7 @@ export default {
         },
         {
             heading: "LA COLLOC - UNE FABRIQUE DE TRANSITION(S)",
-            subheading: "ajouter un espace de coworking",
+            subheading: "afficher un espace de coworking",
             icon: "pe-7s-paper-plane icon-gradient bg-happy-itmeo"
         }
     ),

@@ -45,15 +45,28 @@ export default {
             menu: [
                 {
                     header: true,
-                    title: "Main Navigation"
+                    title: "Menu"
                 },
                 {
-                    title: "Dashboards",
-                    icon: "pe-7s-rocket",
+                    title: "Buildings",
+                    icon: "pe-7s-home",
                     child: [
                         {
-                            href: "/",
-                            title: "Demo page"
+                            href: "/our-buildings",
+                            title: "Afficher tous les bâtiments"
+                        },
+                        {
+                            href: "/add-building",
+                            title: "Ajouter un bâtiment"
+                        },
+
+                        {
+                            href: "/show-building",
+                            title: "Afficher un bâtiment"
+                        },
+                        {
+                            href: "/edit-building",
+                            title: "Editer un bâtiment"
                         }
                     ]
                 }

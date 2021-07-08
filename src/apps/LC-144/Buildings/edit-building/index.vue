@@ -5,7 +5,7 @@
             :subheading="subheading"
             :icon="icon"
         ></page-title>
-        <form class="form" method="POST">
+        <form>
             <v-expansion-panel v-model="panel" expand>
                 <v-expansion-panel-content>
                     <template v-slot:header>
@@ -20,6 +20,7 @@
                                             v-model="buildingname"
                                             label="Nom du bâtiment"
                                             data-vv-name="buildingname"
+                                            value="valeur à récupérer"
                                             required
                                         ></v-text-field>
                                     </div>
@@ -106,10 +107,7 @@
                                             <v-checkbox value></v-checkbox>
                                         </v-flex>
                                         <v-flex xs4>
-                                            <v-checkbox
-                                                value
-                                                disabled
-                                            ></v-checkbox>
+                                            <v-checkbox value></v-checkbox>
                                         </v-flex>
 
                                         <v-flex xs4>
@@ -205,11 +203,10 @@ export default {
         },
         {
             heading: "LA COLLOC - UNE FABRIQUE DE TRANSITION(S)",
-            subheading: "ajouter un espace de coworking",
+            subheading: "modifier un espace de coworking",
             icon: "pe-7s-paper-plane icon-gradient bg-happy-itmeo"
         }
     ),
-
     methods: {
         submit() {
             this.$validator.validateAll();
