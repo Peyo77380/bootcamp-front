@@ -4,6 +4,7 @@
             <b-card-group>
                 <b-card no-body class="overflow-hidden">
                     <b-row no-gutters align-v="center" class="p-0">
+                        <!--AVATAR-->
                         <b-col cols="12" class="avatarCardInfo ">
                             <b-img :src="item.avatar"
                                    alt="Avatar du membre"
@@ -13,12 +14,14 @@
                                    class="avatar mx-3 mt-1 border-sunglo">
                             </b-img>
                         </b-col>
+                        <!--BODY-->
                         <b-col class="mainCardInfo mt-3 overflow-x-hidden no-wrap">
                             <p class="firstnameCardInfo text-sunglo">{{ item.firstname }} {{ item.lastname }}</p>
                             <p class="nameCardInfo"></p>
                             <p class="mailCardInfo">whatsgoingon@gmail.com</p>
                             <p class="phoneCardInfo">(+33) ## ## ## ## ##</p>
                         </b-col>
+                        <!--INFOS-->
                         <b-col cols="12" class="addsCardInfo overflow-hidden ml-1 pt-3 pb-1">
                             <p class="pr-3 mb-2 pb-3 font-weight-bold">Société
                                 <b-icon icon="building"
