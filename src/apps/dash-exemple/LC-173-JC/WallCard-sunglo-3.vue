@@ -10,12 +10,12 @@
                 button-variant="outline-sunglo"
                 size="sm"
                 name="radio-btn-outline"
-                class="wallCard-header-profile"
+                class="wallCard-header-profile mr-3"
                 buttons
             ></b-form-radio-group>
 
 
-            <b-input-group class="col col-5 wallCard-header-search">
+            <b-input-group class="col col-6 wallCard-header-search p-0">
                 <b-form-input placeholder="Qui recherchez-vous ?"></b-form-input>
                 <b-input-group-append>
                     <b-button class="btn-search btn-sunglo">
@@ -26,7 +26,7 @@
             </b-input-group>
 
 
-            <b-button-group size="sm" class="row m-0" align-content="end">
+            <b-button-group size="sm" class="criterions row mx-0 mt-4 ml-auto" align-content="end">
                 <b-dropdown right text="Statut" variant="sunglo">
                     <b-dropdown-item>Item 1</b-dropdown-item>
                     <b-dropdown-item>Item 2</b-dropdown-item>
@@ -91,7 +91,7 @@ export default {
 };
 </script>
 
-<style>
+<style scoped>
 .container {
     font-family : Montserrat, Arial, sans-serif;
     padding     : 0;
@@ -109,6 +109,10 @@ export default {
     margin-top: 2px;
 }
 
+.input-group.wallCard-header-search {
+    min-width: 380px;
+}
+
 .page-item .page-link, .pagination .page-number .page-link {
     color: #EC6465;
 }
@@ -118,4 +122,37 @@ export default {
     border: 1px solid #EC6465;
 }
 
+@media (min-width: 1197px) and (max-width: 1349px)  {
+    .btn-group {
+        margin-top: 0 !important;
+    }
+    .criterions {
+    margin-left: 0 !important;
+    }
+}
+
+@media (min-width: 1350px) and (max-width: 1396px) {
+
+}
+
+@media (min-width: 1397px) {
+    .btn-group {
+        margin-top: 0 !important;
+    }
+    .criterions {
+        margin-left: 0 !important;
+    }
+}
+
+@media (min-width: 1197px) and (max-width: 1349px){
+    .input-group.wallCard-header-search  {
+        padding: 0 15px !important;
+    }
+}
+
+@media (min-width: 1397px){
+    .input-group.wallCard-header-search  {
+        padding: 0 15px !important;
+    }
+}
 </style>
