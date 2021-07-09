@@ -1,6 +1,7 @@
 <template>
     <b-container class="text-eternity">
         <!--        WALL CARDS HEADER-->
+        <!--        sélection profil membres/sociétés-->
         <b-row align-h="between" class="wallCard-header">
             <b-form-radio-group
                 id="btn-radios"
@@ -10,12 +11,12 @@
                 button-variant="outline-sunglo"
                 size="sm"
                 name="radio-btn-outline"
-                class="wallCard-header-profile"
+                class="wallCard-header-profile mr-3"
                 buttons
             ></b-form-radio-group>
 
-
-            <b-input-group class="col col-5 wallCard-header-search">
+            <!--champ de recherche-->
+            <b-input-group class="col col-6 wallCard-header-search p-0">
                 <b-form-input placeholder="Qui recherchez-vous ?"></b-form-input>
                 <b-input-group-append>
                     <b-button class="btn-search btn-sunglo">
@@ -25,8 +26,8 @@
                 </b-input-group-append>
             </b-input-group>
 
-
-            <b-button-group size="sm" class="row m-0" align-content="end">
+            <!--critères de recherche-->
+            <b-button-group size="sm" class="criterions row mx-0 mt-4 ml-auto" align-content="end">
                 <b-dropdown right text="Statut" variant="sunglo">
                     <b-dropdown-item>Item 1</b-dropdown-item>
                     <b-dropdown-item>Item 2</b-dropdown-item>
@@ -55,11 +56,11 @@
         </b-row>
 
         <hr class="p-3">
-        <!--        WALL CARDS BODY-->
+        <!--WALL CARDS BODY-->
         <card></card>
 
 
-        <!--        WALL CARDS FOOTER-->
+        <!--WALL CARDS FOOTER-->
         <b-row class="mt-4">
             <b-col>
                 <b-pagination v-model="currentPage" :total-rows="rows" size="sm" align="center"></b-pagination>
@@ -98,24 +99,62 @@ export default {
     max-width   : 1630px;
 }
 
-.wallCard-header{
-    width: 100%;
+.wallCard-header {
+    width     : 100%;
     max-width : 1630px;
-    margin: 0 auto;
+    margin    : 0 auto;
 }
 
-.wallCard-header-profile span{
-    display: inline-block;
-    margin-top: 2px;
+.wallCard-header-profile span {
+    display    : inline-block;
+    margin-top : 2px;
+}
+.input-group.wallCard-header-search {
+    min-width : 380px;
 }
 
 .page-item .page-link, .pagination .page-number .page-link {
-    color: #EC6465;
+    color : #EC6465;
 }
 
 .page-item.active .page-link, .pagination .active.page-number .page-link {
-    background-color: #EC6465;
-    border: 1px solid #EC6465;
+    background-color : #EC6465;
+    border           : 1px solid #EC6465;
 }
 
+@media (min-width : 1197px) and (max-width : 1349px) {
+    .btn-group {
+        margin-top : 0 !important;
+    }
+
+    .criterions {
+        margin-left : 0 !important;
+    }
+}
+
+@media (min-width : 1350px) and (max-width : 1396px) {
+
+}
+
+@media (min-width : 1397px) {
+    .btn-group {
+        margin-top : 0 !important;
+    }
+
+    .criterions {
+        margin-left : 0 !important;
+    }
+}
+
+@media (min-width : 1197px) and (max-width : 1349px) {
+    .input-group.wallCard-header-search {
+        padding : 0 15px !important;
+    }
+}
+
+@media (min-width : 1397px) {
+    .input-group.wallCard-header-search {
+        padding : 0 15px !important;
+    }
+}
 </style>
