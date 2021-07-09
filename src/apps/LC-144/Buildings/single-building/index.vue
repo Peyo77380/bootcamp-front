@@ -1,10 +1,5 @@
 <template>
     <div>
-        <page-title
-            :heading="heading"
-            :subheading="subheading"
-            :icon="icon"
-        ></page-title>
         <form>
             <v-expansion-panel v-model="panel" expand>
                 <v-expansion-panel-content>
@@ -19,8 +14,6 @@
                                         <v-text-field
                                             v-model="building.name"
                                             label="Nom du bâtiment"
-                                            data-vv-name="buildingname"
-                                            value="valeur à récupérer"
                                             v-bind:disabled="editionMode === false"
                                         ></v-text-field>
                                     </div>
@@ -30,7 +23,6 @@
                                         <v-text-field
                                             v-model="building.location.address"
                                             label="Numéro et rue"
-                                            data-vv-name="nbstreet"
                                             v-bind:disabled="editionMode === false"
                                         ></v-text-field>
                                     </div>
@@ -40,7 +32,6 @@
                                         <v-text-field
                                             v-model="building.location.zipCode"
                                             label="Code postal"
-                                            data-vv-name="pcode"
                                             v-bind:disabled="editionMode === false"
                                         ></v-text-field>
                                     </div>
@@ -50,7 +41,6 @@
                                         <v-text-field
                                             v-model="building.location.city"
                                             label="Ville"
-                                            data-vv-name="city"
                                             v-bind:disabled="editionMode === false"
                                         ></v-text-field>
                                     </div>
@@ -60,7 +50,6 @@
                                         <v-text-field
                                             v-model="building.location.country"
                                             label="Pays"
-                                            data-vv-name="country"
                                             v-bind:disabled="editionMode === false"
                                         ></v-text-field>
                                     </div>
@@ -195,26 +184,26 @@
 </template>
 
 <script>
-import PageTitle from "@/Layout/Components/PageTitle.vue";
 import { Buildings } from "@/mixins/building"
+import { Services } from "@/mixins/service"
 
 
 export default {
-    components: {
-        PageTitle
-    },
-    mixins: [ Buildings ],
+    mixins: [ 
+        Buildings,
+        Services
+        ],
     data () {
         return {
             building: {},     
-            heading: "LA COLLOC - UNE FABRIQUE DE TRANSITION(S)",
-            subheading: "afficher un espace de coworking",
-            icon: "pe-7s-paper-plane icon-gradient bg-happy-itmeo",
+            services: [],
             editionMode: false, 
         }
     },
     mounted () {
         this.switchMode();
+        this.getServices();
+        console.log(this.services);
         if (this.$route.params.id) {
             this.getBuilding();
         }
@@ -238,9 +227,14 @@ export default {
             }
             this.building = res.datas
         },
-        submit() {
-            this.$validator.validateAll();
-        },
+        async getServices () {
+            const res = await this.getAllServices();
+            if (res.error) {
+                console.log(res.error)
+            }
+            this.services = res.datas;
+            console.log(this.services);
+        }
     }
 };
 </script>
