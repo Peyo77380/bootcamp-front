@@ -670,7 +670,7 @@ const TABS = [
 export default {
     components: {
         PageTitle,
-        Tabs
+        //Tabs
     },
     mixins: [ Buildings ],
     data: () => ({

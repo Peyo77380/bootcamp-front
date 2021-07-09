@@ -21,7 +21,7 @@
                                             label="Nom du bâtiment"
                                             data-vv-name="buildingname"
                                             value="valeur à récupérer"
-                                            disabled
+                                            v-bind:disabled="editionMode === false"
                                         ></v-text-field>
                                     </div>
 
@@ -31,7 +31,7 @@
                                             v-model="building.location.address"
                                             label="Numéro et rue"
                                             data-vv-name="nbstreet"
-                                            disabled
+                                            v-bind:disabled="editionMode === false"
                                         ></v-text-field>
                                     </div>
 
@@ -41,7 +41,7 @@
                                             v-model="building.location.zipCode"
                                             label="Code postal"
                                             data-vv-name="pcode"
-                                            disabled
+                                            v-bind:disabled="editionMode === false"
                                         ></v-text-field>
                                     </div>
 
@@ -51,7 +51,7 @@
                                             v-model="building.location.city"
                                             label="Ville"
                                             data-vv-name="city"
-                                            disabled
+                                            v-bind:disabled="editionMode === false"
                                         ></v-text-field>
                                     </div>
 
@@ -61,7 +61,7 @@
                                             v-model="building.location.country"
                                             label="Pays"
                                             data-vv-name="country"
-                                            disabled
+                                            v-bind:disabled="editionMode === false"
                                         ></v-text-field>
                                     </div>
 
@@ -90,19 +90,19 @@
                                         <v-flex xs4>
                                             <v-checkbox
                                                 value
-                                                disabled
+                                                v-bind:disabled="editionMode === false"
                                             ></v-checkbox>
                                         </v-flex>
                                         <v-flex xs4>
                                             <v-checkbox
                                                 value
-                                                disabled
+                                                v-bind:disabled="editionMode === false"
                                             ></v-checkbox>
                                         </v-flex>
                                         <v-flex xs4>
                                             <v-checkbox
                                                 value
-                                                disabled
+                                                v-bind:disabled="editionMode === false"
                                             ></v-checkbox>
                                         </v-flex>
                                     </v-layout>
@@ -115,20 +115,20 @@
                                         <v-flex xs4>
                                             <v-checkbox
                                                 value
-                                                disabled
+                                                v-bind:disabled="editionMode === false"
                                             ></v-checkbox>
                                         </v-flex>
                                         <v-flex xs4>
                                             <v-checkbox
                                                 value
-                                                disabled
+                                                v-bind:disabled="editionMode === false"
                                             ></v-checkbox>
                                         </v-flex>
 
                                         <v-flex xs4>
                                             <v-checkbox
                                                 value
-                                                disabled
+                                                v-bind:disabled="editionMode === false"
                                             ></v-checkbox>
                                         </v-flex>
                                     </v-layout>
@@ -209,13 +209,23 @@ export default {
             building: {},     
             heading: "LA COLLOC - UNE FABRIQUE DE TRANSITION(S)",
             subheading: "afficher un espace de coworking",
-            icon: "pe-7s-paper-plane icon-gradient bg-happy-itmeo"
+            icon: "pe-7s-paper-plane icon-gradient bg-happy-itmeo",
+            editionMode: false, 
         }
     },
     mounted () {
-        this.getBuilding();
+        this.switchMode();
+        if (this.$route.params.id) {
+            this.getBuilding();
+        }
     },
     methods: {
+        switchMode () {
+            if (this.$route.params.id && this.$route.name == "edit-building") {
+                return this.editionMode = true;
+            }
+            return this.editionMode = false;
+        },
         async getBuilding () {
             const id = this.$route.params.id
             if (!id) {
@@ -227,7 +237,6 @@ export default {
                 console.log(res.error)
             }
             this.building = res.datas
-            console.log(this.building)
         },
         submit() {
             this.$validator.validateAll();
