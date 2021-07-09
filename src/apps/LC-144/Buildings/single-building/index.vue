@@ -99,6 +99,7 @@
                         <v-card-text class="grey lighten-3">
                             <v-container fluid grid-list-md>
                                 <v-textarea
+                                    v-model="building.description"
                                     name="input-7-1"
                                     box
                                     label="À propos du bâtiment"
@@ -166,7 +167,6 @@ export default {
     mounted () {
         this.switchMode();
         this.getServices();
-        console.log(this.services);
         if (this.$route.params.id) {
             this.getBuilding();
         }
@@ -196,7 +196,6 @@ export default {
                 console.log(res.error)
             }
             this.services = res.datas;
-            console.log(this.services);
         }
     }
 };
