@@ -196,23 +196,14 @@
 
 <script>
 import PageTitle from "@/Layout/Components/PageTitle.vue";
-import Vue from "vue";
-import VeeValidate from "vee-validate";
 import { Buildings } from "@/mixins/building"
 
-Vue.use(VeeValidate);
 
 export default {
     components: {
         PageTitle
     },
-
-    $_veeValidate: {
-        validator: "new"
-    },
-
     mixins: [ Buildings ],
-
     data () {
         return {
             building: {},     
@@ -224,7 +215,6 @@ export default {
     mounted () {
         this.getBuilding();
     },
-
     methods: {
         async getBuilding () {
             const id = this.$route.params.id
