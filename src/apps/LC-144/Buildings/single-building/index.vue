@@ -74,11 +74,14 @@
                                         <v-flex
                                             v-for="service in services"
                                             xs4
+                                            :key="service._id"
                                             >
                                             <v-checkbox
                                                 :id="`service_${service._id}`"
                                                 :label="service.name"
+                                                v-bind:value="building.services.includes(service._id)"
                                                 v-bind:disabled="editionMode === false"
+                                                @click="toggleService(service._id)"
                                             >
                                             {{service.name}}
                                             </v-checkbox>
@@ -141,8 +144,8 @@
                 </v-expansion-panel-content>
             </v-expansion-panel>
 
-            <v-btn @click="submit">Valider</v-btn>
-            <v-btn @click="clear">Annuler</v-btn>
+            <v-btn>Valider</v-btn>
+            <v-btn>Annuler</v-btn>
         </form>
     </div>
 </template>
@@ -159,7 +162,24 @@ export default {
         ],
     data () {
         return {
-            building: {},     
+            building: {
+                _id: null,
+                location: {
+                    address: "",
+                    city: "",
+                    zipCode: "",
+                    country: "",
+                },
+                surface: 0,
+                openingHours: [],
+                description: "",
+                pictures: [],
+                characterics: "",
+                state: 0,
+                enabled: true,
+                floors: [],
+                services: [],
+            },     
             services: [],
             editionMode: false, 
         }
@@ -184,7 +204,6 @@ export default {
                 return;
             }
             const res = await this.getBuildingById(id);
-            
             if (res.error) {
                 console.log(res.error)
             }
@@ -196,6 +215,12 @@ export default {
                 console.log(res.error)
             }
             this.services = res.datas;
+        },
+        toggleService (id) {
+            if (this.building.services.includes(id)) {
+                return this.building.services.splice(this.building.services.indexOf(id), 1);
+            }
+            return this.building.services.push(id);
         }
     }
 };

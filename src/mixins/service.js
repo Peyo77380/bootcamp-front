@@ -6,7 +6,6 @@ export const Services = {
         async getAllServices() {
             try {
                 const response = await api.get('service');
-                console.log(response);
                 return {
                     status: 1,
                     datas: response.data.datas
@@ -49,7 +48,7 @@ export const Services = {
         },
         async deleteService (id) {
             try {
-                const response = await api.delete(`service/${id}`);
+                await api.delete(`service/${id}`);
                 return {
                     status: 1,
                     success: "Successfully deleted"
