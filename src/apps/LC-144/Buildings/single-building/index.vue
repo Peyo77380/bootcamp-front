@@ -70,55 +70,18 @@
 
                             <template>
                                 <v-container fluid>
-                                    <v-layout row wrap class="light--text">
-                                        <v-flex xs4>salle de réunion</v-flex>
-                                        <v-flex xs4>coworking</v-flex>
-                                        <v-flex xs4>showroom</v-flex>
-                                    </v-layout>
                                     <v-layout row wrap>
-                                        <v-flex xs4>
+                                        <v-flex
+                                            v-for="service in services"
+                                            xs4
+                                            >
                                             <v-checkbox
-                                                value
+                                                :id="`service_${service._id}`"
+                                                :label="service.name"
                                                 v-bind:disabled="editionMode === false"
-                                            ></v-checkbox>
-                                        </v-flex>
-                                        <v-flex xs4>
-                                            <v-checkbox
-                                                value
-                                                v-bind:disabled="editionMode === false"
-                                            ></v-checkbox>
-                                        </v-flex>
-                                        <v-flex xs4>
-                                            <v-checkbox
-                                                value
-                                                v-bind:disabled="editionMode === false"
-                                            ></v-checkbox>
-                                        </v-flex>
-                                    </v-layout>
-                                    <v-layout row wrap class="light--text">
-                                        <v-flex xs4>shooting photo</v-flex>
-                                        <v-flex xs4>séminaire</v-flex>
-                                        <v-flex xs4>évenement</v-flex>
-                                    </v-layout>
-                                    <v-layout row wrap>
-                                        <v-flex xs4>
-                                            <v-checkbox
-                                                value
-                                                v-bind:disabled="editionMode === false"
-                                            ></v-checkbox>
-                                        </v-flex>
-                                        <v-flex xs4>
-                                            <v-checkbox
-                                                value
-                                                v-bind:disabled="editionMode === false"
-                                            ></v-checkbox>
-                                        </v-flex>
-
-                                        <v-flex xs4>
-                                            <v-checkbox
-                                                value
-                                                v-bind:disabled="editionMode === false"
-                                            ></v-checkbox>
+                                            >
+                                            {{service.name}}
+                                            </v-checkbox>
                                         </v-flex>
                                     </v-layout>
                                 </v-container>
