@@ -4,6 +4,7 @@
             <b-card-group>
                 <b-card no-body class="overflow-hidden">
                     <b-row no-gutters align-v="center" class="p-0">
+                        <!--AVATAR-->
                         <b-col cols="12" class="avatarCardInfo">
                             <b-img :src="item.avatar"
                                    alt=""
@@ -13,12 +14,14 @@
                                    class="avatar mx-3 mt-1 border-chocolate">
                             </b-img>
                         </b-col>
+                        <!--BODY-->
                         <b-col class="mainCardInfo mt-3 overflow-x-hidden no-wrap">
                             <p class="firstnameCardInfo text-chocolate">{{ item.firstname }} {{ item.lastname }}</p>
                             <p class="nameCardInfo"></p>
                             <p class="mailCardInfo">whatsgoingon@gmail.com</p>
                             <p class="phoneCardInfo">(+33) ## ## ## ## ##</p>
                         </b-col>
+                        <!--INFOS-->
                         <b-col cols="12" class="addsCardInfo overflow-hidden ml-1 pt-3 pb-1 bg-chocolate">
                             <p class="pr-3 mb-1 font-weight-bold">Société
                                 <b-icon icon="building" aria-hidden="true" class="iconCardsInfo ml-1"></b-icon>
@@ -32,10 +35,6 @@
                             </p>
                         </b-col>
                     </b-row>
-                    <!-- Element to collapse -->
-                    <b-collapse id="collapse-2">
-                        <b-card class="p-4">{{ item.details }}</b-card>
-                    </b-collapse>
                 </b-card>
             </b-card-group>
         </b-col>
@@ -264,7 +263,6 @@ export default {
 .addsCardInfo {
     text-align : right;
     max-width  : max-content;
-//box-sizing : border-box;
 }
 
 .addsCardInfo-optional {
@@ -274,7 +272,7 @@ export default {
 }
 
 p > .iconCardsInfo {
-    color : #FFF;
+    color     : #FFF;
     font-size : 1.3rem;
 }
 </style>

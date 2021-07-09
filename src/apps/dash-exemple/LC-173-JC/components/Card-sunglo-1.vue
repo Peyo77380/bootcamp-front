@@ -4,6 +4,7 @@
             <b-card-group class="itemCard">
                 <b-card no-body class="overflow-hidden">
                     <b-row no-gutters align-v="center"  class="p-0">
+                        <!--AVATAR-->
                         <b-col class="avatarCardInfo">
                             <b-img :src="item.avatar"
                                    alt=""
@@ -13,6 +14,7 @@
                                    class="avatar mx-3 mt-1 border-sunglo">
                             </b-img>
                         </b-col>
+                        <!--BODY-->
                         <b-col class="mainCardInfo mt-3">
                             <div class="firstnameCardInfo row"><p class="labelCardInfo">Prénom :</p>
                                 <p class="cardInfo">{{ item.firstname }}</p></div>
@@ -23,6 +25,7 @@
                             <div class="phoneCardInfo row"><p class="labelCardInfo">Téléphone :</p>
                                 <p class="cardInfo">(+33) ## ## ## ## ##</p></div>
                         </b-col>
+                        <!--INFOS-->
                         <b-col class="addsCardInfo overflow-hidden pt-3 pb-2 bg-sunglo">
                             <p class="pr-3 mb-2 font-weight-bold">Société
                                 <b-icon icon="building" aria-hidden="true" class="iconCardsInfo ml-1 mt-n1"></b-icon>
