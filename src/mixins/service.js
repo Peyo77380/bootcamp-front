@@ -1,11 +1,11 @@
 import api from '@/services/axios';
 
-export const Buildings = {
+export const Services = {
 
     methods: {
-        async getAllBuildings() {
+        async getAllServices() {
             try {
-                const response = await api.get('building')
+                const response = await api.get('service');
                 return {
                     status: 1,
                     datas: response.data.datas
@@ -17,9 +17,9 @@ export const Buildings = {
                 }
             }
         },
-        async getBuildingById(id) {
+        async getServicegById(id) {
             try {
-                const response = await api.get(`building/${id}`);
+                const response = await api.get(`service/${id}`);
                 return {
                     status: 1,
                     datas: response.data.datas
@@ -31,10 +31,10 @@ export const Buildings = {
                 }
             }
         },
-        async storeBuilding (data) {
+        async storeService (data) {
             // TODO : add validation
             try {
-                const response = await api.post('building', data);
+                const response = await api.post(`service`, data);
                 return {
                     status: 1,
                     datas: response.data.datas
@@ -46,9 +46,9 @@ export const Buildings = {
                 }
             }
         },
-        async deleteBuilding (id) {
+        async deleteService (id) {
             try {
-                const response = await api.delete(`building/${id}`);
+                await api.delete(`service/${id}`);
                 return {
                     status: 1,
                     success: "Successfully deleted"
@@ -60,10 +60,10 @@ export const Buildings = {
                 }
             }
         },
-        async updateBuilding (id, data) {
+        async updateService (id, data) {
             // TODO : add validation
             try {
-                const response = await api.put(`building/${id}`, data);
+                const response = await api.put(`service/${id}`, data);
                 return {
                     status: 1,
                     success: response.data.datas

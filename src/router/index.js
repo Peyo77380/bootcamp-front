@@ -16,24 +16,24 @@ export default new Router({
             component: () => import("@/apps/dash-exemple/Analytics")
         },
         {
-            path: "/our-buildings",
+            path: "/buildings",
             name: "our-buildings",
             component: () => import("@/apps/LC-144/Buildings/all-buildings")
         },
         {
-            path: "/add-building",
+            path: "/add",
             name: "add-building",
-            component: () => import("@/apps/LC-144/Buildings/add-building")
+            component: () => import("@/apps/LC-144/Buildings/single-building")
         },
         {
-            path: "/show-building",
+            path: "/show/:id",
             name: "show-building",
             component: () => import("@/apps/LC-144/Buildings/single-building")
         },
         {
-            path: "/edit-building",
+            path: "/edit/:id",
             name: "edit-building",
-            component: () => import("@/apps/LC-144/Buildings/edit-building")
+            component: () => import("@/apps/LC-144/Buildings/single-building")
         }
     ]
 });

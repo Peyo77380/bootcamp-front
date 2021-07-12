@@ -1,10 +1,5 @@
 <template>
     <div>
-        <page-title
-            :heading="heading"
-            :subheading="subheading"
-            :icon="icon"
-        ></page-title>
         <form>
             <v-expansion-panel v-model="panel" expand>
                 <v-expansion-panel-content>
@@ -17,128 +12,79 @@
                                 <div>
                                     <div class="input-group">
                                         <v-text-field
-                                            v-model="buildingname"
+                                            v-model="building.name"
                                             label="Nom du bâtiment"
-                                            data-vv-name="buildingname"
-                                            value="valeur à récupérer"
-                                            disabled
+                                            v-bind:disabled="editionMode === false"
                                         ></v-text-field>
                                     </div>
-
-                                    <br />
                                     <div class="input-group">
                                         <v-text-field
-                                            v-model="nbstreet"
+                                            v-model="building.location.address"
                                             label="Numéro et rue"
-                                            data-vv-name="nbstreet"
-                                            disabled
+                                            v-bind:disabled="editionMode === false"
                                         ></v-text-field>
                                     </div>
 
-                                    <br />
                                     <div class="input-group">
                                         <v-text-field
-                                            v-model="pcode"
+                                            v-model="building.location.zipCode"
                                             label="Code postal"
-                                            data-vv-name="pcode"
-                                            disabled
+                                            v-bind:disabled="editionMode === false"
                                         ></v-text-field>
                                     </div>
 
-                                    <br />
                                     <div class="input-group">
                                         <v-text-field
-                                            v-model="city"
+                                            v-model="building.location.city"
                                             label="Ville"
-                                            data-vv-name="city"
-                                            disabled
+                                            v-bind:disabled="editionMode === false"
                                         ></v-text-field>
                                     </div>
 
-                                    <br />
                                     <div class="input-group">
                                         <v-text-field
-                                            v-model="country"
+                                            v-model="building.location.country"
                                             label="Pays"
-                                            data-vv-name="country"
-                                            disabled
+                                            v-bind:disabled="editionMode === false"
                                         ></v-text-field>
                                     </div>
 
-                                    <br />
                                 </div>
                             </div>
                         </v-card-text>
                     </v-card>
                 </v-expansion-panel-content>
-                <v-expansion-panel-content>
+                <!-- <v-expansion-panel-content>
                     <template v-slot:header>
                         <div>Caractéristiques</div>
                     </template>
                     <v-card>
                         <v-card-text class="grey lighten-3">
-                            <!-- -->
-
                             <template>
                                 <v-container fluid>
-                                    <v-layout row wrap class="light--text">
-                                        <v-flex xs4>salle de réunion</v-flex>
-                                        <v-flex xs4>coworking</v-flex>
-                                        <v-flex xs4>showroom</v-flex>
-                                    </v-layout>
                                     <v-layout row wrap>
-                                        <v-flex xs4>
+                                        <v-flex
+                                            v-for="service in services"
+                                            xs4
+                                            :key="service._id"
+                                            >
                                             <v-checkbox
-                                                value
-                                                disabled
-                                            ></v-checkbox>
-                                        </v-flex>
-                                        <v-flex xs4>
-                                            <v-checkbox
-                                                value
-                                                disabled
-                                            ></v-checkbox>
-                                        </v-flex>
-                                        <v-flex xs4>
-                                            <v-checkbox
-                                                value
-                                                disabled
-                                            ></v-checkbox>
-                                        </v-flex>
-                                    </v-layout>
-                                    <v-layout row wrap class="light--text">
-                                        <v-flex xs4>shooting photo</v-flex>
-                                        <v-flex xs4>séminaire</v-flex>
-                                        <v-flex xs4>évenement</v-flex>
-                                    </v-layout>
-                                    <v-layout row wrap>
-                                        <v-flex xs4>
-                                            <v-checkbox
-                                                value
-                                                disabled
-                                            ></v-checkbox>
-                                        </v-flex>
-                                        <v-flex xs4>
-                                            <v-checkbox
-                                                value
-                                                disabled
-                                            ></v-checkbox>
-                                        </v-flex>
-
-                                        <v-flex xs4>
-                                            <v-checkbox
-                                                value
-                                                disabled
-                                            ></v-checkbox>
+                                                :id="`service_${service._id}`"
+                                                :label="service.name"
+                                                 v-bind:disabled="editionMode === false"
+                                                @click="toggleService(service._id)"
+                                            >
+                                            {{service.name}}
+                                            </v-checkbox>
                                         </v-flex>
                                     </v-layout>
                                 </v-container>
                             </template>
 
                             <!-- -->
-                        </v-card-text>
+                        <!-- </v-card-text>
                     </v-card>
-                </v-expansion-panel-content>
+                </v-expansion-panel-content> --> 
                 <v-expansion-panel-content>
                     <template v-slot:header>
                         <div>Description</div>
@@ -147,6 +93,7 @@
                         <v-card-text class="grey lighten-3">
                             <v-container fluid grid-list-md>
                                 <v-textarea
+                                    v-model="building.description"
                                     name="input-7-1"
                                     box
                                     label="À propos du bâtiment"
@@ -163,13 +110,6 @@
                     <v-card>
                         <v-card-text class="grey lighten-3">
                             <div class="position-relative form-group">
-                                <!--
-                                    
-                                <label for="addingNewImageBrowser" class=""
-                                    >Ajoutez les photos du bâtiment ici</label
-                                >
-
-                                -->
                                 <div class="custom-file">
                                     <input
                                         type="file"
@@ -188,56 +128,106 @@
                 </v-expansion-panel-content>
             </v-expansion-panel>
 
-            <v-btn @click="submit">Valider</v-btn>
-            <v-btn @click="clear">Annuler</v-btn>
+            <v-btn @click="sendBuilding">Valider</v-btn>
+            <v-btn @click="cancel">Annuler</v-btn>
         </form>
     </div>
 </template>
 
 <script>
-import PageTitle from "@/Layout/Components/PageTitle.vue";
-import Vue from "vue";
-import VeeValidate from "vee-validate";
+import { Buildings } from "@/mixins/building"
+import { Services } from "@/mixins/service"
 
-Vue.use(VeeValidate);
 
 export default {
-    components: {
-        PageTitle
-    },
-
-    $_veeValidate: {
-        validator: "new"
-    },
-
-    data: () => (
-        {
-            name: "",
-            buildingname: "",
-            nbstreet: "",
-            pcode: "",
-            country: "",
-            city: ""
-        },
-        {
-            heading: "LA COLLOC - UNE FABRIQUE DE TRANSITION(S)",
-            subheading: "afficher un espace de coworking",
-            icon: "pe-7s-paper-plane icon-gradient bg-happy-itmeo"
+    mixins: [ 
+        Buildings,
+        Services
+        ],
+    data () {
+        return {
+            building: {
+                _id: null,
+                location: {
+                    address: "",
+                    city: "",
+                    zipCode: "",
+                    country: "",
+                },
+                surface: 0,
+                openingHours: [],
+                description: "",
+                pictures: [],
+                characterics: "",
+                state: 0,
+                enabled: true,
+                floors: [],
+                // services: [],
+            },     
+            // services: [],
+            editionMode: false, 
         }
-    ),
-
+    },
+    mounted () {
+        this.switchMode();
+        this.getServices();
+        if (this.$route.params.id) {
+            this.getBuilding();
+        }
+    },
     methods: {
-        submit() {
-            this.$validator.validateAll();
+        switchMode () {
+            if ((this.$route.params.id && this.$route.name == "edit-building") || this.$route.name == "add-building") {
+                return this.editionMode = true;
+            }
+            return this.editionMode = false;
         },
-        clear() {
-            this.buildingname = "";
-            this.nbstreet = "";
-            this.pcode = "";
-            this.country = "";
-            this.city = "";
-            this.$validator.reset();
-        }
+        async getBuilding () {
+            const id = this.$route.params.id
+            if (!id) {
+                return;
+            }
+            const res = await this.getBuildingById(id);
+            if (res.error) {
+                console.log(res.error)
+            }
+            this.building = res.datas
+        },
+        async getServices () {
+            const res = await this.getAllServices();
+            if (res.error) {
+                console.log(res.error)
+            }
+            this.services = res.datas;
+        },
+        async sendBuilding () {
+            if (this.editionMode) {
+                if (this.$route.params.id) {
+                    return await this.sendUpdatedBuilding();
+                }
+                return await this.saveNewBuilding();
+            }
+        },
+        async sendUpdatedBuilding () {
+            const update = await this.updateBuilding(this.$route.params.id, this.building);
+            if (update.error) {
+                return console.log(update.error)
+            }
+            return update;
+        },
+        async saveNewBuilding() {
+            const save = await this.storeBuilding(this.building);
+            if (save.error) {
+                return console.log(save.error);
+            }
+            return save;
+        },
+        cancel () {
+            // TODO : à voir
+        },
+        // toggleService (id) {
+        //     // TODO : gérer les services disponibles
+        // }
     }
 };
 </script>

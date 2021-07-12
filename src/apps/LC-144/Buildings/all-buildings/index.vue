@@ -83,7 +83,12 @@ import { Buildings } from "@/mixins/building";
 
 export default {
     components: {
+<<<<<<< HEAD
         PageTitle
+=======
+        PageTitle,
+        //Tabs
+>>>>>>> a6d2d34d9d9874b0da5ec2f8efc8563c30d2caa1
     },
     mixins: [Buildings],
     data: () => ({
