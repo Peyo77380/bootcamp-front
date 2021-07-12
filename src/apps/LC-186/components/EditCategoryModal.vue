@@ -3,7 +3,7 @@
     <v-dialog v-model="dialog" max-width="600px">
       <v-card>
         <v-card-title class="headline grey lighten-2" primary-title>
-          Modification de la catégorie "{{ categories.label }}""
+          Modification de la catégorie "{{ categories.label }}"
         </v-card-title>
         
         <v-card-text>

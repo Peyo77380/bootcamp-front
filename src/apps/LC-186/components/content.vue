@@ -1,6 +1,21 @@
 <template>
 <div>
-<div class="col-12 page-title-actions" style="margin-bottom: 10px;">
+
+<div class="app-page-title">
+        <div class="page-title-wrapper">
+            <div class="page-title-heading">
+                <div class="page-title-icon">
+                    <i :class="icon"/>
+                </div>
+                <div>
+                    {{heading}}
+                    <div
+                        class="page-title-subheading">
+                        {{subheading}}
+                    </div>
+                </div>
+            </div>
+            <div class="page-title-actions" style="margin-bottom: 10px;">
             <button style="margin-right: 15px"
                 @click="showNewQuestionModal"
                 type="button"
@@ -18,6 +33,12 @@
                 Ajouter une catégorie
             </button>
 </div>
+            
+        </div>
+        
+    </div>
+
+
 <div class="col-12 ">
   <v-expansion-panel   :style="{background:category.classname}"
   v-for="category in categories" :key="category.id"
@@ -40,12 +61,12 @@
  
       
     <v-expansion-panel-content 
-      v-if="question.id_category === category.id"
+      v-if="question.category === category.id"
       v-for="question in questions"
       :key="question.id"
     >
       <template v-slot:header >
-        <div class="question_font"><i style="margin-right:10px" class="header-icon lnr-question-circle icon-gradient bg-ripe-malin"></i>{{question.label}}</div>
+        <div class="question_font"><i style="margin-right:10px" class="header-icon lnr-question-circle icon-gradient bg-ripe-malin"></i>{{question.question}}</div>
       </template>
       <v-card style="display:flex; justify-content:space-around">
         <v-card-text  class="answer_font">
@@ -71,7 +92,7 @@
                 class="mb-2 mr-2 btn-icon btn-pill btn-shadow"
                 variant="danger"
                 id="popover2"
-                @click="remove(question.id)"
+                @click="remove(question._id)"
                                         >
                 <i class="pe-7s-trash"> </i
                                     >
@@ -120,11 +141,13 @@
 </template>
 
 <script>
+import { questions } from "@/mixins/questions";
 import EditCategoryModal from './EditCategoryModal.vue'
 import modal from "./EditQuestionModal.vue"
 import AddModalCategory from './AddModalCategory.vue'
 import AddModalQuestion from './AddModalQuestion.vue'
 import { FontAwesomeIcon } from "@fortawesome/vue-fontawesome";
+
 
 export default{
     components:{
@@ -132,16 +155,27 @@ export default{
         modal,
         AddModalCategory,
         AddModalQuestion,
-        EditCategoryModal
+        EditCategoryModal,
+     
     },
+    mixins: [questions],
+    async mounted() {
+        await this.loadQuestions();
+    },
+
      data: () => ({
             isAddQuestion: false,
             isAddCategory: false,
             dialog2: false,
             QuestionEdit: {},
             dialog:false,
+           
             CategoryEdit:{},
+            heading: "FAQ (Foire Aux Questions)",
+            subheading:'Des réponses à vos questions',
+            icon: 'pe-7s-way icon-gradient bg-night-fade',
             
+            //TODO après merge de flo, cabler les catégories via la list de Gaelle LC-29
             categories:
             [
             { label:'Au sujet de La Colloc', id:1, classname:'#ec6465' },
@@ -151,28 +185,36 @@ export default{
             ],
 
             questions:
-            [
-            {id:1, label:'Première question ??',answer:"Premiere réponse", id_category:1 },
-            {id:2,label:'Deuxième question ??',answer:'Deuxième réponse', id_category:2 },
-            {id:3,label:'Troisième question ??',answer:'Troisième réponse', id_category:1 },
-            {id:4,label:'Quatrième question ??',answer:'Quatrième réponse', id_category:4 },
-            {id:5,label:'Cinquième question ??',answer:'Cinquième réponse', id_category:2 },
-            {id:6,label:'Sixième question ??',answer:'Sixième réponse', id_category:3 },
-            {id:7,label:'Septième question ??',answer:'Septième réponse', id_category:2 },
-            {id:8,label:'Huitième question ??',answer:'Huitième réponse', id_category:4 }
-            ]
+            []
             
         }),
         methods:{
-          async remove(Id) {
-      // sweet alert sur la suppression
-      
-        this.questions = this.questions.filter(
-          (question) => question.id !== Id
-        );
-        
+            async loadQuestions() {
+            try {
+              
+                this.questions = await this.getAllQuestions();
+              
+            } catch (error) {
+                this.$sweetError("GPA-98");
+            }
+        },
 
-    },
+
+        async remove(Id) {
+        let title = "Confirmer la suppression de l'activité";
+        console.log(Id)
+        if (await this.$sweetConfirmation({ title } )) {
+                try {
+                    this.questions = this.questions.filter(
+                    (question) => question._id !== Id
+                    );
+                    this.$sweetNotif("Question supprimée");
+        
+                } catch (error) {
+                    console.error(error);
+                }
+            }
+        },
         closeModalEdit() {
             this.dialog2 = false;
         },
@@ -223,28 +265,21 @@ export default{
             this.CategoryEdit = category;
             
         },
-        modificationQuestion() {
-            //TODO point API modification email de services
+        //TODO après merge de flo, cabler la modification des questions
+        modificationQuestion(updatedQuestion) {
+            
 
             var title = "Modification de la question réussie !";
             this.$sweetNotif(title);
         },
         modificationCategory() {
-            //TODO point API modification email de services
+            
 
             var title = "Modification de la catégorie réussie !";
             this.$sweetNotif(title);
-        }
-
-
-
-
-
-        }
-
+        },
+     }
 }
-  
-  
 
 </script>
 <style>

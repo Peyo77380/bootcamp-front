@@ -3,7 +3,7 @@
     <v-dialog v-model="dialog2" max-width="600px">
       <v-card>
         <v-card-title class="headline grey lighten-2" primary-title>
-          Modification - {{ questions.label }}
+          Modification - {{ questions.question }}
         </v-card-title>
         
         <v-card-text>
@@ -12,13 +12,13 @@
             <b-form row wrap>
                 <v-select
                                 
-                                :items="categories"
-                                item-text="label"
-                                item-value="label"
-                                persistent
-                                return-object
-                                single-line
-                                outlined
+                    :items="categories"
+                    item-text="label"
+                    item-value="label"
+                    persistent
+                    return-object
+                    single-line
+                    outlined
                             >
                             </v-select>
 
@@ -29,7 +29,7 @@
               >
                 <b-form-input
                   id="input-1"
-                  v-model="questions.label"
+                  v-model="questions.question"
                   required
                 ></b-form-input>
               </b-form-group>
@@ -54,7 +54,7 @@
                   variant="danger"
                   >Retour</b-button
                 >
-                <b-button type="submit" @click="update" variant="success"
+                <b-button type="submit" @click="saveModification" variant="success"
                   >Valider</b-button
                 >
               </div>
@@ -110,11 +110,16 @@ export default {
     close2() {
       this.$emit("close2");
     },
+    saveModification() {
+      this.close2();
+      this.$emit("saveModification", this.questions);
+    },
+
     async update() {
       // APPEL API => UPDATE
       try {
         const payload = {
-          label: this.questions.label,
+          question: this.questions.question,
           answer: this.questions.answer,
         };
         await this.updateParameter(this.questions.id, payload);

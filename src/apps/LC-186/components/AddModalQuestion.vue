@@ -45,6 +45,7 @@
                                     id="input-1"
                                     v-model="newQuestion.answer"
                                     required
+                                    rows="5"
                                 ></b-form-textarea>
                             </b-form-group>
                             <div
