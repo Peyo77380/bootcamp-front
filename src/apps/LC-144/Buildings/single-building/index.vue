@@ -80,9 +80,7 @@
                                     </v-layout>
                                 </v-container>
                             </template>
-
-                            <!-- -->
-                        <!-- </v-card-text>
+                        </v-card-text>
                     </v-card>
                 </v-expansion-panel-content> --> 
                 <v-expansion-panel-content>

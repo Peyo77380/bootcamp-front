@@ -21,17 +21,17 @@ export default new Router({
             component: () => import("@/apps/LC-144/Buildings/all-buildings")
         },
         {
-            path: "/add",
+            path: "/buildings/add",
             name: "add-building",
             component: () => import("@/apps/LC-144/Buildings/single-building")
         },
         {
-            path: "/show/:id",
+            path: "/buildings/show/:id",
             name: "show-building",
             component: () => import("@/apps/LC-144/Buildings/single-building")
         },
         {
-            path: "/edit/:id",
+            path: "/buildings/edit/:id",
             name: "edit-building",
             component: () => import("@/apps/LC-144/Buildings/single-building")
         }

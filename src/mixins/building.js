@@ -48,7 +48,7 @@ export const Buildings = {
         },
         async deleteBuilding (id) {
             try {
-                const response = await api.delete(`building/${id}`);
+                await api.delete(`building/${id}`);
                 return {
                     status: 1,
                     success: "Successfully deleted"
