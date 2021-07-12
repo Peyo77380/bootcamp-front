@@ -79,8 +79,7 @@
                                             <v-checkbox
                                                 :id="`service_${service._id}`"
                                                 :label="service.name"
-                                                v-bind:value="building.services.includes(service._id)"
-                                                v-bind:disabled="editionMode === false"
+                                                 v-bind:disabled="editionMode === false"
                                                 @click="toggleService(service._id)"
                                             >
                                             {{service.name}}
@@ -144,8 +143,8 @@
                 </v-expansion-panel-content>
             </v-expansion-panel>
 
-            <v-btn>Valider</v-btn>
-            <v-btn>Annuler</v-btn>
+            <v-btn @click="submit">Valider</v-btn>
+            <v-btn @click="cancel">Annuler</v-btn>
         </form>
     </div>
 </template>
@@ -193,7 +192,7 @@ export default {
     },
     methods: {
         switchMode () {
-            if (this.$route.params.id && this.$route.name == "edit-building") {
+            if ((this.$route.params.id && this.$route.name == "edit-building") || this.$route.name == "add-building") {
                 return this.editionMode = true;
             }
             return this.editionMode = false;
@@ -216,11 +215,14 @@ export default {
             }
             this.services = res.datas;
         },
+        submit () {
+            // TODO : A écrire 
+        },
+        cancel () {
+            // TODO : à voir
+        },
         toggleService (id) {
-            if (this.building.services.includes(id)) {
-                return this.building.services.splice(this.building.services.indexOf(id), 1);
-            }
-            return this.building.services.push(id);
+            // TODO : gérer les services disponibles
         }
     }
 };
