@@ -34,7 +34,7 @@ export const Buildings = {
         async storeBuilding (data) {
             // TODO : add validation
             try {
-                const response = await api.post(`building`, data);
+                const response = await api.post('building', data);
                 return {
                     status: 1,
                     datas: response.data.datas

@@ -17,8 +17,6 @@
                                             v-bind:disabled="editionMode === false"
                                         ></v-text-field>
                                     </div>
-
-                                    <br />
                                     <div class="input-group">
                                         <v-text-field
                                             v-model="building.location.address"
@@ -27,7 +25,6 @@
                                         ></v-text-field>
                                     </div>
 
-                                    <br />
                                     <div class="input-group">
                                         <v-text-field
                                             v-model="building.location.zipCode"
@@ -36,7 +33,6 @@
                                         ></v-text-field>
                                     </div>
 
-                                    <br />
                                     <div class="input-group">
                                         <v-text-field
                                             v-model="building.location.city"
@@ -45,7 +41,6 @@
                                         ></v-text-field>
                                     </div>
 
-                                    <br />
                                     <div class="input-group">
                                         <v-text-field
                                             v-model="building.location.country"
@@ -54,20 +49,17 @@
                                         ></v-text-field>
                                     </div>
 
-                                    <br />
                                 </div>
                             </div>
                         </v-card-text>
                     </v-card>
                 </v-expansion-panel-content>
-                <v-expansion-panel-content>
+                <!-- <v-expansion-panel-content>
                     <template v-slot:header>
                         <div>Caractéristiques</div>
                     </template>
                     <v-card>
                         <v-card-text class="grey lighten-3">
-                            <!-- -->
-
                             <template>
                                 <v-container fluid>
                                     <v-layout row wrap>
@@ -90,9 +82,9 @@
                             </template>
 
                             <!-- -->
-                        </v-card-text>
+                        <!-- </v-card-text>
                     </v-card>
-                </v-expansion-panel-content>
+                </v-expansion-panel-content> --> 
                 <v-expansion-panel-content>
                     <template v-slot:header>
                         <div>Description</div>
@@ -118,13 +110,6 @@
                     <v-card>
                         <v-card-text class="grey lighten-3">
                             <div class="position-relative form-group">
-                                <!--
-                                    
-                                <label for="addingNewImageBrowser" class=""
-                                    >Ajoutez les photos du bâtiment ici</label
-                                >
-
-                                -->
                                 <div class="custom-file">
                                     <input
                                         type="file"
@@ -143,7 +128,7 @@
                 </v-expansion-panel-content>
             </v-expansion-panel>
 
-            <v-btn @click="submit">Valider</v-btn>
+            <v-btn @click="sendBuilding">Valider</v-btn>
             <v-btn @click="cancel">Annuler</v-btn>
         </form>
     </div>
@@ -177,9 +162,9 @@ export default {
                 state: 0,
                 enabled: true,
                 floors: [],
-                services: [],
+                // services: [],
             },     
-            services: [],
+            // services: [],
             editionMode: false, 
         }
     },
@@ -215,15 +200,34 @@ export default {
             }
             this.services = res.datas;
         },
-        submit () {
-            // TODO : A écrire 
+        async sendBuilding () {
+            if (this.editionMode) {
+                if (this.$route.params.id) {
+                    return await this.sendUpdatedBuilding();
+                }
+                return await this.saveNewBuilding();
+            }
+        },
+        async sendUpdatedBuilding () {
+            const update = await this.updateBuilding(this.$route.params.id, this.building);
+            if (update.error) {
+                return console.log(update.error)
+            }
+            return update;
+        },
+        async saveNewBuilding() {
+            const save = await this.storeBuilding(this.building);
+            if (save.error) {
+                return console.log(save.error);
+            }
+            return save;
         },
         cancel () {
             // TODO : à voir
         },
-        toggleService (id) {
-            // TODO : gérer les services disponibles
-        }
+        // toggleService (id) {
+        //     // TODO : gérer les services disponibles
+        // }
     }
 };
 </script>
