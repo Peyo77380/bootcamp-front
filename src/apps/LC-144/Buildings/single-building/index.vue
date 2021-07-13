@@ -146,6 +146,7 @@ export default {
         return {
             building: {
                 _id: null,
+                name: "",
                 location: {
                     address: "",
                     city: "",
