@@ -52,21 +52,12 @@ export default {
                     icon: "pe-7s-home",
                     child: [
                         {
-                            href: "/our-buildings",
+                            href: "/buildings",
                             title: "Afficher tous les bâtiments"
                         },
                         {
-                            href: "/add-building",
+                            href: "/buildings/add",
                             title: "Ajouter un bâtiment"
-                        },
-
-                        {
-                            href: "/show-building",
-                            title: "Afficher un bâtiment"
-                        },
-                        {
-                            href: "/edit-building",
-                            title: "Editer un bâtiment"
                         }
                     ]
                 }
