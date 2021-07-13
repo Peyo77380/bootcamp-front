@@ -54,9 +54,14 @@ export default {
                         {
                             href: "/",
                             title: "Demo page"
+                        },
+                        {
+                            href: "/membres",
+                            title: "Membres"
                         }
                     ]
-                }
+                },
+
             ],
             collapsed: true,
 
