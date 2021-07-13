@@ -27,18 +27,18 @@ $black: #000;
 $grays: ();
 
 $grays: map-merge(
-                (
-                        "100": $gray-100,
-                        "200": $gray-200,
-                        "300": $gray-300,
-                        "400": $gray-400,
-                        "500": $gray-500,
-                        "600": $gray-600,
-                        "700": $gray-700,
-                        "800": $gray-800,
-                        "900": $gray-900
-                ),
-                $grays
+    (
+      "100": $gray-100,
+      "200": $gray-200,
+      "300": $gray-300,
+      "400": $gray-400,
+      "500": $gray-500,
+      "600": $gray-600,
+      "700": $gray-700,
+      "800": $gray-800,
+      "900": $gray-900
+    ),
+    $grays
 );
 
 //--#{$color}
@@ -55,6 +55,14 @@ $teal: #16E0BD;
 $cyan: #16aaff;
 $blue-light: #eeeeee;
 
+$sunglo: #EC6465 !default;
+$chocolate: #D46122 !default;
+$tradewind: #6BB4AE !default;
+$corn: #E9C20C !default;
+$midnight-blue: #165166 !default;
+$eternity: #2E2D2C !default;
+$pumice: #C6C6C6 !default;
+
 $primary: $brand;
 $secondary: $gray-600;
 $success: $green;
@@ -66,22 +74,37 @@ $dark: $gray-800;
 $focus: $indigo;
 $alt: $purple;
 
+$sunglo:        $sunglo !default;
+$chocolate:     $chocolate !default;
+$tradewind:     $tradewind !default;
+$corn:          $corn !default;
+$midnight-blue: $midnight-blue !default;
+$eternity:      $eternity !default;
+$pumice:        $pumice !default;
+
 $theme-colors: ();
 
 $theme-colors: map-merge(
-                (
-                        "primary": $primary,
-                        "secondary": $secondary,
-                        "success": $success,
-                        "info": $info,
-                        "warning": $warning,
-                        "danger": $danger,
-                        "light": $light,
-                        "dark": $dark,
-                        "focus": $focus,
-                        "alternate": $alt
-                ),
-                $theme-colors
+    (
+      "primary": $primary,
+      "secondary": $secondary,
+      "success": $success,
+      "info": $info,
+      "warning": $warning,
+      "danger": $danger,
+      "light": $light,
+      "dark": $dark,
+      "focus": $focus,
+      "alternate": $alt,
+      "sunglo":         $sunglo,
+      "chocolate":      $chocolate,
+      "tradewind":      $tradewind,
+      "corn":           $corn,
+      "midnightBlue":  $midnight-blue,
+      "eternity":       $eternity,
+      "pumice":         $pumice
+    ),
+    $theme-colors
 );
 
 // BOOTSTRAP OVERWRITES
