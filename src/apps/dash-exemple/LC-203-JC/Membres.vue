@@ -1,12 +1,12 @@
 <template>
-    <b-row class="board">
-        <b-col v-for="(item, index) in members" :key="index">
-            <b-card-group>
+    <b-row class="board h-100 pb-4">
+        <b-col v-for="(item, index) in members" :key="index" class="">
+            <b-card-group class="h-100">
                 <b-card no-body class="overflow-hidden">
-                    <b-row no-gutters class="p-5">
+                    <b-row no-gutters class="h-100 p-5">
                         <!--MAIN INFOS -->
                         <b-col class="member-info-group pr-5">
-                            <b-row class="ml-0">
+                            <b-row class="h-100 ml-0">
                                 <b-col class="member-info text-center border">
                                     <b-img :src="item.avatar"
                                            alt="Avatar du membre"
@@ -115,7 +115,8 @@
                                             </p>
                                         </b-col>
                                     </b-row>
-                                    <b-row>
+
+                                    <b-row class="border-top pt-4">
                                         <b-col class="col-1">
                                             <b-icon icon="person-badge"
                                                     aria-hidden="true"
@@ -134,7 +135,7 @@
 
 
                         <!--BODY-->
-                        <b-col class="member-datas border h-100 px-5 pt-5 pb-4">
+                        <b-col class="member-datas border h-100 px-5 pt-5 pb-4 ">
                             <b-row align-h="between" class="member-datas-header">
                                 <b-form-radio-group
                                     id="btn-radios"
@@ -211,7 +212,22 @@ export default {
                     avatar    : require( '@/assets/images/avatars/3.jpg' ),
                     credits   : '134',
                     time      : '12',
-                    status   : 'Externe'
+                    status   : 'Externe',
+                    bills: [
+                        {
+                            key: 20685,
+                            number: 'LC011235',
+                            date: '27/06/2021',
+                            product: `Réservation d'une place dans l'espace co-working de La Colloc pour le lundi 28 juin 2021, de 09:00 à 18:00.
+                            Réservation d'une demi-journée de co-working à La Colloc le lundi 28 juin 2021 - Horaires d'ouverture : 09:00 - 18:00`,
+                            exclTaxeValue : 56.00,
+                            addedTaxe: 11.20,
+                            inclTaxeValue: 67.20,
+                            currentCoin: '€',
+                            paymentStatus: 'Payée',
+                            paymentMethod: 'CB'
+                        }
+                    ]
                 }
             ],
             selected: 'radio1',
@@ -229,6 +245,7 @@ export default {
 .board {
     letter-spacing : 0.0125rem;
     font-family    : Montserrat, Arial, sans-serif;
+    max-height: inherit;
 }
 
 .card-group {
