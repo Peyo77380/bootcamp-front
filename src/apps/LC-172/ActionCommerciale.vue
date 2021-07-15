@@ -190,7 +190,7 @@ export default {
             //console.log(this.newDatas);
             if (this.editedIndex>=0) {
                 const data = this.AllTasks.filter(updatedTask => updatedTask.id == this.newDatas.id);
-                //console.log("test id", dat)
+                //console.log("test id", data.id)
                 console.log("test data", data)
                 //await this.updateTasks(data.id, data);
                 
@@ -215,9 +215,9 @@ export default {
             this.newDatas = data
         },
         deleteAction(data) {
-            this.editedIndex = this.AllTasks.indexOf(data);
-            this.AllTasks.splice(this.editedIndex,1)
-          //TODO point API pour supprimer action commerciale
+            this.deleteTask(data)
+            // this.editedIndex = this.AllTasks.indexOf(data);
+            // this.AllTasks.splice(this.editedIndex,1)
         },
         async confirmDeleteAction(data) {
             if (

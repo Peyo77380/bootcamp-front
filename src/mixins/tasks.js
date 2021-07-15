@@ -41,15 +41,15 @@ export const Tasks = {
                 throw new Error(error);
             }
         },
-        // async deleteTask(data) {
-        //     try {
-        //         // gat task by id 
-        //         const getResponse = await api.get('tasks/delete/{data.id}', data);
-        //         console.log ("test data", getResponse)
-        //         return getResponse.data.updateData;
-        //     } catch (error) {
-        //         throw new Error(error);
-        //     }
-        // },
+        async deleteTask(data) {
+            try {
+                // gat task by id 
+                const getResponse = await api.delete(`tasks/delete/${data.id}`, data);
+                console.log ("test id", data.id)
+                return getResponse.data.datas;
+            } catch (error) {
+                throw new Error(error);
+            }
+        },
     }
 }
