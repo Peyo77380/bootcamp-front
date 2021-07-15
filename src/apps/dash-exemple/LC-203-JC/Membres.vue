@@ -131,83 +131,104 @@
                         </b-col>
 
                         <!--BODY-->
-                        <b-col class="member-datas border h-100 px-5 pt-4 pb-4 justify-content-space-between ">
-                            <b-row align-h="between" class="member-datas-header">
-                                <b-form-radio-group
-                                    id="btn-radios"
-                                    v-model="selected"
-                                    :aria-describedby="ariaDescribedby"
-                                    :options="options"
-                                    button-variant="outline-sunglo"
-                                    buttons
-                                    class="member-header-choice mr-3 align-self-center"
-                                    name="radio-btn-outline"
-                                    size="sm"
-                                ></b-form-radio-group>
-
-                                <b-button-group align-content="end" class="criterions row mx-0 mt-4 ml-auto" size="sm">
-                                    <b-dropdown right text="Liste d'actions A" variant="sunglo">
-                                        <b-dropdown-item>Item 1</b-dropdown-item>
-                                        <b-dropdown-item>Item 2</b-dropdown-item>
-                                        <b-dropdown-divider></b-dropdown-divider>
-                                        <b-dropdown-item>Item 3</b-dropdown-item>
-                                    </b-dropdown>
-                                    <b-dropdown right text="Liste d'actions B" variant="sunglo">
-                                        <b-dropdown-item>Item 1</b-dropdown-item>
-                                        <b-dropdown-item>Item 2</b-dropdown-item>
-                                        <b-dropdown-divider></b-dropdown-divider>
-                                        <b-dropdown-item>Item 3</b-dropdown-item>
-                                    </b-dropdown>
-                                </b-button-group>
+                        <b-col class="member-datas border h-100 px-5 pt-4 pb-4">
+                            <b-row class="member-datas-array mt-2 p-1">
+                                <table>
+                                    <thead class="member-datas-bills-head sticky-top bg-white text-sunglo" >
+                                    <tr class="">
+                                        <th colspan="11" class="text-eternity ">Factures</th>
+                                    </tr>
+                                    <tr class="">
+                                        <th v-for="(field, index) in fieldsBills"
+                                            :key="index"
+                                            class="px-3 py-3 text-center">
+                                            {{ field }}
+                                        </th>
+                                    </tr>
+                                    </thead>
+                                    <tbody class="member-datas-bills-body">
+                                    <tr v-for="(value, index) in bills"
+                                        :key="index">
+                                        <td class="text-center border-top px-3"> {{ value.key }}</td>
+                                        <td class="text-center border-top px-3 font-weight-medium bg-sunglo text-white">
+                                            {{ value.number }}
+                                        </td>
+                                        <td class="text-center border-top px-3">{{ value.date }}</td>
+                                        <td class="border-top px-2 py-3">{{ value.product }}</td>
+                                        <td class="text-center border-top px-3">{{ value.exclTaxeValue }}</td>
+                                        <td class="text-center border-top px-3">{{ value.addedTaxe }}</td>
+                                        <td class="text-center border-top px-3 font-weight-medium">{{
+                                                value.inclTaxeValue
+                                                                                                   }}
+                                        </td>
+                                        <td class="text-center border-top px-3">{{ value.currentCoin }}</td>
+                                        <td class="text-center border-top px-3 font-weight-medium">{{
+                                                value.paymentStatus
+                                                                                                   }}
+                                        </td>
+                                        <td class="text-center border-top px-3">{{ value.paymentMethod }}</td>
+                                        <td class="actionsCell text-center border-top px-4">
+                                            <b-button-group>
+                                                <b-dropdown right split text="•••" variant="outline-sunglo">
+                                                    <b-dropdown-item>Item 1</b-dropdown-item>
+                                                    <b-dropdown-item>Item 2</b-dropdown-item>
+                                                    <b-dropdown-divider></b-dropdown-divider>
+                                                    <b-dropdown-item>Item 3</b-dropdown-item>
+                                                </b-dropdown>
+                                            </b-button-group>
+                                        </td>
+                                    </tr>
+                                    </tbody>
+                                </table>
                             </b-row>
-
-                            <b-row>
-                                <div class="member-datas-array mt-4 border-top">
-                                    <table>
-                                        <thead class="member-datas-array-head sticky-top bg-white text-sunglo">
-                                        <tr class="">
-                                            <th v-for="(field, index) in fieldsBills"
-                                                :key="index"
-                                                class="px-3 py-3 text-center">
-                                                {{ field }}
-                                            </th>
-                                        </tr>
-                                        </thead>
-                                        <tbody class="member-datas-array-body">
-                                        <tr v-for="(value, index) in bills"
-                                            :key="index">
-                                            <td class="text-center border-top px-3"> {{ value.key }}</td>
-                                            <td class="text-center border-top px-3 font-weight-medium bg-sunglo text-white">
-                                                {{ value.number }}
-                                            </td>
-                                            <td class="text-center border-top px-3">{{ value.date }}</td>
-                                            <td class="border-top px-2 py-3">{{ value.product }}</td>
-                                            <td class="text-center border-top px-3">{{ value.exclTaxeValue }}</td>
-                                            <td class="text-center border-top px-3">{{ value.addedTaxe }}</td>
-                                            <td class="text-center border-top px-3 font-weight-medium">{{
-                                                    value.inclTaxeValue
-                                                                                                            }}
-                                            </td>
-                                            <td class="text-center border-top px-3">{{ value.currentCoin }}</td>
-                                            <td class="text-center border-top px-3 font-weight-medium">{{
-                                                    value.paymentStatus
-                                                                                                            }}
-                                            </td>
-                                            <td class="text-center border-top px-3">{{ value.paymentMethod }}</td>
-                                            <td class="actionsCell text-center border-top px-4">
-                                                <b-button-group>
-                                                    <b-dropdown right split text="•••" variant="outline-sunglo">
-                                                        <b-dropdown-item>Item 1</b-dropdown-item>
-                                                        <b-dropdown-item>Item 2</b-dropdown-item>
-                                                        <b-dropdown-divider></b-dropdown-divider>
-                                                        <b-dropdown-item>Item 3</b-dropdown-item>
-                                                    </b-dropdown>
-                                                </b-button-group>
-                                            </td>
-                                        </tr>
-                                        </tbody>
-                                    </table>
-                                </div>
+                            <b-row class="member-datas-array mt-5">
+                                <table>
+                                    <thead class="member-datas-bills-head sticky-top bg-white text-sunglo">
+                                    <tr class="">
+                                        <th colspan="11" class="text-eternity">Devis</th>
+                                    </tr>
+                                    <tr class="">
+                                        <th v-for="(field, index) in fieldsBills"
+                                            :key="index"
+                                            class="px-3 py-3 text-center">
+                                            {{ field }}
+                                        </th>
+                                    </tr>
+                                    </thead>
+                                    <tbody class="member-datas-bills-body">
+                                    <tr v-for="(value, index) in bills"
+                                        :key="index">
+                                        <td class="text-center border-top px-3"> {{ value.key }}</td>
+                                        <td class="text-center border-top px-3 font-weight-medium bg-sunglo text-white">
+                                            {{ value.number }}
+                                        </td>
+                                        <td class="text-center border-top px-3">{{ value.date }}</td>
+                                        <td class="border-top px-2 py-3">{{ value.product }}</td>
+                                        <td class="text-center border-top px-3">{{ value.exclTaxeValue }}</td>
+                                        <td class="text-center border-top px-3">{{ value.addedTaxe }}</td>
+                                        <td class="text-center border-top px-3 font-weight-medium">{{
+                                                value.inclTaxeValue
+                                                                                                   }}
+                                        </td>
+                                        <td class="text-center border-top px-3">{{ value.currentCoin }}</td>
+                                        <td class="text-center border-top px-3 font-weight-medium">{{
+                                                value.paymentStatus
+                                                                                                   }}
+                                        </td>
+                                        <td class="text-center border-top px-3">{{ value.paymentMethod }}</td>
+                                        <td class="actionsCell text-center border-top px-4">
+                                            <b-button-group>
+                                                <b-dropdown right split text="•••" variant="outline-sunglo">
+                                                    <b-dropdown-item>Item 1</b-dropdown-item>
+                                                    <b-dropdown-item>Item 2</b-dropdown-item>
+                                                    <b-dropdown-divider></b-dropdown-divider>
+                                                    <b-dropdown-item>Item 3</b-dropdown-item>
+                                                </b-dropdown>
+                                            </b-button-group>
+                                        </td>
+                                    </tr>
+                                    </tbody>
+                                </table>
                             </b-row>
                         </b-col>
                     </b-row>
@@ -222,8 +243,8 @@
 export default {
     name: 'Membres', data() {
         return {
-            actionsIcon: "<b-icon icon=\"gear\" class=\"font-size-xlg\"></b-icon",
-            member: [
+            actionsIcon : '<b-icon icon="gear" class="font-size-xlg"></b-icon',
+            member      : [
                 {
                     firstname : 'Bruno',
                     lastname  : 'Mars',
@@ -243,8 +264,8 @@ export default {
                     status    : 'Externe'
                 }
             ],
-            fieldsBills: [ 'Clé', 'Numéro', 'Date', 'Produit', 'Montant H.T', 'Taxe', 'Montant T.T.C', 'Devise', 'Statut', 'Mode de règlement', 'Actions' ],
-            bills : [
+            fieldsBills : [ 'Clé', 'Numéro', 'Date', 'Produit', 'Montant H.T', 'Taxe', 'Montant T.T.C', 'Devise', 'Statut', 'Mode de règlement', 'Actions' ],
+            bills       : [
                 {
                     key          : 20307,
                     number       : 'LC010968',
@@ -487,7 +508,7 @@ export default {
                 }
             ],
             fieldsQuotes: [ 'Clé', 'Numéro', 'Date', 'Produit', 'Montant H.T', 'Taxe', 'Montant T.T.C', 'Devise', 'Statut', 'Mode de règlement', 'Actions' ],
-            quotes : [
+            quotes      : [
                 {
                     key          : 20307,
                     number       : 'LC010968',
@@ -729,8 +750,8 @@ export default {
                     paymentMethod: 'Virement'
                 }
             ],
-            selected: 'radio1',
-            options : [
+            selected    : 'radio1',
+            options     : [
                 { text: 'Factures', value: 'radio1' },
                 { text: 'Devis', value: 'radio2' }
             ]
@@ -741,15 +762,17 @@ export default {
 
 <style scoped>
 .member-datas-array {
-    z-index                                                      : 10;
-    width                                                        : 100%;
+    height   : 35vh;
+    overflow : scroll;
+    width    : 100%;
+    //border-bottom: 3px solid #FFF;
 }
 
-.member-datas-array-head > tr {
-    border-bottom: 2px solid #EC6465 !important;;
+.member-datas-bills-head > tr {
+    border-bottom : 2px solid #EC6465 !important;;
 }
 
-.member-datas-array-body > tr:nth-child(odd) {
+.member-datas-bills-body > tr:nth-child(odd) {
     background-color : rgba(236, 100, 101, 0.15);
 }
 
@@ -789,10 +812,6 @@ export default {
     min-width : 520px;
 }
 
-.member-datas-header {
-    z-index : 100;
-}
-
 .member-header-choice span {
     display    : inline-block;
     margin-top : 2px;
@@ -803,11 +822,11 @@ export default {
 }
 
 .actionsCell {
-    background-color: rgba(255, 255, 255, 0.6);
+    background-color : rgba(255, 255, 255, 0.6);
 }
 
 .actionsBtn {
-    border: none;
+    border : none;
 }
 </style>
 
