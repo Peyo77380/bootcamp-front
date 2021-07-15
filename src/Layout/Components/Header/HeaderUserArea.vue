@@ -84,10 +84,27 @@
                 </div>
             </div>
         </div>
-        <div class="header-btn-lg">
-            <button type="button" class="hamburger hamburger--elastic" v-bind:class="{ 'is-active': showDrawerSection }"
-                    v-on:click="showDrawerSection = !showDrawerSection">
-                <span class="hamburger-box"><span class="hamburger-inner"></span></span>
+        <div>
+            <button type="button" 
+            class="btn-sm"
+            v-bind:class="{ 'is-active': showDrawerSection }"
+            v-on:click="showDrawerSection = !showDrawerSection"
+            >
+                <span slot="button-content">
+                    <div class="icon-wrapper  rounded-circle">
+                        <div class="icon-wrapper-bg bg-danger"></div>
+                        <i class="lnr-list text-danger"></i>
+                        <div class="badge badge-pill badge-danger ml-0 mr-2">4</div>
+                    </div>
+                </span>
+            </button>
+            <button 
+            class="mb-2 mr-2 btn-icon btn-icon-only btn btn-link btn-sm"
+            v-bind:class="{ 'is-active': showDrawerSection }"
+            v-on:click="showDrawerSection = !showDrawerSection"
+            >
+                <i class="lnr-list btn-icon-wrapper font-size-xlg"> </i>
+                <span class="badge badge-pill badge-warning">2</span>
             </button>
         </div>
 

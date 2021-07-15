@@ -7,50 +7,50 @@
                         <div class="">
                             <div class="row">
                                 <div class="col-md-12">
-                                    <h5 class="card-title mt-3">Action commerciale</h5>
+                                    <h5 class="card-title mt-3">Informations de la tâche</h5>
                                     <form class="mt-5">
                                         <div class="position-relative form-group">
-                                            <label>Nom de la société*</label>
+                                            <label>Intitulé de la tâche*</label>
                                             <input 
                                             placeholder="Saisir le nom de la société" 
                                             type="email" class="form-control"
-                                            v-model="newDatas.name"
+                                            v-model="newDatas.title"
                                             >
                                         </div>
                                         <div class="position-relative form-group">
                                             <label >
-                                                Type d'action commerciale*
+                                                Type de tâche*
                                             </label>
                                             <select 
                                             name="select"  
                                             class="form-control"
-                                            v-model="newDatas.action"
+                                            v-model="newDatas.type"
                                             >
-                                            <option v-for="item in type" :key="item.value" > {{ item.text }}</option>
+                                            <option v-for="item in type" :key="item.value" :value="item.value"> {{ item.text }}</option>
                                             </select>
                                         </div>
                                         <div class="position-relative form-group">
                                             <label>
-                                                État de l'action commerciale*
+                                                État*
                                             </label>
                                             <select 
                                             name="select"  
                                             class="form-control"
                                             v-model="newDatas.status"
                                             >
-                                            <option v-for="item in etat" :key="item.value"> {{ item.text }}</option>
+                                            <option v-for="item in status" :key="item.value" :value="item.value"> {{ item.text }}</option>
                                             </select>
                                         </div>
                                         <div class="position-relative form-group">
                                             <label >
-                                                Résponsable de l'action commerciale*
+                                                Résponsable de la tâche*
                                             </label>
                                             <select 
                                             name="select"  
                                             class="form-control"
-                                            v-model="newDatas.responsable"
+                                            v-model="newDatas.admin_id"
                                             >
-                                            <option v-for="item in responsable" :key="item.value"> {{ item.text }}</option>
+                                            <option v-for="item in admin" :key="item.value" :value="item.value"> {{ item.text }}</option>
                                             </select>
                                         </div>
                                         <div class="position-relative form-group">
@@ -58,14 +58,14 @@
                                             </label>
                                             <textarea name="text" 
                                             class="form-control"
-                                            v-model="newDatas.detail"
+                                            v-model="newDatas.content"
                                             ></textarea>
                                         </div>
                                         <div class="position-relative form-group">
                                             <label>Date d'écheance*
                                             </label><br>
                                             <date-picker 
-                                            v-model="newDatas.date" 
+                                            v-model="newDatas.end_date" 
                                             lang="fr" 
                                             :not-before="new Date()"
                                             :format="format"
@@ -106,19 +106,19 @@ export default {
     return {
         type: [
             {text: 'Sélectionner votre action commerciale', value: null},
-            {text: 'Rappel télephonique', value: 1},
-            {text: 'Envoyer un email', value: 2},
+            {text: 'Rappel télephonique', value: "0"},
+            {text: 'Envoyer un email', value: "1"},
         ],
-        responsable: [
+        admin: [
             {text: "Sélectionner le responsable de l'action commerciale", value: null},
-            {text: 'Margaux JEZEQUEL', value: 1},
-            {text: 'Irwin MAGADUR', value: 2},
+            {text: 'Margaux JEZEQUEL', value: "0"},
+            {text: 'Irwin MAGADUR', value: "1"},
         ],
-        etat: [
+        status: [
             {text: "Sélectionner l'état de l'action commerciale", value: null},
-            {text:'en cours', value: 1},
-            {text:'terminé', value: 2},
-            {text:'à faire', value: 3},
+            {text:'en cours', value: "2"},
+            {text:'terminé', value: "0"},
+            {text:'à faire', value: "1"},
         ],
         valueDate: new Date(),
         format: 'dd/MM/YYYY'
