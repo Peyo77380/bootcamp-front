@@ -4,7 +4,7 @@
             <v-expansion-panel v-model="panel" expand>
                 <v-expansion-panel-content>
                     <template v-slot:header>
-                        <div>Informations</div>
+                        <div>Informations générales</div>
                     </template>
                     <v-card>
                         <v-card-text class="grey lighten-3">
@@ -49,6 +49,59 @@
                                         ></v-text-field>
                                     </div>
 
+                                </div>
+                            </div>
+                        </v-card-text>
+                    </v-card>
+                </v-expansion-panel-content>
+                <v-expansion-panel-content>
+                    <template v-slot:header>
+                        <div>Informations sur le batiment</div>
+                    </template>
+                    <v-card>
+                        <v-card-text class="grey lighten-3">
+                            <div class="card-body">
+                                <div class="input-group">
+                                    <v-text-field
+                                        v-model="building.surface"
+                                        label="Surface totale du bâtiment en mètres carrés"
+                                        v-bind:disabled="editionMode === false"
+                                    ></v-text-field>
+                                </div>
+                                Etages
+                                <div class="input-group">
+                                    <v-text-field
+                                        v-model="building.floors.name"
+                                        label="Nom de l'étage"
+                                        v-bind:disabled="editionMode === false"
+                                    ></v-text-field>
+                                    <v-text-field
+                                        v-model="building.floors.surface"
+                                        label="Surface de l'étage"
+                                        v-bind:disabled="editionMode === false"
+                                    ></v-text-field>
+                                    <v-checkbox
+                                        label="Activé ?"
+                                            v-bind:disabled="editionMode === false"
+                                        v-model="building.floors.state"
+                                    ></v-checkbox>
+                                </div>
+                                <div class="input-group">
+                                    <v-text-field
+                                        v-model="building.floors.name"
+                                        label="Nom de l'étage"
+                                        v-bind:disabled="editionMode === false"
+                                    ></v-text-field>
+                                    <v-text-field
+                                        v-model="building.floors.surface"
+                                        label="Surface de l'étage"
+                                        v-bind:disabled="editionMode === false"
+                                    ></v-text-field>
+                                    <v-checkbox
+                                        label="Activé ?"
+                                            v-bind:disabled="editionMode === false"
+                                        v-model="building.floors.state"
+                                    ></v-checkbox>
                                 </div>
                             </div>
                         </v-card-text>
@@ -125,9 +178,17 @@
                     </v-card>
                 </v-expansion-panel-content>
             </v-expansion-panel>
-
-            <v-btn @click="sendBuilding">Valider</v-btn>
-            <v-btn @click="cancel">Annuler</v-btn>
+            
+            <v-btn 
+                v-if="editionMode"
+                @click="sendBuilding">
+                Valider
+            </v-btn>
+            <v-btn
+                v-if="editionMode"
+                @click="redirectToBuildingIndex">
+                Annuler
+            </v-btn>
         </form>
     </div>
 </template>
@@ -212,18 +273,18 @@ export default {
             if (update.error) {
                 return console.log(update.error)
             }
-            return update;
+            return this.redirectToBuildingIndex();
         },
         async saveNewBuilding() {
             const save = await this.storeBuilding(this.building);
             if (save.error) {
                 return console.log(save.error);
             }
-            return save;
+            return this.redirectToBuildingIndex();
         },
-        cancel () {
-            // TODO : à voir
-        },
+        redirectToBuildingIndex() {
+            return this.$router.push({name: "our-buildings"});
+        }
         // toggleService (id) {
         //     // TODO : gérer les services disponibles
         // }
