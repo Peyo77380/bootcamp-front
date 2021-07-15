@@ -17,8 +17,13 @@ export default new Router({
         // },
         {
             path: "/",
-            name: "facturation_section_add",
+            name: "facturation_section",
             component: () => import("@/apps/facturation/index")
+        },
+        {
+            path: "/add-facturation",
+            name: "facturation_section_add",
+            component: () => import("@/apps/facturation/components/modalFactureadd.vue")
         }
     ]
 });
