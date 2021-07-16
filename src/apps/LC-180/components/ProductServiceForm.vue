@@ -26,15 +26,10 @@
                                     label="Type"
                                     item-text="text"
                                     item-value="id"
-                                    @change="handleTypeChange"
                                 ></v-combobox>
                                 <v-combobox
                                     v-model="formItem.categoryType"
-                                    :items="
-                                        categoriesCombined[
-                                            this.selectedType.id - 1
-                                        ]
-                                    "
+                                    :items="selectedCategories"
                                     label="Catégorie"
                                 ></v-combobox>
                             </v-layout>
@@ -188,19 +183,27 @@ export default {
         },
         selectedType: {
             get() {
+                var vm = this;
+                vm.selectedCategories = this.categoriesCombined[
+                    vm.formItem.type - 1
+                ];
                 return {
-                    id: this.formItem.type,
-                    text: this.getNameType(this.formItem.type)
+                    id: vm.formItem.type,
+                    text: vm.getNameType(vm.formItem.type)
                 };
             },
             set(val) {
-                this.formItem.type = val.id;
-                //      console.log(this.formItem.type);
+                var vm = this;
+                vm.formItem.type = val.id;
+                vm.selectedCategories = this.categoriesCombined[
+                    vm.formItem.type - 1
+                ];
             }
         }
     },
     data() {
         return {
+            selectedCategories: [],
             radioDisplays: ["Admin", "Membres", "Boutique"],
             states: ["Actif", "Désactivé"],
             imageProduct: "",
@@ -218,10 +221,6 @@ export default {
         confirmer() {
             this.handleRegister(this.formItem);
             this.closeForm();
-        },
-        handleTypeChange() {
-            console.log(this.formItem.type);
-            this.formItem.categoryType = "";
         },
         onPickFile() {
             this.$refs.fileInput.click();
