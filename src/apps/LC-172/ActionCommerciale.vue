@@ -133,7 +133,7 @@ import { commercialData } from "@/apps/LC-172/commercialData";
 import ActionCommercialAdd from "@/apps/LC-172/components/ActionCommercialAdd";
 import { Tasks } from "@/mixins/tasks";
 export default {
-    name: 'ToDoListe',
+    name: 'ToDoList',
     data() {
         return {
             AllTasks: [],
@@ -187,13 +187,10 @@ export default {
         },
         // Save Action commercial add and modification
         async saveNewDatas() {
-            //console.log(this.newDatas);
             if (this.editedIndex>=0) {
-                const data = this.AllTasks.filter(updatedTask => updatedTask.id == this.newDatas.id);
-                //console.log("test id", data.id)
-                console.log("test data", data)
-                //await this.updateTasks(data.id, data);
-                
+                // const data = this.AllTasks.filter(updatedTask => updatedTask.id == this.newDatas.id);
+                //API point for update task 
+                await this.updateTasks(this.newDatas.id, this.newDatas);
                 this.editedIndex=-1;
                 this.$sweetNotif("Modification réussie !");
                 this.AllTasks = await this.getAllTasks();
@@ -201,6 +198,7 @@ export default {
                 this.newDatas = {};
             }
             else {
+                //API point for create new task
                 await this.createTasks(this.newDatas); 
                 this.AllTasks = await this.getAllTasks();
                 this.$sweetNotif("Création nouvelle tâche réussie !");
@@ -209,6 +207,7 @@ export default {
             }
         },
         async editAction(data) {
+            //API point for get task by id 
             this.addModal();
             await this.getTask(data); 
             this.editedIndex = this.AllTasks.indexOf(data);
@@ -222,7 +221,7 @@ export default {
         async confirmDeleteAction(data) {
             if (
                 await this.$sweetConfirmation({
-                    value: data.name
+                    value: data.title
                 })
             )
             this.deleteAction(data)

@@ -24,9 +24,8 @@ export const Tasks = {
         async updateTasks(id, data) {
             try {
                 // update task
-                //const putResponse = await api.put(`tasks/update/${id}`, data);
-                //console.log("test id", id)
-                //console.log("test data", data)
+                const putResponse = await api.put(`tasks/update/${id}`, data);
+                console.log("test id", id)
                 //return putResponse.data.datas;
             } catch (error) {
                 throw new Error(error);
@@ -43,10 +42,10 @@ export const Tasks = {
         },
         async deleteTask(data) {
             try {
-                // gat task by id 
-                const getResponse = await api.delete(`tasks/delete/${data.id}`, data);
-                console.log ("test id", data.id)
-                return getResponse.data.datas;
+                // delete task by id 
+                const deleteResponse = await api.delete(`tasks/delete/${data.id}`, data);
+                //console.log ("test id", deleteResponse)
+                return deleteResponse.data.datas;
             } catch (error) {
                 throw new Error(error);
             }
