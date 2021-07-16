@@ -1,5 +1,35 @@
 <template>
     <div>
+        <div
+            class="row"
+            style="display: flex; justify-content: center; align-items: center"
+        >
+            <div
+                class="col-md-3 col-xl-2"
+                v-for="(category, index) in types"
+                :key="index"
+            >
+                <div
+                    :class="getClassType(index + 1)"
+                    class="card mb-3 widget-content"
+                >
+                    <div class="widget-content-wrapper text-white">
+                        <div class="widget-content-left">
+                            <div class="widget-heading">
+                                {{ category.text }}
+                            </div>
+                        </div>
+                        <div class="widget-content-right">
+                            <v-switch
+                                color="primary"
+                                v-model="selectedType"
+                                :value="category"
+                            ></v-switch>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
         <div class="main-card mb-3 card">
             <div class="table-responsive">
                 <table
@@ -17,26 +47,16 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <tr
-                            v-for="product in productsServices"
-                            :key="product._id"
-                        >
-                            <!-- <td
-                                class="text-center text-muted"
-                                style="width: 80px;"
-                            >
-                                {{ user.ID }}
-                            </td> -->
-
+                        <tr v-for="product in filteredItems" :key="product._id">
                             <td class="text-center">
                                 <a href="javascript:void(0)">{{
                                     product.name
                                 }}</a>
                             </td>
                             <td class="text-center">
-                                <a href="javascript:void(0)">{{
-                                    product.type
-                                }}</a>
+                                <v-chip :class="getClassType(product.type)">{{
+                                    getNameType(product.type)
+                                }}</v-chip>
                             </td>
                             <td class="text-center">
                                 <a href="javascript:void(0)">{{
@@ -67,7 +87,10 @@
                                         class="mb-2 mr-2  btn-pill btn-shadow"
                                         variant="primary"
                                         id="popover1"
-                                        @click="handleForm('edit', product)"
+                                        :to="{
+                                            name: 'EditProductService',
+                                            params: { id: product._id }
+                                        }"
                                     >
                                         <i class="lnr-pencil"></i>
                                     </b-button>
@@ -82,9 +105,7 @@
                                         class="mb-2 mr-2  btn-pill btn-shadow"
                                         variant="primary"
                                         id="popover2"
-                                        @click="
-                                            handleForm('duplicate', product)
-                                        "
+                                        @click="handleForm(product)"
                                     >
                                         <i class="pe-7s-copy-file"></i>
                                     </b-button>
@@ -119,7 +140,7 @@
                         <b-button
                             class="mb-2 mr-2"
                             variant="success"
-                            @click="handleForm('add', {})"
+                            @click="handleForm({})"
                             >ajouter un service</b-button
                         >
                     </div>
@@ -141,25 +162,52 @@ export default {
         productsServices: {
             type: Array
         },
+        types: {
+            type: Array
+        },
         handleRemove: {
             type: Function
         },
         handleForm: {
             type: Function
+        },
+        getNameType: {
+            type: Function
+        },
+        getClassType: {
+            type: Function
         }
     },
     data() {
-        return {};
+        return {
+            selectedType: "Toutes les types"
+        };
     },
-
+    computed: {
+        filteredItems: function() {
+            var vm = this;
+            var category = this.types.indexOf(vm.selectedType) + 1;
+            if (
+                this.selectedType === "Toutes les types" ||
+                this.selectedType === null
+            ) {
+                return { ...vm.productsServices };
+            } else {
+                return vm.productsServices.filter(function(item) {
+                    return item.type === category;
+                });
+            }
+        },
+        prows() {
+            return this.filteredItems.length;
+        }
+    },
     methods: {
         async remove(id) {
             let title = "Confirmer la suppression de cet item";
             if (await this.$sweetConfirmation({ title })) {
                 try {
                     await this.handleRemove(id);
-
-                    this.$sweetNotif("Item supprimée");
                 } catch (error) {
                     // console.error(error);
                 }

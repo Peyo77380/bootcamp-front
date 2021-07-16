@@ -10,9 +10,9 @@
             <v-card>
                 <div class="mb-5">
                     <v-toolbar dark color="primary" class="mb-6">
-                        <v-toolbar-title>{{
-                            formLayout.title
-                        }}</v-toolbar-title>
+                        <v-toolbar-title
+                            >Ajouter un service/produit</v-toolbar-title
+                        >
                         <v-spacer></v-spacer>
                     </v-toolbar>
                 </div>
@@ -21,13 +21,20 @@
                         <v-form ref="form">
                             <v-layout>
                                 <v-combobox
-                                    v-model="formItem.type"
+                                    v-model="selectedType"
                                     :items="types"
                                     label="Type"
+                                    item-text="text"
+                                    item-value="id"
+                                    @change="handleTypeChange"
                                 ></v-combobox>
                                 <v-combobox
                                     v-model="formItem.categoryType"
-                                    :items="categoryTypes"
+                                    :items="
+                                        categoriesCombined[
+                                            this.selectedType.id - 1
+                                        ]
+                                    "
                                     label="Catégorie"
                                 ></v-combobox>
                             </v-layout>
@@ -76,12 +83,8 @@
                                 ></v-text-field>
 
                                 <v-text-field
-                                    v-model="formItem.pricePromotion"
-                                    label="Prix promo"
-                                ></v-text-field>
-                                <v-text-field
-                                    v-model="formItem.priceMemberPromotion"
-                                    label="Prix promo membres"
+                                    v-model="formItem.priceCo"
+                                    label="Prix co"
                                 ></v-text-field>
                             </v-layout>
                             <v-textarea
@@ -108,36 +111,38 @@
                             >
                                 {{ formItem.content }}</v-textarea
                             >
-                            <v-radio-group v-model="formItem.display" row>
-                                <template v-slot:label>
-                                    <div>
-                                        Affichage
-                                    </div>
-                                </template>
-                                <hr />
-                                <v-radio
-                                    v-for="radioD in radioDisplays"
-                                    :key="radioD"
-                                    :label="radioD"
-                                    :value="radioD"
-                                ></v-radio>
-                            </v-radio-group>
 
-                            <v-radio-group v-model="formItem.state" row>
-                                <template v-slot:label>
-                                    <div>
-                                        Etat
-                                    </div>
-                                </template>
-                                <hr />
-                                <v-radio
-                                    v-for="state in states"
-                                    :key="state"
-                                    :label="state"
-                                    :value="state"
-                                ></v-radio>
-                            </v-radio-group>
+                            <v-layout>
+                                <v-radio-group v-model="formItem.state" row>
+                                    <template v-slot:label>
+                                        <div>
+                                            Etat
+                                        </div>
+                                    </template>
+                                    <hr />
+                                    <v-radio
+                                        v-for="state in states"
+                                        :key="state"
+                                        :label="state"
+                                        :value="state"
+                                    ></v-radio>
+                                </v-radio-group>
 
+                                <v-radio-group v-model="formItem.display" row>
+                                    <template v-slot:label>
+                                        <div>
+                                            Affichage
+                                        </div>
+                                    </template>
+                                    <hr />
+                                    <v-radio
+                                        v-for="radioD in radioDisplays"
+                                        :key="radioD"
+                                        :label="radioD"
+                                        :value="radioD"
+                                    ></v-radio>
+                                </v-radio-group>
+                            </v-layout>
                             <v-btn color="success" @click="confirmer">
                                 Confirmer
                             </v-btn>
@@ -154,9 +159,13 @@
 </template>
 
 <script>
+import { Lists } from "../../../mixins/list";
 export default {
     name: "ProductServiceForm",
     props: {
+        types: {
+            type: Array
+        },
         editedForm: {
             type: Object
         },
@@ -166,34 +175,32 @@ export default {
         closeForm: {
             type: Function
         },
-        updateForm: {
-            type: Function
-        },
-        formMode: {
-            type: String
-        },
-        formLayout: {
-            type: Object
-        },
         handleRegister: {
             type: Function
-        }
+        },
+        getNameType: { type: Function },
+        categoriesCombined: { type: Array, required: true }
     },
+    mixins: [Lists],
     computed: {
         formItem() {
             return { ...this.editedForm };
+        },
+        selectedType: {
+            get() {
+                return {
+                    id: this.formItem.type,
+                    text: this.getNameType(this.formItem.type)
+                };
+            },
+            set(val) {
+                this.formItem.type = val.id;
+                //      console.log(this.formItem.type);
+            }
         }
     },
-
     data() {
         return {
-            types: ["Service", "Product"],
-            categoryTypes: [
-                "Adhesion",
-                "Experience",
-                "Coworking",
-                "Location bureau partagé"
-            ],
             radioDisplays: ["Admin", "Membres", "Boutique"],
             states: ["Actif", "Désactivé"],
             imageProduct: "",
@@ -209,8 +216,12 @@ export default {
     },
     methods: {
         confirmer() {
-            this.handleRegister(this.formMode, this.formItem);
+            this.handleRegister(this.formItem);
             this.closeForm();
+        },
+        handleTypeChange() {
+            console.log(this.formItem.type);
+            this.formItem.categoryType = "";
         },
         onPickFile() {
             this.$refs.fileInput.click();

@@ -17,9 +17,15 @@ export default new Router({
         },
         {
             path: "/LC-180",
-            name: "LC-180",
+            name: "ProductServiceList",
             component: () => import("../apps/LC-180/index.vue")
         },
+        {
+            path: "/LC-180/:id",
+            name: "EditProductService",
+            component: () => import('@/apps/LC-180/components/EditProductService'),
+        },
+
 
     ]
 });

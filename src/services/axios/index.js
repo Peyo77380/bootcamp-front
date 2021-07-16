@@ -1,13 +1,18 @@
-import axios from "axios"
+import axios from "axios";
 
-const api = axios.create({
-    baseURL: "http://localhost:3000/api/",
-    timeout: 3000,
-    withCreditentials: false,
-    headers: {
-        "Access-Control-Allow-Origin": "*",
-        "Access-Control-Allow-Methods": "GET,PUT,POST,DELETE,PATCH,OPTIONS"
-    }
-})
+    // For common config
+    axios.defaults.headers.post["Content-Type"] = "application/json";
 
-export default api;
+    const api = axios.create({
+        baseURL: 'http://localhost/api/'
+    });
+
+    const api_ms_room = axios.create({
+        baseURL: 'http://localhost:8000/api/v1/'
+    });
+
+
+    export {
+      api,
+      api_ms_room
+    };
