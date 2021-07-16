@@ -13,7 +13,7 @@
                         ></v-combobox>
                         <v-combobox
                             v-model="formItem.categoryType"
-                            :items="categoryTypes"
+                            :items="selectedCategories"
                             label="Catégorie"
                         ></v-combobox>
                     </v-layout>
@@ -149,7 +149,19 @@ export default {
     },
     name: "ProductServiceForm",
     props: {
-        handleRegister: {
+        id: { type: String, required: true },
+        types: {
+            type: Array
+        },
+        categoriesCombined: {
+            type: Array,
+            required: true
+        },
+        getNameType: {
+            type: Function,
+            required: true
+        },
+        handleModify: {
             type: Function
         }
     },
@@ -158,20 +170,34 @@ export default {
         this.id = this.$route.params.id;
         await this.loadProductService(this.id);
         this.selectedType = this.types[this.formItem.type - 1];
+        this.selectedCategories = this.categoriesCombined[
+            this.formItem.type - 1
+        ];
+    },
+    computed: {
+        selectedType: {
+            get() {
+                var vm = this;
+                vm.selectedCategories =
+                    vm.categoriesCombined[vm.formItem.type - 1];
+                return {
+                    id: vm.formItem.type,
+                    text: vm.getNameType(vm.formItem.type)
+                };
+            },
+            set(val) {
+                var vm = this;
+                vm.formItem.type = val.id;
+                vm.selectedCategories =
+                    vm.categoriesCombined[vm.formItem.type - 1];
+            }
+        }
     },
     data() {
         return {
-            selectedType: "",
-            id: null,
+            selectedCategories: [],
             loading: false,
-            types: ["Produit", "Service"],
             formItem: {},
-            categoryTypes: [
-                "Adhesion",
-                "Experience",
-                "Coworking",
-                "Location bureau partagé"
-            ],
             radioDisplays: ["Admin", "Membres", "Boutique"],
             states: ["Actif", "Désactivé"],
             imageProduct: "",
@@ -196,8 +222,9 @@ export default {
             }
         },
         async confirmer() {
-            this.formItem.type = this.types.indexOf(this.selectedType) + 1;
-            await this.modifyProductService(this.id, this.formItem);
+            // this.formItem.type = this.types.indexOf(this.selectedType) + 1;
+            this.handleModify(this.id, this.formItem);
+            // await this.modifyProductService(this.id, this.formItem);
             this.$router.push({ name: "ProductServiceList" });
         },
         //For upload image

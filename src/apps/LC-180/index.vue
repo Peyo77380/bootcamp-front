@@ -10,6 +10,8 @@
                 :getClassType="getClassType"
                 :key="componentKey"
                 :types="types"
+                :categoriesCombined="categoriesCombined"
+                :handleModify="handleModify"
             />
         </div>
         <div>
@@ -60,8 +62,6 @@ export default {
                 { id: 1, text: "Produit", class: "bg-success" },
                 { id: 2, text: "Service", class: "bg-alternate" }
             ],
-            categoriesService: [],
-            categoriesProduct: [],
             categoriesCombined: [],
             componentKey: 0
         };
@@ -81,14 +81,14 @@ export default {
             try {
                 const res = await this.getAllLists(4);
                 const categories = res.datas.data.datas;
-                this.categoriesService = categories.filter(item => {
+                const categoriesService = categories.filter(item => {
                     return item.key == "service";
                 })[0].datas;
-                this.categoriesProduct = categories.filter(item => {
+                const categoriesProduct = categories.filter(item => {
                     return item.key == "produit";
                 })[0].datas;
-                this.categoriesCombined.push(this.categoriesProduct);
-                this.categoriesCombined.push(this.categoriesService);
+                this.categoriesCombined.push(categoriesProduct);
+                this.categoriesCombined.push(categoriesService);
             } catch (error) {
                 this.$sweetError("GLC-180");
             }
@@ -130,8 +130,19 @@ export default {
             }
         },
         async handleRegister(item) {
-            await this.addProductService(item);
-            this.loadProductServices();
+            try {
+                await this.addProductService(item);
+                this.loadProductServices();
+            } catch (error) {
+                this.$sweetError("GLC-180-register");
+            }
+        },
+        async handleModify(id, item) {
+            try {
+                await this.modifyProductService(id, item);
+            } catch (error) {
+                this.$sweetError("GLC-180-modify");
+            }
         },
         forceRerender() {
             this.componentKey += 1;

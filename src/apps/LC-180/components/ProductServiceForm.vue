@@ -184,9 +184,8 @@ export default {
         selectedType: {
             get() {
                 var vm = this;
-                vm.selectedCategories = this.categoriesCombined[
-                    vm.formItem.type - 1
-                ];
+                vm.selectedCategories =
+                    vm.categoriesCombined[vm.formItem.type - 1];
                 return {
                     id: vm.formItem.type,
                     text: vm.getNameType(vm.formItem.type)
@@ -195,9 +194,8 @@ export default {
             set(val) {
                 var vm = this;
                 vm.formItem.type = val.id;
-                vm.selectedCategories = this.categoriesCombined[
-                    vm.formItem.type - 1
-                ];
+                vm.selectedCategories =
+                    vm.categoriesCombined[vm.formItem.type - 1];
             }
         }
     },

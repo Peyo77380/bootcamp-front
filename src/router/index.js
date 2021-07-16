@@ -23,6 +23,7 @@ export default new Router({
         {
             path: "/LC-180/:id",
             name: "EditProductService",
+            props: true,
             component: () => import('@/apps/LC-180/components/EditProductService'),
         },
 

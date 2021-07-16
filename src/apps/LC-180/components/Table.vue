@@ -89,7 +89,13 @@
                                         id="popover1"
                                         :to="{
                                             name: 'EditProductService',
-                                            params: { id: product._id }
+                                            params: {
+                                                id: product._id,
+                                                getNameType: getNameType,
+                                                handleModify: handleModify,
+                                                types: types,
+                                                categoriesCombined: categoriesCombined
+                                            }
                                         }"
                                     >
                                         <i class="lnr-pencil"></i>
@@ -168,6 +174,9 @@ export default {
         handleRemove: {
             type: Function
         },
+        handleModify: {
+            type: Function
+        },
         handleForm: {
             type: Function
         },
@@ -176,6 +185,9 @@ export default {
         },
         getClassType: {
             type: Function
+        },
+        categoriesCombined: {
+            type: Array
         }
     },
     data() {
