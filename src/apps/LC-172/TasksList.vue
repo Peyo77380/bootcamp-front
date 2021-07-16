@@ -9,7 +9,7 @@
                 @click="addModal"
                 >
                     <i class="btn-icon-wrapper lnr-plus-circle"></i>
-                    Nouvelle tâche
+                    Créer un nouvelle tâche
                 </button>
             </div>
         </div>
@@ -27,8 +27,8 @@
                                         <div class="widget-content-left">
                                             <div> 
                                                 <span class="widget-heading">{{ data.title }}</span>
-                                                <div :class="getStatus(data.status)">
-                                                    {{ data.status }}
+                                                <div :class="getStatus(data.status)" :statusValue="statusValue">
+                                                    {{data.status}}
                                                 </div>
                                                 <b-dropdown
                                                     toggle-class="btn-icon btn-icon-only"
@@ -119,7 +119,7 @@
                 </li>
             </ul>
         </div>
-        <action-commercial-add
+        <add-tasks
         :dialog="dialog"
         @closeModal="cancelModal"
         @saveDatas="saveNewDatas"
@@ -129,22 +129,23 @@
 </template>
     
 <script>
-import { commercialData } from "@/apps/LC-172/commercialData";
-import ActionCommercialAdd from "@/apps/LC-172/components/ActionCommercialAdd";
+import AddTasks from "@/apps/LC-172/components/AddTasks";
 import { Tasks } from "@/mixins/tasks";
 export default {
     name: 'ToDoList',
     data() {
         return {
             AllTasks: [],
-            status: {
-                start: "à faire",
-                progress: "en cours",
-                end: "terminé", 
-            },
+            statusValue: "",
+            class:"",
             dialog: false, 
             newDatas: {},
-            editedIndex: -1
+            editedIndex: -1,
+            classStatus : {
+                end: 'ml-2 badge badge-danger', 
+                middle: 'ml-2 badge badge-primary', 
+                begin: 'ml-2 badge badge-success', 
+            }
         }  
     }, 
     mixins: [Tasks],
@@ -153,29 +154,27 @@ export default {
     },
     
     components: {
-        ActionCommercialAdd
+        AddTasks
     },
 
     methods: {
         getStatus(status) {
-            //selection of type of flage
-            switch (status) {
-                case this.status.progress:
-                    return {
-                        "ml-2 badge badge-success": true
-                    };
-                break;    
-                case this.status.end:
-                    return {
-                        "ml-2 badge badge-danger": true
-                    };
-                break; 
-                case this.status.start:
-                    return {
-                        "ml-2 badge badge-primary": true
-                    };
-                break;        
-            }
+            console.log(status)
+            // //selection of type of flage
+            // switch (status) {
+            //     console.log(status)
+            //     case 0:
+            //         this.classStatus.end = true
+            //     break; 
+
+            //     case 1:
+            //         this.classStatus.middle = true
+            //     break; 
+
+            //     case 2:
+            //         this.classStatus.begin = true
+            //     break;       
+            // }
         },
         //Open Modal Add Commercial Action
         addModal() {

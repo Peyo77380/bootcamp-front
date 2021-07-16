@@ -85,10 +85,17 @@
             </div>
         </div>
       
-         <div class="header-btn-lg">
-            <button type="button" class="hamburger hamburger--elastic" v-bind:class="{ 'is-active': showDrawerSection }"
-                    v-on:click="showDrawerSection = !showDrawerSection">
-                <span class="hamburger-box"><span class="lnr-list" style="font-size:30px"></span></span>
+        <div class="header-btn-lg">
+            <button 
+            class="mb-2 mr-2 btn-icon btn-icon-only btn btn-sm"
+            v-bind:class="{ 'is-active': showDrawerSection }"
+            v-on:click="showDrawerSection = !showDrawerSection"
+            >
+                <i class="lnr-alarm btn-icon-wrapper" 
+                style="font-size:30px"
+                > 
+                </i>
+                <span class="badge badge-pill badge-primary">3</span>
             </button>
         </div>
 
@@ -100,7 +107,7 @@
             <div class="drawer-content-wrapper">
                 <VuePerfectScrollbar class="scrollbar-container" v-once>
                     <div class="drawer-section p-0">
-                        <action-commerciale/>
+                        <tasks-list/>
                     </div>
                 </VuePerfectScrollbar>
             </div>
@@ -112,7 +119,8 @@
     import VuePerfectScrollbar from 'vue-perfect-scrollbar'
     import VueCircle from 'vue2-circle-progress'
     import Trend from 'vuetrend';
-    import ActionCommerciale from '@/apps/LC-172/ActionCommerciale'
+    import TasksList from '@/apps/LC-172/TasksList';
+    import { Tasks } from "@/mixins/tasks";
 
     import {library} from '@fortawesome/fontawesome-svg-core'
     import {
@@ -148,7 +156,7 @@
             'font-awesome-icon': FontAwesomeIcon,
             VueCircle,
             'trend': Trend,
-            ActionCommerciale,
+            TasksList,
         },
         data: () => ({
             fill1: {gradient: ["#00b09b", "#96c93d"]},
