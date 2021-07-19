@@ -5,7 +5,7 @@
                 <div class="card-header-title font-size-lg text-capitalize font-weight-normal"><i class="header-icon lnr-user icon-gradient bg-malibu-beach"> 
                     </i>Adresse email en copie</div>
             </div>
-            <div class="scroll-area-lg">
+            <div class="scroll-area-sm">
                 <div class="chat-wrapper p-1">
                     <ul class="todo-list-wrapper list-group list-group-flush">
                         <li v-for="email in editedEmail.emailCopy" :key="email.id" class="list-group-item">
@@ -19,16 +19,16 @@
                                     <div class="widget-content-right ">
                                         <b-button 
                                             class="mb-2 mr-2 btn-icon btn-icon-only btn-pill" 
+                                            variant="outline-primary"
+                                            @click="editEmailCopy(email)">
+                                            <i class="lnr-pencil btn-icon-wrapper"></i>
+                                        </b-button>
+                                         <b-button 
+                                            class="mb-2 mr-2 btn-icon btn-icon-only btn-pill" 
                                             variant="outline-danger"
                                             @click="deleteEmail(email)"
                                             >
                                             <i class="lnr-trash btn-icon-wrapper"></i>
-                                        </b-button>
-                                        <b-button 
-                                            class="mb-2 mr-2 btn-icon btn-icon-only btn-pill" 
-                                            variant="outline-primary"
-                                            @click="EditEmailCopy(email)">
-                                            <i class="lnr-pencil btn-icon-wrapper"></i>
                                         </b-button>
                                     </div>
                                 </div>
@@ -41,23 +41,43 @@
                 <button @click="openModalEmail" class="btn btn-primary">Ajouter</button>
             </div>
         </div>
-        <v-dialog v-model="modalEmail" persistent max-width="290">
+        <v-dialog v-model="modalEmail" persistent max-width="400">
             <v-card>
                 <v-card-title class="headline">Ajouter adresse Email</v-card-title>
                 <v-card-text>
                     <v-form>
                         <v-flex xs12 sm12 md12>
-                            <v-text-field 
-                                v-model="createdEmail.value"
-                                label="Adresse email à mettre en copie">
-                            </v-text-field>
+                            <div class="col-md-12">
+                                <div class="position-relative form-group">
+                                    <label>Email en copie</label>
+                                    <input name="email"
+                                    placeholder="Renseigner votre adresse email" 
+                                    type="email" 
+                                    class="form-control"
+                                    v-model="createdEmail.value"
+                                    required
+                                    > 
+                                </div>
+                            </div>
                         </v-flex>
                     </v-form>  
                 </v-card-text>
                 <v-card-actions>
                 <v-spacer></v-spacer>
-                    <v-btn color="red darken-1" flat @click="closeModalEmail">Annuler</v-btn>
-                    <v-btn color="blue darken-1" @click="saveEmail" flat >Enregistrer</v-btn>
+                    <button 
+                        type="button" 
+                        class="btn mr-2 mb-2 btn-danger"
+                        @click="closeModalEmail" 
+                        >
+                        Annuler
+                    </button>
+                    <button 
+                        type="button" 
+                        class="btn mr-2 mb-2 btn-success"
+                        @click="saveEmail"  
+                        >
+                        Enregistrer
+                    </button>  
                 </v-card-actions>
             </v-card>
         </v-dialog> 
@@ -73,7 +93,7 @@ export default {
     return {
         modalEmail: false,
         createdEmail: {},
-        editedIndex: -1,
+        editedIndex: -1
     };
   },
   props: {
@@ -87,8 +107,7 @@ export default {
           this.modalEmail = true
       },
       closeModalEmail() {
-          this.modalEmail = false
-          //console.log("tets tableau", this.editedEmail.emailCopy)
+          this.modalEmail = false;
       },
       saveEmail() {
           this.closeModalEmail()
@@ -98,21 +117,19 @@ export default {
           }
           else {
               this.editedEmail.emailCopy.push(this.createdEmail)
-              //@TODO point API pour enregistrer nouveau email a mettre en copie
+              //TODO point API pour enregistrer nouveau email a mettre en copie
           }
           this.createdEmail = {}
       },
       deleteEmail(email) {
           this.editedIndex = this.editedEmail.emailCopy.indexOf(email);
           this.editedEmail.emailCopy.splice(this.editedIndex,1)
-          //@TODO point API pour supprimer email a mettre en copie 
+          //TODO point API pour supprimer email a mettre en copie 
       },
-      EditEmailCopy(email) {
+      editEmailCopy(email) {
           this.openModalEmail();
           this.editedIndex = this.editedEmail.emailCopy.indexOf(email);
-         // this.editedEmail.emailCopy.value.splice(this.editedIndex,1,this.createdEmail)
-         //console.log("test edited index",this.editedIndex)
-         //@TODO point API pour modifier l'adresse mail a mettre en copie
+         //TODO point API pour modifier l'adresse mail a mettre en copie
       }
   },
 };

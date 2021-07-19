@@ -12,4 +12,5 @@ RUN npm rebuild node-sass
 
 EXPOSE 8080
 
+
 CMD ["npm", "run", "serve"]

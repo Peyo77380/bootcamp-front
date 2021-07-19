@@ -3,9 +3,9 @@
         <div class="card-hover-shadow-2x mb-3 card">
             <div class="card-header-tab card-header">
                 <div class="card-header-title font-size-lg text-capitalize font-weight-normal"><i class="header-icon lnr-sync icon-gradient bg-malibu-beach"> 
-                    </i>Variables de l'email</div>
+                    </i>Variables de l'email</div> <!-- Standardiser les boutons !-->
             </div>
-            <div class="scroll-area-lg">
+            <div class="scroll-area-sm">
                 <div class="chat-wrapper p-1">
                     <ul class="todo-list-wrapper list-group list-group-flush">
                         <li v-for="variable in editedEmail.variable" :key="variable.id" class="list-group-item">
@@ -17,18 +17,19 @@
                                         </div>
                                     </div>
                                     <div class="widget-content-right ">
-                                        <b-button 
-                                            class="mb-2 mr-2 btn-icon btn-icon-only btn-pill" 
-                                            variant="outline-danger"
-                                            @click="deleteEmail(variable)"
-                                            >
-                                            <i class="lnr-trash btn-icon-wrapper"></i>
-                                        </b-button>
+                                       
                                         <b-button 
                                             class="mb-2 mr-2 btn-icon btn-icon-only btn-pill" 
                                             variant="outline-primary"
                                             @click="EditEmailCopy(variable)">
                                             <i class="lnr-pencil btn-icon-wrapper"></i>
+                                        </b-button>
+                                         <b-button 
+                                            class="mb-2 mr-2 btn-icon btn-icon-only btn-pill" 
+                                            variant="outline-danger"
+                                            @click="deleteEmail(variable)"
+                                            >
+                                            <i class="lnr-trash btn-icon-wrapper"></i>
                                         </b-button>
                                     </div>
                                 </div>
@@ -43,13 +44,13 @@
         </div>
         <v-dialog v-model="modalEmail" persistent max-width="290">
             <v-card>
-                <v-card-title class="headline">Ajouter adresse Email</v-card-title>
+                <v-card-title class="headline">Ajouter une variable</v-card-title>
                 <v-card-text>
                     <v-form>
                         <v-flex xs12 sm12 md12>
                             <v-text-field 
-                                v-model="createdEmail.value"
-                                label="Adresse email à mettre en copie">
+                                v-model="createdVariable.value"
+                                label="Element variables de l'email">
                             </v-text-field>
                         </v-flex>
                     </v-form>  
@@ -72,7 +73,7 @@ export default {
   data() {
     return {
         modalEmail: false,
-        createdEmail: {},
+        createdVariable: {},
         editedIndex: -1,
     };
   },
@@ -88,31 +89,28 @@ export default {
       },
       closeModalEmail() {
           this.modalEmail = false
-          //console.log("test tableau", this.editedEmail.emailCopy)
       },
       saveEmail() {
           this.closeModalEmail()
           if(this.editedIndex>=0) {
-              Object.assign (this.editedEmail.variable[this.editedIndex], this.createdEmail),
+              Object.assign (this.editedEmail.variable[this.editedIndex], this.createdVariable),
               this.editedIndex=-1;
           }
           else {
-              this.editedEmail.variable.push(this.createdEmail)
-              //@TODO point API pour enregistrer une nouvelle variable 
+              this.editedEmail.variable.push(this.createdVariable)
+              //TODO point API pour enregistrer une nouvelle variable 
           }
           this.createdEmail = {}
       },
       deleteEmail(email) {
-          this.editedIndex = this.editedEmail.emailCopy.indexOf(email);
+          this.editedIndex = this.editedEmail.variable.indexOf(email);
           this.editedEmail.variable.splice(this.editedIndex,1)
-          //@TODO point API pour supprimer la variable 
+          //TODO point API pour supprimer la variable 
       },
       EditEmailCopy(email) {
           this.openModalEmail();
           this.editedIndex = this.editedEmail.variable.indexOf(email);
-         // this.editedEmail.emailCopy.value.splice(this.editedIndex,1,this.createdEmail)
-         //console.log("test edited index",this.editedIndex)
-         //@TODO point API pour modifier la variable 
+         //TODO point API pour modifier la variable 
       }
   },
 };
