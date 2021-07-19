@@ -6,7 +6,7 @@
                     <b-row no-gutters class="h-100 p-5">
                         <!--MAIN INFOS -->
                         <b-col class="member-info-group pr-5">
-                            <b-row class="h-100 ml-0">
+                            <b-row class="member-info-group-main ml-0">
                                 <b-col class="member-info text-center border">
                                     <b-img :src="item.avatar"
                                            alt="Avatar du membre"
@@ -128,13 +128,46 @@
                                     </b-row>
                                 </b-col>
                             </b-row>
+
+                            <b-row class="member-info-group-action ml-0 mt-3">
+                                <b-col class="col col-12 member-info">
+                                    <b-row>
+                                        <b-button variant="outline-sunglo" class="member-info-btn mb-2">
+                                            <span class="">Crédits</span>
+
+                                                <b-icon icon="arrow-right-circle-fill"
+                                                        aria-hidden="true"
+                                                        class="iconsInfo font-size-xlg"
+                                                        title=""></b-icon>
+                                        </b-button>
+                                    </b-row>
+                                    <b-row>
+                                        <b-button block variant="outline-sunglo " class="member-info-btn mb-2">
+                                            <span class="">Réservations</span>
+                                            <b-icon icon="arrow-right-circle-fill"
+                                                    aria-hidden="true"
+                                                    class="iconsInfo font-size-xlg"
+                                                    title=""></b-icon>
+                                        </b-button>
+                                    </b-row>
+                                    <b-row>
+                                        <b-button block variant="outline-sunglo " class="member-info-btn">
+                                            <span class="">Abonnement</span>
+                                            <b-icon icon="arrow-right-circle-fill"
+                                                    aria-hidden="true"
+                                                    class="iconsInfo font-size-xlg"
+                                                    title=""></b-icon>
+                                        </b-button>
+                                    </b-row>
+                                </b-col>
+                            </b-row>
                         </b-col>
 
                         <!--BODY-->
                         <b-col class="member-datas border h-100 px-5 pt-4 pb-4">
-                            <b-row class="member-datas-array mt-2 p-1">
+                            <b-row class="member-datas-array mt-2">
                                 <table>
-                                    <thead class="member-datas-bills-head sticky-top bg-white text-sunglo" >
+                                    <thead class="member-datas-bills-head sticky-top bg-white text-sunglo">
                                     <tr class="">
                                         <th colspan="11" class="text-eternity ">Factures</th>
                                     </tr>
@@ -188,7 +221,7 @@
                                         <th colspan="11" class="text-eternity">Devis</th>
                                     </tr>
                                     <tr class="">
-                                        <th v-for="(field, index) in fieldsBills"
+                                        <th v-for="(field, index) in fieldsQuotes"
                                             :key="index"
                                             class="px-3 py-3 text-center">
                                             {{ field }}
@@ -196,7 +229,7 @@
                                     </tr>
                                     </thead>
                                     <tbody class="member-datas-bills-body">
-                                    <tr v-for="(value, index) in bills"
+                                    <tr v-for="(value, index) in quotes"
                                         :key="index">
                                         <td class="text-center border-top px-3"> {{ value.key }}</td>
                                         <td class="text-center border-top px-3 font-weight-medium bg-sunglo text-white">
@@ -762,10 +795,10 @@ export default {
 
 <style scoped>
 .member-datas-array {
-    height   : 35vh;
+    height   : 34vh;
     overflow : scroll;
     width    : 100%;
-    //border-bottom: 3px solid #FFF;
+//border-bottom: 3px solid #FFF;
 }
 
 .member-datas-bills-head > tr {
@@ -794,12 +827,17 @@ export default {
     max-width : max-content;
 }
 
+.member-info-group-action {
+    border-radius : 8px;
+    //border-color  : rgba(236, 101, 100, 0.5) !important;
+}
+
 .member-info, .member-datas {
     border-radius : 8px;
 }
 
 .member-info {
-    max-width : max-content;
+    width : 300px;
 }
 
 .member-info-avatar {
@@ -828,6 +866,19 @@ export default {
 .actionsBtn {
     border : none;
 }
+
+.member-info-btn {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    border-radius: 6px;
+    padding-left: 58px;
+    padding-right: 29px;
+}
+
+.member-info-btn.iconsInfo {
+}
+
 </style>
 
 <style>
