@@ -197,9 +197,9 @@
 </template>
 
 <script>
-import EmailCopy from "@/apps/ms-customField/LC-30/components/sub-components/EmailCopy";
-import HiddenCopy from "@/apps/ms-customField/LC-30/components/sub-components/HiddenCopy";
-import Variable from "@/apps/ms-customField/LC-30/components/sub-components/Variable";
+import EmailCopy from "@/apps/tomerge/ms-customField/LC-30/components/sub-components/EmailCopy";
+import HiddenCopy from "@/apps/tomerge/ms-customField/LC-30/components/sub-components/HiddenCopy";
+import Variable from "@/apps/tomerge/ms-customField/LC-30/components/sub-components/Variable";
 import ClassicEditor from "@ckeditor/ckeditor5-build-classic";
 import { Emails } from "@/mixins/email";
 

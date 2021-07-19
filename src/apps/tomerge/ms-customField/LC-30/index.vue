@@ -37,9 +37,9 @@
 
 <script>
 import PageTitle from "@/Layout/Components/PageTitle";
-import EmailList from "@/apps/ms-customField/LC-30/EmailList";
-import DisplayEmail from "@/apps/ms-customField/LC-30/components/DisplayEmail";
-import EditEmail from "@/apps/ms-customField/LC-30/components/EditEmail";
+import EmailList from "@/apps/tomerge/ms-customField/LC-30/EmailList";
+import DisplayEmail from "@/apps/tomerge/ms-customField/LC-30/components/DisplayEmail";
+import EditEmail from "@/apps/tomerge/ms-customField/LC-30/components/EditEmail";
 import { Emails } from "@/mixins/email";
 import { Globals } from "@/mixins/global";
 
