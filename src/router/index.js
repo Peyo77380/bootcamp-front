@@ -49,6 +49,11 @@ export default new Router({
             path: "/tomerge/custom-header",
             name: "ref-LC-163",
             component: () => import("@/apps/tomerge/custom-header/index.vue")
+        },
+        {
+            path: "/tomerge/email-service",
+            name: "email-service",
+            component: () => import("@/apps/tomerge/ms-customField/LC-30")
         }
     ]
 });
