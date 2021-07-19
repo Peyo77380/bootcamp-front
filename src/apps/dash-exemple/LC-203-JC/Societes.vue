@@ -116,7 +116,7 @@
                                                                class="society-info-avatar mr-2 border-sunglo">
                                                         </b-img>
                                                         <span class="font-weight-bold pt-2 text-left">
-                                            {{ item.firstname }} {{ item.firstname }} </span></a>
+                                            {{ item.firstname }} {{ item.lastname }} </span></a>
                                                 </li>
                                             </ul>
                                         </b-col>
