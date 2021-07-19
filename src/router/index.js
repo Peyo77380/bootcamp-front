@@ -8,6 +8,19 @@ export default new Router({
         return window.scrollTo({ top: 0, behavior: "smooth" });
     },
     routes: [
+        {
+            /**
+             * Change title on component.
+             * Add to menu
+             *  configuration :
+             *    - Génériques
+             * final check
+             */
+            path: "/configuration/",
+            name: "config - params/key",
+            component: () => import("@/apps/configuration/ParamsKeyValue")
+        },
+
         /**
          * ??????????????????
          * WHY ON A MASTER BRANCH???????!!!!!!!!!!!

@@ -7,7 +7,8 @@ ENV PATH /app/node_modules/.bin:$PATH
 COPY package.json /app/
 
 RUN npm install
-RUN npm install @vue/cli@3.7.0 -g
+RUN npm install @vue/cli -g
+RUN npm rebuild node-sass
 
 EXPOSE 8080
 
