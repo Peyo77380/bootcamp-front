@@ -95,7 +95,7 @@
                 style="font-size:30px"
                 > 
                 </i>
-                <span class="badge badge-pill badge-primary">3</span>
+                <span class="badge badge-pill badge-primary"> {{ CountTasks }}</span>
             </button>
         </div>
 
@@ -162,10 +162,23 @@
             fill1: {gradient: ["#00b09b", "#96c93d"]},
             fill2: {gradient: ["#ff0844", "#ffb199"]},
             fill3: {gradient: ["#f6d365", "#fda085"]},
-            showDrawerSection: false
+            showDrawerSection: false,
+            CountTasks: "",
         }),
+        mixins: [Tasks],
+            async mounted() {
+                await this.countActives()
+            },
 
-        methods: {}
+        methods: {
+            async countActives() {
+                try {
+                    this.CountTasks = await this.getCountTasks();
+                } catch (error) {
+                    this.$sweetError("TDL-30");
+                }
+             },
+        }
     }
 
 

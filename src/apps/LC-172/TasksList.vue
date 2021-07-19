@@ -27,8 +27,8 @@
                                         <div class="widget-content-left">
                                             <div> 
                                                 <span class="widget-heading">{{ data.title }}</span>
-                                                <div :class="getStatus(data.status)" :statusValue="statusValue">
-                                                    {{data.status}}
+                                                <div :class="getStatus(data.status)">
+                                                    {{ flag }}
                                                 </div>
                                                 <b-dropdown
                                                     toggle-class="btn-icon btn-icon-only"
@@ -141,12 +141,8 @@ export default {
             dialog: false, 
             newDatas: {},
             editedIndex: -1,
-            classStatus : {
-                end: 'ml-2 badge badge-danger', 
-                middle: 'ml-2 badge badge-primary', 
-                begin: 'ml-2 badge badge-success', 
-            }
-        }  
+            flag: "",
+        }   
     }, 
     mixins: [Tasks],
     async mounted() {
@@ -159,22 +155,30 @@ export default {
 
     methods: {
         getStatus(status) {
-            console.log(status)
-            // //selection of type of flage
-            // switch (status) {
-            //     console.log(status)
-            //     case 0:
-            //         this.classStatus.end = true
-            //     break; 
+            //selection of type of flag
+            //TODO point API import kind of status
+            switch (status) {
+                case 0:
+                    return {
+                        'ml-2 badge badge-danger' : true,
+                    }
+                    this.flag = "términé";
+                break; 
 
-            //     case 1:
-            //         this.classStatus.middle = true
-            //     break; 
+                case 1:
+                    return {
+                        'ml-2 badge badge-primary' : true,
+                    }
+                    this.flag = "à faire";
+                break; 
 
-            //     case 2:
-            //         this.classStatus.begin = true
-            //     break;       
-            // }
+                case 2:
+                    return {
+                        'ml-2 badge badge-success' : true,
+                    }
+                    this.flag = "en cours";
+                break;       
+            }
         },
         //Open Modal Add Commercial Action
         addModal() {
@@ -187,8 +191,6 @@ export default {
         // Save Action commercial add and modification
         async saveNewDatas() {
             if (this.editedIndex>=0) {
-                // const data = this.AllTasks.filter(updatedTask => updatedTask.id == this.newDatas.id);
-                //API point for update task 
                 await this.updateTasks(this.newDatas.id, this.newDatas);
                 this.editedIndex=-1;
                 this.$sweetNotif("Modification réussie !");
@@ -213,9 +215,8 @@ export default {
             this.newDatas = data
         },
         deleteAction(data) {
+            //action of delete task 
             this.deleteTask(data)
-            // this.editedIndex = this.AllTasks.indexOf(data);
-            // this.AllTasks.splice(this.editedIndex,1)
         },
         async confirmDeleteAction(data) {
             if (
@@ -246,8 +247,5 @@ export default {
             }
         },
     }, 
-    computed: {
-        
-    }
 }
 </script>
