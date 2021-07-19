@@ -55,24 +55,26 @@ export default new Router({
             name: "email-service",
             component: () => import("@/apps/tomerge/ms-customField/LC-30")
         },
-    
 
+        /**
+         * Mixin not working.
+         * Sweet alert not working
+         * TEst all
+         */
         {
             path: "/tomerge/LC-29",
             name: "Members",
-            component: () => import('@/apps/tomerge/LC-29'),
+            component: () => import("@/apps/tomerge/LC-29")
         },
         {
             path: "/tomerge/LC-29/components/EditList/:id",
             name: "EditList",
-            component: () => import('@/apps/tomerge/LC-29/EditList.vue'),
+            component: () => import("@/apps/tomerge/LC-29/EditList.vue")
         },
-         {
+        {
             path: "/tomerge/LC-29/Modal",
             name: "Modal",
-            component: () => import('@/apps/tomerge/LC-29/Modal.vue'),
-        },
-        
-        
+            component: () => import("@/apps/tomerge/LC-29/Modal.vue")
+        }
     ]
 });
