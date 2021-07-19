@@ -8,13 +8,10 @@ export default new Router({
         return window.scrollTo({ top: 0, behavior: "smooth" });
     },
     routes: [
-        // Dashboards
-
-        // {
-        //     path: "/",
-        //     name: "analytics",
-        //     component: () => import("@/apps/dash-exemple/Analytics")
-        // },
+        /**
+         * ??????????????????
+         * WHY ON A MASTER BRANCH???????!!!!!!!!!!!
+         */
         {
             path: "/",
             name: "facturation_section",
@@ -23,7 +20,22 @@ export default new Router({
         {
             path: "/add-facturation",
             name: "facturation_section_add",
-            component: () => import("@/apps/facturation/components/modalFactureadd.vue")
+            component: () =>
+                import("@/apps/facturation/components/modalFactureadd.vue")
+        },
+        /**
+         * TO MERGE LATER
+         * ERROR OR MISSING SOME PART OF DEV
+         */
+        {
+            path: "/crm/dash",
+            name: "ref-LC-27",
+            component: () => import("@/apps/tomerge/LC-27/index.vue")
+        },
+        {
+            path: "/tomerge/custom-header",
+            name: "ref-LC-163",
+            component: () => import("@/apps/tomerge/custom-header/index.vue")
         }
     ]
 });
