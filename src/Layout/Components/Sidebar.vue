@@ -58,6 +58,10 @@ export default {
                         {
                             href: "/membres",
                             title: "Membres"
+                        },
+                        {
+                            href: "/societes",
+                            title: "Sociétés"
                         }
                     ]
                 },

@@ -19,6 +19,11 @@ export default new Router({
             path: "/membres",
             name: "membres",
             component: () => import("@/apps/dash-exemple/LC-203-JC/Membres")
+        },
+        {
+            path: "/societes",
+            name: "societes",
+            component: () => import("@/apps/dash-exemple/LC-203-JC/Societes")
         }
     ]
 });
