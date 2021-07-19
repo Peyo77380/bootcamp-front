@@ -19,7 +19,7 @@ const ToastError = Swal.mixin({
 });
 
 export default {
-    install(Vue, options) {
+    install(Vue) {
         Vue.prototype.$sweetConfirmation = async function(config = {}) {
             let title = config.title
                 ? config.title

@@ -54,6 +54,25 @@ export default new Router({
             path: "/tomerge/email-service",
             name: "email-service",
             component: () => import("@/apps/tomerge/ms-customField/LC-30")
-        }
+        },
+        // Dashboards
+
+        {
+            path: "/LC-29",
+            name: "Members",
+            component: () => import('../apps/LC-29'),
+        },
+        {
+            path: "/LC-29/components/EditList/:id",
+            name: "EditList",
+            component: () => import('@/apps/LC-29/EditList.vue'),
+        },
+         {
+            path: "/LC-29/Modal",
+            name: "Modal",
+            component: () => import('@/apps/LC-29/Modal.vue'),
+        },
+        
+        
     ]
 });

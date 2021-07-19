@@ -1,0 +1,9 @@
+{
+    "version": 3,
+    "mappings": "",
+    "sources": [
+        "bs_variables.scss"
+    ],
+    "names": [],
+    "file": "bs_variables.css"
+}

@@ -1,0 +1,95 @@
+<template>
+  <v-layout row justify-center>
+    <v-dialog v-model="dialog" persistent max-width="600px">
+      <!-- <template v-slot:activator="{ on }">
+        <v-btn color="warning" dark v-on="on">Ajouter</v-btn>
+      </template> -->
+
+      <v-card>
+        <v-card-title>
+          <span class="headline">Modifier la liste activité</span>
+        </v-card-title>
+        <v-card-text>
+          <ul class="list-group">
+            <li class="list-group-item">
+              <div class="widget-content p-0">
+                <div class="widget-content-wrapper">
+                  <div class="widget-content-left">
+                    <div class="widget-heading">Alina Mcloughlin</div>
+                  </div>
+                  <div class="widget-content-right">
+                    <div role="group" class="btn-group-sm btn-group">
+                      <b-button
+                        class="ml-4 btn-icon btn-icon-only btn-pill"
+                        variant="outline-info"
+                        @click="edit(list.id)"
+                        ><i class="pe-7s-pen btn-icon-wrapper"> </i
+                      ></b-button>
+                      <b-button
+                        class="ml-4 btn-icon btn-icon-only btn-pill"
+                        variant="outline-warning"
+                        @click="edit(list.id)"
+                        ><i class="pe-7s-trash btn-icon-wrapper"> </i
+                      ></b-button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </li>
+          </ul>
+         
+
+            <li class="row">
+              Lorem, ipsum.
+              <b-button
+                class="ml-4 btn-icon btn-icon-only btn-pill"
+                variant="outline-info"
+                @click="edit(list.id)"
+                ><i class="pe-7s-pen btn-icon-wrapper"> </i
+              ></b-button>
+            </li>
+          </ul>
+          <v-container grid-list-md>
+            <v-layout wrap>
+              <v-flex xs12 sm8 md6>
+                <v-text-field label="Categorie" required></v-text-field>
+              </v-flex>
+              <v-flex xs12 sm8 md6>
+                <v-text-field
+                  label="Valeur"
+                  hint="example of helper text only on focus"
+                ></v-text-field>
+              </v-flex>
+            </v-layout>
+          </v-container>
+          <small>*indicates required field</small>
+        </v-card-text>
+        <v-card-actions>
+          <v-spacer></v-spacer>
+          <v-btn color="blue darken-1" flat @click="dialog = false"
+            >Close</v-btn
+          >
+          <v-btn color="blue darken-1" flat @click="dialog = false">Save</v-btn>
+        </v-card-actions>
+      </v-card>
+    </v-dialog>
+  </v-layout>
+</template>
+
+<script>
+export default {
+  props: {
+    dialog: {
+      type: Boolean,
+    },
+  },
+  methods: {
+    close() {
+      this.$emit("close");
+    },
+    edit() {
+      this.$emit("save");
+    },
+  },
+};
+</script>
