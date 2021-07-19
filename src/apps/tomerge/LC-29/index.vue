@@ -5,7 +5,8 @@
       :subheading="subheading"
       :icon="icon"
       :items="items"
-    ></page-title><!-- A remplacer bientot par composant header !-->
+    ></page-title
+    ><!-- A remplacer bientot par composant header !-->
 
     <div>
       <div>
@@ -123,15 +124,21 @@
                             </td>
                             <!-- <td class="text-center">{{ item.key }}</td> -->
                             <td class="text-center">
-                              <div class="text-center">{{ item.datas.length }}</div>
+                              <div class="text-center">
+                                {{ item.datas.length }}
+                              </div>
                             </td>
                             <td class="text-center">
                               <b-button
                                 class="mb-2 btn-icon btn-icon-only btn-pill"
                                 variant="outline-info"
-                                :to="{ name: 'EditList', params: {id: item._id}}"
+                                :to="{
+                                  name: 'EditList',
+                                  params: { id: item._id },
+                                }"
                                 ><i class="pe-7s-pen btn-icon-wrapper"> </i
-                              ></b-button> <!-- Standardiser les boutons !-->
+                              ></b-button>
+                              <!-- Standardiser les boutons !-->
                             </td>
                           </tr>
                         </tbody>
@@ -151,10 +158,10 @@
 </template>
 
 <script>
-import PageTitle from "../../Layout/Components/PageTitle";
-import EditList from "../LC-29/EditList";
+import PageTitle from "@/Layout/Components/PageTitle";
+import EditList from "@/apps/tomerge/LC-29/EditList";
 import CountryFlag from "vue-country-flag";
-import {Lists} from '@/mixins/list';
+import { Lists } from "@/mixins/list";
 
 export default {
   name: "home",
@@ -186,10 +193,10 @@ export default {
     ],
     list: [],
     dialog: false,
-    }),
-    async mounted () {
-        await this.loadLists();
-    },
+  }),
+  async mounted() {
+    await this.loadLists();
+  },
   methods: {
     add() {
       this.dialog = true;
@@ -201,7 +208,7 @@ export default {
       this.dialog = true;
     },
     getStatus(list) {
-        // TODO : gérer différentes couleurs en fonction du nom (traduction + nouveaux noms )
+      // TODO : gérer différentes couleurs en fonction du nom (traduction + nouveaux noms )
       switch (list) {
         case "activités":
           return {
@@ -225,22 +232,22 @@ export default {
           };
       }
     },
-    changeFr () {
-        // TODO : mettre en place?
-        return;
+    changeFr() {
+      // TODO : mettre en place?
+      return;
     },
-    changeUs () {
-        // TODO : mettre en place?
-        return;
+    changeUs() {
+      // TODO : mettre en place?
+      return;
     },
-    async loadLists () {
-        try {
-            const res = await this.getAllLists();
-            this.list = res.datas.data.datas;
-        } catch (error) {
-            console.error(error);
-        }
-    }
+    async loadLists() {
+      try {
+        const res = await this.getAllLists();
+        this.list = res.datas.data.datas;
+      } catch (error) {
+        console.error(error);
+      }
+    },
   },
 };
 </script>

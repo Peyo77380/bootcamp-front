@@ -51,26 +51,26 @@ export default new Router({
             component: () => import("@/apps/tomerge/custom-header/index.vue")
         },
         {
-            path: "/tomerge/email-service",
+            path: "/cemail-service",
             name: "email-service",
             component: () => import("@/apps/tomerge/ms-customField/LC-30")
         },
-        // Dashboards
+    
 
         {
-            path: "/LC-29",
+            path: "/tomerge/LC-29",
             name: "Members",
-            component: () => import('../apps/LC-29'),
+            component: () => import('@/apps/tomerge/LC-29'),
         },
         {
-            path: "/LC-29/components/EditList/:id",
+            path: "/tomerge/LC-29/components/EditList/:id",
             name: "EditList",
-            component: () => import('@/apps/LC-29/EditList.vue'),
+            component: () => import('@/apps/tomerge/LC-29/EditList.vue'),
         },
          {
-            path: "/LC-29/Modal",
+            path: "/tomerge/LC-29/Modal",
             name: "Modal",
-            component: () => import('@/apps/LC-29/Modal.vue'),
+            component: () => import('@/apps/tomerge/LC-29/Modal.vue'),
         },
         
         
