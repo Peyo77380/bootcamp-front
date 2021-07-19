@@ -16,14 +16,14 @@ export default new Router({
             component: () => import("@/apps/dash-exemple/Analytics")
         },
         {
-            path: "/LC-27",
-            name: "LC-27",
-            component: () => import("../apps/LC-27/index.vue")
+            path: "/crm/dash",
+            name: "ref-LC-27",
+            component: () => import("@/apps/tomerge/LC-27/index.vue")
         },
         {
-            path: "/LC-163",
-            name: "LC-163",
-            component: () => import("../apps/LC-163/index.vue")
-        },
+            path: "/tomerge/custom-header",
+            name: "ref-LC-163",
+            component: () => import("@/apps/tomerge/custom-header/index.vue")
+        }
     ]
 });
