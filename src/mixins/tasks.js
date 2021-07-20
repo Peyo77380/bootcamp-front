@@ -2,30 +2,31 @@ import api from "@/services/axios";
 
 export const Tasks = {
     methods: {
-        async getAllTasks() {
+        
+        async getActiveTasks() {
             try {
-                // send section, wl, lang dynamically
-                const response = await api.get('tasks');
+                // load all active tasks 
+                const response = await api.get('tasks/active');
+                //console.log(response)
                 return response.data.datas;
                 
             } catch (error) {
                 throw new Error(error);
             }
         },
-        // async getActiveTasks() {
-        //     try {
-        //         // load all active tasks 
-        //         const response = await api.get('tasks/active');
-        //         //console.log(response)
-        //         return response.data.datas;
+        async getArchiveTasks() {
+            try {
+                // load all archive tasks 
+                const response = await api.get('tasks/archived');
+                return response.data.datas;
                 
-        //     } catch (error) {
-        //         throw new Error(error);
-        //     }
-        // },
+            } catch (error) {
+                throw new Error(error);
+            }
+        },
         async getCountTasks() {
             try {
-                // load count active tasks
+                // load count of activ tasks 
                 const response = await api.get('tasks/countActives');
                 return response.data.datas;
                 
@@ -46,8 +47,8 @@ export const Tasks = {
             try {
                 // update task
                 const putResponse = await api.put(`tasks/update/${id}`, data);
-                console.log("test id", id)
-                //return putResponse.data.datas;
+                //console.log("test id", id)
+                return putResponse.data.datas;
             } catch (error) {
                 throw new Error(error);
             }
@@ -65,7 +66,6 @@ export const Tasks = {
             try {
                 // delete task by id 
                 const deleteResponse = await api.delete(`tasks/delete/${data.id}`, data);
-                //console.log ("test id", deleteResponse)
                 return deleteResponse.data.datas;
             } catch (error) {
                 throw new Error(error);

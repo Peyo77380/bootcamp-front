@@ -1,28 +1,30 @@
 <template>
     <div>
         <h3 class="drawer-heading">Ma liste de Tâches</h3>
-        <div class="card-header-tab card-header col-12">
-            <div class="btn-actions-pane-left text-capitalize actions-icon-btn col-6">
-                <b-form-radio-group id="btnradios2"
-                                        buttons
-                                        class="btn-pill"
-                                        button-variant="outline-primary"
-                                        size="sm"
-                                        v-model="tasksStatus"
-                                        :options="statusTasks"
-                                        name="radioBtnOutline"/>
-               
+        <div class="row align-items-center col-12">
+            <div class="btn-actions-pane-left align-items-center text-capitalize actions-icon-btn col-6">
+                <b-form-radio-group 
+                buttons
+                class="btn-pill btn-outline"
+                button-variant="outline-success"
+                size="sm"
+                v-model="TasksStatus"
+                :options="optionsTasks"
+                @change="changeStatus()"
+                />
             </div>
-            <div class="btn-actions-pane-right text-capitalize actions-icon-btn col-3">
+            
+            <div class="btn-actions-pane-right align-items-center text-capitalize actions-icon-btn col-4">
                 <button 
                 type="button" 
                 class="btn mr-2 mb-2 p-2 mt-2 btn-pill btn-icon btn-success "
                 @click="addModal"
                 >
                     <i class="btn-icon-wrapper lnr-plus-circle"></i>
-                    Créer une nouvelle tâche
+                    Créer un nouvelle tâche
                 </button>
             </div>
+            
         </div>
         <div class="todo-box">
             <ul class="todo-list-wrapper list-group list-group-flush">
@@ -38,8 +40,8 @@
                                         <div class="widget-content-left">
                                             <div> 
                                                 <span class="widget-heading">{{ data.title }}</span>
-                                                <div :class="getStatus(data.status)">
-                                                    {{ flag }}
+                                                <div :class="getStatus(data)">
+                                                    {{getText(data)}}
                                                 </div>
                                                 <b-dropdown
                                                     toggle-class="btn-icon btn-icon-only"
@@ -51,7 +53,6 @@
                                                     <div>
                                                         <button
                                                             type="button"
-                                                            tabindex="0"
                                                             class="dropdown-item"
                                                             @click="changeToDo(data)"
                                                         >
@@ -61,9 +62,8 @@
                                                         </button>
                                                         <button
                                                             type="button"
-                                                            tabindex="0"
                                                             class="dropdown-item"
-                                                            @click="changeProgress(data)"
+                                                            @click="changeToProgress(data)"
                                                         >
                                                             <div class="badge badge-success ml-2">
                                                                 en cours
@@ -71,9 +71,8 @@
                                                         </button>
                                                         <button
                                                             type="button"
-                                                            tabindex="0"
                                                             class="dropdown-item"
-                                                            @click="changeOver(data)"
+                                                            @click="changeToOver(data)"
                                                         >
                                                             <div class="badge badge-danger ml-2">
                                                                 terminé
@@ -107,7 +106,6 @@
                                                 <i class="lnr-pencil btn-icon-wrapper"></i>  
                                             </button>
                                         </div>
-                                       
                                     </div>
                                 </div>
                             </template>  
@@ -148,22 +146,40 @@ export default {
     data() {
         return {
             AllTasks: [],
+            ActiveTasks: [],
             statusValue: "",
             class:"",
             dialog: false, 
             newDatas: {},
             editedIndex: -1,
             flag: "",
-            tasksStatus:[],
-             statusTasks: [
-                {text: 'Tâches actives', value: 'Tâches actives'},
-                {text: 'Tâche archivées', value: 'Tâche archivées'},
-            ]
+            optionsTasks: [
+                {text: 'Tâches actives', value: '1'},
+                {text: 'Tâches archivées', value: '0'},
+            ],
+            TasksStatus: "1",
+            statusArray: [{
+                value: 0,
+                text: "terminé",
+                badge : "ml-2 badge badge-danger"
+            },
+            {
+                value: 1,
+                text: "en cours",
+                badge : "ml-2 badge badge-primary"
+            },
+            {
+                value: 2,
+                text: "a faire",
+                badge : "ml-2 badge badge-success"
+            }
+                
+            ]  
         }   
     }, 
     mixins: [Tasks],
     async mounted() {
-        await this.loadAllTasks()
+        await this.loadTasksActive()
     },
     
     components: {
@@ -171,32 +187,16 @@ export default {
     },
 
     methods: {
-        getStatus(status) {
-            //selection of type of flag
-            //TODO point API import kind of status
-            switch (status) {
-                case 0:
-                    return {
-                        'ml-2 badge badge-danger' : true,
-                    }
-                    this.flag = "términé";
-                break; 
-
-                case 1:
-                    return {
-                        'ml-2 badge badge-primary' : true,
-                    }
-                    this.flag = "à faire";
-                break; 
-
-                case 2:
-                    return {
-                        'ml-2 badge badge-success' : true,
-                    }
-                    this.flag = "en cours";
-                break;       
-            }
+        // Edit by Pierre le Dieu
+        getStatus(data) {
+            const flag = this.statusArray.find(element => element.value == data.status)
+            return flag.badge  
         },
+        getText(data)  {
+            const flag = this.statusArray.find(element => element.value == data.status)
+            return flag.text  
+        },     
+
         //Open Modal Add Commercial Action
         addModal() {
             this.dialog = true
@@ -211,14 +211,14 @@ export default {
                 await this.updateTasks(this.newDatas.id, this.newDatas);
                 this.editedIndex=-1;
                 this.$sweetNotif("Modification réussie !");
-                this.AllTasks = await this.getAllTasks();
+                this.AllTasks = await this.getActiveTasks();
                 this.cancelModal();
                 this.newDatas = {};
             }
             else {
                 //API point for create new task
                 await this.createTasks(this.newDatas); 
-                this.AllTasks = await this.getAllTasks();
+                this.AllTasks = await this.getActiveTasks();
                 this.$sweetNotif("Création nouvelle tâche réussie !");
                 this.cancelModal();
                 this.newDatas = {}
@@ -243,26 +243,51 @@ export default {
             )
             this.deleteAction(data)
         },
-        changeToDo(data) {
-            //console.log (data); 
-            data.status = "à faire";
-            //TODO point API pour mettre status a 'a faire'
+        async changeToDo(data) {
+            //console.log("test id", data.id)
+            data.status = 1
+            await this.updateTasks(data.id, data);
+            this.AllTasks = await this.getActiveTasks();
+            this.$sweetNotif("Modification réussie !");
+            this.TasksStatus= "1" 
         },
-        changeProgress(data) {
-            data.status = "en cours";
-            //TODO point API pour mettre status a 'en cours'
+        async changeToProgress(data) {
+            data.status = 2;
+            await this.updateTasks(data.id, data);
+            this.AllTasks = await this.getActiveTasks();
+            this.$sweetNotif("Modification réussie !");
+            this.TasksStatus= "1" 
         },
-        changeOver(data) {
-             data.status = "terminé";
-             //TODO point API pour mettre status a 'terminé'
+        async changeToOver(data) {
+             data.status = 0;
+            await this.updateTasks(data.id, data);
+            this.AllTasks = await this.getActiveTasks();
+            this.$sweetNotif("Modification réussie !");
         },
-        async loadAllTasks() {
+        async loadTasksActive() {
+            // API to load all active tasks 
             try {
-                this.AllTasks = await this.getAllTasks();
+                this.AllTasks = await this.getActiveTasks();
             } catch (error) {
                 this.$sweetError("TDL-30");
             }
         },
+        async loadArchivedTasks() {
+            // API to load all archived tasks 
+            try {
+                await this.getArchiveTasks()
+            } catch (error) {
+                this.$sweetError("TDL-32");
+            }
+        },
+        async changeStatus() {
+            if(this.TasksStatus == 1) {
+                    await this.loadTasksActive()
+            } else {
+                    this.AllTasks = await this.getArchiveTasks()
+                }
+        }
+        
     }, 
 }
 </script>

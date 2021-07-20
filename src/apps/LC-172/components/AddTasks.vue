@@ -67,9 +67,9 @@
                                             <date-picker 
                                             v-model="newDatas.end_date" 
                                             lang="fr" 
-                                            :not-before="new Date()"
+                                            :not-before="valueDate"
                                             :format="format"
-                                            valueType="format"
+                                            
                                             >
                                             </date-picker>
                                         </div>
@@ -138,6 +138,7 @@ export default {
           this.$emit("closeModal")
       },
       saveDatas() {
+          //console.log (this.newDatas)
           this.closeModal()
           this.$emit("saveDatas", this.newDatas)
       }

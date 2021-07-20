@@ -95,13 +95,16 @@
                 style="font-size:30px"
                 > 
                 </i>
-                <span class="badge badge-pill badge-primary"> {{ CountTasks }}</span>
+                <span class="badge badge-pill badge-primary badge-pulse"> {{ CountTasks }}</span>
             </button>
         </div>
 
         <div class="app-drawer-wrapper" v-bind:class="{ 'drawer-open': showDrawerSection }">
             <div class="drawer-nav-btn">
-                <button type="button" class="hamburger hamburger--elastic" v-bind:class="{ 'is-active': showDrawerSection }" v-on:click="showDrawerSection = !showDrawerSection">
+                <button type="button" 
+                class="hamburger hamburger--elastic" 
+                v-bind:class="{ 'is-active': showDrawerSection }" v-on:click="showDrawerSection = !showDrawerSection"
+                >
                     <span class="hamburger-box"><span class="hamburger-inner"></span></span></button>
             </div>
             <div class="drawer-content-wrapper">
