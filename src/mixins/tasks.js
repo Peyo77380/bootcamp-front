@@ -12,6 +12,17 @@ export const Tasks = {
                 throw new Error(error);
             }
         },
+        // async getActiveTasks() {
+        //     try {
+        //         // load all active tasks 
+        //         const response = await api.get('tasks/active');
+        //         //console.log(response)
+        //         return response.data.datas;
+                
+        //     } catch (error) {
+        //         throw new Error(error);
+        //     }
+        // },
         async getCountTasks() {
             try {
                 // load count active tasks

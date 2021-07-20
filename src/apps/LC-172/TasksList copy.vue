@@ -1,28 +1,27 @@
 <template>
     <div>
         <h3 class="drawer-heading">Ma liste de Tâches</h3>
-        <div class="card-header-tab card-header col-12">
-            <div class="btn-actions-pane-left text-capitalize actions-icon-btn col-6">
-                <b-form-radio-group id="btnradios2"
-                                        buttons
-                                        class="btn-pill"
-                                        button-variant="outline-primary"
-                                        size="sm"
-                                        v-model="tasksStatus"
-                                        :options="statusTasks"
-                                        name="radioBtnOutline"/>
-               
-            </div>
-            <div class="btn-actions-pane-right text-capitalize actions-icon-btn col-3">
+        <div class="row align-items-center col-12">
+            <b-form-radio-group 
+                id="btnradios1"
+                buttons
+                class="btn-pill btn-outline-2x"
+                button-variant="outline-success"
+                v-model="TasksStatus"
+                :optionsTasks="optionsTasks"
+                name="radiosBtnDefault"
+            />
+            <div class="btn-actions-pane-right align-items-center text-capitalize actions-icon-btn col-4">
                 <button 
                 type="button" 
                 class="btn mr-2 mb-2 p-2 mt-2 btn-pill btn-icon btn-success "
                 @click="addModal"
                 >
                     <i class="btn-icon-wrapper lnr-plus-circle"></i>
-                    Créer une nouvelle tâche
+                    Créer un nouvelle tâche
                 </button>
             </div>
+            
         </div>
         <div class="todo-box">
             <ul class="todo-list-wrapper list-group list-group-flush">
@@ -107,7 +106,6 @@
                                                 <i class="lnr-pencil btn-icon-wrapper"></i>  
                                             </button>
                                         </div>
-                                       
                                     </div>
                                 </div>
                             </template>  
@@ -148,22 +146,24 @@ export default {
     data() {
         return {
             AllTasks: [],
+            ActiveTasks: [],
             statusValue: "",
             class:"",
             dialog: false, 
             newDatas: {},
             editedIndex: -1,
             flag: "",
-            tasksStatus:[],
-             statusTasks: [
-                {text: 'Tâches actives', value: 'Tâches actives'},
-                {text: 'Tâche archivées', value: 'Tâche archivées'},
-            ]
+            optionsTasks: [
+                {text: 'Tâches actives', value: '1'},
+                {text: 'Tâches archivées', value: '0'},
+            ],
+            TasksStatus: ""  
         }   
     }, 
     mixins: [Tasks],
     async mounted() {
         await this.loadAllTasks()
+        //await this.loadTasksActive()
     },
     
     components: {
@@ -177,22 +177,22 @@ export default {
             switch (status) {
                 case 0:
                     return {
-                        'ml-2 badge badge-danger' : true,
-                    }
+                        'ml-2 badge badge-danger' : true
+                    };
                     this.flag = "términé";
                 break; 
 
                 case 1:
                     return {
-                        'ml-2 badge badge-primary' : true,
-                    }
+                        'ml-2 badge badge-primary' : true
+                    };
                     this.flag = "à faire";
                 break; 
 
                 case 2:
                     return {
-                        'ml-2 badge badge-success' : true,
-                    }
+                        'ml-2 badge badge-success' : true
+                    };
                     this.flag = "en cours";
                 break;       
             }
@@ -263,6 +263,16 @@ export default {
                 this.$sweetError("TDL-30");
             }
         },
+        // async loadTasksActive() {
+        //     try {
+        //         this.AllTasks = await this.getActiveTasks()
+        //         //console.log("test active task" ,this.ActiveTasks)
+        //         //this.AllTasks = this.ActiveTasks
+        //         //console.log("test all task" ,this.ActiveTasks)
+        //     } catch (error) {
+        //         this.$sweetError("TDL-30");
+        //     }
+        // }
     }, 
 }
 </script>
