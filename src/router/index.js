@@ -19,6 +19,11 @@ export default new Router({
             path: "/",
             name: "facturation_section_add",
             component: () => import("@/apps/facturation/index")
+        },
+        {
+            name: 'calendar',
+            path: '/LC-187',
+            component: () => import('../apps/LC-187'),
         }
     ]
 });
