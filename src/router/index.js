@@ -81,6 +81,22 @@ export default new Router({
             path: "/tomerge/LC-29/Modal",
             name: "Modal",
             component: () => import("@/apps/tomerge/LC-29/Modal.vue")
-        }
+        },
+
+        /**
+         * Missing some behavior
+         * 
+         */
+        {
+            path: "/tomerge/LC-166-RMC",
+            name: "LC-166-RMC",
+            component: () => import("@/apps/tomerge/LC-166-RMC/index.vue")
+        },
+        // Dashboards
+        {
+            path: "/LC-31-RMC",
+            name: "LC-31-RMC",
+            component: () => import("@/apps/LC-31-RMC/index.vue")
+        },
     ]
 });
