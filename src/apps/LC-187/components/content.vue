@@ -53,7 +53,7 @@
     import frLocale from "fullcalendar/dist/locale/fr";
     import {FontAwesomeIcon} from '@fortawesome/vue-fontawesome';
     import AddModalBooking from './newBookingModal.vue';
-    import { eventSources } from './test.js';
+    import { eventSources } from './test';
     library.add(
         faStar,
         faPlus,
@@ -65,25 +65,22 @@ export default {
         AddModalBooking,
         'font-awesome-icon': FontAwesomeIcon,    
     },
-    mixins: [bookings],
+    //mixins: [bookings],
     async mounted() {
-        this.bookings = eventSources;
+        
         // await this.loadBookings();
     },
-
-
     data: () => ({
-        
         isAddBooking:false,
         calendarOptions: {
-          locale:frLocale,
-          eventColor:'#000'
+        locale:frLocale,
+        eventColor:'#000'
         },
         heading: 'Calendrier',
         subheading: 'Le calendrier des réservations',
         icon: 'pe-7s-date icon-gradient bg-warm-flame',
         
-        bookings: [],
+        bookings: eventSources,
         }),
         
         methods:{
