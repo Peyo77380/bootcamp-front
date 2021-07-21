@@ -85,14 +85,42 @@ export default new Router({
 
         /**
          * Missing some behavior
-         * 
+         * mixin not working
          */
         {
             path: "/tomerge/LC-166-RMC",
             name: "LC-166-RMC",
             component: () => import("@/apps/tomerge/LC-166-RMC/index.vue")
         },
-        // Dashboards
+       
+        
+         /**
+          * TO MERGE LATER
+         * Mixin not working
+         * Behavior on axios
+         * Error on routes
+         */
+        {
+            path: "/tomerge/buildings",
+            name: "our-buildings",
+            component: () => import("@/apps/tomerge/LC-144/Buildings/all-buildings")
+        },
+        {
+            path: "/tomerge/buildings/add",
+            name: "add-building",
+            component: () => import("@/apps/tomerge/LC-144/Buildings/single-building")
+        },
+        {
+            path: "/tomerge/buildings/show/:id",
+            name: "show-building",
+            component: () => import("@/apps/tomerge/LC-144/Buildings/single-building")
+        },
+        {
+            path: "/tomerge/buildings/edit/:id",
+            name: "edit-building",
+            component: () => import("@/apps/tomerge/LC-144/Buildings/single-building")
+        },
+         // Dashboards
         {
             path: "/LC-31-RMC",
             name: "LC-31-RMC",

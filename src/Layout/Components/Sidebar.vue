@@ -33,14 +33,36 @@ import { SidebarMenu } from "vue-sidebar-menu";
 import VuePerfectScrollbar from "vue-perfect-scrollbar";
 
 export default {
-  components: {
-    SidebarMenu,
-    VuePerfectScrollbar,
-  },
-  data() {
-    return {
-      isOpen: false,
-      sidebarActive: false,
+    components: {
+        SidebarMenu,
+        VuePerfectScrollbar
+    },
+    data() {
+        return {
+            isOpen: false,
+            sidebarActive: false,
+
+            menu: [
+                {
+                    header: true,
+                    title: "Menu"
+                },
+                {
+                    title: "Buildings",
+                    icon: "pe-7s-home",
+                    child: [
+                        {
+                            href: "/buildings",
+                            title: "Afficher tous les bâtiments"
+                        },
+                        {
+                            href: "/buildings/add",
+                            title: "Ajouter un bâtiment"
+                        }
+                    ]
+                }
+            ],
+            collapsed: true,
 
       menu: [
         {
