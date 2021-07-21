@@ -86,14 +86,19 @@ export default new Router({
         /**
          * Missing some behavior
          * mixin not working
+         * behavior on axios ?
          */
         {
             path: "/tomerge/LC-166-RMC",
             name: "LC-166-RMC",
             component: () => import("@/apps/tomerge/LC-166-RMC/index.vue")
         },
+          {
+            path: "/tomerge/LC-164-RMC",
+            name: "LC-164-RMC",
+            component: () => import("@/apps/tomerge/LC-164-RMC/index.vue")
+        },
        
-        
          /**
           * TO MERGE LATER
          * Mixin not working
@@ -120,6 +125,8 @@ export default new Router({
             name: "edit-building",
             component: () => import("@/apps/tomerge/LC-144/Buildings/single-building")
         },
+        
+      
          // Dashboards
         {
             path: "/LC-31-RMC",
