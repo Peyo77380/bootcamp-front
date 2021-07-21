@@ -9,7 +9,7 @@
 </template>
 
 <script>
-import Table from "../LC-166-RMC/components/table";
+import Table from "@/apps/tomerge/LC-166-RMC/components/table";
 
 export default {
     components: {
