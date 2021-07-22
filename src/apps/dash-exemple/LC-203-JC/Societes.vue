@@ -124,12 +124,25 @@
                                 </b-col>
                             </b-row>
 
-
                             <!--INFOS SUPPLÉMENTAIRES-->
                             <b-row class="society-info-group-action ml-0 mt-3">
                                 <b-col class="col col-12 society-info">
                                     <b-row>
-                                        <b-button variant="outline-sunglo" class="society-info-btn mb-2">
+                                        <b-button @click="displayBillsQuotes"
+                                                  :variant="activatedQuotes"
+                                                  class="society-info-btn mb-2">
+                                            <span class="">Factures / Devis</span>
+
+                                            <b-icon icon="arrow-right-circle-fill"
+                                                    aria-hidden="true"
+                                                    class="iconsInfo font-size-xlg"
+                                                    title=""></b-icon>
+                                        </b-button>
+                                    </b-row>
+                                    <b-row>
+                                        <b-button @click="displayCredits"
+                                                  :variant="activatedCredits"
+                                                  class="society-info-btn mb-2">
                                             <span class="">Crédits</span>
 
                                             <b-icon icon="arrow-right-circle-fill"
@@ -139,7 +152,10 @@
                                         </b-button>
                                     </b-row>
                                     <b-row>
-                                        <b-button block variant="outline-sunglo " class="society-info-btn mb-2">
+                                        <b-button @click="displayBookings"
+                                                  block
+                                                  :variant="activatedBookings"
+                                                  class="society-info-btn mb-2">
                                             <span class="">Réservations</span>
                                             <b-icon icon="arrow-right-circle-fill"
                                                     aria-hidden="true"
@@ -148,7 +164,10 @@
                                         </b-button>
                                     </b-row>
                                     <b-row>
-                                        <b-button block variant="outline-sunglo " class="society-info-btn">
+                                        <b-button @click="displaySubscription"
+                                                  block
+                                                  :variant="activatedSubscription"
+                                                  class="society-info-btn">
                                             <span class="">Abonnement</span>
                                             <b-icon icon="arrow-right-circle-fill"
                                                     aria-hidden="true"
@@ -162,104 +181,115 @@
 
                         <!--BODY-->
                         <b-col class="society-datas border h-100 px-5 pt-4 pb-4">
-                            <b-row class="society-datas-array mt-2">
-                                <table>
-                                    <thead class="society-datas-bills-head sticky-top bg-white text-sunglo">
-                                    <tr class="">
-                                        <th colspan="11" class="text-eternity ">Factures</th>
-                                    </tr>
-                                    <tr class="">
-                                        <th v-for="(field, index) in fieldsBills"
-                                            :key="index"
-                                            class="px-3 py-3 text-center">
-                                            {{ field }}
-                                        </th>
-                                    </tr>
-                                    </thead>
-                                    <tbody class="society-datas-bills-body">
-                                    <tr v-for="(value, index) in bills"
-                                        :key="index">
-                                        <td class="text-center border-top px-3"> {{ value.key }}</td>
-                                        <td class="text-center border-top px-3 font-weight-medium bg-sunglo text-white">
-                                            {{ value.number }}
-                                        </td>
-                                        <td class="text-center border-top px-3">{{ value.date }}</td>
-                                        <td class="border-top px-2 py-3">{{ value.product }}</td>
-                                        <td class="text-center border-top px-3">{{ value.exclTaxeValue }}</td>
-                                        <td class="text-center border-top px-3">{{ value.addedTaxe }}</td>
-                                        <td class="text-center border-top px-3 font-weight-medium">{{
-                                                value.inclTaxeValue
-                                                                                                   }}
-                                        </td>
-                                        <td class="text-center border-top px-3">{{ value.currentCoin }}</td>
-                                        <td class="text-center border-top px-3 font-weight-medium">{{
-                                                value.paymentStatus
-                                                                                                   }}
-                                        </td>
-                                        <td class="text-center border-top px-3">{{ value.paymentMethod }}</td>
-                                        <td class="actionsCell text-center border-top px-4">
-                                            <b-button-group>
-                                                <b-dropdown right split text="•••" variant="outline-sunglo">
-                                                    <b-dropdown-item>Item 1</b-dropdown-item>
-                                                    <b-dropdown-item>Item 2</b-dropdown-item>
-                                                    <b-dropdown-divider></b-dropdown-divider>
-                                                    <b-dropdown-item>Item 3</b-dropdown-item>
-                                                </b-dropdown>
-                                            </b-button-group>
-                                        </td>
-                                    </tr>
-                                    </tbody>
-                                </table>
-                            </b-row>
-                            <b-row class="society-datas-array mt-5">
-                                <table>
-                                    <thead class="society-datas-bills-head sticky-top bg-white text-sunglo">
-                                    <tr class="">
-                                        <th colspan="11" class="text-eternity">Devis</th>
-                                    </tr>
-                                    <tr class="">
-                                        <th v-for="(field, index) in fieldsQuotes"
-                                            :key="index"
-                                            class="px-3 py-3 text-center">
-                                            {{ field }}
-                                        </th>
-                                    </tr>
-                                    </thead>
-                                    <tbody class="society-datas-bills-body">
-                                    <tr v-for="(value, index) in quotes"
-                                        :key="index">
-                                        <td class="text-center border-top px-3"> {{ value.key }}</td>
-                                        <td class="text-center border-top px-3 font-weight-medium bg-sunglo text-white">
-                                            {{ value.number }}
-                                        </td>
-                                        <td class="text-center border-top px-3">{{ value.date }}</td>
-                                        <td class="border-top px-2 py-3">{{ value.product }}</td>
-                                        <td class="text-center border-top px-3">{{ value.exclTaxeValue }}</td>
-                                        <td class="text-center border-top px-3">{{ value.addedTaxe }}</td>
-                                        <td class="text-center border-top px-3 font-weight-medium">{{
-                                                value.inclTaxeValue
-                                                                                                   }}
-                                        </td>
-                                        <td class="text-center border-top px-3">{{ value.currentCoin }}</td>
-                                        <td class="text-center border-top px-3 font-weight-medium">{{
-                                                value.paymentStatus
-                                                                                                   }}
-                                        </td>
-                                        <td class="text-center border-top px-3">{{ value.paymentMethod }}</td>
-                                        <td class="actionsCell text-center border-top px-4">
-                                            <b-button-group>
-                                                <b-dropdown right split text="•••" variant="outline-sunglo">
-                                                    <b-dropdown-item>Item 1</b-dropdown-item>
-                                                    <b-dropdown-item>Item 2</b-dropdown-item>
-                                                    <b-dropdown-divider></b-dropdown-divider>
-                                                    <b-dropdown-item>Item 3</b-dropdown-item>
-                                                </b-dropdown>
-                                            </b-button-group>
-                                        </td>
-                                    </tr>
-                                    </tbody>
-                                </table>
-                            </b-row>
+                            <div v-if="onBillsQuotes">
+                                <b-row class="society-datas-array mt-2">
+                                    <table>
+                                        <thead class="society-datas-bills-head sticky-top bg-white text-sunglo">
+                                        <tr class="">
+                                            <th colspan="11" class="text-eternity ">Factures</th>
+                                        </tr>
+                                        <tr class="">
+                                            <th v-for="(field, index) in fieldsBills"
+                                                :key="index"
+                                                class="px-3 py-3 text-center">
+                                                {{ field }}
+                                            </th>
+                                        </tr>
+                                        </thead>
+                                        <tbody class="society-datas-bills-body">
+                                        <tr v-for="(value, index) in bills"
+                                            :key="index">
+                                            <td class="text-center border-top px-3"> {{ value.key }}</td>
+                                            <td class="text-center border-top px-3 font-weight-medium bg-sunglo text-white">
+                                                {{ value.number }}
+                                            </td>
+                                            <td class="text-center border-top px-3">{{ value.date }}</td>
+                                            <td class="border-top px-2 py-3">{{ value.product }}</td>
+                                            <td class="text-center border-top px-3">{{ value.exclTaxeValue }}</td>
+                                            <td class="text-center border-top px-3">{{ value.addedTaxe }}</td>
+                                            <td class="text-center border-top px-3 font-weight-medium">{{
+                                                    value.inclTaxeValue
+                                                                                                       }}
+                                            </td>
+                                            <td class="text-center border-top px-3">{{ value.currentCoin }}</td>
+                                            <td class="text-center border-top px-3 font-weight-medium">{{
+                                                    value.paymentStatus
+                                                                                                       }}
+                                            </td>
+                                            <td class="text-center border-top px-3">{{ value.paymentMethod }}</td>
+                                            <td class="actionsCell text-center border-top px-4">
+                                                <b-button-group>
+                                                    <b-dropdown right split text="•••" variant="outline-sunglo">
+                                                        <b-dropdown-item>Item 1</b-dropdown-item>
+                                                        <b-dropdown-item>Item 2</b-dropdown-item>
+                                                        <b-dropdown-divider></b-dropdown-divider>
+                                                        <b-dropdown-item>Item 3</b-dropdown-item>
+                                                    </b-dropdown>
+                                                </b-button-group>
+                                            </td>
+                                        </tr>
+                                        </tbody>
+                                    </table>
+                                </b-row>
+                                <b-row class="society-datas-array mt-5">
+                                    <table>
+                                        <thead class="society-datas-bills-head sticky-top bg-white text-sunglo">
+                                        <tr class="">
+                                            <th colspan="11" class="text-eternity">Devis</th>
+                                        </tr>
+                                        <tr class="">
+                                            <th v-for="(field, index) in fieldsQuotes"
+                                                :key="index"
+                                                class="px-3 py-3 text-center">
+                                                {{ field }}
+                                            </th>
+                                        </tr>
+                                        </thead>
+                                        <tbody class="society-datas-bills-body">
+                                        <tr v-for="(value, index) in quotes"
+                                            :key="index">
+                                            <td class="text-center border-top px-3"> {{ value.key }}</td>
+                                            <td class="text-center border-top px-3 font-weight-medium bg-sunglo text-white">
+                                                {{ value.number }}
+                                            </td>
+                                            <td class="text-center border-top px-3">{{ value.date }}</td>
+                                            <td class="border-top px-2 py-3">{{ value.product }}</td>
+                                            <td class="text-center border-top px-3">{{ value.exclTaxeValue }}</td>
+                                            <td class="text-center border-top px-3">{{ value.addedTaxe }}</td>
+                                            <td class="text-center border-top px-3 font-weight-medium">{{
+                                                    value.inclTaxeValue
+                                                                                                       }}
+                                            </td>
+                                            <td class="text-center border-top px-3">{{ value.currentCoin }}</td>
+                                            <td class="text-center border-top px-3 font-weight-medium">{{
+                                                    value.paymentStatus
+                                                                                                       }}
+                                            </td>
+                                            <td class="text-center border-top px-3">{{ value.paymentMethod }}</td>
+                                            <td class="actionsCell text-center border-top px-4">
+                                                <b-button-group>
+                                                    <b-dropdown right split text="•••" variant="outline-sunglo">
+                                                        <b-dropdown-item>Item 1</b-dropdown-item>
+                                                        <b-dropdown-item>Item 2</b-dropdown-item>
+                                                        <b-dropdown-divider></b-dropdown-divider>
+                                                        <b-dropdown-item>Item 3</b-dropdown-item>
+                                                    </b-dropdown>
+                                                </b-button-group>
+                                            </td>
+                                        </tr>
+                                        </tbody>
+                                    </table>
+                                </b-row>
+                            </div>
+                            <div v-else-if="onCredits">
+                                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. A adipisci cum distinctio ea earum esse et eum eveniet in labore, laborum magni nihil nobis, perspiciatis qui quisquam sunt suscipit, temporibus voluptate voluptatum. Deleniti ducimus facere nesciunt quidem quis recusandae reiciendis? Dolore ea eligendi facere iste placeat ratione sit veniam. Blanditiis deserunt dolor ex excepturi facilis fuga id iusto magni obcaecati ratione, sunt ullam ut vitae, voluptate voluptatum. Adipisci amet delectus doloremque incidunt laborum, quae rerum. Consequuntur impedit ipsa labore magnam minima nisi quod sed? Ducimus earum esse illo iusto, laudantium magnam, modi, nulla numquam quaerat quas rem reprehenderit totam vero! A ab, asperiores assumenda delectus distinctio error excepturi labore laudantium magni natus nostrum numquam officiis quam quis repellendus sed voluptatum.</p>
+                            </div>
+                            <div v-else-if="onBookings">
+                                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Architecto blanditiis cumque exercitationem ipsam maxime nihil officiis sapiente, sunt. Adipisci fuga ipsam iste magnam minima nam pariatur, porro, quae, quisquam recusandae sequi sit voluptas! Ad, aliquam animi asperiores autem blanditiis corporis dolore dolorem dolores, dolorum ducimus eius eligendi enim est et eveniet excepturi facilis illo incidunt maiores mollitia necessitatibus neque nesciunt nobis odio pariatur porro quam quos ratione reiciendis rerum sapiente sint soluta sunt suscipit, temporibus tenetur veritatis. Accusantium consequatur corporis culpa deleniti ducimus facere facilis fugiat iste iusto non officia quam, qui saepe unde vero vitae voluptas? Accusantium animi, aperiam aspernatur autem beatae cumque cupiditate dolore eaque eligendi illo inventore laboriosam neque officiis perferendis quaerat quia quo sequi sunt vero?</p>
+                            </div>
+                            <div v-else-if="onSubscription">
+                                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ab architecto atque ea ipsam maxime minima odit, porro sed voluptas voluptatem. Accusamus accusantium amet animi architecto atque cumque deleniti deserunt doloribus eius esse explicabo facilis ipsa ipsam iste laborum molestias nemo, possimus praesentium quae quaerat quos recusandae tempore temporibus ullam voluptas! Accusamus adipisci dignissimos dolore eius et expedita hic odio perferendis quisquam quo, reiciendis sed sint tenetur vel, velit! Alias aliquid autem commodi corporis culpa deserunt distinctio dolorem ducimus excepturi laboriosam libero, minima non nostrum, numquam odio optio perferendis placeat quasi quibusdam quidem suscipit unde veniam voluptas. Animi aspernatur consequuntur dicta dolore, doloremque doloribus facilis ipsa ipsam itaque iure laboriosam odit omnis perspiciatis quaerat quia repellat totam voluptates. Impedit, magnam officiis!</p>
+                            </div>
                         </b-col>
                     </b-row>
                 </b-card>
@@ -271,7 +301,8 @@
 
 <script>
 export default {
-    name: 'Membres', data() {
+    name: 'Membres',
+    data() {
         return {
             actionsIcon : '<b-icon icon="gear" class="font-size-xlg"></b-icon',
             society     : [
@@ -892,8 +923,52 @@ export default {
             options     : [
                 { text: 'Factures', value: 'radio1' },
                 { text: 'Devis', value: 'radio2' }
-            ]
-        };
+            ],
+            onBillsQuotes : true,
+            onCredits     : false,
+            onBookings    : false,
+            onSubscription: false
+        }
+    },
+    computed: {
+        activatedQuotes() {
+            return this.onBillsQuotes ? "sunglo" : "outline-sunglo";
+        },
+        activatedCredits() {
+            return this.onCredits ? "sunglo" : "outline-sunglo";
+        },
+        activatedBookings() {
+            return this.onBookings ? "sunglo" : "outline-sunglo";
+        },
+        activatedSubscription() {
+            return this.onSubscription ? "sunglo" : "outline-sunglo";
+        }
+    },
+    methods: {
+        displayBillsQuotes() {
+            this.onBillsQuotes = true
+            this.onCredits = false
+            this.onBookings = false
+            this.onSubscription = false
+        },
+        displayCredits() {
+            this.onBillsQuotes = false
+            this.onCredits = true
+            this.onBookings = false
+            this.onSubscription = false
+        },
+        displayBookings() {
+            this.onBillsQuotes = false
+            this.onCredits = false
+            this.onBookings = true
+            this.onSubscription = false
+        },
+        displaySubscription() {
+            this.onBillsQuotes = false
+            this.onCredits = false
+            this.onBookings = false
+            this.onSubscription = true
+        }
     }
 };
 </script>
@@ -950,7 +1025,7 @@ export default {
 }
 
 .society-info-members {
-    max-height : 200px;
+    max-height : 170px;
     overflow   : scroll;
 }
 
@@ -970,7 +1045,7 @@ export default {
     border-radius   : 8px;
     border          : 1px solid rgba(236, 100, 101, 0);
     box-sizing      : border-box;
-    color           : #2e2d2c
+    color           : #2E2D2C
 }
 
 .society-info-members a:hover {
