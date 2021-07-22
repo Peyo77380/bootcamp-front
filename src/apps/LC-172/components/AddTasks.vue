@@ -61,17 +61,16 @@
                                             v-model="newDatas.content"
                                             ></textarea>
                                         </div>
-                                        <div class="position-relative form-group">
-                                            <label>Date d'écheance*
-                                            </label><br>
-                                            <date-picker 
-                                            v-model="newDatas.end_date" 
-                                            lang="fr" 
-                                            :not-before="valueDate"
-                                            :format="format"
-                                            
+                                        <div class="position-relative form-group ">
+                                            <label for="ditepicker">Date d'écheance*</label>
+                                            <b-form-datepicker 
+                                            class="p-2"
+                                            id="ditepicker"
+                                            v-model="newDatas.end_date"  
+                                            calendar-width="300px"
+                                            placeholder="Sélectionner une date"
                                             >
-                                            </date-picker>
+                                            </b-form-datepicker>
                                         </div>
                                     </form>
                                 </div>
@@ -101,7 +100,6 @@ export default {
   components: {     
       DatePicker
   },
-
   data() {
     return {
         type: [
@@ -120,8 +118,8 @@ export default {
             {text:'terminé', value: "0"},
             {text:'à faire', value: "1"},
         ],
-        valueDate: new Date(),
-        format: 'dd/MM/YYYY'
+        // valueDate: new Date(),
+        // format: 'dd/MM/YYYY'
     };
   },
   props: {

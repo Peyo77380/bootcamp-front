@@ -41,7 +41,7 @@
                                             <div> 
                                                 <span class="widget-heading">{{ data.title }}</span>
                                                 <div :class="getStatus(data)">
-                                                    {{getText(data)}}
+                                                    {{ getText(data) }}
                                                 </div>
                                                 <b-dropdown
                                                     toggle-class="btn-icon btn-icon-only"
@@ -152,7 +152,6 @@ export default {
             dialog: false, 
             newDatas: {},
             editedIndex: -1,
-            flag: "",
             optionsTasks: [
                 {text: 'Tâches actives', value: '1'},
                 {text: 'Tâches archivées', value: '0'},
@@ -181,7 +180,7 @@ export default {
     async mounted() {
         await this.loadTasksActive()
     },
-    
+
     components: {
         AddTasks
     },
@@ -203,7 +202,8 @@ export default {
         },
         //Close Add modal
         cancelModal() {
-            this.dialog = false
+            this.dialog = false;
+            //this.newDatas = {}
         },
         // Save Action commercial add and modification
         async saveNewDatas() {
@@ -231,9 +231,9 @@ export default {
             this.editedIndex = this.AllTasks.indexOf(data);
             this.newDatas = data
         },
-        deleteAction(data) {
+        async deleteAction(data) {
             //action of delete task 
-            this.deleteTask(data)
+            await this.deleteTask(data);
         },
         async confirmDeleteAction(data) {
             if (
@@ -241,7 +241,9 @@ export default {
                     value: data.title
                 })
             )
-            this.deleteAction(data)
+            this.deleteAction(data);
+            this.loadTasksActive();
+            this.loadArchivedTasks()
         },
         async changeToDo(data) {
             //console.log("test id", data.id)
@@ -282,12 +284,11 @@ export default {
         },
         async changeStatus() {
             if(this.TasksStatus == 1) {
-                    await this.loadTasksActive()
+                await this.loadTasksActive()
             } else {
-                    this.AllTasks = await this.getArchiveTasks()
-                }
+                this.AllTasks = await this.getArchiveTasks()
+            }
         }
-        
     }, 
 }
 </script>
