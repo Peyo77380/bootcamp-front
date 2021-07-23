@@ -125,7 +125,16 @@ export default new Router({
             name: "edit-building",
             component: () => import("@/apps/tomerge/LC-144/Buildings/single-building")
         },
-        
+        /**
+          * Sweet alert not working
+         * Mixin not working
+         * 
+         */
+         {
+            path: '/tomerge/LC-168',
+            name: 'attributs',
+            component: () => import('@/apps/tomerge/LC-168'),
+        },
       
          // Dashboards
         {
@@ -133,5 +142,7 @@ export default new Router({
             name: "LC-31-RMC",
             component: () => import("@/apps/LC-31-RMC/index.vue")
         },
+       
+
     ]
 });

@@ -1,9 +1,16 @@
+<<<<<<< HEAD
 import Vue from "vue";
 import "./plugins/vuetify";
 import sweetAlert from "./plugins/sweetAlert";
 import router from "./router";
 import { TimeAgo } from 'vue2-timeago'
 import CKEditor from "@ckeditor/ckeditor5-vue2";
+=======
+import Vue from 'vue'
+import './plugins/vuetify'
+import router from './router'
+import sweetAlert from "./plugins/sweetAlert";
+>>>>>>> origin/LC-168
 
 
 import BootstrapVue from "bootstrap-vue";
