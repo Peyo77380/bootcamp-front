@@ -1,11 +1,11 @@
-import api from '@/services/axios';
+import { apiRoomServices } from '@/services/axios';
 
 export const Buildings = {
 
     methods: {
         async getAllBuildings() {
             try {
-                const response = await api.get('building')
+                const response = await apiRoomServices.get('building')
                 return {
                     status: 1,
                     datas: response.data.datas
@@ -19,7 +19,7 @@ export const Buildings = {
         },
         async getBuildingById(id) {
             try {
-                const response = await api.get(`building/${id}`);
+                const response = await apiRoomServices.get(`building/${id}`);
                 return {
                     status: 1,
                     datas: response.data.datas
@@ -34,7 +34,7 @@ export const Buildings = {
         async storeBuilding (data) {
             // TODO : add validation
             try {
-                const response = await api.post('building', data);
+                const response = await apiRoomServices.post('building', data);
                 return {
                     status: 1,
                     datas: response.data.datas
@@ -48,7 +48,7 @@ export const Buildings = {
         },
         async deleteBuilding (id) {
             try {
-                await api.delete(`building/${id}`);
+                await apiRoomServices.delete(`building/${id}`);
                 return {
                     status: 1,
                     success: "Successfully deleted"
@@ -63,7 +63,7 @@ export const Buildings = {
         async updateBuilding (id, data) {
             // TODO : add validation
             try {
-                const response = await api.put(`building/${id}`, data);
+                const response = await apiRoomServices.put(`building/${id}`, data);
                 return {
                     status: 1,
                     success: response.data.datas

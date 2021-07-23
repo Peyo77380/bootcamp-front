@@ -1,7 +1,7 @@
 import axios from "axios"
 
-const api = axios.create({
-    baseURL: "http://localhost:3000/api/",
+const apiCustomFields = axios.create({
+    baseURL: "http://0.0.0.0:80/api/",
     timeout: 3000,
     withCreditentials: false,
     headers: {
@@ -10,4 +10,29 @@ const api = axios.create({
     }
 })
 
-export default api;
+const apiRoomServices = axios.create({
+    baseURL: "http://0.0.0.0:8000/api/v1/",
+    timeout: 3000,
+    withCreditentials: false,
+    headers: {
+        "Access-Control-Allow-Origin": "*",
+        "Access-Control-Allow-Methods": "GET,PUT,POST,DELETE,PATCH,OPTIONS"
+    }
+})
+
+const apiCRM = axios.create({
+    baseURL: "http://0.0.0.0:8001/api/v1/",
+    timeout: 3000,
+    withCreditentials: false,
+    headers: {
+        "Access-Control-Allow-Origin": "*",
+        "Access-Control-Allow-Methods": "GET,PUT,POST,DELETE,PATCH,OPTIONS"
+    }
+})
+
+export {
+    apiCustomFields,
+    apiRoomServices,
+    apiCRM
+
+};

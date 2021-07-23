@@ -1,4 +1,4 @@
-import api from "@/services/axios";
+import { apiCustomFields } from "@/services/axios";
 import store from "../store/store";
 
 export const Globals = {
@@ -11,7 +11,8 @@ export const Globals = {
         async getGlobals() {
             try {
                 if (store.getters["parameters/globalEmpty"]) {
-                    const response = await api.get("global");
+                    const response = await apiCustomFields.get("global");
+                    console.log(response);
                     store.dispatch(
                         "parameters/pushParamsGlobal",
                         response.data.datas

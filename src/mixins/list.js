@@ -1,11 +1,11 @@
-import api from '@/services/axios';
+import { apiCustomFields } from '@/services/axios';
 
 export const Lists = {
 
     methods: {
         async getAllLists() {
             try {
-                const response = await api.get('list/1/1/fr_FR')
+                const response = await apiCustomFields.get('list/1/1/fr_FR')
                 return {
                     status: 1,
                     datas: response
@@ -19,7 +19,7 @@ export const Lists = {
         },
         async getListDetails (id) {
             try {
-                const response = await api.get(`list/${id}`);
+                const response = await apiCustomFields.get(`list/${id}`);
                 return {
                     status: 1,
                     datas: response
@@ -33,7 +33,7 @@ export const Lists = {
         },
         async deleteDetailFromList (listId, item) {
             try {
-                const response = await api.put(`list/data/rm/${listId}`, item);
+                const response = await apiCustomFields.put(`list/data/rm/${listId}`, item);
                 return response;
             } catch (error) {
                 return {
@@ -44,7 +44,7 @@ export const Lists = {
         },
         async updateDetailFromList (listId, updatedItem) {
             try {
-                const response = await api.put(`list/data/${listId}`, {
+                const response = await apiCustomFields.put(`list/data/${listId}`, {
                     _id: updatedItem._id,
                     text: updatedItem.text
                 })
@@ -58,7 +58,7 @@ export const Lists = {
         },
         async storeDetailToList (listId, newItem) {
             try {
-                const response = await api.post(`list/data/${listId}`, newItem);
+                const response = await apiCustomFields.post(`list/data/${listId}`, newItem);
                 return response;
             } catch (error) {
                 return {
