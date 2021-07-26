@@ -1,10 +1,10 @@
-import api from "@/services/axios";
+import { apiCustomFields } from "@/services/axios";
 
 export const attributes = {
     methods: {
         async getAttributes() {
             try {
-                const response = await api.get('attribute/1/fr_FR');
+                const response = await apiCustomFields.get('attribute/1/fr_FR');
                 return response.data.datas
             } catch (error) {
                 throw new Error(error);         
@@ -12,7 +12,7 @@ export const attributes = {
         },
         async deleteAttribute (id) {
             try {
-                const response = await api.delete(`attribute/${id}`);
+                const response = await apiCustomFields.delete(`attribute/${id}`);
             } catch (error) {
                 return {
                     status: 0,
@@ -22,7 +22,7 @@ export const attributes = {
         },
         async modifyAttribute(attr) {
             try {
-                const response = await api.put(`attribute/${attr._id}`,attr);
+                const response = await apiCustomFields.put(`attribute/${attr._id}`,attr);
             } catch (error) {
                 return {
                     status: 0,
@@ -32,7 +32,7 @@ export const attributes = {
         },
         async addAttribute (attr) {
             try {
-                const response = await api.post(`attribute/`, attr);
+                const response = await apiCustomFields.post(`attribute/`, attr);
             } catch (error) {
                 return {
                     status: 0,
