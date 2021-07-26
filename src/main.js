@@ -14,6 +14,7 @@ import Default from "./Layout/Wrappers/baseLayout.vue";
 import Pages from "./Layout/Wrappers/pagesLayout.vue";
 import Apps from "./Layout/Wrappers/appLayout.vue";
 
+
 Vue.config.productionTip = false;
 
 Vue.use(BootstrapVue);

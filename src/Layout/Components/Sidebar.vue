@@ -60,6 +60,16 @@ export default {
                             title: "Ajouter un bâtiment"
                         }
                     ]
+                },
+                {
+                    title: "Espace de coworking : LC-142",
+                    icon: "pe-7s-note2",
+                    child: [
+                        {
+                            href: "/room",
+                            title: "Rooms List"
+                        }
+                    ]
                 }
             ],
             collapsed: true,
