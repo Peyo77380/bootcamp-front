@@ -26,7 +26,7 @@
                                             class="form-control"
                                             v-model="newDatas.type"
                                             >
-                                            <option v-for="item in type" :key="item.value" :value="item.value"> {{ item.text }}</option>
+                                            <option v-for="item in taskType" :key="item.value" :value="item.value"> {{ item.text }}</option>
                                             </select>
                                         </div>
                                         <div class="position-relative form-group">
@@ -115,11 +115,8 @@ export default {
         status: [
             {text: "Sélectionner l'état de l'action commerciale", value: null},
             {text:'en cours', value: "2"},
-            {text:'terminé', value: "0"},
             {text:'à faire', value: "1"},
         ],
-        // valueDate: new Date(),
-        // format: 'dd/MM/YYYY'
     };
   },
   props: {
@@ -128,8 +125,10 @@ export default {
             },
         newDatas: {
             type: Object
+        },
+        taskType: {
+            type: Array
         }
-
   },
   methods: {
       closeModal() {
@@ -139,7 +138,13 @@ export default {
           //console.log (this.newDatas)
           this.closeModal()
           this.$emit("saveDatas", this.newDatas)
+          console.log("test newDatas", this.newDatas)
       }
   },
+//   computed: {
+//       show() {
+//           console.log("test", this.taskType)
+//       }
+//   },
 };
 </script>

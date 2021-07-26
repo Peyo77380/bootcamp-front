@@ -134,6 +134,7 @@
         @closeModal="cancelModal"
         @saveDatas="saveNewDatas"
         :newDatas="newDatas"
+        :taskType="taskType"
         />
     </div>
 </template>
@@ -141,6 +142,7 @@
 <script>
 import AddTasks from "@/apps/LC-172/components/AddTasks";
 import { Tasks } from "@/mixins/tasks";
+import { Lists } from "@/mixins/list";
 export default {
     name: 'ToDoList',
     data() {
@@ -158,39 +160,44 @@ export default {
             ],
             TasksStatus: "1",
             statusArray: [{
-                value: 0,
-                text: "terminé",
-                badge : "ml-2 badge badge-danger"
-            },
-            {
-                value: 1,
-                text: "en cours",
-                badge : "ml-2 badge badge-primary"
-            },
-            {
-                value: 2,
-                text: "a faire",
-                badge : "ml-2 badge badge-success"
-            }
-                
-            ]  
+                    value: 0,
+                    text: "terminé",
+                    badge : "ml-2 badge badge-danger"
+                },
+                {
+                    value: 1,
+                    text: "en cours",
+                    badge : "ml-2 badge badge-primary"
+                },
+                {
+                    value: 2,
+                    text: "à faire",
+                    badge : "ml-2 badge badge-success"
+                }
+            ],
+            taskType: [], 
+            taskAdmin: [], 
         }   
     }, 
-    mixins: [Tasks],
+    mixins: [Tasks, Lists],
     async mounted() {
-        await this.loadTasksActive()
+        await this.loadTasksActive();
+        const types = await this.getListDetails("60f8272d4182535f215a9bd8");
+        this.taskType = types.datas.data.datas.datas;
+        //console.log("test type", this.taskType)
     },
 
     components: {
         AddTasks
     },
-
+   
     methods: {
-        // Edit by Pierre le Dieu
+        // Edit status badges (by Pierre Skippy le Dieu des GOUROUS)
         getStatus(data) {
             const flag = this.statusArray.find(element => element.value == data.status)
             return flag.badge  
         },
+        //Edit status text 
         getText(data)  {
             const flag = this.statusArray.find(element => element.value == data.status)
             return flag.text  
@@ -228,6 +235,7 @@ export default {
             //API point for get task by id 
             this.addModal();
             await this.getTask(data); 
+            //console.log("test data", data);
             this.editedIndex = this.AllTasks.indexOf(data);
             this.newDatas = data
         },
@@ -246,7 +254,7 @@ export default {
             this.loadArchivedTasks()
         },
         async changeToDo(data) {
-            //console.log("test id", data.id)
+            //commande to change status to 'à faire'
             data.status = 1
             await this.updateTasks(data.id, data);
             this.AllTasks = await this.getActiveTasks();
@@ -254,6 +262,7 @@ export default {
             this.TasksStatus= "1" 
         },
         async changeToProgress(data) {
+            //commande to change status to 'en cours'
             data.status = 2;
             await this.updateTasks(data.id, data);
             this.AllTasks = await this.getActiveTasks();
@@ -261,7 +270,8 @@ export default {
             this.TasksStatus= "1" 
         },
         async changeToOver(data) {
-             data.status = 0;
+            //commande to change status to 'terminé'
+            data.status = 0;
             await this.updateTasks(data.id, data);
             this.AllTasks = await this.getActiveTasks();
             this.$sweetNotif("Modification réussie !");
@@ -270,6 +280,7 @@ export default {
             // API to load all active tasks 
             try {
                 this.AllTasks = await this.getActiveTasks();
+                //console.log("test active task", this.AllTasks)
             } catch (error) {
                 this.$sweetError("TDL-30");
             }
@@ -283,6 +294,7 @@ export default {
             }
         },
         async changeStatus() {
+            // methods to switch with active task and archive task 
             if(this.TasksStatus == 1) {
                 await this.loadTasksActive()
             } else {
