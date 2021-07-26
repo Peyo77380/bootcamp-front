@@ -21,7 +21,7 @@
 </template>
 
 <script>
-import { roomDetailsData } from "@/apps/lc-142/Components/data-roomDetails";
+import { roomDetailsData } from "@/apps/tomerge/lc-142/Components/data-roomDetails";
 import VuePerfectScrollbar from "vue-perfect-scrollbar";
 import { quillEditor } from 'vue-quill-editor';
 

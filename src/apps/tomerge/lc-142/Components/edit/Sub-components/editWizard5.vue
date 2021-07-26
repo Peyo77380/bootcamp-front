@@ -21,9 +21,9 @@
                                 <tbody>
                                     <tr v-for="priceDetail in priceDetailsData" :key="priceDetail.id">
                                         <td class="text-center border">{{ priceDetail.name }}</td>
-                                        <td class="text-center border">{{ priceDetail.hour }}</td>
-                                        <td class="text-center border">{{ priceDetail.halfDay }}</td>
-                                        <td class="text-center border">{{ priceDetail.day }}</td>
+                                        <td class="text-center border" ><input type="number" min="0" class="text-center border" v-model="priceDetail.hour"/></td>
+                                        <td class="text-center border" ><input type="number" min="0" class="text-center border" v-model="priceDetail.halfDay"/></td>
+                                        <td class="text-center border" ><input type="number" min="0" class="text-center border" v-model="priceDetail.day"/></td>
                                         
                                     </tr>
                                 </tbody>
@@ -44,9 +44,9 @@
                                 <tbody>
                                     <tr v-for="priceDetail in priceDetailsData" :key="priceDetail.id">
                                         <td class="text-center border">{{ priceDetail.name }}</td>
-                                        <td class="text-center border">{{ priceDetail.week }}</td>
-                                        <td class="text-center border">{{ priceDetail.month }}</td>
-                                        <td class="text-center border">{{ priceDetail.trimester }}</td>
+                                        <td class="text-center border" ><input type="number" min="0" class="text-center border" v-model="priceDetail.week"/></td>
+                                        <td class="text-center border" ><input type="number" min="0" class="text-center border" v-model="priceDetail.month"/></td>
+                                        <td class="text-center border" ><input type="number" min="0" class="text-center border" v-model="priceDetail.trimester"/></td>
                                     </tr>
                                 </tbody>
                             </table>
@@ -57,7 +57,7 @@
                             ref="myQuillEditor"
                             :options="editorOption">
                         </quill-editor>
-                    </b-form>   
+                    </b-form>    
                 </div>
             </VuePerfectScrollbar>
         </div>
@@ -66,9 +66,8 @@
 </template>
 
 <script>
-import { roomDetailsData } from "@/apps/lc-142/Components/data-roomDetails";
-import { priceDetailsData } from "@/apps/lc-142/Components/data-priceDetails";
-
+import { roomDetailsData } from "@/apps/tomerge/lc-142/Components/data-roomDetails";
+import { priceDetailsData } from "@/apps/tomerge/lc-142/Components/data-priceDetails";
 import VuePerfectScrollbar from "vue-perfect-scrollbar";
 import { quillEditor } from 'vue-quill-editor';
 
@@ -110,9 +109,3 @@ export default {
     })
 };
 </script>
-
-<style lang="css">
-  @import '~quill/dist/quill.core.css';
-  @import '~quill/dist/quill.snow.css';
-  @import '~quill/dist/quill.bubble.css';
-</style>

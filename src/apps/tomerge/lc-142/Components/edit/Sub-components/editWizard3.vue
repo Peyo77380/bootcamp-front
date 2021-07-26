@@ -14,7 +14,7 @@
                             <table class="align-middle mb-5 table table-border bordered table-striped table-hover">
                                 <thead>
                                 <tr>
-                                    <th class="text-left border col-1">Selection</th>
+                                    <th class="text-left border col-1">Sélection</th>
                                     <th class="text-left border col-9">Titre du service</th>
                                     <th class="text-left border col-1">Actions</th>
                                 </tr>
@@ -24,7 +24,6 @@
                                     <td class="text-center border">
                                         <b-form-checkbox-group
                                         v-model="servicesChecked"
-                                        :value="true"
                                         multiple
                                         >
                                             <b-form-checkbox :value="serviceDetail.id"></b-form-checkbox>
@@ -55,7 +54,7 @@
     </div>
 
     <!-- Modale -->
-    <b-modal v-model="viewModal" :title=modaleInfo.title :hide-backdrop="true">
+        <b-modal v-model="viewModal" :title=modaleInfo.title :hide-backdrop="true">
         <p class="my-4">
             {{ modaleInfo.description }}
         </p>
@@ -70,8 +69,8 @@
 </template>
 
 <script>
-import { serviceDetailsData } from "@/apps/lc-142/Components/data-serviceDetails";
-import { roomDetailsData } from "@/apps/lc-142/Components/data-roomDetails";
+import { serviceDetailsData } from "@/apps/tomerge/lc-142/Components/data-serviceDetails";
+import { roomDetailsData } from "@/apps/tomerge/lc-142/Components/data-roomDetails";
 import VuePerfectScrollbar from "vue-perfect-scrollbar";
 
 export default {
@@ -95,10 +94,10 @@ export default {
     },
     data: () => ({
         room: {
-            services: []
+            services: [roomDetailsData[0].services]
         },
         serviceDetailsData: serviceDetailsData,
-        roomDetailsData: roomDetailsData,
+        roomDetailsData:roomDetailsData,
         servicesChecked: [],
         viewModal: false,
         photoModal: false,

@@ -57,7 +57,7 @@
                             ref="myQuillEditor"
                             :options="editorOption">
                         </quill-editor>
-                    </b-form>    
+                    </b-form>   
                 </div>
             </VuePerfectScrollbar>
         </div>
@@ -66,8 +66,9 @@
 </template>
 
 <script>
-import { roomDetailsData } from "@/apps/lc-142/Components/data-roomDetails";
-import { priceDetailsData } from "@/apps/lc-142/Components/data-priceDetails";
+import { roomDetailsData } from "@/apps/tomerge/lc-142/Components/data-roomDetails";
+import { priceDetailsData } from "@/apps/tomerge/lc-142/Components/data-priceDetails";
+
 import VuePerfectScrollbar from "vue-perfect-scrollbar";
 import { quillEditor } from 'vue-quill-editor';
 
@@ -86,7 +87,7 @@ export default {
     watch: {
         getData(newVal) {
             if(newVal==1) {
-                this.room.prices = priceDetailsData
+                // this.room.prices = priceDetailsData
                 this.$emit('priceInfo', this.room)
             }
         }
@@ -98,8 +99,8 @@ export default {
     },
     data: () => ({
         room: {
-            priceDetails: [roomDetailsData[0].priceDetails],
-            notes: roomDetailsData[0].notes
+            priceDetails: [],
+            notes: ''
         },
         roomDetailsData: roomDetailsData,
         priceDetailsData: priceDetailsData,
@@ -109,3 +110,9 @@ export default {
     })
 };
 </script>
+
+<style lang="css">
+  @import '~quill/dist/quill.core.css';
+  @import '~quill/dist/quill.snow.css';
+  @import '~quill/dist/quill.bubble.css';
+</style>

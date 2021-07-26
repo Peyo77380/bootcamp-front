@@ -187,8 +187,8 @@
 </template>
 
 <script>
-import { roomDetailsData, Types, Floors, Bookables, MinRentalDurations, TypeBookings } from "@/apps/lc-142/Components/data-roomDetails";
-import { openingHoursDetailsData } from "@/apps/lc-142/Components/data-openingHoursDetails";
+import { roomDetailsData, Types, Floors, Bookables, MinRentalDurations, TypeBookings } from "@/apps/tomerge/lc-142/Components/data-roomDetails";
+import { openingHoursDetailsData } from "@/apps/tomerge/lc-142/Components/data-openingHoursDetails";
 
 import VuePerfectScrollbar from "vue-perfect-scrollbar";
 

@@ -24,8 +24,8 @@
                                     <td class="text-center border">
                                         <b-form-checkbox-group
                                         v-model="servicesChecked"
+                                        :value="true"
                                         multiple
-                                        disabled
                                         >
                                             <b-form-checkbox :value="serviceDetail.id"></b-form-checkbox>
                                         </b-form-checkbox-group>
@@ -70,8 +70,8 @@
 </template>
 
 <script>
-import { serviceDetailsData } from "@/apps/lc-142/Components/data-serviceDetails";
-import { roomDetailsData } from "@/apps/lc-142/Components/data-roomDetails";
+import { serviceDetailsData } from "@/apps/tomerge/lc-142/Components/data-serviceDetails";
+import { roomDetailsData } from "@/apps/tomerge/lc-142/Components/data-roomDetails";
 import VuePerfectScrollbar from "vue-perfect-scrollbar";
 
 export default {
@@ -95,7 +95,7 @@ export default {
     },
     data: () => ({
         room: {
-            services: [serviceDetailsData[0].services]
+            services: []
         },
         serviceDetailsData: serviceDetailsData,
         roomDetailsData: roomDetailsData,

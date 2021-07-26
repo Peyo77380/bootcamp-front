@@ -1,11 +1,11 @@
 <template>    
 <!-- Onglet 6 du wizard-->
-<b-tab title="Plan de salles de réunion" class="p-2">
+<b-tab title="Plans salles/réunions" class="p-2">
     <div class="scroll-gradient">
         <div class="scroll-area-xlg">
             <VuePerfectScrollbar class="scrollbar-container" v-once>
                 <div class="mt-3 mb-3">
-                    <!-- Contenu 6e wizard -->
+                    <!-- Contenu 6e wizard-->
                     <b-form>
                         <div class="row">
                         <div class="col-1"></div>
@@ -24,14 +24,15 @@
                                 <tr v-for="meetingRoomDetail in meetingRoomDetailsData" :key="meetingRoomDetail.id" >
                                     <td class="text-center border">
                                         <b-form-checkbox-group
-                                        v-model="meetingsChecked"
+                                        v-model="meetingsChecked" 
                                         multiple
+                                        disabled
                                         >
                                             <b-form-checkbox :value="meetingRoomDetail.id"></b-form-checkbox>
                                         </b-form-checkbox-group>
                                     </td>
                                     <td class="text-left border">{{ meetingRoomDetail.title }}</td>
-                                    <td class="text-center border"><input type="number" min="0" v-model="meetingRoomDetail.maxCapacity" class="text-center border"/></td>
+                                    <td class="text-center border"><input type="text" v-model="meetingRoomDetail.maxCapacity" class="text-center border"/></td>
                                     <td class="text-center border">
                                         <div class="row">
                                             <b-button @click="openMeetingModale(meetingRoomDetail)" class="m-auto" variant="white">
@@ -62,8 +63,8 @@
 </template>
 
 <script>
-import { roomDetailsData } from "@/apps/lc-142/Components/data-roomDetails";
-import { meetingRoomDetailsData } from "@/apps/lc-142/Components/data-meetingRoomDetails";
+import { roomDetailsData } from "@/apps/tomerge/lc-142/Components/data-roomDetails";
+import { meetingRoomDetailsData } from "@/tomerge/apps/lc-142/Components/data-meetingRoomDetails";
 import VuePerfectScrollbar from "vue-perfect-scrollbar";
 
 export default {
@@ -80,7 +81,6 @@ export default {
     watch : {
         getData(newVal) {
             if(newVal==1) {
-                // meetings n'est pas egale a meetingsChecked mais meetings [] = [ 'meetingsChecked[0]', 'meetingsChecked[1]', etc]
                 this.room.meetings = this.meetingsChecked
                 this.$emit('meetingInfo', this.room.meetings)
             }
@@ -100,7 +100,7 @@ export default {
         }
     }),
     computed: {
-        meetingsChecked: {
+        meetingChecked: {
             get() {
                 return this.meetingsChecked;
             },

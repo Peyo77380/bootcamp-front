@@ -10,14 +10,14 @@
                     <div class="main-card mb-3 card">
                         <div class="card-body">
                             <h5 class="card-title text-left">Photos de la salle :</h5>
-                            <vue-dropzone multiple ref="myVueDropzone" id="dropzone" v-model="room.roomListPhoto" :options="dropzoneOptions"></vue-dropzone>
+                            <vue-dropzone multiple disabled ref="myVueDropzone" id="dropzone" v-model="room.roomListPhoto" :options="dropzonePhotoOptions"></vue-dropzone>
                         </div>
                     </div>
                     
                     <div class="main-card mb-3 card">
                         <div class="card-body">
                             <h5 class="card-title text-left">Plans de réunion de la salle :</h5>
-                            <vue-dropzone multiple ref="myVueDropzone" id="dropzone" v-model="room.roomListPlan" :options="dropzoneOptions"></vue-dropzone>
+                            <vue-dropzone multiple disabled ref="myVueDropzone" id="dropzone" v-model="room.roomListPlan" :options="dropzonePlanOptions"></vue-dropzone>
                         </div>
                     </div>
                 </b-form>
@@ -29,7 +29,7 @@
 </template>
 
 <script>
-import { roomDetailsData } from "@/apps/lc-142/Components/data-roomDetails";
+import { roomDetailsData } from "@/apps/tomerge/lc-142/Components/data-roomDetails";
 import VuePerfectScrollbar from "vue-perfect-scrollbar";
 import vue2Dropzone from 'vue2-dropzone';
 import 'vue2-dropzone/dist/vue2Dropzone.min.css';
@@ -64,16 +64,18 @@ export default {
             thumbnailWidth: 150,
             maxFilesize: 5,
             headers: { "My-Awesome-Header": "header value" },
-            addRemoveLinks: true,
-            dictDefaultMessage: "<i class='pe-7s-upload'></i>UPLOAD PHOTOS"
+            dictDefaultMessage: "<i class='pe-7s-upload'></i>UPLOAD PHOTOS",
+            addRemoveLinks: false,
+            clickable: false
         },
         dropzonePlanOptions: {
             url: 'https://httpbin.org/post',
             thumbnailWidth: 150,
             maxFilesize: 10,
             headers: { "My-Awesome-Header": "header value" },
-            addRemoveLinks: true,
-            dictDefaultMessage: "<i class='pe-7s-upload'></i>UPLOAD PLANS"
+            dictDefaultMessage: "<i class='pe-7s-upload'></i>UPLOAD PLANS",
+            addRemoveLinks: false,
+            clickable: false
         }
     })
 };

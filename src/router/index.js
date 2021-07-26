@@ -143,25 +143,26 @@ export default new Router({
             component: () => import("@/apps/LC-31-RMC/index.vue")
         },
        
+        // LC-142: Need axios + behaviors + dummy datas need to be deleted and replaced by real datas on most pages
         {
             path: "/room",
             name: "RoomList",
-            component: () => import("@/apps/lc-142/index")
+            component: () => import("@/apps/tomerge/lc-142/index")
         },
         {
             path: "/room/edit/:id",
             name: "RoomEdit",
-            component: () => import("@/apps/lc-142/Components/add/index")
+            component: () => import("@/apps/tomerge/lc-142/Components/add/index")
         },
         {
             path: "/room/view/:id",
             name: "RoomView",
-            component: () => import("@/apps/lc-142/Components/add/index")
+            component: () => import("@/apps/tomerge/lc-142/Components/add/index")
         },
         {
             path: "/room/add",
             name: "RoomAdd",
-            component: () => import("@/apps/lc-142/Components/add/index")
+            component: () => import("@/apps/tomerge/lc-142/Components/add/index")
         }
     ]
 });
