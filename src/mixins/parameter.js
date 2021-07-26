@@ -1,10 +1,10 @@
-import api from "@/services/axios";
+import { apiCustomFields } from "@/services/axios";
 
 export const Parameters = {
     methods: {
         async getAllParameters() {
             try {
-                const response = await api.get("parameter/1/FR_fr");
+                const response = await apiCustomFields.get("parameter/1/FR_fr");
                 return response.data.datas;
             } catch (error) {
                 throw new Error(error);
@@ -12,7 +12,7 @@ export const Parameters = {
         },
         async updateParameter(_id, datas) {
             try {
-                const response = await api.put(`parameter/${_id}`, datas);
+                const response = await apiCustomFields.put(`parameter/${_id}`, datas);
                 return response.data.datas;
             } catch (error) {
                 throw new Error(error);

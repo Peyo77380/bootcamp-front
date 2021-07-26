@@ -1,10 +1,10 @@
-import api from "@/services/axios";
+import { apiCustomFields } from "@/services/axios";
 
 export const vatRates = {
     methods: {
         async getVatRates() {
             try {
-                const response = await api.get('vatRate/all/1');
+                const response = await apiCustomFields.get('vatRate/all/1');
                 return response.data.datas
             } catch (error) {
                 throw new Error(error);         
@@ -12,7 +12,7 @@ export const vatRates = {
         },
         async deleteVatRate (id) {
             try {
-                const response = await api.delete(`vatRate/${id}`);
+                const response = await apiCustomFields.delete(`vatRate/${id}`);
             } catch (error) {
                 return {
                     status: 0,
@@ -22,7 +22,7 @@ export const vatRates = {
         },
         async modifyVatRate (rate) {
             try {
-                const response = await api.put(`vatRate/${rate._id}`,rate);
+                const response = await apiCustomFields.put(`vatRate/${rate._id}`,rate);
             } catch (error) {
                 return {
                     status: 0,
@@ -32,7 +32,7 @@ export const vatRates = {
         },
         async addVatRate (rate) {
             try {
-                const response = await api.post(`vatRate/`, rate);
+                const response = await apiCustomFields.post(`vatRate/`, rate);
             } catch (error) {
                 return {
                     status: 0,

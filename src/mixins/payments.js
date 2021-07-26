@@ -1,10 +1,10 @@
-import api from "@/services/axios";
+import { apiCustomFields } from "@/services/axios";
 
 export const payments = {
     methods: {
         async getPayments() {
             try {
-                const response = await api.get('payment/all/1');
+                const response = await apiCustomFields.get('payment/all/1');
                 return response.data.datas
             } catch (error) {
                 throw new Error(error);         
@@ -12,7 +12,7 @@ export const payments = {
         },
         async deletePayment(id) {
             try {
-                const response = await api.delete(`payment/${id}`);
+                const response = await apiCustomFields.delete(`payment/${id}`);
             } catch (error) {
                 return {
                     status: 0,
@@ -22,7 +22,7 @@ export const payments = {
         },
         async modifyPayment (payment) {
             try {
-                const response = await api.put(`payment/${payment._id}`, payment);
+                const response = await apiCustomFields.put(`payment/${payment._id}`, payment);
             } catch (error) {
                 return {
                     status: 0,
