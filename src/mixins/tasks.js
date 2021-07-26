@@ -67,6 +67,6 @@ export const Tasks = {
             } catch (error) {
                 throw new Error(error);
             }
-        },
+        }, 
     }
 }

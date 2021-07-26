@@ -136,15 +136,10 @@ export default {
       },
       saveDatas() {
           //console.log (this.newDatas)
-          this.closeModal()
+          this.closeModal();
           this.$emit("saveDatas", this.newDatas)
-          console.log("test newDatas", this.newDatas)
+          //console.log("test newDatas", this.newDatas)
       }
   },
-//   computed: {
-//       show() {
-//           console.log("test", this.taskType)
-//       }
-//   },
 };
 </script>
