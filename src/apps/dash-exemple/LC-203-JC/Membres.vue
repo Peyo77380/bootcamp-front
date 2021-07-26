@@ -18,18 +18,15 @@
                                     <p class="text-sunglo font-weight-bold pt-2">
                                         {{ item.firstname }} {{ item.lastname }}</p>
 
-                                    <b-row>
-                                        <b-col class="col-1">
-                                            <b-icon icon="building"
-                                                    aria-hidden="true"
-                                                    class="iconsInfo mx-2 mt-n2 text-sunglo font-size-xlg"
-                                                    title=""></b-icon>
-                                        </b-col>
-                                        <b-col>
-                                            <p v-show="item.enterprise"
-                                               class="ml-3 pr-3 mb-1 pb-3 font-weight-bold text-left">
-                                                {{ item.enterprise }}</p>
-                                        </b-col>
+                                    <b-row class="member-info-society text-left mb-3">
+                                                <a href="#" class="mx-2 p-2">
+                                                    <b-icon icon="building"
+                                                            aria-hidden="true"
+                                                            class="iconsInfo mx-2 mt-n2 text-sunglo font-size-xlg"
+                                                            title=""></b-icon>
+                                                    <span class="font-weight-bold ml-2 pt-2 text-left">
+                                            {{ item.enterprise }} </span></a>
+
                                     </b-row>
 
                                     <b-row class="border-top pt-4">
@@ -132,17 +129,34 @@
                             <b-row class="member-info-group-action ml-0 mt-3">
                                 <b-col class="col col-12 member-info">
                                     <b-row>
-                                        <b-button variant="outline-sunglo" class="member-info-btn mb-2">
-                                            <span class="">Crédits</span>
+                                        <b-button @click="displayBillsQuotes"
+                                                  :variant="activatedQuotes"
+                                                  class="member-info-btn mb-2">
+                                            <span class="">Factures / Devis</span>
 
-                                                <b-icon icon="arrow-right-circle-fill"
-                                                        aria-hidden="true"
-                                                        class="iconsInfo font-size-xlg"
-                                                        title=""></b-icon>
+                                            <b-icon icon="arrow-right-circle-fill"
+                                                    aria-hidden="true"
+                                                    class="iconsInfo font-size-xlg"
+                                                    title=""></b-icon>
                                         </b-button>
                                     </b-row>
                                     <b-row>
-                                        <b-button block variant="outline-sunglo " class="member-info-btn mb-2">
+                                        <b-button @click="displayCredits"
+                                                  :variant="activatedCredits"
+                                                  class="member-info-btn mb-2">
+                                            <span class="">Crédits</span>
+
+                                            <b-icon icon="arrow-right-circle-fill"
+                                                    aria-hidden="true"
+                                                    class="iconsInfo font-size-xlg"
+                                                    title=""></b-icon>
+                                        </b-button>
+                                    </b-row>
+                                    <b-row>
+                                        <b-button @click="displayBookings"
+                                                  block
+                                                  :variant="activatedBookings"
+                                                  class="member-info-btn mb-2">
                                             <span class="">Réservations</span>
                                             <b-icon icon="arrow-right-circle-fill"
                                                     aria-hidden="true"
@@ -151,7 +165,10 @@
                                         </b-button>
                                     </b-row>
                                     <b-row>
-                                        <b-button block variant="outline-sunglo " class="member-info-btn">
+                                        <b-button @click="displaySubscription"
+                                                  block
+                                                  :variant="activatedSubscription"
+                                                  class="member-info-btn">
                                             <span class="">Abonnement</span>
                                             <b-icon icon="arrow-right-circle-fill"
                                                     aria-hidden="true"
@@ -165,104 +182,10 @@
 
                         <!--BODY-->
                         <b-col class="member-datas border h-100 px-5 pt-4 pb-4">
-                            <b-row class="member-datas-array mt-2">
-                                <table>
-                                    <thead class="member-datas-bills-head sticky-top bg-white text-sunglo">
-                                    <tr class="">
-                                        <th colspan="11" class="text-eternity ">Factures</th>
-                                    </tr>
-                                    <tr class="">
-                                        <th v-for="(field, index) in fieldsBills"
-                                            :key="index"
-                                            class="px-3 py-3 text-center">
-                                            {{ field }}
-                                        </th>
-                                    </tr>
-                                    </thead>
-                                    <tbody class="member-datas-bills-body">
-                                    <tr v-for="(value, index) in bills"
-                                        :key="index">
-                                        <td class="text-center border-top px-3"> {{ value.key }}</td>
-                                        <td class="text-center border-top px-3 font-weight-medium bg-sunglo text-white">
-                                            {{ value.number }}
-                                        </td>
-                                        <td class="text-center border-top px-3">{{ value.date }}</td>
-                                        <td class="border-top px-2 py-3">{{ value.product }}</td>
-                                        <td class="text-center border-top px-3">{{ value.exclTaxeValue }}</td>
-                                        <td class="text-center border-top px-3">{{ value.addedTaxe }}</td>
-                                        <td class="text-center border-top px-3 font-weight-medium">{{
-                                                value.inclTaxeValue
-                                                                                                   }}
-                                        </td>
-                                        <td class="text-center border-top px-3">{{ value.currentCoin }}</td>
-                                        <td class="text-center border-top px-3 font-weight-medium">{{
-                                                value.paymentStatus
-                                                                                                   }}
-                                        </td>
-                                        <td class="text-center border-top px-3">{{ value.paymentMethod }}</td>
-                                        <td class="actionsCell text-center border-top px-4">
-                                            <b-button-group>
-                                                <b-dropdown right split text="•••" variant="outline-sunglo">
-                                                    <b-dropdown-item>Item 1</b-dropdown-item>
-                                                    <b-dropdown-item>Item 2</b-dropdown-item>
-                                                    <b-dropdown-divider></b-dropdown-divider>
-                                                    <b-dropdown-item>Item 3</b-dropdown-item>
-                                                </b-dropdown>
-                                            </b-button-group>
-                                        </td>
-                                    </tr>
-                                    </tbody>
-                                </table>
-                            </b-row>
-                            <b-row class="member-datas-array mt-5">
-                                <table>
-                                    <thead class="member-datas-bills-head sticky-top bg-white text-sunglo">
-                                    <tr class="">
-                                        <th colspan="11" class="text-eternity">Devis</th>
-                                    </tr>
-                                    <tr class="">
-                                        <th v-for="(field, index) in fieldsQuotes"
-                                            :key="index"
-                                            class="px-3 py-3 text-center">
-                                            {{ field }}
-                                        </th>
-                                    </tr>
-                                    </thead>
-                                    <tbody class="member-datas-bills-body">
-                                    <tr v-for="(value, index) in quotes"
-                                        :key="index">
-                                        <td class="text-center border-top px-3"> {{ value.key }}</td>
-                                        <td class="text-center border-top px-3 font-weight-medium bg-sunglo text-white">
-                                            {{ value.number }}
-                                        </td>
-                                        <td class="text-center border-top px-3">{{ value.date }}</td>
-                                        <td class="border-top px-2 py-3">{{ value.product }}</td>
-                                        <td class="text-center border-top px-3">{{ value.exclTaxeValue }}</td>
-                                        <td class="text-center border-top px-3">{{ value.addedTaxe }}</td>
-                                        <td class="text-center border-top px-3 font-weight-medium">{{
-                                                value.inclTaxeValue
-                                                                                                   }}
-                                        </td>
-                                        <td class="text-center border-top px-3">{{ value.currentCoin }}</td>
-                                        <td class="text-center border-top px-3 font-weight-medium">{{
-                                                value.paymentStatus
-                                                                                                   }}
-                                        </td>
-                                        <td class="text-center border-top px-3">{{ value.paymentMethod }}</td>
-                                        <td class="actionsCell text-center border-top px-4">
-                                            <b-button-group>
-                                                <b-dropdown right split text="•••" variant="outline-sunglo">
-                                                    <b-dropdown-item>Item 1</b-dropdown-item>
-                                                    <b-dropdown-item>Item 2</b-dropdown-item>
-                                                    <b-dropdown-divider></b-dropdown-divider>
-                                                    <b-dropdown-item>Item 3</b-dropdown-item>
-                                                </b-dropdown>
-                                            </b-button-group>
-                                        </td>
-                                    </tr>
-                                    </tbody>
-                                </table>
-                            </b-row>
+                            <invoices-quotes v-if="onBillsQuotes"></invoices-quotes>
+                            <credits v-else-if="onCredits"></credits>
+                            <bookings v-else-if="onBookings"></bookings>
+                            <subscription v-else-if="onSubscription"></subscription>
                         </b-col>
                     </b-row>
                 </b-card>
@@ -273,8 +196,21 @@
 </template>
 
 <script>
+
+import InvoicesQuotes from '@/apps/dash-exemple/LC-203-JC/components/InvoicesQuotes';
+import Credits from '@/apps/dash-exemple/LC-203-JC/components/Credits';
+import Bookings from '@/apps/dash-exemple/LC-203-JC/components/Bookings';
+import Subscription from '@/apps/dash-exemple/LC-203-JC/components/Subscription';
+
 export default {
-    name: 'Membres', data() {
+    name: 'Membres',
+    components: {
+        invoicesQuotes : InvoicesQuotes,
+        credits: Credits,
+        bookings: Bookings,
+        subscription: Subscription
+    },
+    data() {
         return {
             actionsIcon : '<b-icon icon="gear" class="font-size-xlg"></b-icon',
             member      : [
@@ -297,518 +233,57 @@ export default {
                     status    : 'Externe'
                 }
             ],
-            fieldsBills : [ 'Clé', 'Numéro', 'Date', 'Produit', 'Montant H.T', 'Taxe', 'Montant T.T.C', 'Devise', 'Statut', 'Mode de règlement', 'Actions' ],
-            bills       : [
-                {
-                    key          : 20307,
-                    number       : 'LC010968',
-                    date         : '01/06/2021',
-                    product      : `Bureau 0-5-B-1`,
-                    exclTaxeValue: 242.00,
-                    addedTaxe    : 48.40,
-                    inclTaxeValue: 290.40,
-                    currentCoin  : '€',
-                    paymentStatus: 'Payée',
-                    paymentMethod: 'Virement'
-                },
-                {
-                    key          : 20006,
-                    number       : 'LC010733',
-                    date         : '03/05/2021',
-                    product      : `Bureau 0-5-B-1`,
-                    exclTaxeValue: 242.00,
-                    addedTaxe    : 48.40,
-                    inclTaxeValue: 290.40,
-                    currentCoin  : '€',
-                    paymentStatus: 'Payée',
-                    paymentMethod: 'Virement'
-                },
-                {
-                    key          : 19766,
-                    number       : 'LC010543',
-                    date         : '01/04/2021',
-                    product      : `Bureau 0-5-B-1`,
-                    exclTaxeValue: 242.00,
-                    addedTaxe    : 48.40,
-                    inclTaxeValue: 290.40,
-                    currentCoin  : '€',
-                    paymentStatus: 'Payée',
-                    paymentMethod: 'Virement'
-                },
-                {
-                    key          : 19348,
-                    number       : 'LC010250',
-                    date         : '01/03/2021',
-                    product      : `Bureau 0-5-B-1`,
-                    exclTaxeValue: 242.00,
-                    addedTaxe    : 48.40,
-                    inclTaxeValue: 290.40,
-                    currentCoin  : '€',
-                    paymentStatus: 'Payée',
-                    paymentMethod: 'Virement'
-                },
-                {
-                    key          : 18991,
-                    number       : 'LC010006',
-                    date         : '01/02/2021',
-                    product      : `Bureau 0-5-B-1`,
-                    exclTaxeValue: 242.00,
-                    addedTaxe    : 48.40,
-                    inclTaxeValue: 290.40,
-                    currentCoin  : '€',
-                    paymentStatus: 'Payée',
-                    paymentMethod: 'Virement'
-                },
-                {
-                    key          : 18639,
-                    number       : 'LC009750',
-                    date         : '04/01/2021',
-                    product      : `Bureau 0-5-B-1`,
-                    exclTaxeValue: 242.00,
-                    addedTaxe    : 48.40,
-                    inclTaxeValue: 290.40,
-                    currentCoin  : '€',
-                    paymentStatus: 'Payée',
-                    paymentMethod: 'Virement'
-                },
-                {
-                    key          : 18490,
-                    number       : 'LC009647',
-                    date         : '03/12/2020',
-                    product      : `Badge Café 50 euros`,
-                    exclTaxeValue: 45.45,
-                    addedTaxe    : 4.55,
-                    inclTaxeValue: 50.00,
-                    currentCoin  : '€',
-                    paymentStatus: 'Payée',
-                    paymentMethod: 'CB TPE'
-                },
-                {
-                    key          : 18393,
-                    number       : 'LC009554',
-                    date         : '01/12/2020',
-                    product      : `Bureau 0-5-B-1`,
-                    exclTaxeValue: 242.00,
-                    addedTaxe    : 48.40,
-                    inclTaxeValue: 290.40,
-                    currentCoin  : '€',
-                    paymentStatus: 'Payée',
-                    paymentMethod: 'Virement'
-                },
-                {
-                    key          : 18286,
-                    number       : 'LC009471',
-                    date         : '06/11/2020',
-                    product      : `Badge Café 30 euros`,
-                    exclTaxeValue: 27.27,
-                    addedTaxe    : 2.73,
-                    inclTaxeValue: 30.00,
-                    currentCoin  : '€',
-                    paymentStatus: 'Payée',
-                    paymentMethod: 'CB TPE'
-                },
-                {
-                    key          : 18276,
-                    number       : 'LC009465',
-                    date         : '04/11/2020',
-                    product      : `Yaourt Fruit`,
-                    exclTaxeValue: 1.23,
-                    addedTaxe    : 0.07,
-                    inclTaxeValue: 1.30,
-                    currentCoin  : '€',
-                    paymentStatus: 'Payée',
-                    paymentMethod: 'Espèce'
-                },
-                {
-                    key          : 18175,
-                    number       : 'LC09368',
-                    date         : '02/11/2020',
-                    product      : `Bureau 0-5-B-1`,
-                    exclTaxeValue: 242.00,
-                    addedTaxe    : 48.40,
-                    inclTaxeValue: 290.40,
-                    currentCoin  : '€',
-                    paymentStatus: 'Payée',
-                    paymentMethod: 'Virement'
-                },
-                {
-                    key          : 18008,
-                    number       : 'LC009262',
-                    date         : '15/10/2020',
-                    product      : `Badge Café 30 euros`,
-                    exclTaxeValue: 27.27,
-                    addedTaxe    : 2.73,
-                    inclTaxeValue: 30.00,
-                    currentCoin  : '€',
-                    paymentStatus: 'Payée',
-                    paymentMethod: 'CB TPE'
-                },
-                {
-                    key          : 17751,
-                    number       : 'LC009081',
-                    date         : '01/10/2020',
-                    product      : `Bureau 0-5-B-1`,
-                    exclTaxeValue: 242.00,
-                    addedTaxe    : 48.40,
-                    inclTaxeValue: 290.40,
-                    currentCoin  : '€',
-                    paymentStatus: 'Payée',
-                    paymentMethod: 'Virement'
-                },
-                {
-                    key          : 17259,
-                    number       : 'LC008755',
-                    date         : '01/09/2020',
-                    product      : `Bureau 0-5-B-1`,
-                    exclTaxeValue: 242.00,
-                    addedTaxe    : 48.40,
-                    inclTaxeValue: 290.40,
-                    currentCoin  : '€',
-                    paymentStatus: 'Payée',
-                    paymentMethod: 'Virement'
-                },
-                {
-                    key          : 16980,
-                    number       : 'LC008551',
-                    date         : '03/08/2020',
-                    product      : `Bureau 0-5-B-1`,
-                    exclTaxeValue: 242.00,
-                    addedTaxe    : 48.40,
-                    inclTaxeValue: 290.40,
-                    currentCoin  : '€',
-                    paymentStatus: 'Payée',
-                    paymentMethod: 'Virement'
-                },
-                {
-                    key          : 16802,
-                    number       : 'LC008445',
-                    date         : '09/07/2020',
-                    product      : `Adhésion Simple`,
-                    exclTaxeValue: 50.00,
-                    addedTaxe    : 10.00,
-                    inclTaxeValue: 60.00,
-                    currentCoin  : '€',
-                    paymentStatus: 'Payée',
-                    paymentMethod: 'Virement'
-                },
-                {
-                    key          : 16665,
-                    number       : 'LC008327',
-                    date         : '02/07/2020',
-                    product      : `Bureau 0-5-B-1`,
-                    exclTaxeValue: 242.00,
-                    addedTaxe    : 48.40,
-                    inclTaxeValue: 290.40,
-                    currentCoin  : '€',
-                    paymentStatus: 'Payée',
-                    paymentMethod: 'Virement'
-                },
-                {
-                    key          : 16266,
-                    number       : 'LC008049',
-                    date         : '02/06/2020',
-                    product      : `Bureau 0-5-B-1`,
-                    exclTaxeValue: 242.00,
-                    addedTaxe    : 48.40,
-                    inclTaxeValue: 290.40,
-                    currentCoin  : '€',
-                    paymentStatus: 'Payée',
-                    paymentMethod: 'Virement'
-                },
-                {
-                    key          : 16033,
-                    number       : 'LC007855',
-                    date         : '04/05/2020',
-                    product      : `Bureau 0-5-B-1`,
-                    exclTaxeValue: 242.00,
-                    addedTaxe    : 48.40,
-                    inclTaxeValue: 290.40,
-                    currentCoin  : '€',
-                    paymentStatus: 'Payée',
-                    paymentMethod: 'Virement'
-                },
-                {
-                    key          : 15882,
-                    number       : 'LC007717',
-                    date         : '01/04/2020',
-                    product      : `Bureau 0-5-B-1`,
-                    exclTaxeValue: 242.00,
-                    addedTaxe    : 48.40,
-                    inclTaxeValue: 290.40,
-                    currentCoin  : '€',
-                    paymentStatus: 'Payée',
-                    paymentMethod: 'Virement'
-                }
-            ],
-            fieldsQuotes: [ 'Clé', 'Numéro', 'Date', 'Produit', 'Montant H.T', 'Taxe', 'Montant T.T.C', 'Devise', 'Statut', 'Mode de règlement', 'Actions' ],
-            quotes      : [
-                {
-                    key          : 20307,
-                    number       : 'LC010968',
-                    date         : '01/06/2021',
-                    product      : `Bureau 0-5-B-1`,
-                    exclTaxeValue: 242.00,
-                    addedTaxe    : 48.40,
-                    inclTaxeValue: 290.40,
-                    currentCoin  : '€',
-                    paymentStatus: 'Payée',
-                    paymentMethod: 'Virement'
-                },
-                {
-                    key          : 20006,
-                    number       : 'LC010733',
-                    date         : '03/05/2021',
-                    product      : `Bureau 0-5-B-1`,
-                    exclTaxeValue: 242.00,
-                    addedTaxe    : 48.40,
-                    inclTaxeValue: 290.40,
-                    currentCoin  : '€',
-                    paymentStatus: 'Payée',
-                    paymentMethod: 'Virement'
-                },
-                {
-                    key          : 19766,
-                    number       : 'LC010543',
-                    date         : '01/04/2021',
-                    product      : `Bureau 0-5-B-1`,
-                    exclTaxeValue: 242.00,
-                    addedTaxe    : 48.40,
-                    inclTaxeValue: 290.40,
-                    currentCoin  : '€',
-                    paymentStatus: 'Payée',
-                    paymentMethod: 'Virement'
-                },
-                {
-                    key          : 19348,
-                    number       : 'LC010250',
-                    date         : '01/03/2021',
-                    product      : `Bureau 0-5-B-1`,
-                    exclTaxeValue: 242.00,
-                    addedTaxe    : 48.40,
-                    inclTaxeValue: 290.40,
-                    currentCoin  : '€',
-                    paymentStatus: 'Payée',
-                    paymentMethod: 'Virement'
-                },
-                {
-                    key          : 18991,
-                    number       : 'LC010006',
-                    date         : '01/02/2021',
-                    product      : `Bureau 0-5-B-1`,
-                    exclTaxeValue: 242.00,
-                    addedTaxe    : 48.40,
-                    inclTaxeValue: 290.40,
-                    currentCoin  : '€',
-                    paymentStatus: 'Payée',
-                    paymentMethod: 'Virement'
-                },
-                {
-                    key          : 18639,
-                    number       : 'LC009750',
-                    date         : '04/01/2021',
-                    product      : `Bureau 0-5-B-1`,
-                    exclTaxeValue: 242.00,
-                    addedTaxe    : 48.40,
-                    inclTaxeValue: 290.40,
-                    currentCoin  : '€',
-                    paymentStatus: 'Payée',
-                    paymentMethod: 'Virement'
-                },
-                {
-                    key          : 18490,
-                    number       : 'LC009647',
-                    date         : '03/12/2020',
-                    product      : `Badge Café 50 euros`,
-                    exclTaxeValue: 45.45,
-                    addedTaxe    : 4.55,
-                    inclTaxeValue: 50.00,
-                    currentCoin  : '€',
-                    paymentStatus: 'Payée',
-                    paymentMethod: 'CB TPE'
-                },
-                {
-                    key          : 18393,
-                    number       : 'LC009554',
-                    date         : '01/12/2020',
-                    product      : `Bureau 0-5-B-1`,
-                    exclTaxeValue: 242.00,
-                    addedTaxe    : 48.40,
-                    inclTaxeValue: 290.40,
-                    currentCoin  : '€',
-                    paymentStatus: 'Payée',
-                    paymentMethod: 'Virement'
-                },
-                {
-                    key          : 18286,
-                    number       : 'LC009471',
-                    date         : '06/11/2020',
-                    product      : `Badge Café 30 euros`,
-                    exclTaxeValue: 27.27,
-                    addedTaxe    : 2.73,
-                    inclTaxeValue: 30.00,
-                    currentCoin  : '€',
-                    paymentStatus: 'Payée',
-                    paymentMethod: 'CB TPE'
-                },
-                {
-                    key          : 18276,
-                    number       : 'LC009465',
-                    date         : '04/11/2020',
-                    product      : `Yaourt Fruit`,
-                    exclTaxeValue: 1.23,
-                    addedTaxe    : 0.07,
-                    inclTaxeValue: 1.30,
-                    currentCoin  : '€',
-                    paymentStatus: 'Payée',
-                    paymentMethod: 'Espèce'
-                },
-                {
-                    key          : 18175,
-                    number       : 'LC09368',
-                    date         : '02/11/2020',
-                    product      : `Bureau 0-5-B-1`,
-                    exclTaxeValue: 242.00,
-                    addedTaxe    : 48.40,
-                    inclTaxeValue: 290.40,
-                    currentCoin  : '€',
-                    paymentStatus: 'Payée',
-                    paymentMethod: 'Virement'
-                },
-                {
-                    key          : 18008,
-                    number       : 'LC009262',
-                    date         : '15/10/2020',
-                    product      : `Badge Café 30 euros`,
-                    exclTaxeValue: 27.27,
-                    addedTaxe    : 2.73,
-                    inclTaxeValue: 30.00,
-                    currentCoin  : '€',
-                    paymentStatus: 'Payée',
-                    paymentMethod: 'CB TPE'
-                },
-                {
-                    key          : 17751,
-                    number       : 'LC009081',
-                    date         : '01/10/2020',
-                    product      : `Bureau 0-5-B-1`,
-                    exclTaxeValue: 242.00,
-                    addedTaxe    : 48.40,
-                    inclTaxeValue: 290.40,
-                    currentCoin  : '€',
-                    paymentStatus: 'Payée',
-                    paymentMethod: 'Virement'
-                },
-                {
-                    key          : 17259,
-                    number       : 'LC008755',
-                    date         : '01/09/2020',
-                    product      : `Bureau 0-5-B-1`,
-                    exclTaxeValue: 242.00,
-                    addedTaxe    : 48.40,
-                    inclTaxeValue: 290.40,
-                    currentCoin  : '€',
-                    paymentStatus: 'Payée',
-                    paymentMethod: 'Virement'
-                },
-                {
-                    key          : 16980,
-                    number       : 'LC008551',
-                    date         : '03/08/2020',
-                    product      : `Bureau 0-5-B-1`,
-                    exclTaxeValue: 242.00,
-                    addedTaxe    : 48.40,
-                    inclTaxeValue: 290.40,
-                    currentCoin  : '€',
-                    paymentStatus: 'Payée',
-                    paymentMethod: 'Virement'
-                },
-                {
-                    key          : 16802,
-                    number       : 'LC008445',
-                    date         : '09/07/2020',
-                    product      : `Adhésion Simple`,
-                    exclTaxeValue: 50.00,
-                    addedTaxe    : 10.00,
-                    inclTaxeValue: 60.00,
-                    currentCoin  : '€',
-                    paymentStatus: 'Payée',
-                    paymentMethod: 'Virement'
-                },
-                {
-                    key          : 16665,
-                    number       : 'LC008327',
-                    date         : '02/07/2020',
-                    product      : `Bureau 0-5-B-1`,
-                    exclTaxeValue: 242.00,
-                    addedTaxe    : 48.40,
-                    inclTaxeValue: 290.40,
-                    currentCoin  : '€',
-                    paymentStatus: 'Payée',
-                    paymentMethod: 'Virement'
-                },
-                {
-                    key          : 16266,
-                    number       : 'LC008049',
-                    date         : '02/06/2020',
-                    product      : `Bureau 0-5-B-1`,
-                    exclTaxeValue: 242.00,
-                    addedTaxe    : 48.40,
-                    inclTaxeValue: 290.40,
-                    currentCoin  : '€',
-                    paymentStatus: 'Payée',
-                    paymentMethod: 'Virement'
-                },
-                {
-                    key          : 16033,
-                    number       : 'LC007855',
-                    date         : '04/05/2020',
-                    product      : `Bureau 0-5-B-1`,
-                    exclTaxeValue: 242.00,
-                    addedTaxe    : 48.40,
-                    inclTaxeValue: 290.40,
-                    currentCoin  : '€',
-                    paymentStatus: 'Payée',
-                    paymentMethod: 'Virement'
-                },
-                {
-                    key          : 15882,
-                    number       : 'LC007717',
-                    date         : '01/04/2020',
-                    product      : `Bureau 0-5-B-1`,
-                    exclTaxeValue: 242.00,
-                    addedTaxe    : 48.40,
-                    inclTaxeValue: 290.40,
-                    currentCoin  : '€',
-                    paymentStatus: 'Payée',
-                    paymentMethod: 'Virement'
-                }
-            ],
-            selected    : 'radio1',
-            options     : [
-                { text: 'Factures', value: 'radio1' },
-                { text: 'Devis', value: 'radio2' }
-            ]
-        };
+
+            onBillsQuotes : true,
+            onCredits     : false,
+            onBookings    : false,
+            onSubscription: false
+        }
+    },
+    computed: {
+        activatedQuotes() {
+            return this.onBillsQuotes ? "sunglo" : "outline-sunglo";
+        },
+        activatedCredits() {
+            return this.onCredits ? "sunglo" : "outline-sunglo";
+        },
+        activatedBookings() {
+            return this.onBookings ? "sunglo" : "outline-sunglo";
+        },
+        activatedSubscription() {
+            return this.onSubscription ? "sunglo" : "outline-sunglo";
+        }
+    },
+    methods: {
+        displayBillsQuotes() {
+            this.onBillsQuotes = true
+            this.onCredits = false
+            this.onBookings = false
+            this.onSubscription = false
+        },
+        displayCredits() {
+            this.onBillsQuotes = false
+            this.onCredits = true
+            this.onBookings = false
+            this.onSubscription = false
+        },
+        displayBookings() {
+            this.onBillsQuotes = false
+            this.onCredits = false
+            this.onBookings = true
+            this.onSubscription = false
+        },
+        displaySubscription() {
+            this.onBillsQuotes = false
+            this.onCredits = false
+            this.onBookings = false
+            this.onSubscription = true
+        }
     }
 };
 </script>
 
 <style scoped>
-.member-datas-array {
-    height   : 34vh;
-    overflow : scroll;
-    width    : 100%;
-//border-bottom: 3px solid #FFF;
-}
-
-.member-datas-bills-head > tr {
-    border-bottom : 2px solid #EC6465 !important;;
-}
-
-.member-datas-bills-body > tr:nth-child(odd) {
-    background-color : rgba(236, 100, 101, 0.15);
-}
-
 .board {
     letter-spacing : 0.0125rem;
     font-family    : Montserrat, Arial, sans-serif;
@@ -829,7 +304,6 @@ export default {
 
 .member-info-group-action {
     border-radius : 8px;
-    //border-color  : rgba(236, 101, 100, 0.5) !important;
 }
 
 .member-info, .member-datas {
@@ -859,12 +333,27 @@ export default {
     margin-top : 0 !important;
 }
 
-.actionsCell {
-    background-color : rgba(255, 255, 255, 0.6);
+.member-info-society {
+
 }
 
-.actionsBtn {
-    border : none;
+.member-info-society a {
+    display         : inline-block;
+    text-decoration : none;
+    width           : 100%;
+    border-radius   : 8px;
+    border          : 1px solid rgba(236, 100, 101, 0);
+    box-sizing      : border-box;
+    color           : #2E2D2C
+}
+
+.member-info-society a:hover {
+    display          : inline-block;
+    background-color : rgba(236, 100, 101, 0.15);
+    border           : 1px solid rgba(236, 100, 101, 1);
+    box-sizing       : border-box;
+    color            : #EC6465;
+
 }
 
 .member-info-btn {
@@ -882,13 +371,9 @@ export default {
 </style>
 
 <style>
-.page-item .page-link, .pagination .page-number .page-link {
-    color : #EC6465 !important;
-}
-
-.page-item.active .page-link, .pagination .active.page-number .page-link {
-    background-color : #EC6465 !important;
-    border           : 1px solid #D26465 !important;
-    color            : #FFF !important;
+.componentTitle {
+    font-size: 1.15rem;
+    font-weight: bold;
+    padding-bottom: 10px;
 }
 </style>
