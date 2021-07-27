@@ -162,9 +162,8 @@ export default new Router({
          * update and add don't working
          * 
          */
-        {
+        {   path: '/LC-186',
             name: 'faq',
-            path: '/LC-186',
             component: () => import('@/apps/tomerge/LC-186'),
         },
             // Dashboards
