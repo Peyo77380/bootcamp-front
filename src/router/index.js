@@ -135,13 +135,6 @@ export default new Router({
             name: 'attributs',
             component: () => import('@/apps/tomerge/LC-168'),
         },
-      
-         // Dashboards
-        {
-            path: "/LC-31-RMC",
-            name: "LC-31-RMC",
-            component: () => import("@/apps/LC-31-RMC/index.vue")
-        },
        
         // LC-142: Need axios + behaviors + dummy datas need to be deleted and replaced by real datas on most pages
         {
@@ -163,6 +156,23 @@ export default new Router({
             path: "/room/add",
             name: "RoomAdd",
             component: () => import("@/apps/tomerge/lc-142/Components/add/index")
-        }
+        },
+       /**
+         * behavior don't working
+         * update and add don't working
+         * 
+         */
+        {
+            name: 'faq',
+            path: '/LC-186',
+            component: () => import('@/apps/tomerge/LC-186'),
+        },
+            // Dashboards
+        {
+            path: "/LC-31-RMC",
+            name: "LC-31-RMC",
+            component: () => import("@/apps/LC-31-RMC/index.vue")
+        },
+
     ]
 });
