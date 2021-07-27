@@ -162,17 +162,17 @@ export default new Router({
          * update and add don't working
          * 
          */
-        {
-            name: 'faq',
-            path: '/LC-186',
-            component: () => import('@/apps/tomerge/LC-186'),
-        },
-            // Dashboards
-        {
-            path: "/LC-31-RMC",
-            name: "LC-31-RMC",
-            component: () => import("@/apps/LC-31-RMC/index.vue")
-        },
+        // {
+        //     name: 'faq',
+        //     path: '/LC-186',
+        //     component: () => import('@/apps/tomerge/LC-186'),
+        // },
+        //     // Dashboards
+        // {
+        //     path: "/LC-31-RMC",
+        //     name: "LC-31-RMC",
+        //     component: () => import("@/apps/LC-31-RMC/index.vue")
+        // },
 
     ]
 });

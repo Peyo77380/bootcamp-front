@@ -9,60 +9,12 @@
 
     <div class="content">
       <b-row>
-        <b-card v-for="building of buildings" :key="building._id" class="mb-3 mx-3 col-4 nav-justified" no-body>
-          <b-tabs card>
-            <b-tab title="Détail" active>
-              <div>
-                <h4 class="text-center">
-                  <i class="pe-7s-culture icon-gradient bg-happy-itmeo"></i>
-                </h4>
-                <h5 class="text-center">
-                  {{ building.name }}
-                </h5>
-                <h6 class="text-center">
-                  {{ building.location.city }}
-                </h6>
-              </div>
-            </b-tab>
-              <b-tab title="Action">
-                <div>
-                  <v-layout align-center>
-                    <v-flex xs12 sm4 text-xs-center>
-                      <div>
-                        <v-btn
-                          depressed
-                          small
-                          :to="{name: 'show-building', params: {id: building._id} }"
-                        >
-                          Afficher
-                        </v-btn>
-                      </div>
-                      <div>
-                        <v-btn
-                          depressed
-                          small
-                          color="primary"
-                          :to="{name: 'edit-building', params: {id: building._id} }"
-                        >
-                          Editer
-                        </v-btn>
-                      </div>
-                      <div>
-                        <v-btn
-                          depressed
-                          small
-                          color="error"
-                          @click="deleteBuildings(building._id)"
-                        >
-                          Archiver
-                        </v-btn>
-                      </div>
-                    </v-flex>
-                  </v-layout>
-                </div>
-              </b-tab>
-          </b-tabs>
-        </b-card>
+          <building-card 
+            v-for="building of buildings"
+            :key="building._id"
+            :building="building"
+            v-on:onDeletedBuilding="deleteBuilding"
+          />
       </b-row>
     </div>
   </div>
@@ -71,6 +23,7 @@
 <script>
 import PageTitle from "@/Layout/Components/PageTitle.vue";
 import { Buildings } from "@/mixins/building"
+import BuildingCard from "./components/buildingCard.vue"
 
 const TABS = [
     {
@@ -85,7 +38,8 @@ const TABS = [
 
 export default {
     components: {
-        PageTitle
+        PageTitle,
+        BuildingCard
     },
     mixins: [ Buildings ],
     data: () => ({
@@ -101,9 +55,6 @@ export default {
         this.getBuildings();
     },
     methods: {
-        handleClick(newTab) {
-            this.currentTab = newTab;
-        },
         async getBuildings () {
             const res = await this.getAllBuildings();
             if (res.error) {
@@ -111,11 +62,7 @@ export default {
             }
             this.buildings = res.datas;
         },
-        async deleteBuildings(id) {
-            const res = await this.deleteBuilding(id);
-            if (res.error) {
-                return console.log(res.error);
-            }
+        async deleteBuilding(id) {
             return this.buildings = this.buildings.filter(b => b._id!=id);
         }
     }
