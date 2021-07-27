@@ -1,10 +1,10 @@
-import api from "@/services/axios";
+import {apiCRM} from "@/services/axios";
 
 export const questions = {
     methods: {
         async getAllQuestions() {
             try {
-                const response = await api.get('faq');
+                const response = await apiCRM.get('faq');
                 return response.data.datas
             } catch (error) {
                 throw new Error(error);         
@@ -12,7 +12,7 @@ export const questions = {
         },
         async deleteQuestion (id) {
             try {
-                const response = await api.delete(`question/${id}`);
+                const response = await apiCRM.delete(`question/${id}`);
             } catch (error) {
                 return {
                     status: 0,
@@ -22,7 +22,7 @@ export const questions = {
         },
         async modifyQuestion(quest) {
             try {
-                const response = await api.put(`faq/${quest._id}`,quest);
+                const response = await apiCRM.put(`faq/${quest._id}`,quest);
             } catch (error) {
                 return {
                     status: 0,
@@ -32,7 +32,7 @@ export const questions = {
         },
         async addQuestion (attr) {
             try {
-                const response = await api.post(`faq/`, attr);
+                const response = await apiCRM.post(`faq/`, attr);
             } catch (error) {
                 return {
                     status: 0,

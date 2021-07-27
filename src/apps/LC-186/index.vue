@@ -9,7 +9,7 @@
 
 
 
-import ContentFaq from "./components/content.vue"
+import ContentFaq from "./components/content"
 
     export default {
 
