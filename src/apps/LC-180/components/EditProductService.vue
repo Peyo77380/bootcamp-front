@@ -2,19 +2,20 @@
     <!-- Pour faire simple, bootstrapiser le tout !-->
     <div>
         <loading class="text-center" :active.sync="loading"></loading>
-        <div class="mb-5">
+        <div class="mb-5" v-if="loading == false">
             <v-flex xs12 sm8 offset-sm1 align-center justify-center>
                 <v-form ref="form">
                     <v-layout>
                         <v-combobox
                             v-model="selectedType"
-                            :items="types"
                             label="Type"
+                            :disabled="true"
                         ></v-combobox>
                         <v-combobox
-                            v-model="formItem.categoryType"
+                            v-model="selectedCategory"
                             :items="selectedCategories"
                             label="Catégorie"
+                            :disabled="true"
                         ></v-combobox>
                     </v-layout>
                     <v-layout>
@@ -26,6 +27,7 @@
                         <v-text-field
                             v-model="formItem.key"
                             label="Identifiant"
+                            :disabled="true"
                         ></v-text-field>
                     </v-layout>
                     <v-layout>
@@ -37,7 +39,7 @@
                             <v-text-field
                                 label="Image"
                                 @click="onPickFile"
-                                v-model="imageProduct"
+                                v-model="image.imageProduct"
                                 prepend-icon="attach_file"
                             ></v-text-field>
                             <!-- Hidden -->
@@ -50,21 +52,106 @@
                             />
                         </v-flex>
                     </v-layout>
+
+                    <v-layout id="root" @click="isShow = !isShow">
+                        <h5>
+                            Historique des Prix
+                            <font-awesome-icon
+                                icon="chevron-up"
+                                v-if="isShow"
+                            />
+                            <font-awesome-icon
+                                icon="chevron-down"
+                                v-if="!isShow"
+                            />
+                        </h5>
+
+                        <transition name="slide">
+                            <table
+                                v-if="isShow"
+                                class="align-middle text-truncate mb-0 table table-borderless table-striped table-hover"
+                            >
+                                <thead>
+                                    <tr>
+                                        <th class="text-center">
+                                            Date de début
+                                        </th>
+                                        <th class="text-center">
+                                            Prix de vente
+                                        </th>
+                                        <th class="text-center">
+                                            Prix membres
+                                        </th>
+                                        <th class="text-center">Prix co</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <template>
+                                        <tr
+                                            v-for="price in formItem.prices"
+                                            :key="price._id"
+                                        >
+                                            <td class="text-center">
+                                                {{ price.startDate }}
+                                            </td>
+                                            <td class="text-center">
+                                                {{ price.amounts.public }}
+                                            </td>
+                                            <td class="text-center">
+                                                {{ price.amounts.member }}
+                                            </td>
+
+                                            <td class="text-center">
+                                                {{ price.amounts.co }}
+                                            </td>
+                                        </tr>
+                                    </template>
+                                </tbody>
+                            </table>
+                        </transition>
+                    </v-layout>
                     <v-layout>
                         <v-text-field
-                            v-model="formItem.priceTTC"
+                            v-model="prices.amounts.public"
                             label="Prix de vente"
                         ></v-text-field>
 
                         <v-text-field
-                            v-model="formItem.priceMember"
+                            v-model="prices.amounts.member"
                             label="Prix membres"
                         ></v-text-field>
 
                         <v-text-field
-                            v-model="formItem.priceCo"
+                            v-model="prices.amounts.co"
                             label="Prix co"
                         ></v-text-field>
+                        <v-menu
+                            ref="menu1"
+                            v-model="menu1"
+                            :close-on-content-click="false"
+                            :nudge-right="40"
+                            lazy
+                            transition="scale-transition"
+                            offset-y
+                            full-width
+                            max-width="290px"
+                            min-width="290px"
+                        >
+                            <template v-slot:activator="{ on }">
+                                <v-text-field
+                                    v-model="computedDateFormatted"
+                                    label="Date de début"
+                                    prepend-icon="event"
+                                    @blur="date = parseDate(startDateFormatted)"
+                                    v-on="on"
+                                ></v-text-field>
+                            </template>
+                            <v-date-picker
+                                v-model="prices.startDate"
+                                no-title
+                                @input="menu1 = false"
+                            ></v-date-picker>
+                        </v-menu>
                     </v-layout>
                     <v-textarea
                         outline
@@ -100,9 +187,9 @@
                             <hr />
                             <v-radio
                                 v-for="state in states"
-                                :key="state"
-                                :label="state"
-                                :value="state"
+                                :key="state.value"
+                                :label="state.text"
+                                :value="state.value"
                             ></v-radio>
                         </v-radio-group>
 
@@ -114,10 +201,10 @@
                             </template>
                             <hr />
                             <v-radio
-                                v-for="radioD in radioDisplays"
-                                :key="radioD"
-                                :label="radioD"
-                                :value="radioD"
+                                v-for="display in radioDisplays"
+                                :key="display.value"
+                                :label="display.text"
+                                :value="display.value"
                             ></v-radio>
                         </v-radio-group>
                     </v-layout>
@@ -141,16 +228,28 @@
 </template>
 
 <script>
+import { library } from "@fortawesome/fontawesome-svg-core";
+import { faChevronDown, faChevronUp } from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/vue-fontawesome";
+
+library.add(faChevronUp, faChevronDown);
 import { ProductServices } from "../../../mixins/productService";
 import Loading from "vue-loading-overlay";
 export default {
     components: {
-        Loading
+        Loading,
+        "font-awesome-icon": FontAwesomeIcon
     },
     name: "ProductServiceForm",
     props: {
         id: { type: String, required: true },
         types: {
+            type: Array
+        },
+        states: {
+            type: Array
+        },
+        radioDisplays: {
             type: Array
         },
         categoriesCombined: {
@@ -168,46 +267,62 @@ export default {
     mixins: [ProductServices],
     async mounted() {
         this.id = this.$route.params.id;
+        this.loading = true;
         await this.loadProductService(this.id);
+        this.loading = false;
         this.selectedType = this.types[this.formItem.type - 1];
         this.selectedCategories = this.categoriesCombined[
             this.formItem.type - 1
         ];
+        this.selectedCategory = this.findCategory(this.formItem.category_id);
     },
     computed: {
-        selectedType: {
-            get() {
-                var vm = this;
-                vm.selectedCategories =
-                    vm.categoriesCombined[vm.formItem.type - 1];
-                return {
-                    id: vm.formItem.type,
-                    text: vm.getNameType(vm.formItem.type)
-                };
-            },
-            set(val) {
-                var vm = this;
-                vm.formItem.type = val.id;
-                vm.selectedCategories =
-                    vm.categoriesCombined[vm.formItem.type - 1];
-            }
+        computedDateFormatted() {
+            return this.formatDate(this.prices.startDate);
+        }
+    },
+    watch: {
+        date(val) {
+            this.startDateFormatted = this.formatDate(this.prices.startDate);
         }
     },
     data() {
         return {
             selectedCategories: [],
+            selectedType: "",
+            selectedCategory: "",
             loading: false,
             formItem: {},
-            radioDisplays: ["Admin", "Membres", "Boutique"],
-            states: ["Actif", "Désactivé"],
-            imageProduct: "",
-            url: "",
-            fileObject: null,
-            cardResult: "",
-            name: "",
-            size: "",
-            type: "",
-            lastModifiedDate: ""
+            image: {
+                imageProduct: "",
+                url: "",
+                fileObject: null,
+                cardResult: "",
+                name: "",
+                size: "",
+                type: "",
+                lastModifiedDate: ""
+            },
+            prices: {
+                amounts: {
+                    public: null,
+                    member: null,
+                    co: null
+                },
+                startDate: new Date().toISOString().substr(0, 10)
+            },
+            menu1: false,
+            startDateFormatted: this.formatDate(
+                new Date().toISOString().substr(0, 10)
+            ),
+            items: [
+                {
+                    action: "local_activity",
+                    title: "Attractions",
+                    items: [{ title: "List Item" }]
+                }
+            ],
+            isShow: false
         };
     },
     methods: {
@@ -221,10 +336,38 @@ export default {
                 this.$sweetError("GLC-180");
             }
         },
+        findCategory(id) {
+            if (id) {
+                const category = this.selectedCategories.filter(cat => {
+                    return cat._id == id;
+                });
+                return {
+                    _id: category[0]._id,
+                    text: category[0].text
+                };
+            } else {
+                return {
+                    _id: null,
+                    text: ""
+                };
+            }
+        },
         async confirmer() {
-            // this.formItem.type = this.types.indexOf(this.selectedType) + 1;
-            this.handleModify(this.id, this.formItem);
-            // await this.modifyProductService(this.id, this.formItem);
+            //If the item is duplicated, delete unnecessary variables which were received by existing product
+            const item = this.formItem;
+            delete item.prices;
+            if (this.prices.amounts.public) {
+                item.prices = this.prices;
+            }
+            if (item.created_at) {
+                delete item.created_at;
+            }
+            if (item.updated_at) {
+                delete item.updated_at;
+            }
+
+            await this.handleModify(this.id, item);
+
             this.$router.push({ name: "ProductServiceList" });
         },
         //For upload image
@@ -234,22 +377,22 @@ export default {
         onFilePicked(event) {
             const files = event.target.files;
             if (files[0] !== undefined) {
-                this.imageProduct = files[0].name;
+                this.image.imageProduct = files[0].name;
                 // Check validity of file
-                if (this.imageProduct.lastIndexOf(".") <= 0) {
+                if (this.image.imageProduct.lastIndexOf(".") <= 0) {
                     return;
                 }
                 // If valid, continue
                 const fr = new FileReader();
                 fr.readAsDataURL(files[0]);
                 fr.addEventListener("load", () => {
-                    this.url = fr.result;
-                    this.fileObject = files[0]; // this is an file that can be sent to server...
+                    this.image.url = fr.result;
+                    this.image.fileObject = files[0]; // this is an file that can be sent to server...
                 });
             } else {
-                this.imageProduct = "";
-                this.fileObject = null;
-                this.url = "";
+                this.image.imageProduct = "";
+                this.image.fileObject = null;
+                this.image.url = "";
             }
         },
         onUploadSelectedFileClick() {
@@ -257,20 +400,70 @@ export default {
 
             console.log(this.fileObject);
             // A file is not chosen!
-            if (!this.fileObject) {
+            if (!this.image.fileObject) {
                 alert("No file!!");
             }
             // DO YOUR JOB HERE with fileObjectToUpload
             // https://developer.mozilla.org/en-US/docs/Web/API/File/File
-            this.name = this.fileObject.name;
-            this.size = this.fileObject.size;
-            this.type = this.fileObject.type;
-            this.lastModifiedDate = this.fileObject.lastModifiedDate;
+            this.image.name = this.fileObject.name;
+            this.image.size = this.fileObject.size;
+            this.image.type = this.fileObject.type;
+            this.image.lastModifiedDate = this.image.fileObject.lastModifiedDate;
             // DO YOUR JOB HERE with fileObjectToUpload
             this.loading = false;
+        },
+        formatDate(date) {
+            if (!date) return null;
+
+            const [year, month, day] = date.split("-");
+            return `${month}/${day}/${year}`;
+        },
+        parseDate(date) {
+            if (!date) return null;
+
+            const [month, day, year] = date.split("/");
+            return `${year}-${month.padStart(2, "0")}-${day.padStart(2, "0")}`;
         }
     }
 };
 </script>
 
-<style></style>
+<style>
+l {
+    cursor: pointer;
+}
+
+.slide-enter-active {
+    -moz-transition-duration: 0.3s;
+    -webkit-transition-duration: 0.3s;
+    -o-transition-duration: 0.3s;
+    transition-duration: 0.3s;
+    -moz-transition-timing-function: ease-in;
+    -webkit-transition-timing-function: ease-in;
+    -o-transition-timing-function: ease-in;
+    transition-timing-function: ease-in;
+}
+
+.slide-leave-active {
+    -moz-transition-duration: 0.3s;
+    -webkit-transition-duration: 0.3s;
+    -o-transition-duration: 0.3s;
+    transition-duration: 0.3s;
+    -moz-transition-timing-function: cubic-bezier(0, 1, 0.5, 1);
+    -webkit-transition-timing-function: cubic-bezier(0, 1, 0.5, 1);
+    -o-transition-timing-function: cubic-bezier(0, 1, 0.5, 1);
+    transition-timing-function: cubic-bezier(0, 1, 0.5, 1);
+}
+
+.slide-enter-to,
+.slide-leave {
+    max-height: 100px;
+    overflow: hidden;
+}
+
+.slide-enter,
+.slide-leave-to {
+    overflow: hidden;
+    max-height: 0;
+}
+</style>

@@ -41,103 +41,115 @@
                             <th class="text-center">Type</th>
                             <th class="text-center">Catégorie</th>
                             <th class="text-center">Affichage</th>
-                            <th class="text-center">Prix HT</th>
+                            <!--                            <th class="text-center">Prix HT</th> -->
                             <th class="text-center">Prix TTC</th>
                             <th class="text-center">Etat</th>
                         </tr>
                     </thead>
                     <tbody>
-                        <tr v-for="product in filteredItems" :key="product._id">
-                            <td class="text-center">
-                                <a href="javascript:void(0)">{{
-                                    product.name
-                                }}</a>
-                            </td>
-                            <td class="text-center">
-                                <v-chip :class="getClassType(product.type)">{{
-                                    getNameType(product.type)
-                                }}</v-chip>
-                            </td>
-                            <td class="text-center">
-                                <a href="javascript:void(0)">{{
-                                    product.categoryType
-                                }}</a>
-                            </td>
-
-                            <td class="text-center">
-                                <a href="javascript:void(0)">{{
-                                    product.display
-                                }}</a>
-                            </td>
-
-                            <td class="text-center">
-                                <a href="javascript:void(0)">{{
-                                    product.priceHT
-                                }}</a>
-                            </td>
-                            <td class="text-center">
-                                <a href="javascript:void(0)">{{
-                                    product.priceTTC
-                                }}</a>
-                            </td>
-
-                            <td class="text-center">
-                                <div role="group" class="btn-group-xl">
-                                    <b-button
-                                        class="mb-2 mr-2  btn-pill btn-shadow"
-                                        variant="primary"
-                                        id="popover1"
-                                        :to="{
-                                            name: 'EditProductService',
-                                            params: {
-                                                id: product._id,
-                                                getNameType: getNameType,
-                                                handleModify: handleModify,
-                                                types: types,
-                                                categoriesCombined: categoriesCombined
-                                            }
-                                        }"
+                        <template v-if="filteredItems">
+                            <tr
+                                v-for="product in filteredItems"
+                                :key="product._id"
+                            >
+                                <td class="text-center">
+                                    {{ product.name }}
+                                </td>
+                                <td class="text-center">
+                                    <v-chip
+                                        :class="getClassType(product.type)"
+                                        >{{ getNameType(product.type) }}</v-chip
                                     >
-                                        <i class="lnr-pencil"></i>
-                                    </b-button>
-                                    <b-popover
-                                        :target="'popover1'"
-                                        placement="bottomleft"
-                                        title="Modifier la fiche"
-                                        triggers="hover focus"
-                                    ></b-popover>
+                                </td>
+                                <td class="text-center">
+                                    {{
+                                        getCategory(
+                                            product.type,
+                                            product.category_id
+                                        ).text
+                                    }}
+                                </td>
 
-                                    <b-button
-                                        class="mb-2 mr-2  btn-pill btn-shadow"
-                                        variant="primary"
-                                        id="popover2"
-                                        @click="handleForm(product)"
-                                    >
-                                        <i class="pe-7s-copy-file"></i>
-                                    </b-button>
-                                    <b-popover
-                                        :target="'popover2'"
-                                        placement="bottomleft"
-                                        title="Dupliquer la fiche"
-                                        triggers="hover focus"
-                                    ></b-popover>
+                                <td class="text-center">
+                                    {{ getDisplayText(product.display) }}
+                                </td>
+                                <!-- 
+                            <td class="text-center">
+                                <a href="javascript:void(0)">{{
+                                    product.price
+                                }}</a>
+                            </td> -->
+                                <td class="text-center">
+                                    {{
+                                        product.prices[
+                                            product.prices.length - 1
+                                        ].amounts.public
+                                    }}
+                                </td>
 
-                                    <b-button
-                                        class="mb-2 mr-2 btn-icon btn-pill btn-shadow"
-                                        variant="danger"
-                                        id="popover3"
-                                        @click="remove(product._id)"
-                                        ><i class="pe-7s-trash"> </i
-                                    ></b-button>
-                                    <b-popover
-                                        :target="'popover3'"
-                                        placement="bottom"
-                                        title="Supprimer la fiche"
-                                        triggers="hover focus"
-                                    ></b-popover>
-                                </div>
-                            </td>
-                        </tr>
+                                <td class="text-center">
+                                    <div role="group" class="btn-group-xl">
+                                        <router-link
+                                            :to="{
+                                                name: 'EditProductService',
+                                                params: {
+                                                    id: product._id,
+                                                    getNameType: getNameType,
+                                                    handleModify: handleModify,
+                                                    types: types,
+                                                    categoriesCombined: categoriesCombined,
+                                                    radioDisplays: radioDisplays,
+                                                    states: states
+                                                }
+                                            }"
+                                        >
+                                            <b-button
+                                                class="mb-2 mr-2  btn-pill btn-shadow"
+                                                variant="primary"
+                                                id="popover1"
+                                            >
+                                                <i class="lnr-pencil"></i>
+                                            </b-button>
+                                        </router-link>
+                                        <b-popover
+                                            :target="'popover1'"
+                                            placement="bottomleft"
+                                            title="Modifier la fiche"
+                                            triggers="hover focus"
+                                        ></b-popover>
+
+                                        <b-button
+                                            class="mb-2 mr-2  btn-pill btn-shadow"
+                                            variant="primary"
+                                            id="popover2"
+                                            @click="handleForm(product)"
+                                        >
+                                            <i class="pe-7s-copy-file"></i>
+                                        </b-button>
+                                        <b-popover
+                                            :target="'popover2'"
+                                            placement="bottomleft"
+                                            title="Dupliquer la fiche"
+                                            triggers="hover focus"
+                                        ></b-popover>
+
+                                        <b-button
+                                            class="mb-2 mr-2 btn-icon btn-pill btn-shadow"
+                                            variant="danger"
+                                            id="popover3"
+                                            @click="remove(product._id)"
+                                            ><i class="pe-7s-trash"> </i
+                                        ></b-button>
+                                        <b-popover
+                                            :target="'popover3'"
+                                            placement="bottom"
+                                            title="Supprimer la fiche"
+                                            triggers="hover focus"
+                                        ></b-popover>
+                                    </div>
+                                </td>
+                            </tr>
+                        </template>
                     </tbody>
                 </table>
                 <div class="d-block p-4 text-center card-footer">
@@ -146,7 +158,7 @@
                         <b-button
                             class="mb-2 mr-2"
                             variant="success"
-                            @click="handleForm({})"
+                            @click="handleForm()"
                             >ajouter un service</b-button
                         >
                     </div>
@@ -171,6 +183,12 @@ export default {
         types: {
             type: Array
         },
+        states: {
+            type: Array
+        },
+        radioDisplays: {
+            type: Array
+        },
         handleRemove: {
             type: Function
         },
@@ -188,6 +206,9 @@ export default {
         },
         categoriesCombined: {
             type: Array
+        },
+        getCategory: {
+            type: Function
         }
     },
     data() {
@@ -209,10 +230,10 @@ export default {
                     return item.type === category;
                 });
             }
-        },
-        prows() {
-            return this.filteredItems.length;
         }
+        /*         prows() {
+            return this.filteredItems.length;
+        } */
     },
     methods: {
         async remove(id) {
@@ -224,6 +245,12 @@ export default {
                     // console.error(error);
                 }
             }
+        },
+        getDisplayText(value) {
+            const display = this.radioDisplays.filter(ds => {
+                return ds.value == value;
+            });
+            return display[0].text;
         }
     }
 };

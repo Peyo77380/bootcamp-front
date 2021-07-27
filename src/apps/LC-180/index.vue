@@ -12,6 +12,9 @@
                 :types="types"
                 :categoriesCombined="categoriesCombined"
                 :handleModify="handleModify"
+                :getCategory="getCategory"
+                :radioDisplays="radioDisplays"
+                :states="states"
             />
         </div>
         <div>
@@ -24,6 +27,8 @@
                 :getClassType="getClassType"
                 :categoriesCombined="categoriesCombined"
                 :types="types"
+                :radioDisplays="radioDisplays"
+                :states="states"
             />
         </div>
     </div>
@@ -56,11 +61,36 @@ export default {
             dialog: false,
             isFormOpen: false,
             formMode: "",
-            editedForm: {},
+            editedForm: {
+                name: "",
+                description: "",
+                type: 1,
+                prices: [
+                    {
+                        amounts: {
+                            public: null,
+                            member: null,
+                            co: null
+                        }
+                    }
+                ],
+                display: "admin",
+                key: "",
+                state: true
+            },
             formLayout: {},
             types: [
                 { id: 1, text: "Produit", class: "bg-success" },
                 { id: 2, text: "Service", class: "bg-alternate" }
+            ],
+            radioDisplays: [
+                { text: "Admin", value: "admin" },
+                { text: "Membres", value: "member" },
+                { text: "Boutique", value: "shop" }
+            ],
+            states: [
+                { text: "Actif", value: true },
+                { text: "Désactivé", value: false }
             ],
             categoriesCombined: [],
             componentKey: 0
@@ -79,6 +109,7 @@ export default {
         },
         async loadCategories() {
             try {
+                //Registered in customfields microservice section 4 , Wl:1, lang: fr_FR
                 const res = await this.getAllLists(4);
                 const categories = res.datas.data.datas;
                 const categoriesService = categories.filter(item => {
@@ -111,13 +142,49 @@ export default {
             }
             return "";
         },
+        getCategory(type, id) {
+            if (id) {
+                const category = this.getCategories(type).filter(cat => {
+                    return cat._id == id;
+                });
+                return {
+                    _id: category[0]._id,
+                    text: category[0].text
+                };
+            }
+            return "";
+        },
+        getCategories(type) {
+            return this.categoriesCombined[parseInt(type) - 1];
+        },
         handleForm(product) {
             this.isFormOpen = true;
-            this.editedForm = product;
+            if (product) {
+                this.editedForm = product;
+            }
             //this.formLayout.title = "Ajouter un service/produit";
         },
         closeForm() {
             this.isFormOpen = false;
+            //initialise form after closing modal
+            this.editedForm = {
+                name: "",
+                description: "",
+                type: 1,
+                category_id: null,
+                prices: [
+                    {
+                        amounts: {
+                            public: null,
+                            member: null,
+                            co: null
+                        }
+                    }
+                ],
+                display: "admin",
+                key: "",
+                state: true
+            };
         },
         async handleRemove(id) {
             try {
@@ -144,50 +211,10 @@ export default {
                 this.$sweetError("GLC-180-modify");
             }
         },
+        //to force vue to receive the correct product
         forceRerender() {
             this.componentKey += 1;
         }
     }
 };
-
-/*             productsServices: [
-                {
-                    _id: 100,
-                    type: "Produit",
-                    name: "Boisson",
-                    categoryType: "Location bureau partagé",
-                    key: "bb1",
-                    display: "Admin",
-                    priceHT: 242,
-                    priceTTC: 290,
-                    priceMember: 40,
-                    priceCo: 200,
-                    variation: "Delta",
-                    state: "Actif",
-                    descriptionLong:
-                        " Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed non risus. Suspendisse lectus tortor, dignissim sit amet, adipiscing nec, ultricies sed, dolor. Cras elementum ultrices diam. Maecenas ligula massa, varius a, semper congue, euismod non, mi. Proin porttitor, orci nec nonummy molestie, enim est eleifend mi, non fermentum diam nisl sit amet erat. Duis semper. Duis arcu massa, scelerisque vitae, consequat in, pretium a, enim. Pellentesque congue. Ut in risus volutpat libero pharetra tempor. Cras vestibulum bibendum augue. Praesent egestas leo in pede. Praesent blandit odio eu enim. Pellentesque sed dui ut augue blandit sodales. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Aliquam nibh. Mauris ac mauris sed pede pellentesque fermentum. Maecenas adipiscing ante non diam sodales hendrerit. ",
-                    descriptionShort: "Bla bla bla",
-                    content:
-                        "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed non risus. Suspendisse lectus tortor, dignissim sit amet, adipiscing nec, ultricies sed, dolor. Cras elementum ultrices diam. Maecenas ligula massa, varius a, semper congue, euismod non, mi. Proin porttitor, orci nec nonummy molestie, enim est eleifend mi, non fermentum diam nisl sit amet erat. Duis semper. Duis arcu massa, scelerisque vitae, consequat in, pretium a, enim. Pellentesque congue. Ut in risus volutpat libero pharetra tempor. Cras vestibulum bibendum augue. Praesent egestas leo in pede. Praesent blandit odio eu enim. Pellentesque sed dui ut augue blandit sodales. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Aliquam nibh. Mauris ac mauris sed pede pellentesque fermentum. Maecenas adipiscing ante non diam sodales hendrerit. "
-                },
-                {
-                    _id: 101,
-                    type: "Service",
-                    name: "Repas",
-                    categoryType: "Experience",
-                    key: "bb1",
-                    display: "Admin",
-                    priceHT: 242,
-                    priceTTC: 290,
-                    priceMember: 40,
-                    priceCo: 200,
-                    variation: "Delta",
-                    state: "Désactivé",
-                    descriptionLong:
-                        " Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed non risus. Suspendisse lectus tortor, dignissim sit amet, adipiscing nec, ultricies sed, dolor. Cras elementum ultrices diam. Maecenas ligula massa, varius a, semper congue, euismod non, mi. Proin porttitor, orci nec nonummy molestie, enim est eleifend mi, non fermentum diam nisl sit amet erat. Duis semper. Duis arcu massa, scelerisque vitae, consequat in, pretium a, enim. Pellentesque congue. Ut in risus volutpat libero pharetra tempor. Cras vestibulum bibendum augue. Praesent egestas leo in pede. Praesent blandit odio eu enim. Pellentesque sed dui ut augue blandit sodales. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Aliquam nibh. Mauris ac mauris sed pede pellentesque fermentum. Maecenas adipiscing ante non diam sodales hendrerit. ",
-                    descriptionShort: "Bla bla bla",
-                    content:
-                        "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed non risus. Suspendisse lectus tortor, dignissim sit amet, adipiscing nec, ultricies sed, dolor. Cras elementum ultrices diam. Maecenas ligula massa, varius a, semper congue, euismod non, mi. Proin porttitor, orci nec nonummy molestie, enim est eleifend mi, non fermentum diam nisl sit amet erat. Duis semper. Duis arcu massa, scelerisque vitae, consequat in, pretium a, enim. Pellentesque congue. Ut in risus volutpat libero pharetra tempor. Cras vestibulum bibendum augue. Praesent egestas leo in pede. Praesent blandit odio eu enim. Pellentesque sed dui ut augue blandit sodales. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Aliquam nibh. Mauris ac mauris sed pede pellentesque fermentum. Maecenas adipiscing ante non diam sodales hendrerit. "
-                }
-            ], */
 </script>

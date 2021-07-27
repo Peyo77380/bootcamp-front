@@ -24,11 +24,9 @@
                                     v-model="selectedType"
                                     :items="types"
                                     label="Type"
-                                    item-text="text"
-                                    item-value="id"
                                 ></v-combobox>
                                 <v-combobox
-                                    v-model="formItem.categoryType"
+                                    v-model="selectedCategory"
                                     :items="selectedCategories"
                                     label="Catégorie"
                                 ></v-combobox>
@@ -53,7 +51,7 @@
                                     <v-text-field
                                         label="Image"
                                         @click="onPickFile"
-                                        v-model="imageProduct"
+                                        v-model="image.imageProduct"
                                         prepend-icon="attach_file"
                                     ></v-text-field>
                                     <!-- Hidden -->
@@ -68,17 +66,17 @@
                             </v-layout>
                             <v-layout>
                                 <v-text-field
-                                    v-model="formItem.priceTTC"
+                                    v-model="prices.amounts.public"
                                     label="Prix de vente"
                                 ></v-text-field>
 
                                 <v-text-field
-                                    v-model="formItem.priceMember"
+                                    v-model="prices.amounts.member"
                                     label="Prix membres"
                                 ></v-text-field>
 
                                 <v-text-field
-                                    v-model="formItem.priceCo"
+                                    v-model="prices.amounts.co"
                                     label="Prix co"
                                 ></v-text-field>
                             </v-layout>
@@ -108,7 +106,11 @@
                             >
 
                             <v-layout>
-                                <v-radio-group v-model="formItem.state" row>
+                                <v-radio-group
+                                    v-model="formItem.state"
+                                    row
+                                    mandatory
+                                >
                                     <template v-slot:label>
                                         <div>
                                             Etat
@@ -117,13 +119,17 @@
                                     <hr />
                                     <v-radio
                                         v-for="state in states"
-                                        :key="state"
-                                        :label="state"
-                                        :value="state"
+                                        :key="state.value"
+                                        :label="state.text"
+                                        :value="state.value"
                                     ></v-radio>
                                 </v-radio-group>
 
-                                <v-radio-group v-model="formItem.display" row>
+                                <v-radio-group
+                                    v-model="formItem.display"
+                                    row
+                                    mandatory
+                                >
                                     <template v-slot:label>
                                         <div>
                                             Affichage
@@ -131,10 +137,10 @@
                                     </template>
                                     <hr />
                                     <v-radio
-                                        v-for="radioD in radioDisplays"
-                                        :key="radioD"
-                                        :label="radioD"
-                                        :value="radioD"
+                                        v-for="display in radioDisplays"
+                                        :key="display.value"
+                                        :label="display.text"
+                                        :value="display.value"
                                     ></v-radio>
                                 </v-radio-group>
                             </v-layout>
@@ -161,6 +167,12 @@ export default {
         types: {
             type: Array
         },
+        states: {
+            type: Array
+        },
+        radioDisplays: {
+            type: Array
+        },
         editedForm: {
             type: Object
         },
@@ -181,6 +193,9 @@ export default {
         formItem() {
             return { ...this.editedForm };
         },
+        prices() {
+            return this.editedForm.prices[this.editedForm.prices.length - 1];
+        },
         selectedType: {
             get() {
                 var vm = this;
@@ -196,29 +211,80 @@ export default {
                 vm.formItem.type = val.id;
                 vm.selectedCategories =
                     vm.categoriesCombined[vm.formItem.type - 1];
+                vm.selectedCategory = {
+                    _id: null,
+                    text: ""
+                };
+                vm.formItem.category_id = null;
+            }
+        },
+        selectedCategory: {
+            get() {
+                var vm = this;
+                return vm.findCategory(vm.formItem.category_id);
+            },
+            set(val) {
+                var vm = this;
+                vm.formItem.category_id = val._id;
             }
         }
     },
     data() {
         return {
             selectedCategories: [],
-            radioDisplays: ["Admin", "Membres", "Boutique"],
-            states: ["Actif", "Désactivé"],
-            imageProduct: "",
-            url: "",
-            fileObject: null,
-            cardResult: "",
-            name: "",
-            size: "",
-            type: "",
-            lastModifiedDate: "",
-            loading: false
+            image: {
+                imageProduct: "",
+                url: "",
+                fileObject: null,
+                cardResult: "",
+                name: "",
+                size: "",
+                type: "",
+                lastModifiedDate: "",
+                loading: false
+            }
         };
     },
     methods: {
-        confirmer() {
-            this.handleRegister(this.formItem);
-            this.closeForm();
+        async confirmer() {
+            try {
+                //If the item is duplicated, delete unnecessary variables which were received by existing product
+                const item = this.formItem;
+                if (item.prices) {
+                    delete item.prices;
+                }
+                if (item._id) {
+                    delete item._id;
+                }
+                if (item.created_at) {
+                    delete item.created_at;
+                }
+                if (item.updated_at) {
+                    delete item.updated_at;
+                }
+                //add prices receiving by v-model
+                item.prices = this.prices;
+                await this.handleRegister(item);
+                this.closeForm();
+            } catch (error) {
+                this.$sweetError("GLC-180");
+            }
+        },
+        findCategory(id) {
+            if (id) {
+                const category = this.selectedCategories.filter(cat => {
+                    return cat._id == id;
+                });
+                return {
+                    _id: category[0]._id,
+                    text: category[0].text
+                };
+            } else {
+                return {
+                    _id: null,
+                    text: ""
+                };
+            }
         },
         onPickFile() {
             this.$refs.fileInput.click();
@@ -226,38 +292,38 @@ export default {
         onFilePicked(event) {
             const files = event.target.files;
             if (files[0] !== undefined) {
-                this.imageProduct = files[0].name;
+                this.image.imageProduct = files[0].name;
                 // Check validity of file
-                if (this.imageProduct.lastIndexOf(".") <= 0) {
+                if (this.image.imageProduct.lastIndexOf(".") <= 0) {
                     return;
                 }
                 // If valid, continue
                 const fr = new FileReader();
                 fr.readAsDataURL(files[0]);
                 fr.addEventListener("load", () => {
-                    this.url = fr.result;
-                    this.fileObject = files[0]; // this is an file that can be sent to server...
+                    this.image.url = fr.result;
+                    this.image.fileObject = files[0]; // this is an file that can be sent to server...
                 });
             } else {
-                this.imageProduct = "";
-                this.fileObject = null;
-                this.url = "";
+                this.image.imageProduct = "";
+                this.image.fileObject = null;
+                this.image.url = "";
             }
         },
         onUploadSelectedFileClick() {
             this.loading = true;
 
-            console.log(this.fileObject);
+            console.log(this.image.fileObject);
             // A file is not chosen!
-            if (!this.fileObject) {
+            if (!this.image.fileObject) {
                 alert("No file!!");
             }
             // DO YOUR JOB HERE with fileObjectToUpload
             // https://developer.mozilla.org/en-US/docs/Web/API/File/File
-            this.name = this.fileObject.name;
-            this.size = this.fileObject.size;
-            this.type = this.fileObject.type;
-            this.lastModifiedDate = this.fileObject.lastModifiedDate;
+            this.image.name = this.fileObject.name;
+            this.image.size = this.fileObject.size;
+            this.image.type = this.fileObject.type;
+            this.image.lastModifiedDate = this.fileObject.lastModifiedDate;
             // DO YOUR JOB HERE with fileObjectToUpload
             this.loading = false;
         }
