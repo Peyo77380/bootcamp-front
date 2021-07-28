@@ -21,20 +21,10 @@
 </template>
 
 <script>
-import PageTitle from "@/Layout/Components/PageTitle.vue";
+import PageTitle from "./components/PageTitle";
 import { Buildings } from "@/mixins/building"
-import BuildingCard from "./components/buildingCard.vue"
+import BuildingCard from "./components/buildingCard"
 
-const TABS = [
-    {
-        title: "Espace 1",
-        value: "building1"
-    },
-    {
-        title: "Espace 2",
-        value: "building2"
-    }
-];
 
 export default {
     components: {
@@ -46,9 +36,6 @@ export default {
         heading: "LA COLLOC - UNE FABRIQUE DE TRANSITION(S)",
         subheading: "listing des espaces de coworking",
         icon: "pe-7s-paper-plane icon-gradient bg-happy-itmeo",
-
-        tabs: TABS,
-        currentTab: "building1",
         buildings: []
     }),
     mounted () {
