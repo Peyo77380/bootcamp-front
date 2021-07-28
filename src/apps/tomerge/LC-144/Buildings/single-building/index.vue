@@ -165,8 +165,11 @@
                                     <input
                                         type="file"
                                         id="addingNewImageBrowser"
+                                        ref="imageInput"
+                                        accept="image/*"
                                         name="customFile"
                                         class="custom-file-input"
+                                        @change="addFile"
                                     /><label
                                         class="custom-file-label"
                                         for="addingNewImageBrowser"
@@ -217,7 +220,7 @@ export default {
                 surface: 0,
                 openingHours: [],
                 description: "",
-                pictures: [],
+                file: "",
                 characterics: "",
                 state: 0,
                 enabled: true,
@@ -236,6 +239,15 @@ export default {
         }
     },
     methods: {
+        addFile(event) {
+            const fileList = event.target.files;
+
+            if(fileList && fileList.length > 0) {
+                this.building.file = event.target.files[event.target.files.length-1];
+                console.log(this.building);
+            }
+            
+        },
         switchMode () {
             if ((this.$route.params.id && this.$route.name == "edit-building") || this.$route.name == "add-building") {
                 return this.editionMode = true;
@@ -261,6 +273,10 @@ export default {
             this.services = res.datas;
         },
         async sendBuilding () {
+            this.building.wl = 1;
+            this.building.user = 1;
+            this.building.caption = "test";
+
             if (this.editionMode) {
                 if (this.$route.params.id) {
                     return await this.sendUpdatedBuilding();
@@ -269,6 +285,7 @@ export default {
             }
         },
         async sendUpdatedBuilding () {
+            
             const update = await this.updateBuilding(this.$route.params.id, this.building);
             if (update.error) {
                 return console.log(update.error)
@@ -276,11 +293,14 @@ export default {
             return this.redirectToBuildingIndex();
         },
         async saveNewBuilding() {
-            const save = await this.storeBuilding(this.building);
+            
+            
+            const save = await this.storeBuildingWithImage(this.building);
             if (save.error) {
                 return console.log(save.error);
             }
-            return this.redirectToBuildingIndex();
+            console.log(save);
+            // return this.redirectToBuildingIndex();
         },
         redirectToBuildingIndex() {
             return this.$router.push({name: "our-buildings"});
