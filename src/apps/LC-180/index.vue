@@ -3,32 +3,32 @@
         <loading class="text-center" :active.sync="loading"></loading>
         <div>
             <Table
+                @remove="handleRemove"
+                @handleForm="handleForm"
                 :productsServices="productsServices"
-                :handleRemove="handleRemove"
-                :handleForm="handleForm"
-                :getNameType="getNameType"
-                :getClassType="getClassType"
                 :key="componentKey"
                 :types="types"
+                :radioDisplays="radioDisplays"
+                :states="states"
                 :categoriesCombined="categoriesCombined"
                 :handleModify="handleModify"
                 :getCategory="getCategory"
-                :radioDisplays="radioDisplays"
-                :states="states"
+                :getNameType="getNameType"
+                :getClassType="getClassType"
             />
         </div>
         <div>
             <ProductServiceForm
-                :closeForm="closeForm"
+                @closeForm="closeForm"
+                @register="handleRegister"
                 :dialog="isFormOpen"
                 :editedForm="editedForm"
-                :handleRegister="handleRegister"
-                :getNameType="getNameType"
-                :getClassType="getClassType"
                 :categoriesCombined="categoriesCombined"
                 :types="types"
                 :radioDisplays="radioDisplays"
                 :states="states"
+                :getNameType="getNameType"
+                :getClassType="getClassType"
             />
         </div>
     </div>
@@ -143,7 +143,7 @@ export default {
             return "";
         },
         getCategory(type, id) {
-            if (id) {
+            if (id && this.categoriesCombined.length > 0) {
                 const category = this.getCategories(type).filter(cat => {
                     return cat._id == id;
                 });
@@ -199,6 +199,7 @@ export default {
         async handleRegister(item) {
             try {
                 await this.addProductService(item);
+                this.closeForm();
                 this.loadProductServices();
             } catch (error) {
                 this.$sweetError("GLC-180-register");
@@ -207,6 +208,7 @@ export default {
         async handleModify(id, item) {
             try {
                 await this.modifyProductService(id, item);
+                this.closeForm();
             } catch (error) {
                 this.$sweetError("GLC-180-modify");
             }

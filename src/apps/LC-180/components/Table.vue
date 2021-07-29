@@ -47,7 +47,7 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <template v-if="filteredItems">
+                        <template>
                             <tr
                                 v-for="product in filteredItems"
                                 :key="product._id"
@@ -79,13 +79,17 @@
                                     product.price
                                 }}</a>
                             </td> -->
-                                <td class="text-center">
+                                <td
+                                    class="text-center"
+                                    v-if="product.prices.length > 0"
+                                >
                                     {{
                                         product.prices[
                                             product.prices.length - 1
                                         ].amounts.public
                                     }}
                                 </td>
+                                <td class="text-center" v-else></td>
 
                                 <td class="text-center">
                                     <div role="group" class="btn-group-xl">
@@ -111,6 +115,7 @@
                                                 <i class="lnr-pencil"></i>
                                             </b-button>
                                         </router-link>
+
                                         <b-popover
                                             :target="'popover1'"
                                             placement="bottomleft"
@@ -120,9 +125,11 @@
 
                                         <b-button
                                             class="mb-2 mr-2  btn-pill btn-shadow"
-                                            variant="primary"
+                                            variant="info"
                                             id="popover2"
-                                            @click="handleForm(product)"
+                                            @click="
+                                                $emit('handleForm', product)
+                                            "
                                         >
                                             <i class="pe-7s-copy-file"></i>
                                         </b-button>
@@ -158,7 +165,7 @@
                         <b-button
                             class="mb-2 mr-2"
                             variant="success"
-                            @click="handleForm()"
+                            @click="$emit('handleForm')"
                             >ajouter un service</b-button
                         >
                     </div>
@@ -189,25 +196,19 @@ export default {
         radioDisplays: {
             type: Array
         },
-        handleRemove: {
+        categoriesCombined: {
+            type: Array
+        },
+        getClassType: {
+            type: Function
+        },
+        getCategory: {
             type: Function
         },
         handleModify: {
             type: Function
         },
-        handleForm: {
-            type: Function
-        },
         getNameType: {
-            type: Function
-        },
-        getClassType: {
-            type: Function
-        },
-        categoriesCombined: {
-            type: Array
-        },
-        getCategory: {
             type: Function
         }
     },
@@ -218,15 +219,14 @@ export default {
     },
     computed: {
         filteredItems: function() {
-            var vm = this;
-            var category = this.types.indexOf(vm.selectedType) + 1;
+            var category = this.types.indexOf(this.selectedType) + 1;
             if (
                 this.selectedType === "Toutes les types" ||
                 this.selectedType === null
             ) {
-                return { ...vm.productsServices };
+                return { ...this.productsServices };
             } else {
-                return vm.productsServices.filter(function(item) {
+                return this.productsServices.filter(function(item) {
                     return item.type === category;
                 });
             }
@@ -240,9 +240,10 @@ export default {
             let title = "Confirmer la suppression de cet item";
             if (await this.$sweetConfirmation({ title })) {
                 try {
-                    await this.handleRemove(id);
+                    // await this.handleRemove(id);
+                    this.$emit("remove", id);
                 } catch (error) {
-                    // console.error(error);
+                    console.error(error);
                 }
             }
         },

@@ -367,7 +367,8 @@ export default {
             }
 
             await this.handleModify(this.id, item);
-
+            /*             console.log("ModifyC");
+            this.$emit("modifyC", this.id, item); */
             this.$router.push({ name: "ProductServiceList" });
         },
         //For upload image

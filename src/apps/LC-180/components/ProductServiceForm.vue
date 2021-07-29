@@ -51,7 +51,7 @@
                                     <v-text-field
                                         label="Image"
                                         @click="onPickFile"
-                                        v-model="image.imageProduct"
+                                        v-model="imageProduct"
                                         prepend-icon="attach_file"
                                     ></v-text-field>
                                     <!-- Hidden -->
@@ -148,7 +148,7 @@
                                 Confirmer
                             </v-btn>
 
-                            <v-btn color="warning" @click="closeForm">
+                            <v-btn color="warning" @click="$emit('closeForm')">
                                 Annuler
                             </v-btn>
                         </v-form>
@@ -179,19 +179,13 @@ export default {
         dialog: {
             type: Boolean
         },
-        closeForm: {
-            type: Function
-        },
-        handleRegister: {
-            type: Function
-        },
         getNameType: { type: Function },
         categoriesCombined: { type: Array, required: true }
     },
     mixins: [Lists],
     computed: {
         formItem() {
-            return { ...this.editedForm };
+            return this.editedForm;
         },
         prices() {
             return this.editedForm.prices[this.editedForm.prices.length - 1];
@@ -232,17 +226,15 @@ export default {
     data() {
         return {
             selectedCategories: [],
-            image: {
-                imageProduct: "",
-                url: "",
-                fileObject: null,
-                cardResult: "",
-                name: "",
-                size: "",
-                type: "",
-                lastModifiedDate: "",
-                loading: false
-            }
+
+            imageProduct: "",
+            url: "",
+            fileObject: null,
+            cardResult: "",
+            name: "",
+            size: "",
+            type: "",
+            lastModifiedDate: ""
         };
     },
     methods: {
@@ -264,10 +256,32 @@ export default {
                 }
                 //add prices receiving by v-model
                 item.prices = this.prices;
-                await this.handleRegister(item);
-                this.closeForm();
+                //delete the rest of old data
+                if (item.prices._id) {
+                    delete item.prices._id;
+                    delete item.prices.created_at;
+                    delete item.prices.relatedEntityId;
+                    delete item.prices.relatedEntityType;
+                    delete item.prices.startDate;
+                    delete item.prices.updated_at;
+                }
+                await this.onUploadSelectedFileClick();
+                /*                 let data = new FormData();
+                data.append("name", "my-picture");
+                data.append("file", this.fileObject);
+                item.file = data; */
+                // this.file = this.fileObject;
+                item.wl = 1;
+                item.user = 1;
+                item.caption = this.name;
+                console.log(item);
+                //  item.prices.startDate = Date.now();
+                this.$emit("register", item);
+
+                //await this.handleRegister(item);
+                // this.closeForm();
             } catch (error) {
-                this.$sweetError("GLC-180");
+                this.$sweetError("GLC-180-upload");
             }
         },
         findCategory(id) {
@@ -292,40 +306,40 @@ export default {
         onFilePicked(event) {
             const files = event.target.files;
             if (files[0] !== undefined) {
-                this.image.imageProduct = files[0].name;
+                this.imageProduct = files[0].name;
                 // Check validity of file
-                if (this.image.imageProduct.lastIndexOf(".") <= 0) {
+                if (this.imageProduct.lastIndexOf(".") <= 0) {
                     return;
                 }
                 // If valid, continue
                 const fr = new FileReader();
                 fr.readAsDataURL(files[0]);
                 fr.addEventListener("load", () => {
-                    this.image.url = fr.result;
-                    this.image.fileObject = files[0]; // this is an file that can be sent to server...
+                    this.url = fr.result;
+                    this.fileObject = files[0]; // this is an file that can be sent to server...
+                    console.log("picked");
+                    console.log(this.fileObject);
                 });
             } else {
-                this.image.imageProduct = "";
-                this.image.fileObject = null;
-                this.image.url = "";
+                this.imageProduct = "";
+                this.fileObject = null;
+                this.url = "";
             }
         },
         onUploadSelectedFileClick() {
-            this.loading = true;
-
-            console.log(this.image.fileObject);
+            console.log("upload");
+            console.log(this.fileObject);
             // A file is not chosen!
-            if (!this.image.fileObject) {
+            if (!this.fileObject) {
                 alert("No file!!");
             }
             // DO YOUR JOB HERE with fileObjectToUpload
             // https://developer.mozilla.org/en-US/docs/Web/API/File/File
-            this.image.name = this.fileObject.name;
-            this.image.size = this.fileObject.size;
-            this.image.type = this.fileObject.type;
-            this.image.lastModifiedDate = this.fileObject.lastModifiedDate;
+            this.name = this.fileObject.name;
+            this.size = this.fileObject.size;
+            this.type = this.fileObject.type;
+            this.lastModifiedDate = this.fileObject.lastModifiedDate;
             // DO YOUR JOB HERE with fileObjectToUpload
-            this.loading = false;
         }
     }
 };
