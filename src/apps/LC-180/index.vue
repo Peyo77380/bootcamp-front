@@ -38,6 +38,7 @@
 import Table from "./components/Table.vue";
 import ProductServiceForm from "./components/ProductServiceForm.vue";
 import { ProductServices } from "../../mixins/productService";
+import productGlobals from "../../services/globals/productsServicesGlobals";
 import { Lists } from "../../mixins/list";
 import Loading from "vue-loading-overlay";
 
@@ -51,6 +52,9 @@ export default {
     async mounted() {
         await this.loadProductServices();
         await this.loadCategories();
+        this.types = productGlobals.types;
+        this.radioDisplays = productGlobals.radioDisplays;
+        this.states = productGlobals.states;
     },
     data() {
         return {
@@ -79,19 +83,9 @@ export default {
                 state: true
             },
             formLayout: {},
-            types: [
-                { id: 1, text: "Produit", class: "bg-success" },
-                { id: 2, text: "Service", class: "bg-alternate" }
-            ],
-            radioDisplays: [
-                { text: "Admin", value: "admin" },
-                { text: "Membres", value: "member" },
-                { text: "Boutique", value: "shop" }
-            ],
-            states: [
-                { text: "Actif", value: true },
-                { text: "Désactivé", value: false }
-            ],
+            types: [],
+            radioDisplays: [],
+            states: [],
             categoriesCombined: [],
             componentKey: 0
         };
