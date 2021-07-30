@@ -265,15 +265,18 @@ export default {
                     delete item.prices.startDate;
                     delete item.prices.updated_at;
                 }
-                await this.onUploadSelectedFileClick();
-                /*                 let data = new FormData();
+                if (!this.fileObject) {
+                    alert("No file!!");
+                }
+                let data = new FormData();
                 data.append("name", "my-picture");
                 data.append("file", this.fileObject);
-                item.file = data; */
-                // this.file = this.fileObject;
+                item.file = data;
+                //item.file = this.fileObject;
                 item.wl = 1;
                 item.user = 1;
-                item.caption = this.name;
+                item.caption = this.fileObject.name;
+                console.log("item");
                 console.log(item);
                 //  item.prices.startDate = Date.now();
                 this.$emit("register", item);

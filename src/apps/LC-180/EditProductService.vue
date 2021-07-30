@@ -92,7 +92,11 @@
                                             :key="price._id"
                                         >
                                             <td class="text-center">
-                                                {{ price.startDate }}
+                                                {{
+                                                    getFormattedDate(
+                                                        price.startDate
+                                                    )
+                                                }}
                                             </td>
                                             <td class="text-center">
                                                 {{ price.amounts.public }}
@@ -233,7 +237,7 @@ import { faChevronDown, faChevronUp } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/vue-fontawesome";
 
 library.add(faChevronUp, faChevronDown);
-import { ProductServices } from "../../../mixins/productService";
+import { ProductServices } from "../../mixins/productService";
 import Loading from "vue-loading-overlay";
 export default {
     components: {
@@ -266,7 +270,6 @@ export default {
     },
     mixins: [ProductServices],
     async mounted() {
-        this.id = this.$route.params.id;
         this.loading = true;
         await this.loadProductService(this.id);
         this.loading = false;
@@ -424,6 +427,19 @@ export default {
 
             const [month, day, year] = date.split("/");
             return `${year}-${month.padStart(2, "0")}-${day.padStart(2, "0")}`;
+        },
+        getFormattedDate(timestamp) {
+            let date = new Date(timestamp);
+            date.toLocaleString("fr-FR");
+
+            return (
+                "Date: " +
+                date.getDate() +
+                "/" +
+                (date.getMonth() + 1) +
+                "/" +
+                date.getFullYear()
+            );
         }
     }
 };
