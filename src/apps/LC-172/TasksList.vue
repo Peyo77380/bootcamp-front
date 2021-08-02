@@ -160,17 +160,17 @@ export default {
             ],
             TasksStatus: "1",
             statusArray: [{
-                    value: 0,
+                    value: "0",
                     text: "terminé",
                     badge : "ml-2 badge badge-danger"
                 },
                 {
-                    value: 1,
+                    value: "1",
                     text: "en cours",
                     badge : "ml-2 badge badge-primary"
                 },
                 {
-                    value: 2,
+                    value: "2",
                     text: "à faire",
                     badge : "ml-2 badge badge-success"
                 }
@@ -182,7 +182,7 @@ export default {
     mixins: [Tasks, Lists],
     async mounted() {
         await this.loadTasksActive();
-        const types = await this.getListDetails("60f8272d4182535f215a9bd8");
+        const types = await this.getListDetails("value");
         this.taskType = types.datas.data.datas.datas;
         //console.log("test type", this.taskType)
     },
