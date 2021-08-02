@@ -26,7 +26,7 @@
                                             class="form-control"
                                             v-model="newDatas.type"
                                             >
-                                            <option v-for="item in taskType" :key="item.value" :value="item.value"> {{ item.text }}</option>
+                                            <option v-for="item in taskType" :key="item._id" :value="item._id"> {{ item.text }}</option>
                                             </select>
                                         </div>
                                         <div class="position-relative form-group">
@@ -50,7 +50,7 @@
                                             class="form-control"
                                             v-model="newDatas.admin_id"
                                             >
-                                            <option v-for="item in admin" :key="item.value" :value="item.value"> {{ item.text }}</option>
+                                            <option v-for="item in AdminTasks" :key="item.id" :value="item.id"> {{ item.firstname }} {{ item.lastname }}</option>
                                             </select>
                                         </div>
                                         <div class="position-relative form-group">
@@ -102,16 +102,6 @@ export default {
   },
   data() {
     return {
-        type: [
-            {text: 'Sélectionner votre action commerciale', value: null},
-            {text: 'Rappel télephonique', value: "0"},
-            {text: 'Envoyer un email', value: "1"},
-        ],
-        admin: [
-            {text: "Sélectionner le responsable de l'action commerciale", value: null},
-            {text: 'Margaux JEZEQUEL', value: "0"},
-            {text: 'Irwin MAGADUR', value: "1"},
-        ],
         status: [
             {text: "Sélectionner l'état de l'action commerciale", value: null},
             {text:'en cours', value: "2"},
@@ -128,6 +118,9 @@ export default {
         },
         taskType: {
             type: Array
+        },
+        AdminTasks: {
+            type: Array
         }
   },
   methods: {
@@ -138,7 +131,7 @@ export default {
           //console.log (this.newDatas)
           this.closeModal();
           this.$emit("saveDatas", this.newDatas)
-          //console.log("test newDatas", this.newDatas)
+          console.log("test newDatas", this.newDatas)
       }
   },
 };

@@ -44,7 +44,7 @@ export const Tasks = {
             try {
                 // update task
                 const putResponse = await apiCRM.put(`tasks/update/${id}`, data);
-                //console.log("test id", id)
+                console.log("test id", id)
                 return putResponse.data.datas;
             } catch (error) {
                 throw new Error(error);
@@ -64,6 +64,16 @@ export const Tasks = {
                 // delete task by id 
                 const deleteResponse = await apiCRM.delete(`tasks/delete/${data.id}`, data);
                 return deleteResponse.data.datas;
+            } catch (error) {
+                throw new Error(error);
+            }
+        }, 
+        async getTasksAdmin() {
+            try {
+                // load all task user 
+                const userResponse = await apiCRM.get(`user/admin`);
+                //console.log("test user", userResponse)
+                return userResponse.data.datas;
             } catch (error) {
                 throw new Error(error);
             }

@@ -135,6 +135,7 @@
         @saveDatas="saveNewDatas"
         :newDatas="newDatas"
         :taskType="taskType"
+        :AdminTasks="AdminTasks"
         />
     </div>
 </template>
@@ -149,6 +150,7 @@ export default {
         return {
             AllTasks: [],
             ActiveTasks: [],
+            AdminTasks: [],
             statusValue: "",
             class:"",
             dialog: false, 
@@ -182,8 +184,8 @@ export default {
     mixins: [Tasks, Lists],
     async mounted() {
         await this.loadTasksActive();
-        await this.loadTasksType()
-        
+        await this.loadTasksType();
+        await this.loadTasksAdmin();
     },
 
     components: {
@@ -301,10 +303,15 @@ export default {
             }
         },
         async loadTasksType () {
-            const types = await this.getListDetails("value");
+            const types = await this.getListDetails("60f8272d4182535f215a9bd8");
             this.taskType = types.datas.data.datas.datas;
             console.log("test type", this.taskType)
-        }
+        },
+        async loadTasksAdmin () {
+            this.AdminTasks = await this.getTasksAdmin();
+            //console.log("test type", this.AdminTasks)
+        },
+
     }, 
 }
 </script>
