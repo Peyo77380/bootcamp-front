@@ -182,9 +182,8 @@ export default {
     mixins: [Tasks, Lists],
     async mounted() {
         await this.loadTasksActive();
-        const types = await this.getListDetails("value");
-        this.taskType = types.datas.data.datas.datas;
-        //console.log("test type", this.taskType)
+        await this.loadTasksType()
+        
     },
 
     components: {
@@ -300,6 +299,11 @@ export default {
             } else {
                 this.AllTasks = await this.getArchiveTasks()
             }
+        },
+        async loadTasksType () {
+            const types = await this.getListDetails("value");
+            this.taskType = types.datas.data.datas.datas;
+            console.log("test type", this.taskType)
         }
     }, 
 }
