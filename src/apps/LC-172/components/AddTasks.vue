@@ -48,7 +48,7 @@
                                             <select 
                                             name="select"  
                                             class="form-control"
-                                            v-model="newDatas.admin_id"
+                                            v-model="newDatas.user"
                                             >
                                             <option v-for="item in AdminTasks" :key="item.id" :value="item.id"> {{ item.firstname }} {{ item.lastname }}</option>
                                             </select>
