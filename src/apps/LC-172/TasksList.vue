@@ -176,7 +176,7 @@ export default {
                 }
             ],
             taskType: [], 
-            taskAdmin: [], 
+            taskAdmin: [],  
         }   
     }, 
     mixins: [Tasks, Lists],
@@ -192,7 +192,7 @@ export default {
     },
    
     methods: {
-        // Edit status badges (by Pierre Skippy le Dieu des GOUROUS)
+        // Edit status badge (by Pierre Skippy le Dieu des GOUROUS)
         getStatus(data) {
             const flag = this.statusArray.find(element => element.value == data.status)
             return flag.badge  
