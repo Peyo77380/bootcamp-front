@@ -26,7 +26,7 @@
                                             class="form-control"
                                             v-model="newDatas.type"
                                             >
-                                            <option v-for="item in taskType" :key="item._id" :value="item._id"> {{ item.text }}</option>
+                                            <option v-for="item in taskType" :key="item._id" :value="item.value"> {{ item.text }}</option>
                                             </select>
                                         </div>
                                         <div class="position-relative form-group">
