@@ -60,7 +60,7 @@
                                         style="display: none"
                                         ref="fileInput"
                                         accept="image/*"
-                                        @change="onFilePicked"
+                                        v-on:change="onFilePicked()"
                                     />
                                 </v-flex>
                             </v-layout>
@@ -160,7 +160,7 @@
 </template>
 
 <script>
-import { Lists } from "../../../mixins/list";
+import { Lists } from "@/mixins/list";
 export default {
     name: "ProductServiceForm",
     props: {
@@ -234,6 +234,7 @@ export default {
             name: "",
             size: "",
             type: "",
+            file: "",
             lastModifiedDate: ""
         };
     },
@@ -270,16 +271,14 @@ export default {
                 }
                 let data = new FormData();
                 data.append("name", "my-picture");
-                data.append("file", this.fileObject);
-                item.file = data;
-                //item.file = this.fileObject;
+                data.append("file", this.file);
+
                 item.wl = 1;
                 item.user = 1;
-                item.caption = this.fileObject.name;
-                console.log("item");
-                console.log(item);
+                data.append("item", item, data);
+
                 //  item.prices.startDate = Date.now();
-                this.$emit("register", item);
+                this.$emit("register", data);
 
                 //await this.handleRegister(item);
                 // this.closeForm();
@@ -306,28 +305,9 @@ export default {
         onPickFile() {
             this.$refs.fileInput.click();
         },
-        onFilePicked(event) {
-            const files = event.target.files;
-            if (files[0] !== undefined) {
-                this.imageProduct = files[0].name;
-                // Check validity of file
-                if (this.imageProduct.lastIndexOf(".") <= 0) {
-                    return;
-                }
-                // If valid, continue
-                const fr = new FileReader();
-                fr.readAsDataURL(files[0]);
-                fr.addEventListener("load", () => {
-                    this.url = fr.result;
-                    this.fileObject = files[0]; // this is an file that can be sent to server...
-                    console.log("picked");
-                    console.log(this.fileObject);
-                });
-            } else {
-                this.imageProduct = "";
-                this.fileObject = null;
-                this.url = "";
-            }
+        onFilePicked() {
+            console.log(this.$refs.fileInput);
+            this.file = this.$refs.fileInput.files[0];
         },
         onUploadSelectedFileClick() {
             console.log("upload");
