@@ -305,7 +305,10 @@ export default {
 
             if (buildingId && this.building.file.length > 0) {
                 const storedImage = await this.storeImage(this.building, buildingId, buildingType);
-                return this.$sweetError('Une erreur est survenue pendant l\'enregistrement de l\'image');
+
+                if (storedImage.error) {
+                    return this.$sweetError('Une erreur est survenue pendant l\'enregistrement de l\'image');
+                }
             }
             this.$sweetNotif('Le batiment a été sauvegardé');
             return this.redirectToBuildingIndex();
