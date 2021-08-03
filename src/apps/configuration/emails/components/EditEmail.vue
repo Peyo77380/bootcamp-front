@@ -197,9 +197,9 @@
 </template>
 
 <script>
-import EmailCopy from "@/apps/tomerge/ms-customField/LC-30/components/sub-components/EmailCopy";
-import HiddenCopy from "@/apps/tomerge/ms-customField/LC-30/components/sub-components/HiddenCopy";
-import Variable from "@/apps/tomerge/ms-customField/LC-30/components/sub-components/Variable";
+import EmailCopy from "@/apps/configuration/emails/components/sub-components/EmailCopy";
+import HiddenCopy from "@/apps/configuration/emails/components/sub-components/HiddenCopy";
+import Variable from "@/apps/configuration/emails/components/sub-components/Variable";
 import ClassicEditor from "@ckeditor/ckeditor5-build-classic";
 import { Emails } from "@/mixins/email";
 
@@ -211,9 +211,6 @@ export default {
         Variable
     },
     mixins: [Emails],
-    async mounted() {
-        await this.saveModification();
-    },
     data() {
         return {
             icon: "pe-7s-mail-open-file",
@@ -236,10 +233,7 @@ export default {
         },
         async saveModification() {
             try {
-                console.log("je vais appeller modifyEmail");
-                console.log(this.editedEmail);
                 await this.modifyEmail(this.editedEmail);
-                console.log("jej'ai fini axios");
                 this.closeEdit();
                 this.$emit("saveModification", this.editedEmail);
             } catch (error) {

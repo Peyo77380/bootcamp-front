@@ -36,10 +36,9 @@
 </template>
 
 <script>
-import PageTitle from "@/Layout/Components/PageTitle";
-import EmailList from "@/apps/tomerge/ms-customField/LC-30/EmailList";
-import DisplayEmail from "@/apps/tomerge/ms-customField/LC-30/components/DisplayEmail";
-import EditEmail from "@/apps/tomerge/ms-customField/LC-30/components/EditEmail";
+import PageTitle from "./components/PageTitle";
+import EmailList from "@/apps/configuration/emails/EmailList";
+import EditEmail from "@/apps/configuration/emails/components/EditEmail";
 import { Emails } from "@/mixins/email";
 import { Globals } from "@/mixins/global";
 
@@ -47,7 +46,6 @@ export default {
     components: {
         PageTitle,
         EmailList,
-        DisplayEmail,
         EditEmail
     },
     mixins: [Emails, Globals],
@@ -77,7 +75,6 @@ export default {
         showDetails(email) {
             this.behavior.modalDisplay = true;
             this.emailDetails = email;
-            //TODO point API affichage details de l'email
         },
         displayOff() {
             this.behavior.modalDisplay = false;
@@ -90,7 +87,6 @@ export default {
             this.behavior.modalEdit = false;
         },
         modificationEmail() {
-            //TODO point API modification email de services
             this.editedIndex = this.emails.indexOf(this.editedEmail);
             this.$sweetNotif("Modification de l'email réussie !");
         },

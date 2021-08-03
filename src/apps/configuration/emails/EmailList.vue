@@ -115,7 +115,12 @@
                                 {{ email.key }}
                             </td>
                             <td class="text-center">{{ email.title }}</td>
-                            <td class="text-center">2 jours</td>
+                            <td class="text-center">
+                                <time-ago
+                                    :datetime="email.updatedAt"
+                                    locale="fr"
+                                ></time-ago>
+                            </td>
                             <td class="text-center">
                                 <div>
                                     <button
@@ -125,7 +130,6 @@
                                         @click="edit(email)"
                                     >
                                         <i
-                                        
                                             class="lnr-pencil btn-icon-wrapper"
                                         ></i>
                                     </button>
@@ -153,12 +157,10 @@
     </div>
 </template>
 <script>
-import CountryFlag from 'vue-country-flag'
-import moment from 'moment'
-
+import CountryFlag from "vue-country-flag";
+import moment from "moment";
 export default {
     name: "email-list",
-
     components: {
         CountryFlag
     },
@@ -180,9 +182,6 @@ export default {
     },
 
     methods: {
-        // displayEmail(email) {
-        //     this.$emit("displayEmail", email);
-        // },
         edit(email) {
             this.$emit("edit", email);
         },
@@ -208,10 +207,10 @@ export default {
             if (category[0]) {
                 return category[0].class;
             }
-            return ""
+            return "";
         },
-        getElapsedTime(time){
-            moment.locale('fr');
+        getElapsedTime(time) {
+            moment.locale("fr");
             return moment(time).fromNow();
         }
     }
