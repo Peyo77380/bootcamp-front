@@ -48,7 +48,7 @@
                                             <select 
                                             name="select"  
                                             class="form-control"
-                                            v-model="newDatas.user"
+                                            v-model="newDatas.user_id"
                                             >
                                             <option v-for="item in AdminTasks" :key="item.id" :value="item.id"> {{ item.firstname }} {{ item.lastname }}</option>
                                             </select>
@@ -128,7 +128,6 @@ export default {
           this.$emit("closeModal")
       },
       saveDatas() {
-          //console.log (this.newDatas)
           this.closeModal();
           this.$emit("saveDatas", this.newDatas)
           console.log("test newDatas", this.newDatas)

@@ -169,12 +169,12 @@ export default {
                 {
                     value: "1",
                     text: "en cours",
-                    badge : "ml-2 badge badge-primary"
+                    badge : "ml-2 badge badge-success"
                 },
                 {
                     value: "2",
                     text: "à faire",
-                    badge : "ml-2 badge badge-success"
+                    badge : "ml-2 badge badge-primary"
                 }
             ],
             taskType: [], 
@@ -233,15 +233,15 @@ export default {
             }
         },
         async editAction(data) {
-            //API point for get task by id 
+            // API point for get task by id 
             this.addModal();
             await this.getTask(data); 
-            //console.log("test data", data);
+            // console.log("test data", data);
             this.editedIndex = this.AllTasks.indexOf(data);
             this.newDatas = data
         },
         async deleteAction(data) {
-            //action of delete task 
+            // action of delete task 
             await this.deleteTask(data);
         },
         async confirmDeleteAction(data) {
@@ -255,7 +255,7 @@ export default {
             this.loadArchivedTasks()
         },
         async changeToDo(data) {
-            //commande to change status to 'à faire'
+            // commande to change status to 'à faire'
             data.status = 1
             await this.updateTasks(data.id, data);
             this.AllTasks = await this.getActiveTasks();
@@ -263,7 +263,7 @@ export default {
             this.TasksStatus= "1" 
         },
         async changeToProgress(data) {
-            //commande to change status to 'en cours'
+            // commande to change status to 'en cours'
             data.status = 2;
             await this.updateTasks(data.id, data);
             this.AllTasks = await this.getActiveTasks();
@@ -271,7 +271,7 @@ export default {
             this.TasksStatus= "1" 
         },
         async changeToOver(data) {
-            //commande to change status to 'terminé'
+            // commande to change status to 'terminé'
             data.status = 0;
             await this.updateTasks(data.id, data);
             this.AllTasks = await this.getActiveTasks();
@@ -281,7 +281,6 @@ export default {
             // API to load all active tasks 
             try {
                 this.AllTasks = await this.getActiveTasks();
-                //console.log("test active task", this.AllTasks)
             } catch (error) {
                 this.$sweetError("TDL-30");
             }
@@ -303,15 +302,16 @@ export default {
             }
         },
         async loadTasksType () {
+            // load all task Type ms-custom-fiels
             const types = await this.getListDetails("60f8272d4182535f215a9bd8");
             this.taskType = types.datas.data.datas.datas;
-            console.log("test type", this.taskType)
+    
         },
         async loadTasksAdmin () {
+            // load all task Admin ms-crm
             this.AdminTasks = await this.getTasksAdmin();
-            //console.log("test type", this.AdminTasks)
+           
         },
-
     }, 
 }
 </script>

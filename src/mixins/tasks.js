@@ -7,7 +7,6 @@ export const Tasks = {
             try {
                 // load all active tasks 
                 const response = await apiCRM.get('tasks/active');
-                //console.log(response)
                 return response.data.datas;
             } catch (error) {
                 throw new Error(error);
@@ -44,7 +43,6 @@ export const Tasks = {
             try {
                 // update task
                 const putResponse = await apiCRM.put(`tasks/update/${id}`, data);
-                console.log("test id", id)
                 return putResponse.data.datas;
             } catch (error) {
                 throw new Error(error);
@@ -72,7 +70,6 @@ export const Tasks = {
             try {
                 // load all task user 
                 const userResponse = await apiCRM.get(`user/admin`);
-                //console.log("test user", userResponse)
                 return userResponse.data.datas;
             } catch (error) {
                 throw new Error(error);
