@@ -149,7 +149,6 @@
                                                 <b-btn
                                                     id="exButton4"
                                                     variant="outiline-info"
-                                                    :class="item.class"
                                                 >
                                                     {{ item.key }}
                                                     <b-tooltip
@@ -163,7 +162,7 @@
                                             </td>
                                             <td class="text-center">
                                                 <div class="text-center">
-                                                    {{ item.datas.count }}
+                                                    {{ item.count }}
                                                 </div>
                                             </td>
                                             <td class="text-center">
