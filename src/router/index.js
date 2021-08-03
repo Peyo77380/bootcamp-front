@@ -25,6 +25,16 @@ export default new Router({
             name: "email-service",
             component: () => import("@/apps/configuration/emails")
         },
+        {
+            path: "/configuration/lists",
+            name: "configuration - lists",
+            component: () => import("@/apps/configuration/lists")
+        },
+        {
+            path: "/configuration/lists/:id",
+            name: "configuration - Edit list",
+            component: () => import("@/apps/configuration/lists/EditList.vue")
+        },
         /**
          * ??????????????????
          * WHY ON A MASTER BRANCH???????!!!!!!!!!!!
@@ -56,27 +66,6 @@ export default new Router({
             path: "/tomerge/custom-header",
             name: "ref-LC-163",
             component: () => import("@/apps/tomerge/custom-header/index.vue")
-        },
-
-        /**
-         * Mixin not working.
-         * Sweet alert not working
-         * TEst all
-         */
-        {
-            path: "/tomerge/LC-29",
-            name: "Members",
-            component: () => import("@/apps/tomerge/LC-29")
-        },
-        {
-            path: "/tomerge/LC-29/components/EditList/:id",
-            name: "EditList",
-            component: () => import("@/apps/tomerge/LC-29/EditList.vue")
-        },
-        {
-            path: "/tomerge/LC-29/Modal",
-            name: "Modal",
-            component: () => import("@/apps/tomerge/LC-29/Modal.vue")
         },
 
         /**

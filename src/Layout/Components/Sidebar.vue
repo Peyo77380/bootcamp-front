@@ -95,12 +95,16 @@ export default {
                     child: [
                         {
                             href: "/configuration/",
-                            title: "Params/key"
+                            title: "Keys / Values"
                         },
 
                         {
                             href: "/configuration/emails",
-                            title: "Email"
+                            title: "Emails"
+                        },
+                        {
+                            href: "/configuration/lists",
+                            title: "Lists"
                         }
                     ]
                 }
