@@ -199,12 +199,14 @@
 <script>
 import { Buildings } from "@/mixins/building"
 import { Services } from "@/mixins/service"
+import { Images } from "@/mixins/image"
 
 
 export default {
     mixins: [ 
         Buildings,
-        Services
+        Services,
+        Images
         ],
     data () {
         return {
@@ -244,7 +246,6 @@ export default {
 
             if(fileList && fileList.length > 0) {
                 this.building.file = event.target.files[event.target.files.length-1];
-                console.log(this.building);
             }
             
         },
@@ -295,12 +296,19 @@ export default {
         async saveNewBuilding() {
             
             
-            const save = await this.storeBuildingWithImage(this.building);
-            if (save.error) {
-                return console.log(save.error);
+            const storedBuilding = await this.storeBuilding(this.building);
+            if (storedBuilding.error) {
+                return this.$sweetError('Impossible d\'enregistrer un nouveau bâtiment.');
             }
-            console.log(save);
-            // return this.redirectToBuildingIndex();
+            const buildingId = storedBuilding.datas._id;
+            const buildingType = 1;
+
+            if (buildingId && this.building.file.length > 0) {
+                const storedImage = await this.storeImage(this.building, buildingId, buildingType);
+                return this.$sweetError('Une erreur est survenue pendant l\'enregistrement de l\'image');
+            }
+            this.$sweetNotif('Le batiment a été sauvegardé');
+            return this.redirectToBuildingIndex();
         },
         redirectToBuildingIndex() {
             return this.$router.push({name: "our-buildings"});

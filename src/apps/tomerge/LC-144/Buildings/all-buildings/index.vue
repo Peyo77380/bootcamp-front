@@ -8,7 +8,10 @@
 
 
     <div class="content">
-      <b-row>
+      <b-row v-if="this.buildings.length == 0">
+          Pas de building
+      </b-row>
+      <b-row v-else>
           <building-card 
             v-for="building of buildings"
             :key="building._id"

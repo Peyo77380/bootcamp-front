@@ -46,33 +46,12 @@ export const Buildings = {
                 }
             }
         },
-        async storeBuildingWithImage (data) {
-            const config = {
-                headers: {
-                    'content-type': 'multipart/form-data'
-                }
-            };
-            let formData = new FormData();
-            formData.append('body', data);
-            formData.append('file', data.file);
-
-            console.log(formData);
-            
-            apiRoomServices.post('building', formData, config)
-                .then(function (response) {
-                    currentObj.success = response.data.success;
-                    currentObj.filename = "";
-                })
-                .catch(function (error) {
-                    currentObj.output = error;
-                });
-        },
         async deleteBuilding (id) {
             try {
                 await apiRoomServices.delete(`building/${id}`);
                 return {
                     status: 1,
-                    success: "Successfully deleted"
+                    datas: "Successfully deleted"
                 }
             } catch (error) {
                 return {
@@ -87,7 +66,7 @@ export const Buildings = {
                 const response = await apiRoomServices.post(`building/${id}`, data);
                 return {
                     status: 1,
-                    success: response.data.datas
+                    datas: response.data.datas
                 }
             } catch (error) {
                 return {
