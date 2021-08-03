@@ -48,7 +48,7 @@ export default {
         async getBuildings () {
             const res = await this.getAllBuildings();
             if (res.error) {
-                return console.log(res.error);
+                return this.$sweetError('Erreur de chargement des bâtiments');
             }
             this.buildings = res.datas;
         },

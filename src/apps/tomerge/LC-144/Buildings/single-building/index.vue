@@ -289,13 +289,22 @@ export default {
             
             const update = await this.updateBuilding(this.$route.params.id, this.building);
             if (update.error) {
-                return console.log(update.error)
+                return this.$sweetError('Impossible de modifier ce bâtiment.');
             }
+            const buildingId = update.datas._id;
+            const buildingType = 1;
+
+            if (buildingId && this.building.file) {
+                const storedImage = await this.storeImage(this.building, buildingId, buildingType);
+
+                if (storedImage.error) {
+                    return this.$sweetError('Une erreur est survenue pendant l\'enregistrement de l\'image');
+                }
+            }
+            this.$sweetNotif('Le batiment a été modifié');
             return this.redirectToBuildingIndex();
         },
         async saveNewBuilding() {
-            
-            
             const storedBuilding = await this.storeBuilding(this.building);
             if (storedBuilding.error) {
                 return this.$sweetError('Impossible d\'enregistrer un nouveau bâtiment.');
@@ -303,8 +312,10 @@ export default {
             const buildingId = storedBuilding.datas._id;
             const buildingType = 1;
 
-            if (buildingId && this.building.file.length > 0) {
+            if (buildingId && this.building.file) {
+                console.log('saving Image')
                 const storedImage = await this.storeImage(this.building, buildingId, buildingType);
+                console.log("🚀 ~ file: index.vue ~ line 318 ~ saveNewBuilding ~ storedImage", storedImage)
 
                 if (storedImage.error) {
                     return this.$sweetError('Une erreur est survenue pendant l\'enregistrement de l\'image');

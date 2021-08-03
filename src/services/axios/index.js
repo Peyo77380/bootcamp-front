@@ -12,7 +12,7 @@ const apiCustomFields = axios.create({
 
 const apiRoomServices = axios.create({
     baseURL: "http://0.0.0.0:8000/api/v1/",
-    timeout: 3000,
+    timeout: 6000,
     withCreditentials: false,
     headers: {
         "Access-Control-Allow-Origin": "*",
@@ -22,7 +22,7 @@ const apiRoomServices = axios.create({
 
 const apiCRM = axios.create({
     baseURL: "http://0.0.0.0:8001/api/v1/",
-    timeout: 3000,
+    timeout: 6000,
     withCreditentials: false,
     headers: {
         "Access-Control-Allow-Origin": "*",
