@@ -198,14 +198,14 @@
 
 <script>
 import { Buildings } from "@/mixins/building"
-import { Services } from "@/mixins/service"
+// import { Services } from "@/mixins/service"
 import { Images } from "@/mixins/image"
 
 
 export default {
     mixins: [ 
         Buildings,
-        Services,
+        // Services,
         Images
         ],
     data () {
@@ -235,7 +235,7 @@ export default {
     },
     mounted () {
         this.switchMode();
-        this.getServices();
+        // this.getServices();
         if (this.$route.params.id) {
             this.getBuilding();
         }
@@ -262,14 +262,14 @@ export default {
             }
             const res = await this.getBuildingById(id);
             if (res.error) {
-                console.log(res.error)
+                this.$sweetError('Erreur de chargement du batiment')
             }
             this.building = res.datas
         },
         async getServices () {
             const res = await this.getAllServices();
             if (res.error) {
-                console.log(res.error)
+                this.$sweetError('Erreur de chargement des services')
             }
             this.services = res.datas;
         },
@@ -313,9 +313,8 @@ export default {
             const buildingType = 1;
 
             if (buildingId && this.building.file) {
-                console.log('saving Image')
+                
                 const storedImage = await this.storeImage(this.building, buildingId, buildingType);
-                console.log("🚀 ~ file: index.vue ~ line 318 ~ saveNewBuilding ~ storedImage", storedImage)
 
                 if (storedImage.error) {
                     return this.$sweetError('Une erreur est survenue pendant l\'enregistrement de l\'image');

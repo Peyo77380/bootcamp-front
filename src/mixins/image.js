@@ -7,11 +7,11 @@ export const Images = {
             const formData = new FormData();
 
             formData.append('file', data.file);
-            formData.append('body', {
+            formData.append('details', JSON.stringify({
                 ...data,
                 relatedEntityId,
                 relatedEntityType
-            }); 
+            })); 
 
             try {
                 const response = await apiCustomFields.post(`image`, formData);
