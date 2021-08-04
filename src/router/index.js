@@ -35,6 +35,11 @@ export default new Router({
             name: "configuration - Edit list",
             component: () => import("@/apps/configuration/lists/EditList.vue")
         },
+        {
+            path: "/configuration/vatRates",
+            name: "configuration - Vat Rates",
+            component: () => import("@/apps/configuration/vatRates")
+        },
         /**
          * ??????????????????
          * WHY ON A MASTER BRANCH???????!!!!!!!!!!!
@@ -77,11 +82,6 @@ export default new Router({
             path: "/tomerge/LC-166-RMC",
             name: "LC-166-RMC",
             component: () => import("@/apps/tomerge/LC-166-RMC/index.vue")
-        },
-        {
-            path: "/tomerge/LC-164-RMC",
-            name: "LC-164-RMC",
-            component: () => import("@/apps/tomerge/LC-164-RMC/index.vue")
         },
 
         /**

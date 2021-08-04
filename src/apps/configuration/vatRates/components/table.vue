@@ -14,22 +14,11 @@
                     </thead>
                     <tbody>
                         <tr v-for="vatRate in vatRates" :key="vatRate._id">
-                            <!-- <td
-                                class="text-center text-muted"
-                                style="width: 80px;"
-                            >
-                                {{ user.ID }}
-                            </td> -->
-
                             <td class="text-center">
-                                <a href="javascript:void(0)">{{
-                                    vatRate.rate
-                                }}</a>
+                                {{ vatRate.rate }}
                             </td>
                             <td class="text-center">
-                                <a href="javascript:void(0)">{{
-                                    vatRate.codeCompta
-                                }}</a>
+                                {{ vatRate.codeCompta }}
                             </td>
 
                             <td class="text-center">
@@ -67,17 +56,6 @@
                         </tr>
                     </tbody>
                 </table>
-                <div class="d-block p-4 text-center card-footer">
-                    <b-pagination align="center" class="mb-0" />
-                    <div class="row justify-content-end">
-                        <b-button
-                            class="mb-2 mr-2"
-                            variant="success"
-                            @click="addForm"
-                            >ajouter un mode</b-button
-                        >
-                    </div>
-                </div>
             </div>
         </div>
         <modalMod
@@ -87,9 +65,11 @@
             :handleUpdate="handleUpdate"
         />
         <modalAdd
+            :openModal="openModal"
             :validationTaux="validationTaux"
             :validationCodecompta="validationCodecompta"
             :handleAdd="handleAdd"
+            @closeModal="closeAddModal"
         />
     </div>
 </template>
@@ -108,6 +88,12 @@ export default {
         // eslint-disable-next-line vue/no-unused-components
         modalAdd
     },
+    props: {
+        openModal: {
+            type: Boolean,
+            default: false
+        }
+    },
     mixins: [vatRates],
     async mounted() {
         await this.loadVatRates();
@@ -121,17 +107,18 @@ export default {
 
     methods: {
         validationTaux(rate) {
-            return rate.toString().length > 1 && rate.toString().length < 6;
+            return rate.toString().length >= 1 && rate.toString().length <= 4;
         },
         validationCodecompta(codeCompta) {
-            return codeCompta.length > 4 && codeCompta.length < 10;
+            return codeCompta.length >= 6 && codeCompta.length <= 10;
         },
         updateForm(vatRate) {
             (this.updatedVatRate = vatRate), this.$bvModal.show("modal-scoped");
         },
-        addForm(vatRate) {
-            this.$bvModal.show("modal-add");
+        closeAddModal() {
+            this.$emit("closeModal");
         },
+
         async remove(activityId) {
             // sweet alert sur la suppression
             let title = "Confirmer la suppression de cet item";
@@ -157,6 +144,7 @@ export default {
             try {
                 const res = await this.modifyVatRate(vatRate);
                 this.loadVatRates();
+                return res;
             } catch (error) {
                 console.error(error);
             }
@@ -165,6 +153,7 @@ export default {
             try {
                 const res = await this.addVatRate(vatRate);
                 this.loadVatRates();
+                return res;
             } catch (error) {
                 console.error(error);
             }

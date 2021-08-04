@@ -126,6 +126,12 @@ export default {
         modal,
         Loading
     },
+    props: {
+        openModal: {
+            type: Boolean,
+            default: false
+        }
+    },
     mixins: [Globals, Parameters],
     async mounted() {
         await this.loadCategories();

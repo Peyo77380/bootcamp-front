@@ -105,6 +105,10 @@ export default {
                         {
                             href: "/configuration/lists",
                             title: "Lists"
+                        },
+                        {
+                            href: "/configuration/vatRates",
+                            title: "VAT Rates"
                         }
                     ]
                 }
