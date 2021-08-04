@@ -26,6 +26,10 @@ export const vatRates = {
                     `vatRate/${rate._id}`,
                     rate
                 );
+                return {
+                    status: 1,
+                    data: response
+                };
             } catch (error) {
                 return {
                     status: 0,

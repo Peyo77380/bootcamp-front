@@ -68,7 +68,7 @@ export default {
         async modifUpdate() {
             try {
                 const result = await this.handleUpdate(this.updatedVatRate);
-                if (result.error) {
+                if (result.status === 0) {
                     this.$sweetError("vat Rate already set");
                 } else {
                     this.$sweetNotif("Modifications enregistrées !");
