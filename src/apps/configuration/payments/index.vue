@@ -12,7 +12,7 @@
 </template>
 
 <script>
-import Table from "@/apps/tomerge/LC-166-RMC/components/table";
+import Table from "@/apps/configuration/payments/components/table";
 import PageTitle from "./components/PageTitle";
 export default {
     components: {
