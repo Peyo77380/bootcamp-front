@@ -40,6 +40,12 @@ export default new Router({
             name: "configuration - Vat Rates",
             component: () => import("@/apps/configuration/vatRates")
         },
+
+        {
+            path: "/configuration/payments",
+            name: "configuration - Payments",
+            component: () => import("@/apps/configuration/payments")
+        },
         /**
          * ??????????????????
          * WHY ON A MASTER BRANCH???????!!!!!!!!!!!
@@ -78,11 +84,6 @@ export default new Router({
          * mixin not working
          * behavior on axios ?
          */
-        {
-            path: "/tomerge/LC-166-RMC",
-            name: "LC-166-RMC",
-            component: () => import("@/apps/tomerge/LC-166-RMC/index.vue")
-        },
 
         /**
          * TO MERGE LATER

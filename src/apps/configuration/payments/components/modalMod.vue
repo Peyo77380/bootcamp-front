@@ -41,9 +41,9 @@
             <div>
                 <label for="feedback-cle">Clé</label>
                 <b-form-input
-                    v-model="updatedPayment.key"
-                    :state="validationKey(updatedPayment.key)"
+                    v-model="key"
                     id="feedback-cle"
+                    :disabled="true"
                 ></b-form-input>
                 <b-form-invalid-feedback>
                     La clé doit faire entre 3 et 10 caractères.
@@ -87,6 +87,11 @@ export default {
         },
         handleUpdate: {
             type: Function
+        }
+    },
+    computed: {
+        key() {
+            return this.updatedPayment.key.toUpperCase();
         }
     },
     methods: {

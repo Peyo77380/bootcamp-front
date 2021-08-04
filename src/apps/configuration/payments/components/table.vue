@@ -7,37 +7,22 @@
                 >
                     <thead>
                         <tr>
-                            <!-- <th class="text-center">Position</th> -->
+                            <th class="text-center">Clé</th>
                             <th class="text-center">Nom</th>
                             <th class="text-center">Code Compta</th>
-                            <th class="text-center">Clé</th>
                             <th class="text-center">Actions</th>
                         </tr>
                     </thead>
                     <tbody>
                         <tr v-for="payment in payments" :key="payment._id">
-                            <!-- <td
-                                class="text-center text-muted"
-                                style="width: 80px;"
-                            >
-                                {{ user.ID }}
-                            </td> -->
-
                             <td class="text-center">
-                                <a href="javascript:void(0)">{{
-                                    payment.name
-                                }}</a>
+                                {{ displayKey(payment.key) }}
                             </td>
                             <td class="text-center">
-                                <a href="javascript:void(0)">{{
-                                    payment.codeCompta
-                                }}</a>
+                                {{ payment.name }}
                             </td>
-
                             <td class="text-center">
-                                <a href="javascript:void(0)">{{
-                                    payment.key
-                                }}</a>
+                                {{ payment.codeCompta }}
                             </td>
 
                             <td class="text-center">
@@ -56,36 +41,11 @@
                                         title="Modifier la fiche"
                                         triggers="hover focus"
                                     ></b-popover>
-
-                                    <b-button
-                                        class="mb-2 mr-2 btn-icon btn-pill btn-shadow"
-                                        variant="danger"
-                                        id="popover2"
-                                        @click="remove(payment._id)"
-                                        ><i class="pe-7s-trash"> </i
-                                    ></b-button>
-                                    <b-popover
-                                        :target="'popover2'"
-                                        placement="bottom"
-                                        title="Supprimer la fiche"
-                                        triggers="hover focus"
-                                    ></b-popover>
                                 </div>
                             </td>
                         </tr>
                     </tbody>
                 </table>
-                <div class="d-block p-4 text-center card-footer">
-                    <b-pagination align="center" class="mb-0" />
-                </div>
-                <div class="row justify-content-end">
-                    <b-button
-                        class="mb-2 mr-2"
-                        variant="success"
-                        v-b-modal.modal-add
-                        >ajouter un mode de réglement</b-button
-                    >
-                </div>
             </div>
         </div>
         <modalMod
@@ -95,28 +55,19 @@
             :validationKey="validationKey"
             :handleUpdate="handleUpdate"
         />
-        <modalAdd
-            :validationName="validationName"
-            :validationCodeCompta="validationCodeCompta"
-            :validationKey="validationKey"
-            :handleAdd="handleAdd"
-        />
     </div>
 </template>
 
 <script>
 import { FontAwesomeIcon } from "@fortawesome/vue-fontawesome";
 import modalMod from "./modalMod.vue";
-import modalAdd from "./modalAdd.vue";
 import { payments } from "@/mixins/payments";
 
 export default {
     components: {
         // eslint-disable-next-line vue/no-unused-components
         "font-awesome-icon": FontAwesomeIcon,
-        modalMod,
-        // eslint-disable-next-line vue/no-unused-components
-        modalAdd
+        modalMod
     },
     mixins: [payments],
     async mounted() {
@@ -131,6 +82,9 @@ export default {
     },
 
     methods: {
+        displayKey(key) {
+            return key.toUpperCase();
+        },
         validationName(name) {
             return name.length > 4 && name.length < 60;
         },
@@ -142,19 +96,6 @@ export default {
         },
         updateForm(payment) {
             (this.updatedPayment = payment), this.$bvModal.show("modal-modif");
-        },
-        async remove(id) {
-            // sweet alert sur la suppression
-            let title = "Confirmer la suppression de cet item";
-            if (await this.$sweetConfirmation({ title })) {
-                try {
-                    await this.deletePayment(id);
-                    this.loadPayments();
-                    this.$sweetNotif("Item supprimée");
-                } catch (error) {
-                    console.error(error);
-                }
-            }
         },
         async loadPayments() {
             try {
@@ -169,14 +110,6 @@ export default {
                 await this.modifyPayment(updatedPayment);
                 this.loadPayments();
                 this.$sweetNotif("Item supprimée");
-            } catch (error) {
-                console.error(error);
-            }
-        },
-        async handleAdd(payment) {
-            try {
-                const res = await this.addPayment(payment);
-                this.loadPayments();
             } catch (error) {
                 console.error(error);
             }
