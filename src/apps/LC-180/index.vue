@@ -37,9 +37,10 @@
 <script>
 import Table from "./components/Table.vue";
 import ProductServiceForm from "./components/ProductServiceForm.vue";
-import { ProductServices } from "../../mixins/productService";
-import productGlobals from "../../services/globals/productsServicesGlobals";
-import { Lists } from "../../mixins/list";
+import { ProductServices } from "@/mixins/productService";
+import { Images } from "@/mixins/image";
+import productsServicesGlobals from "@/services/globals/productsServicesGlobals";
+import { Lists } from "@/mixins/list";
 import Loading from "vue-loading-overlay";
 
 export default {
@@ -48,13 +49,13 @@ export default {
         ProductServiceForm,
         Loading
     },
-    mixins: [ProductServices, Lists],
+    mixins: [ProductServices, Lists, Images],
     async mounted() {
         await this.loadProductServices();
         await this.loadCategories();
-        this.types = productGlobals.types;
-        this.radioDisplays = productGlobals.radioDisplays;
-        this.states = productGlobals.states;
+        this.types = productsServicesGlobals.types;
+        this.radioDisplays = productsServicesGlobals.radioDisplays;
+        this.states = productsServicesGlobals.states;
     },
     data() {
         return {
@@ -104,14 +105,11 @@ export default {
         async loadCategories() {
             try {
                 //Registered in customfields microservice section 4 , Wl:1, lang: fr_FR
-                const res = await this.getAllLists(4);
-                const categories = res.datas.data.datas;
-                const categoriesService = categories.filter(item => {
-                    return item.key == "service";
-                })[0].datas;
-                const categoriesProduct = categories.filter(item => {
-                    return item.key == "produit";
-                })[0].datas;
+                const res = await this.getListByWLLangKey("PRODUCT");
+                var categoriesProduct = res.datas.data.datas[0].datas;
+                const res2 = await this.getListByWLLangKey("SERVICE");
+                var categoriesService = res2.datas.data.datas[0].datas;
+
                 this.categoriesCombined.push(categoriesProduct);
                 this.categoriesCombined.push(categoriesService);
             } catch (error) {
@@ -190,9 +188,13 @@ export default {
                 this.$sweetError("GLC-180-remove");
             }
         },
-        async handleRegister(item) {
+        async handleRegister(item, image) {
             try {
-                await this.addProductService(item);
+                const response = await this.addProductService(item);
+                if (image.file != null && response.data.datas._id) {
+                    image.relatedEntityType = 1;
+                    await this.storeImage(image, response.data.datas._id);
+                }
                 this.closeForm();
                 this.loadProductServices();
             } catch (error) {

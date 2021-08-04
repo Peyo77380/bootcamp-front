@@ -1,5 +1,4 @@
 import { api_ms_room } from "@/services/axios";
-
 export const ProductServices = {
     methods: {
         async getAllProductServices() {
@@ -55,16 +54,12 @@ export const ProductServices = {
                 };
             }
         },
-        async addProductService(newItem, formdata = null) {
+        async addProductService(newItem) {
             try {
                 // 1 pas d'image => 1 seul appel => service sans image
                 // 2 une image => 1 appel d'api sur service si ok => recupérer l'_id si pas ok tu vas dans le catch
                 //                2 => si OK appel point d'api dédié à la gestion de l'image avec l'_id récupérer du précédent appel api
-                const response = await api_ms_room.post(`service`, newItem, {
-                    headers: {
-                        "content-Type": "multipart/form-data"
-                    }
-                });
+                const response = await api_ms_room.post(`service`, newItem);
                 return response;
             } catch (error) {
                 return {

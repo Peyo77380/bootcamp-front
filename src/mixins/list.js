@@ -3,9 +3,23 @@ import {api} from '@/services/axios';
 export const Lists = {
 
     methods: {
-        async getAllLists(section=1,wl=1,lang="fr_FR") {
+        async getAllLists(wl=1,lang="fr_FR") {
             try {
-                const response = await api.get(`list/${section}/${wl}/${lang}`)
+                const response = await api.get(`list/${wl}/${lang}`)
+                return {
+                    status: 1,
+                    datas: response
+                }
+            } catch (error) {
+                return {
+                    status: 0,
+                    error
+                }
+            }
+        },
+        async getListByWLLangKey(key, wl=1,lang="fr_FR") {
+            try {
+                const response = await api.get(`list/key/${wl}/${lang}/${key}`)
                 return {
                     status: 1,
                     datas: response

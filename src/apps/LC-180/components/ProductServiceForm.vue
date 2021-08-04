@@ -51,7 +51,7 @@
                                     <v-text-field
                                         label="Image"
                                         @click="onPickFile"
-                                        v-model="imageProduct"
+                                        v-model="fileName"
                                         prepend-icon="attach_file"
                                     ></v-text-field>
                                     <!-- Hidden -->
@@ -185,6 +185,7 @@ export default {
     mixins: [Lists],
     computed: {
         formItem() {
+            console.log(this.editedForm);
             return this.editedForm;
         },
         prices() {
@@ -226,15 +227,14 @@ export default {
     data() {
         return {
             selectedCategories: [],
-
-            imageProduct: "",
+            fileName: "",
             url: "",
             fileObject: null,
             cardResult: "",
             name: "",
             size: "",
             type: "",
-            file: "",
+            file: null,
             lastModifiedDate: ""
         };
     },
@@ -266,19 +266,15 @@ export default {
                     delete item.prices.startDate;
                     delete item.prices.updated_at;
                 }
-                if (!this.fileObject) {
-                    alert("No file!!");
+                var image = {};
+                if (this.file != null) {
+                    image.file = this.file;
+                    image.wl = 1;
+                    image.user = 1;
+                    //console.log(imageFormData.get("file"));
                 }
-                let data = new FormData();
-                data.append("name", "my-picture");
-                data.append("file", this.file);
-
-                item.wl = 1;
-                item.user = 1;
-                data.append("item", item, data);
-
                 //  item.prices.startDate = Date.now();
-                this.$emit("register", data);
+                this.$emit("register", item, image);
 
                 //await this.handleRegister(item);
                 // this.closeForm();
@@ -308,8 +304,10 @@ export default {
         onFilePicked() {
             console.log(this.$refs.fileInput);
             this.file = this.$refs.fileInput.files[0];
-        },
-        onUploadSelectedFileClick() {
+            this.fileName = this.file.name;
+            console.log(this.file);
+        }
+        /*         onUploadSelectedFileClick() {
             console.log("upload");
             console.log(this.fileObject);
             // A file is not chosen!
@@ -323,7 +321,7 @@ export default {
             this.type = this.fileObject.type;
             this.lastModifiedDate = this.fileObject.lastModifiedDate;
             // DO YOUR JOB HERE with fileObjectToUpload
-        }
+        } */
     }
 };
 </script>

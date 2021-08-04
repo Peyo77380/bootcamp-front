@@ -12,4 +12,4 @@ const productsServicesGlobals = { types :[
     { text: "Désactivé", value: false }
 ]}
 
-export default productsServicesGlobals;
+export default productsServicesGlobals ;

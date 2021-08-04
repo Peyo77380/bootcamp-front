@@ -251,7 +251,7 @@ export default {
             const display = this.radioDisplays.filter(ds => {
                 return ds.value == value;
             });
-            return display[0].text;
+            return display[0] ? display[0].text : "";
         }
     }
 };
