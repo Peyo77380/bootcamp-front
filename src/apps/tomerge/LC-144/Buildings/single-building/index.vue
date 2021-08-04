@@ -277,6 +277,7 @@ export default {
             this.building.wl = 1;
             this.building.user = 1;
             this.building.caption = "test";
+            this.building.relatedEntityType = 1;
 
             if (this.editionMode) {
                 if (this.$route.params.id) {
@@ -292,10 +293,10 @@ export default {
                 return this.$sweetError('Impossible de modifier ce bâtiment.');
             }
             const buildingId = update.datas._id;
-            const buildingType = 1;
+            
 
             if (buildingId && this.building.file) {
-                const storedImage = await this.storeImage(this.building, buildingId, buildingType);
+                const storedImage = await this.storeImage(this.building, buildingId);
 
                 if (storedImage.error) {
                     return this.$sweetError('Une erreur est survenue pendant l\'enregistrement de l\'image');
@@ -310,11 +311,11 @@ export default {
                 return this.$sweetError('Impossible d\'enregistrer un nouveau bâtiment.');
             }
             const buildingId = storedBuilding.datas._id;
-            const buildingType = 1;
+            
 
             if (buildingId && this.building.file) {
                 
-                const storedImage = await this.storeImage(this.building, buildingId, buildingType);
+                const storedImage = await this.storeImage(this.building, buildingId);
 
                 if (storedImage.error) {
                     return this.$sweetError('Une erreur est survenue pendant l\'enregistrement de l\'image');

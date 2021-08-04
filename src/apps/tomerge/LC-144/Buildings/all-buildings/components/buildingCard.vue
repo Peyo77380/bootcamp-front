@@ -4,7 +4,7 @@
         <b-tab title="Détail" active>
             <div>
             <h4 class="text-center">
-                <i class="pe-7s-culture icon-gradient bg-happy-itmeo"></i>
+                <img :src="`http://localhost:80/api/image/1/1/${ building._id }`" />
             </h4>
             <h5 class="text-center">
                 {{ building.name }}
@@ -57,6 +57,7 @@
 
 <script>
 import { Buildings } from "@/mixins/building"
+import { Images } from "@/mixins/image"
 
 const TABS = [
     {
@@ -72,10 +73,11 @@ const TABS = [
 export default {
     name: "BuildingCard",
     props: [ 'building' ],
-    mixins: [ Buildings ],
+    mixins: [ Buildings, Images ],
     data: () => ({
         tabs: TABS,
         currentTab: "building1",
+        image: undefined
     }),
     methods: {
         handleClick(newTab) {
@@ -87,7 +89,17 @@ export default {
                 return console.log(res.error);
             }
             return this.$emit('onDeletedBuilding', id);
-        }
+        },
+        async getImages (id) {
+            this.image = `<img :src="http://localhost:80/api/image/1/1/${ building._id } />`;
+        },
     }
 };
 </script>
+
+<style scoped>
+    img {
+        width: 100%;
+        height: auto;
+    }
+</style>
