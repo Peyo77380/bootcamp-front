@@ -86,11 +86,11 @@ export default {
         async handleDeleteBuilding(id) {
             const res = await this.deleteBuilding(id);
             if (res.error) {
-                return console.log(res.error);
+                return this.$sweetError('BD-152');
             }
             return this.$emit('onDeletedBuilding', id);
         },
-        async getImages (id) {
+        async getImages () {
             this.image = `<img :src="http://localhost:80/api/image/1/1/${ building._id } />`;
         },
     }
