@@ -37,6 +37,7 @@
                                 <b-form-input
                                     v-model="editItem.key"
                                     required
+                                    readonly
                                 ></b-form-input>
                             </b-form-group>
 
