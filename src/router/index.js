@@ -48,6 +48,7 @@ export default new Router({
         },
 
         {
+            
             path: "/configuration/faqs",
             name: "configuration - FAQs",
             component: () => import("@/apps/configuration/faqs")
