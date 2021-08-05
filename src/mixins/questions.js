@@ -1,10 +1,10 @@
-import {apiCRM} from "@/services/axios";
+import {apiCustomFields} from "@/services/axios";
 
-export const questions = {
+export const Questions = {
     methods: {
         async getAllQuestions() {
             try {
-                const response = await apiCRM.get('faq');
+                const response = await apiCustomFields.get('faq');
                 return response.data.datas
             } catch (error) {
                 throw new Error(error);         
@@ -12,7 +12,8 @@ export const questions = {
         },
         async deleteQuestion (id) {
             try {
-                const response = await apiCRM.delete(`question/${id}`);
+                const response = await apiCustomFields.delete(`faq/${id}`);
+                console.log("Deleted");
             } catch (error) {
                 return {
                     status: 0,
@@ -22,7 +23,7 @@ export const questions = {
         },
         async modifyQuestion(quest) {
             try {
-                const response = await apiCRM.put(`faq/${quest._id}`,quest);
+                const response = await apiCustomFields.put(`faq/${quest._id}`,quest);
             } catch (error) {
                 return {
                     status: 0,
@@ -32,7 +33,9 @@ export const questions = {
         },
         async addQuestion (attr) {
             try {
-                const response = await apiCRM.post(`faq/`, attr);
+                const response = await apiCustomFields.post(`faq/`, attr);
+                console.log("lixinadd question");
+                console.log(response);
             } catch (error) {
                 return {
                     status: 0,

@@ -16,6 +16,20 @@ export const Lists = {
                 };
             }
         },
+        async getAllByKey(key) {
+            try {
+                const response = await apiCustomFields.get(`list/key/1/fr_FR/${key}`);
+                return {
+                    status: 1,
+                    datas: response
+                };
+            } catch (error) {
+                return {
+                    status: 0,
+                    error
+                };
+            }
+        },
         async getListDetails(id) {
             try {
                 const response = await apiCustomFields.get(`list/${id}`);

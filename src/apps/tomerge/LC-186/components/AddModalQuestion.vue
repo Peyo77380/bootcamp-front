@@ -14,35 +14,46 @@
                     </v-card-title>
                     <v-container>
                         <b-form row wrap>
-                         <v-select
-                            v-model="newQuestion.category"
-                            :items="categories"
-                            item-text="label"
-                            item-value="label"
-                            persistent-hint
-                            return-object
-                            single-line
-                        >
-                        </v-select>
+                            <v-select
+                                v-model="newQuestion.category"
+                                :items="categories"
+                                item-text="text"
+                                item-value="_id"
+                                persistent-hint
+                                return-object
+                                single-line
+                            >
+                            </v-select>
 
                             <b-form-group
                                 id="input-group-1"
-                                label="Question :"
+                                label="Name :"
                                 label-for="input-1"
                             >
                                 <b-form-input
                                     id="input-1"
-                                    v-model="newQuestion.label"
+                                    v-model="newQuestion.name"
                                     required
                                 ></b-form-input>
                             </b-form-group>
                             <b-form-group
-                                id="input-group-1"
+                                id="input-group-2"
+                                label="Question :"
+                                label-for="input-2"
+                            >
+                                <b-form-input
+                                    id="input-2"
+                                    v-model="newQuestion.question"
+                                    required
+                                ></b-form-input>
+                            </b-form-group>
+                            <b-form-group
+                                id="input-group-3"
                                 label="Réponse :"
-                                label-for="input-1"
+                                label-for="input-3"
                             >
                                 <b-form-textarea
-                                    id="input-1"
+                                    id="input-3"
                                     v-model="newQuestion.answer"
                                     required
                                     rows="5"
@@ -75,20 +86,17 @@
 </template>
 
 <script>
-import { categories } from "@/utils/globalCategories";
 export default {
     name: "new-question-modal",
     components: {},
     data() {
         return {
             newQuestion: {
-                answer: "Réponse",
-                label: "Question ?",
-            category : "Au sujet de La Colloc"
-                
-            },
-            categories:categories
-            
+                name: "",
+                answer: "",
+                question: "",
+                category: ""
+            }
         };
     },
     props: {
@@ -101,7 +109,9 @@ export default {
         closeAddModalQuestion: {
             type: Function
         },
-        
+        categories: {
+            type: Array
+        }
     },
     methods: {
         async saveModification() {
@@ -110,6 +120,9 @@ export default {
                     { wl: 1, lang: "fr_FR" },
                     this.newQuestion
                 );
+                console.log(newQuestWlAdded.category._id);
+                newQuestWlAdded.category = newQuestWlAdded.category._id;
+
                 await this.handleAddQuestion(newQuestWlAdded);
                 this.closeAddModalQuestion();
                 this.newQuestion = {
