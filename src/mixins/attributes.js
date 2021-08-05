@@ -5,7 +5,6 @@ export const attributes = {
         async getAttributes() {
             try {
                 const response = await apiCustomFields.get('attribute/1/fr_FR');
-                console.log("🚀 ~ file: attributes.js ~ line 8 ~ getAttributes ~ response", response)
                 return response.data.datas
             } catch (error) {
                 throw new Error(error);         
@@ -13,7 +12,7 @@ export const attributes = {
         },
         async deleteAttribute (id) {
             try {
-                const response = await apiCustomFields.delete(`attribute/${id}`);
+                await apiCustomFields.delete(`attribute/${id}`);
             } catch (error) {
                 return {
                     status: 0,
@@ -23,7 +22,7 @@ export const attributes = {
         },
         async modifyAttribute(attr) {
             try {
-                const response = await apiCustomFields.put(`attribute/${attr._id}`,attr);
+                await apiCustomFields.put(`attribute/${attr._id}`,attr);
             } catch (error) {
                 return {
                     status: 0,
@@ -33,8 +32,7 @@ export const attributes = {
         },
         async addAttribute (attr) {
             try {
-                const response = await apiCustomFields.post(`attribute/`, attr);
-                console.log("🚀 ~ file: attributes.js ~ line 37 ~ addAttribute ~ response", response)
+                await apiCustomFields.post(`attribute/`, attr);
             } catch (error) {
                 return {
                     status: 0,

@@ -46,6 +46,12 @@ export default new Router({
             name: "configuration - Payments",
             component: () => import("@/apps/configuration/payments")
         },
+
+        {
+            path: "/configuration/attributes",
+            name: "configuration - Attributes",
+            component: () => import("@/apps/configuration/attributes")
+        },
         /**
          * ??????????????????
          * WHY ON A MASTER BRANCH???????!!!!!!!!!!!
@@ -70,6 +76,7 @@ export default new Router({
             name: "ref-LC-27",
             component: () => import("@/apps/tomerge/LC-27/index.vue")
         },
+        
         /**
          * To finish
          */
@@ -115,16 +122,7 @@ export default new Router({
             component: () =>
                 import("@/apps/tomerge/LC-144/Buildings/single-building")
         },
-        /**
-         * Sweet alert not working
-         * Mixin not working
-         *
-         */
-        {
-            path: "/tomerge/LC-168",
-            name: "attributs",
-            component: () => import("@/apps/tomerge/LC-168")
-        },
+        
 
         // LC-142: Need axios + behaviors + dummy datas need to be deleted and replaced by real datas on most pages
         {

@@ -144,7 +144,7 @@ export default {
                 await this.handleUpdate(this.editItem);
                 this.closeEditModal();
             } catch (error) {
-                console.error(error);
+                this.sweetError('Update error - 21')
             }
         }
     }
