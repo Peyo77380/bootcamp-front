@@ -68,41 +68,6 @@
                                         v-bind:disabled="editionMode === false"
                                     ></v-text-field>
                                 </div>
-                                Etages
-                                <div class="input-group">
-                                    <v-text-field
-                                        v-model="building.floors.name"
-                                        label="Nom de l'étage"
-                                        v-bind:disabled="editionMode === false"
-                                    ></v-text-field>
-                                    <v-text-field
-                                        v-model="building.floors.surface"
-                                        label="Surface de l'étage"
-                                        v-bind:disabled="editionMode === false"
-                                    ></v-text-field>
-                                    <v-checkbox
-                                        label="Activé ?"
-                                            v-bind:disabled="editionMode === false"
-                                        v-model="building.floors.state"
-                                    ></v-checkbox>
-                                </div>
-                                <div class="input-group">
-                                    <v-text-field
-                                        v-model="building.floors.name"
-                                        label="Nom de l'étage"
-                                        v-bind:disabled="editionMode === false"
-                                    ></v-text-field>
-                                    <v-text-field
-                                        v-model="building.floors.surface"
-                                        label="Surface de l'étage"
-                                        v-bind:disabled="editionMode === false"
-                                    ></v-text-field>
-                                    <v-checkbox
-                                        label="Activé ?"
-                                            v-bind:disabled="editionMode === false"
-                                        v-model="building.floors.state"
-                                    ></v-checkbox>
-                                </div>
                             </div>
                         </v-card-text>
                     </v-card>
