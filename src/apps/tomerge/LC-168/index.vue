@@ -89,16 +89,16 @@
             </div>
             </div>
             <add-modal
-            :closeAddModal="closeModalNew"
-            :isAddMode="isAddMode"
-            :handleAdd="handleAdd"
+                :closeAddModal="closeModalNew"
+                :isAddMode="isAddMode"
+                :handleAdd="handleAdd"
             ></add-modal>
             <edit-modal
-            :closeEditModal="closeModalEdit"
-            :editedItem="keyValueEdit"
-            :isEditMode="isEditMode"
-            :handleUpdate="handleUpdate"
-            :key="componentKey"
+                @closeEditModal="closeModalEdit()"
+                @editedItem="keyValueEdit()"
+                @isEditMode="isEditMode()"
+                @handleUpdate="handleUpdate()"
+                @key="componentKey()"
             ></edit-modal>
         </div>
 
@@ -156,55 +156,55 @@ import { attributes } from "@/mixins/attributes";
             return "";
             },
             closeModalNew() {
-            this.isAddMode = false;
+                this.isAddMode = false;
             },
             closeModalEdit() {
-            this.isEditMode = false;
+                this.isEditMode = false;
             },
             showNewAttributModal() {
-            this.isAddMode = true;
+                this.isAddMode = true;
             },
             showEditModal(item) {
-            this.isEditMode = true;
-            this.keyValueEdit = item;
-            this.forceRerender();
+                this.isEditMode = true;
+                this.keyValueEdit = item;
+                this.forceRerender();
             },
             async remove(Id) {
             // sweet alert sur la suppression
-            let title = "Confirmer la suppression de cet item";
-            if (await this.$sweetConfirmation({ title })) {
-                try {
-                const res = await this.deleteAttribute(Id);
-                this.loadAttributes();
-                this.$sweetNotif("Item supprimée");
-                } catch (error) {
-                console.error(error);
+                let title = "Confirmer la suppression de cet item";
+                if (await this.$sweetConfirmation({ title })) {
+                    try {
+                    const res = await this.deleteAttribute(Id);
+                    this.loadAttributes();
+                    this.$sweetNotif("Item supprimée");
+                    } catch (error) {
+                    console.error(error);
+                    }
                 }
-            }
             },
             async loadAttributes() {
-            try {
-                const res = await this.getAttributes();
-                this.items = res;
-            } catch (error) {
-                console.error(error);
-            }
+                try {
+                    const res = await this.getAttributes();
+                    this.items = res;
+                } catch (error) {
+                    console.error(error);
+                }
             },
             async handleUpdate(attr) {
-            try {
-                const res = await this.modifyAttribute(attr);
-                this.loadAttributes();
-            } catch (error) {
-                console.error(error);
-            }
+                try {
+                    const res = await this.modifyAttribute(attr);
+                    this.loadAttributes();
+                } catch (error) {
+                    console.error(error);
+                }
             },
             async handleAdd(attr) {
-            try {
-                const res = await this.addAttribute(attr);
-                this.loadAttributes();
-            } catch (error) {
-                console.error(error);
-            }
+                try {
+                    const res = await this.addAttribute(attr);
+                    this.loadAttributes();
+                } catch (error) {
+                    this.$sweetError('Erreur d\'enregistrement - AA564')
+                }
             },
             forceRerender() {
             this.componentKey += 1;
