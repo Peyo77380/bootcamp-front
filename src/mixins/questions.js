@@ -13,7 +13,10 @@ export const Questions = {
         async deleteQuestion (id) {
             try {
                 const response = await apiCustomFields.delete(`faq/${id}`);
-                console.log("Deleted");
+                return {
+                    status: 1,
+                    datas: response
+                };
             } catch (error) {
                 return {
                     status: 0,
@@ -24,6 +27,10 @@ export const Questions = {
         async modifyQuestion(quest) {
             try {
                 const response = await apiCustomFields.put(`faq/${quest._id}`,quest);
+                return {
+                    status: 1,
+                    datas: response
+                };
             } catch (error) {
                 return {
                     status: 0,
@@ -34,8 +41,10 @@ export const Questions = {
         async addQuestion (attr) {
             try {
                 const response = await apiCustomFields.post(`faq/`, attr);
-                console.log("lixinadd question");
-                console.log(response);
+                return {
+                    status: 1,
+                    datas: response
+                };
             } catch (error) {
                 return {
                     status: 0,

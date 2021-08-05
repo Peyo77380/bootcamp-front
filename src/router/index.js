@@ -46,6 +46,12 @@ export default new Router({
             name: "configuration - Payments",
             component: () => import("@/apps/configuration/payments")
         },
+
+        {
+            path: "/configuration/faqs",
+            name: "configuration - FAQs",
+            component: () => import("@/apps/configuration/faqs")
+        },
         /**
          * ??????????????????
          * WHY ON A MASTER BRANCH???????!!!!!!!!!!!
@@ -155,11 +161,6 @@ export default new Router({
          * update and add don't working
          *
          */
-        {
-            path: "/LC-186",
-            name: "faq",
-            component: () => import("@/apps/tomerge/LC-186")
-        },
         // Dashboards
         {
             path: "/LC-31-RMC",

@@ -113,6 +113,10 @@ export default {
                         {
                             href: "/configuration/payments",
                             title: "Payments"
+                        },
+                        {
+                            href: "/configuration/faqs",
+                            title: "FAQs"
                         }
                     ]
                 }

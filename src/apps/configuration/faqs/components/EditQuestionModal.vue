@@ -83,9 +83,6 @@ export default {
         faq: {
             type: Object
         },
-        editedCategory: {
-            type: Object
-        },
         categories: {
             type: Array
         }
@@ -101,11 +98,11 @@ export default {
         async saveModification() {
             await this.update();
             this.close2();
-            this.$emit("saveModification", this.faq);
+            var title = "Modification de la question réussie !";
+            this.$sweetNotif(title);
         },
 
         async update() {
-            // APPEL API => UPDATE
             try {
                 const payload = {
                     _id: this.faq._id,
@@ -114,10 +111,9 @@ export default {
                 };
                 await this.modifyQuestion(payload);
                 this.close2();
-                // eslint-disable-next-line no-empty
-            } catch (error) {}
-            //this.close2();
-            // this.$emit("saveModification", this.items);
+            } catch (error) {
+                console.log(error);
+            }
         }
     }
 };

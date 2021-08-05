@@ -38,21 +38,6 @@
                     class="title_font"
                 >
                     {{ category.text }}
-                    <b-button
-                        style="margin-left: 20px"
-                        class="mb-2 mr-2 btn-pill btn-shadow"
-                        variant="primary"
-                        id="popover1"
-                        @click="showEditCategory(category)"
-                    >
-                        <i class="lnr-pencil"></i>
-                    </b-button>
-                    <b-popover
-                        :target="'popover1'"
-                        placement="bottomleft"
-                        triggers="hover focus"
-                    >
-                    </b-popover>
                 </div>
 
                 <v-expansion-panel-content
@@ -123,13 +108,6 @@
                 :dialog2="dialog2"
                 :categories="categories"
             ></edit-modal-question>
-            <edit-category-modal
-                @saveModification="modificationCategory"
-                @close="closeModalEditCategory"
-                :updateCategory="handleModifyCategory"
-                :dialog="dialog"
-                :categories="CategoryEdit"
-            ></edit-category-modal>
             <add-modal-question
                 :closeAddModalQuestion="closeModalNewQuestion"
                 :isAddModeQuestion="isAddQuestion"
@@ -143,7 +121,6 @@
 <script>
 import { Questions } from "@/mixins/questions";
 import { Lists } from "@/mixins/list";
-import EditCategoryModal from "./EditCategoryModal.vue";
 import EditModalQuestion from "./EditQuestionModal.vue";
 import AddModalQuestion from "./AddModalQuestion.vue";
 import { FontAwesomeIcon } from "@fortawesome/vue-fontawesome";
@@ -152,8 +129,7 @@ export default {
     components: {
         "font-awesome-icon": FontAwesomeIcon,
         EditModalQuestion,
-        AddModalQuestion,
-        EditCategoryModal
+        AddModalQuestion
     },
     mixins: [Questions, Lists],
     async mounted() {
@@ -163,12 +139,9 @@ export default {
 
     data: () => ({
         isAddQuestion: false,
-        isAddCategory: false,
         dialog2: false,
         QuestionEdit: {},
         dialog: false,
-
-        CategoryEdit: {},
         heading: "FAQ (Foire Aux Questions)",
         subheading: "Des réponses à vos questions",
         icon: "pe-7s-way icon-gradient bg-night-fade",
@@ -182,8 +155,7 @@ export default {
             { classname: "#e9c20c" }
         ],
 
-        questions: [],
-        catListId: ""
+        questions: []
     }),
     methods: {
         getClassName(index) {
@@ -196,7 +168,6 @@ export default {
         async loadQuestions() {
             try {
                 this.questions = await this.getAllQuestions();
-                console.log(this.questions);
             } catch (error) {
                 this.$sweetError("GPA-98");
             }
@@ -204,7 +175,6 @@ export default {
         async loadCategories() {
             try {
                 const categoriesLoaded = await this.getAllByKey("FAQ_LIST");
-                this.catListId = categoriesLoaded.datas.data.datas[0]._id;
                 this.categories = categoriesLoaded.datas.data.datas[0].datas;
             } catch (error) {
                 this.$sweetError("GPA-98");
@@ -212,10 +182,9 @@ export default {
         },
         async remove(Id) {
             let title = "Confirmer la suppression de l'activité";
-            console.log(Id);
             if (await this.$sweetConfirmation({ title })) {
                 try {
-                    this.deleteQuestion(Id);
+                    await this.deleteQuestion(Id);
                     await this.loadQuestions();
                     this.$sweetNotif("Question supprimée");
                 } catch (error) {
@@ -226,21 +195,12 @@ export default {
         closeModalEdit() {
             this.dialog2 = false;
         },
-        closeModalEditCategory() {
-            this.dialog = false;
-        },
         async handleAddQuestion(question) {
             try {
                 await this.addQuestion(question);
+                var title = "Ajout de la question réussie !";
+                this.$sweetNotif(title);
                 this.loadQuestions();
-            } catch (error) {
-                console.error(error);
-            }
-        },
-        async handleModifyCategory(category) {
-            try {
-                await this.updateDetailFromList(this.catListId, category);
-                this.loadCategories();
             } catch (error) {
                 console.error(error);
             }
@@ -249,33 +209,12 @@ export default {
         closeModalNewQuestion() {
             this.isAddQuestion = false;
         },
-        closeModalNewCategory() {
-            this.isAddCategory = false;
-        },
         showNewQuestionModal() {
             this.isAddQuestion = true;
         },
-
-        showNewCategoryModal() {
-            this.isAddCategory = true;
-        },
-
         showEdit(question) {
             this.dialog2 = true;
             this.QuestionEdit = question;
-        },
-        showEditCategory(category) {
-            this.dialog = true;
-            this.CategoryEdit = category;
-        },
-        //TODO après merge de flo, cabler la modification des questions
-        modificationQuestion(updatedQuestion) {
-            var title = "Modification de la question réussie !";
-            this.$sweetNotif(title);
-        },
-        modificationCategory() {
-            var title = "Modification de la catégorie réussie !";
-            this.$sweetNotif(title);
         }
     }
 };
