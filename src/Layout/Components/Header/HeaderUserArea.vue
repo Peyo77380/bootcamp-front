@@ -110,7 +110,7 @@
             <div class="drawer-content-wrapper">
                 <VuePerfectScrollbar class="scrollbar-container" v-once>
                     <div class="drawer-section p-0">
-                        <tasks-list/>
+                        <!-- <tasks-list/> -->
                     </div>
                 </VuePerfectScrollbar>
             </div>
@@ -122,7 +122,7 @@
     import VuePerfectScrollbar from 'vue-perfect-scrollbar'
     import VueCircle from 'vue2-circle-progress'
     import Trend from 'vuetrend';
-    import TasksList from '@/apps/LC-172/TasksList';
+    // import TasksList from '@/apps/tomerge/LC-172/TasksList';
     import { Tasks } from "@/mixins/tasks";
 
     import {library} from '@fortawesome/fontawesome-svg-core'
@@ -159,7 +159,7 @@
             'font-awesome-icon': FontAwesomeIcon,
             VueCircle,
             'trend': Trend,
-            TasksList,
+            // TasksList,
         },
         data: () => ({
             fill1: {gradient: ["#00b09b", "#96c93d"]},
@@ -169,9 +169,9 @@
             CountTasks: "",
         }),
         mixins: [Tasks],
-            async mounted() {
-                await this.countActives()
-            },
+            // async mounted() {
+            //     await this.countActives()
+            // },
 
         methods: {
             async countActives() {
