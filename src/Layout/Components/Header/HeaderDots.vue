@@ -1,6 +1,5 @@
 <template>
     <div class="header-dots">
-
         <b-dropdown toggle-class="p-0 mr-2" menu-class="dropdown-menu-xl" variant="link" no-caret right>
             <span slot="button-content">
                 <div class="icon-wrapper icon-wrapper-alt rounded-circle">
@@ -51,7 +50,7 @@
                 <div class="icon-wrapper icon-wrapper-alt rounded-circle">
                     <div class="icon-wrapper-bg bg-danger"></div>
                     <i class="lnr-bullhorn text-danger"></i>
-                    <div class="badge badge-dot badge-dot-sm badge-danger">Notifications</div>
+                    <div class="badge badge-dot badge-dot-lg badge-danger">23</div>
                 </div>
             </span>
             <div class="dropdown-menu-header mb-0">

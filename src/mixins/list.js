@@ -36,7 +36,7 @@ export const Lists = {
                 return {
                     status: 1,
                     datas: response
-                };
+                }
             } catch (error) {
                 return {
                     status: 0,
