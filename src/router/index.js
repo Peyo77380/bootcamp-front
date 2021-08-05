@@ -160,6 +160,19 @@ export default new Router({
             name: "faq",
             component: () => import("@/apps/tomerge/LC-186")
         },
+
+        
+        /**
+         * WARNING
+         * ERROR route LC-172 
+         * axios ?
+         * behavior don't working
+         *
+         */
+
+
+
+
         // Dashboards
         {
             path: "/LC-31-RMC",

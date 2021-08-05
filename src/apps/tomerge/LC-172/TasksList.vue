@@ -141,7 +141,7 @@
 </template>
     
 <script>
-import AddTasks from "@/apps/LC-172/components/AddTasks";
+import AddTasks from "./components/AddTasks.vue";
 import { Tasks } from "@/mixins/tasks";
 import { Lists } from "@/mixins/list";
 export default {
