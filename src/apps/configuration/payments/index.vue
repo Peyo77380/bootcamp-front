@@ -4,7 +4,6 @@
             :heading="heading"
             :subheading="subheading"
             :icon="icon"
-            :items="items"
         ></page-title>
 
         <Table />
