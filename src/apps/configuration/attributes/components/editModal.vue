@@ -23,6 +23,7 @@
                                 return-object
                                 single-line
                                 outlined
+                                readonly
                             >
                             </v-select>
 
@@ -36,6 +37,7 @@
                                 <b-form-input
                                     v-model="editItem.key"
                                     required
+                                    readonly
                                 ></b-form-input>
                             </b-form-group>
 
@@ -142,7 +144,7 @@ export default {
                 await this.handleUpdate(this.editItem);
                 this.closeEditModal();
             } catch (error) {
-                console.error(error);
+                this.sweetError('Update error - 21')
             }
         }
     }

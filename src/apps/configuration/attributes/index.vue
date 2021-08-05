@@ -14,8 +14,8 @@
                 >
                 <thead>
                     <tr>
-                    <th class="text-center">Nom</th>
                     <th class="text-center">Identifiant</th>
+                    <th class="text-center">Nom</th>
                     <th class="text-center">Type</th>
                     <th class="text-center">Options</th>
                     <th class="text-center">Actions</th>
@@ -23,8 +23,8 @@
                 </thead>
                 <tbody>
                     <tr v-for="item in items" :key="item._id">
-                    <td class="text-center">{{ item.name }}</td>
-                    <td class="text-center">{{ item.key }}</td>
+                    <td class="text-center">{{ item.key.toUpperCase() }}</td>
+                    <td class="text-center">{{ item.name.charAt(0).toUpperCase() + item.name.slice(1) }}</td>
 
                     <td class="text-center">
                         <v-chip outline :color="getClassType(item.typeData)">{{
@@ -89,27 +89,24 @@
             </div>
             </div>
             <add-modal
-            :closeAddModal="closeModalNew"
-            :isAddMode="isAddMode"
-            :handleAdd="handleAdd"
+                :closeAddModal="closeModalNew"
+                :isAddMode="isAddMode"
+                :handleAdd="handleAdd"
             ></add-modal>
             <edit-modal
-            :closeEditModal="closeModalEdit"
-            :editedItem="keyValueEdit"
-            :isEditMode="isEditMode"
-            :handleUpdate="handleUpdate"
-            :key="componentKey"
+                :closeEditModal="closeModalEdit"
+                :editedItem="keyValueEdit"
+                :isEditMode="isEditMode"
+                :handleUpdate="handleUpdate"
+                :key="componentKey"
             ></edit-modal>
         </div>
-
-        <pagination></pagination>
     </div>
 </template>
 
 
 <script>
 
-import pagination from './components/pagination.vue'
 import PageTitle from "./components/PageTitle2.vue"
 import { FontAwesomeIcon } from "@fortawesome/vue-fontawesome";
 import { typesData } from "@/utils/globalAttribut";
@@ -123,7 +120,6 @@ import { attributes } from "@/mixins/attributes";
 
         components:{
             PageTitle, 
-            pagination,
             "font-awesome-icon": FontAwesomeIcon,
             AddModal,
             EditModal,  
@@ -138,7 +134,7 @@ import { attributes } from "@/mixins/attributes";
                 keyValueEdit: {},
                 componentKey: 0,
                 heading: "Attributs",
-            icon: 'pe-7s-keypad icon-gradient bg-night-fade',
+                icon: 'pe-7s-keypad icon-gradient bg-night-fade',
             }
             
         },
@@ -156,58 +152,60 @@ import { attributes } from "@/mixins/attributes";
             return "";
             },
             closeModalNew() {
-            this.isAddMode = false;
+                this.isAddMode = false;
             },
             closeModalEdit() {
-            this.isEditMode = false;
+                this.isEditMode = false;
             },
             showNewAttributModal() {
-            this.isAddMode = true;
+                this.isAddMode = true;
             },
             showEditModal(item) {
-            this.isEditMode = true;
-            this.keyValueEdit = item;
-            this.forceRerender();
+                this.isEditMode = true;
+                this.keyValueEdit = item;
+                this.forceRerender();
             },
             async remove(Id) {
             // sweet alert sur la suppression
-            let title = "Confirmer la suppression de cet item";
-            if (await this.$sweetConfirmation({ title })) {
-                try {
-                const res = await this.deleteAttribute(Id);
-                this.loadAttributes();
-                this.$sweetNotif("Item supprimée");
-                } catch (error) {
-                console.error(error);
+                let title = "Confirmer la suppression de cet item";
+                if (await this.$sweetConfirmation({ title })) {
+                    try {
+                        const res = await this.deleteAttribute(Id);
+                        this.loadAttributes();
+                        this.$sweetNotif("Item supprimée");
+                    } catch (error) {
+                        this.$sweetError('Erreur de suppression - AD215')
+                    }
                 }
-            }
             },
             async loadAttributes() {
-            try {
-                const res = await this.getAttributes();
-                this.items = res;
-            } catch (error) {
-                console.error(error);
-            }
+                try {
+                    const res = await this.getAttributes();
+                    this.items = res;
+                } catch (error) {
+                    this.$sweetError('Erreur de chargement - AL214');
+                }
             },
             async handleUpdate(attr) {
-            try {
-                const res = await this.modifyAttribute(attr);
-                this.loadAttributes();
-            } catch (error) {
-                console.error(error);
-            }
+                           
+                try {
+                    const res = await this.modifyAttribute(attr);
+                    this.loadAttributes();
+                } catch (error) {
+                    this.$sweetError('Erreur de mofication - AU12');
+                }
             },
             async handleAdd(attr) {
-            try {
-                const res = await this.addAttribute(attr);
-                this.loadAttributes();
-            } catch (error) {
-                console.error(error);
-            }
+                try {
+                    const res = await this.addAttribute(attr);
+                    this.$sweetNotif('Item enregistré');
+                    this.loadAttributes();
+                } catch (error) {
+                    this.$sweetError('Erreur d\'enregistrement - AA564')
+                }
             },
             forceRerender() {
-            this.componentKey += 1;
+                this.componentKey += 1;
             },
         },
     }

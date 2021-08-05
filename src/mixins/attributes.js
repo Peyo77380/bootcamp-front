@@ -12,7 +12,7 @@ export const attributes = {
         },
         async deleteAttribute (id) {
             try {
-                const response = await apiCustomFields.delete(`attribute/${id}`);
+                await apiCustomFields.delete(`attribute/${id}`);
             } catch (error) {
                 return {
                     status: 0,
@@ -22,7 +22,7 @@ export const attributes = {
         },
         async modifyAttribute(attr) {
             try {
-                const response = await apiCustomFields.put(`attribute/${attr._id}`,attr);
+                await apiCustomFields.put(`attribute/${attr._id}`,attr);
             } catch (error) {
                 return {
                     status: 0,
@@ -32,7 +32,7 @@ export const attributes = {
         },
         async addAttribute (attr) {
             try {
-                const response = await apiCustomFields.post(`attribute/`, attr);
+                await apiCustomFields.post(`attribute/`, attr);
             } catch (error) {
                 return {
                     status: 0,

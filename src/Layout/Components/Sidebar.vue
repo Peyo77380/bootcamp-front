@@ -41,39 +41,6 @@ export default {
         return {
             isOpen: false,
             sidebarActive: false,
-
-            menu: [
-                {
-                    header: true,
-                    title: "Menu"
-                },
-                {
-                    title: "Buildings",
-                    icon: "pe-7s-home",
-                    child: [
-                        {
-                            href: "/buildings",
-                            title: "Afficher tous les bâtiments"
-                        },
-                        {
-                            href: "/buildings/add",
-                            title: "Ajouter un bâtiment"
-                        }
-                    ]
-                },
-                {
-                    title: "Espace de coworking : LC-142",
-                    icon: "pe-7s-note2",
-                    child: [
-                        {
-                            href: "/room",
-                            title: "Rooms List"
-                        }
-                    ]
-                }
-            ],
-            collapsed: true,
-
             menu: [
                 {
                     header: true,
@@ -117,6 +84,10 @@ export default {
                         {
                             href: "/configuration/faqs",
                             title: "FAQs"
+                        },
+                        {
+                            href: "/configuration/attributes",
+                            title: "Attributes"
                         }
                     ]
                 }
