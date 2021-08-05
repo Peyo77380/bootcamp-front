@@ -187,7 +187,7 @@ import { attributes } from "@/mixins/attributes";
                     const res = await this.getAttributes();
                     this.items = res;
                 } catch (error) {
-                    console.error(error);
+                    this.$sweetError('Erreur de chargement - AL214');
                 }
             },
             async handleUpdate(attr) {
@@ -201,6 +201,7 @@ import { attributes } from "@/mixins/attributes";
             async handleAdd(attr) {
                 try {
                     const res = await this.addAttribute(attr);
+                    this.$sweetNotif('Item enregistré');
                     this.loadAttributes();
                 } catch (error) {
                     this.$sweetError('Erreur d\'enregistrement - AA564')
