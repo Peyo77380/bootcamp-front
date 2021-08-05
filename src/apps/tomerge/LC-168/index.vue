@@ -14,8 +14,8 @@
                 >
                 <thead>
                     <tr>
-                    <th class="text-center">Nom</th>
                     <th class="text-center">Identifiant</th>
+                    <th class="text-center">Nom</th>
                     <th class="text-center">Type</th>
                     <th class="text-center">Options</th>
                     <th class="text-center">Actions</th>
@@ -23,8 +23,8 @@
                 </thead>
                 <tbody>
                     <tr v-for="item in items" :key="item._id">
-                    <td class="text-center">{{ item.name }}</td>
-                    <td class="text-center">{{ item.key }}</td>
+                    <td class="text-center">{{ item.key.toUpperCase() }}</td>
+                    <td class="text-center">{{ item.name.charAt(0).toUpperCase() + item.name.slice(1) }}</td>
 
                     <td class="text-center">
                         <v-chip outline :color="getClassType(item.typeData)">{{
@@ -94,22 +94,19 @@
                 :handleAdd="handleAdd"
             ></add-modal>
             <edit-modal
-                @closeEditModal="closeModalEdit()"
-                @editedItem="keyValueEdit()"
-                @isEditMode="isEditMode()"
-                @handleUpdate="handleUpdate()"
-                @key="componentKey()"
+                :closeEditModal="closeModalEdit"
+                :editedItem="keyValueEdit"
+                :isEditMode="isEditMode"
+                :handleUpdate="handleUpdate"
+                :key="componentKey"
             ></edit-modal>
         </div>
-
-        <pagination></pagination>
     </div>
 </template>
 
 
 <script>
 
-import pagination from './components/pagination.vue'
 import PageTitle from "./components/PageTitle2.vue"
 import { FontAwesomeIcon } from "@fortawesome/vue-fontawesome";
 import { typesData } from "@/utils/globalAttribut";
@@ -123,7 +120,6 @@ import { attributes } from "@/mixins/attributes";
 
         components:{
             PageTitle, 
-            pagination,
             "font-awesome-icon": FontAwesomeIcon,
             AddModal,
             EditModal,  
@@ -138,7 +134,7 @@ import { attributes } from "@/mixins/attributes";
                 keyValueEdit: {},
                 componentKey: 0,
                 heading: "Attributs",
-            icon: 'pe-7s-keypad icon-gradient bg-night-fade',
+                icon: 'pe-7s-keypad icon-gradient bg-night-fade',
             }
             
         },
@@ -174,11 +170,11 @@ import { attributes } from "@/mixins/attributes";
                 let title = "Confirmer la suppression de cet item";
                 if (await this.$sweetConfirmation({ title })) {
                     try {
-                    const res = await this.deleteAttribute(Id);
-                    this.loadAttributes();
-                    this.$sweetNotif("Item supprimée");
+                        const res = await this.deleteAttribute(Id);
+                        this.loadAttributes();
+                        this.$sweetNotif("Item supprimée");
                     } catch (error) {
-                    console.error(error);
+                        this.$sweetError('Erreur de suppression - AD215')
                     }
                 }
             },
@@ -191,11 +187,12 @@ import { attributes } from "@/mixins/attributes";
                 }
             },
             async handleUpdate(attr) {
+                           
                 try {
                     const res = await this.modifyAttribute(attr);
                     this.loadAttributes();
                 } catch (error) {
-                    console.error(error);
+                    this.$sweetError('Erreur de mofication - AU12');
                 }
             },
             async handleAdd(attr) {
@@ -208,7 +205,7 @@ import { attributes } from "@/mixins/attributes";
                 }
             },
             forceRerender() {
-            this.componentKey += 1;
+                this.componentKey += 1;
             },
         },
     }

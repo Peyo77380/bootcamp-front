@@ -23,6 +23,7 @@
                                 return-object
                                 single-line
                                 outlined
+                                readonly
                             >
                             </v-select>
 
