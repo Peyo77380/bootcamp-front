@@ -71,7 +71,7 @@
 </template>
 
 <script>
-import Card from '@/apps/dash-exemple/LC-173-JC/components/Card-tradewind.vue';
+import Card from '@/apps/tomerge/LC-173-JC/components/Card-tradewind.vue';
 
 export default {
     name      : 'WallCard',

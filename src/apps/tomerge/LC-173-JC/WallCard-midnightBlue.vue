@@ -71,7 +71,7 @@
 </template>
 
 <script>
-import Card from '@/apps/dash-exemple/LC-173-JC/components/Card-midnightBlue';
+import Card from '@/apps/tomerge/LC-173-JC/components/Card-midnightBlue';
 
 export default {
     name      : 'WallCard',

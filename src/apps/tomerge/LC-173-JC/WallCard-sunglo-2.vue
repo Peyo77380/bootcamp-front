@@ -71,7 +71,7 @@
 </template>
 
 <script>
-import Card from '@/apps/dash-exemple/LC-173-JC/components/Card-sunglo-2.vue';
+import Card from '@/apps/tomerge/LC-173-JC/components/Card-sunglo-2.vue';
 
 export default {
     name      : 'WallCard',
