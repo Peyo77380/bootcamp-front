@@ -196,7 +196,7 @@ export default new Router({
             name: "wallCardMidnightBlue",
             component: () =>
                 import("@/apps/tomerge/LC-173-JC/WallCard-midnightBlue")
-        }
+        },
         // {
         //     name: 'faq',
         //     path: '/LC-186',
@@ -208,5 +208,21 @@ export default new Router({
         //     name: "LC-31-RMC",
         //     component: () => import("@/apps/LC-31-RMC/index.vue")
         // },
+     
+// LC-180: Need axios + behaviors + dummy datas need to be deleted and replaced by real datas on most pages
+
+        {
+            path: "/LC-180",
+            name: "ProductServiceList",
+            component: () => import("@/apps/tomerge/LC-180/index.vue")
+        },
+        {
+            path: "/LC-180/:id",
+            name: "EditProductService",
+            props: true,
+            component: () => import('@/apps/tomerge/LC-180/EditProductService'),
+        },
+
+
     ]
 });
