@@ -27,6 +27,8 @@
                         <v-text-field
                             v-model="formItem.name"
                             label="Nom"
+                            :rules="nameRules"
+                            required
                         ></v-text-field>
 
                         <v-text-field
@@ -125,17 +127,20 @@
                     </v-layout>
                     <v-layout>
                         <v-text-field
-                            v-model="prices.amounts.public"
+                            type="number"
+                            v-model.number="prices.amounts.public"
                             label="Prix de vente"
                         ></v-text-field>
 
                         <v-text-field
-                            v-model="prices.amounts.member"
+                            type="number"
+                            v-model.number="prices.amounts.member"
                             label="Prix membres"
                         ></v-text-field>
 
                         <v-text-field
-                            v-model="prices.amounts.co"
+                            type="number"
+                            v-model.number="prices.amounts.co"
                             label="Prix co"
                         ></v-text-field>
                         <v-menu
@@ -305,6 +310,12 @@ export default {
             heading: "LaColloc - Produits/Services",
             subheading: "Modifier le produit/service",
             icon: "pe-7s-news-paper icon-gradient bg-night-fade",
+            nameRules: [
+                v => !!v || "Le nom est requis",
+                v =>
+                    (v && v.length <= 15) ||
+                    "Name must be less than 10 characters"
+            ],
             selectedCategories: [],
             selectedType: "",
             selectedCategory: "",
