@@ -1,18 +1,33 @@
 import axios from "axios";
 
-    // For common config
-    axios.defaults.headers.post["Content-Type"] = "application/json";
+const apiCustomFields = axios.create({
+    baseURL: "http://127.0.0.1/api/",
+    timeout: 10000,
+    withCreditentials: false,
+    headers: {
+        "Access-Control-Allow-Origin": "*",
+        "Access-Control-Allow-Methods": "GET,PUT,POST,DELETE,PATCH,OPTIONS"
+    }
+});
 
-    const api = axios.create({
-        baseURL: 'http://localhost/api/'
-    });
+const apiRoomServices = axios.create({
+    baseURL: "http://127.0.0.1:8000/api/v1/",
+    timeout: 3000,
+    withCreditentials: false,
+    headers: {
+        "Access-Control-Allow-Origin": "*",
+        "Access-Control-Allow-Methods": "GET,PUT,POST,DELETE,PATCH,OPTIONS"
+    }
+});
 
-    const api_ms_room = axios.create({
-        baseURL: 'http://localhost:8000/api/v1/'
-    });
+const apiCRM = axios.create({
+    baseURL: "http://127.0.0.1:8001/api/v1/",
+    timeout: 10000,
+    withCreditentials: false,
+    headers: {
+        "Access-Control-Allow-Origin": "*",
+        "Access-Control-Allow-Methods": "GET,PUT,POST,DELETE,PATCH,OPTIONS"
+    }
+});
 
-
-    export {
-      api,
-      api_ms_room
-    };
+export { apiCustomFields, apiRoomServices, apiCRM };

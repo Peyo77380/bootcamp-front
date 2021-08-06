@@ -24,7 +24,6 @@ export const Images = {
                 ...data,
                 relatedEntityId
             })); 
-            console.log("storeIm")
             try {
                 const response = await api.post(`image`, formData);
                 return {

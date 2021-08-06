@@ -1,5 +1,11 @@
 <template>
     <div>
+        <page-title
+            :heading="heading"
+            :subheading="subheading"
+            :icon="icon"
+        ></page-title>
+
         <loading class="text-center" :active.sync="loading"></loading>
         <div>
             <Table
@@ -36,6 +42,7 @@
 
 <script>
 import Table from "./components/Table.vue";
+import PageTitle from "./components/PageTitle";
 import ProductServiceForm from "./components/ProductServiceForm.vue";
 import { ProductServices } from "@/mixins/productService";
 import { Images } from "@/mixins/image";
@@ -46,6 +53,7 @@ import Loading from "vue-loading-overlay";
 export default {
     components: {
         Table,
+        PageTitle,
         ProductServiceForm,
         Loading
     },
@@ -60,8 +68,9 @@ export default {
     data() {
         return {
             loading: false,
-            heading: "Produits/Services",
-            subheading: "Créer les produits ou services.",
+            heading: "LaColloc - Produits/Services",
+            subheading: "Produits/Services disponibles",
+            icon: "pe-7s-news-paper icon-gradient bg-night-fade",
             productsServices: [],
             dialog: false,
             isFormOpen: false,

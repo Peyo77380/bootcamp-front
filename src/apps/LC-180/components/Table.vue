@@ -231,9 +231,6 @@ export default {
                 });
             }
         }
-        /*         prows() {
-            return this.filteredItems.length;
-        } */
     },
     methods: {
         async remove(id) {
@@ -243,7 +240,7 @@ export default {
                     // await this.handleRemove(id);
                     this.$emit("remove", id);
                 } catch (error) {
-                    console.error(error);
+                    this.$sweetError("GLC-180-remove");
                 }
             }
         },
