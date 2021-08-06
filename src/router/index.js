@@ -9,6 +9,27 @@ export default new Router({
     },
     routes: [
         {
+            path: "/buildings",
+            name: "our-buildings",
+            component: () => import("@/apps/buildings/all-buildings")
+        },
+        {
+            path: "/buildings/add",
+            name: "add-building",
+            component: () => import("@/apps/buildings/single-building")
+        },
+        {
+            path: "/buildings/show/:id",
+            name: "show-building",
+            component: () => import("@/apps/buildings/single-building")
+        },
+        {
+            path: "/buildings/edit/:id",
+            name: "edit-building",
+            component: () => import("@/apps/buildings/single-building")
+        },
+
+        {
             /**
              * Change title on component.
              * Add to menu
@@ -48,7 +69,6 @@ export default new Router({
         },
 
         {
-
             path: "/configuration/faqs",
             name: "configuration - FAQs",
             component: () => import("@/apps/configuration/faqs")
@@ -82,7 +102,7 @@ export default new Router({
             name: "ref-LC-27",
             component: () => import("@/apps/tomerge/LC-27/index.vue")
         },
-        
+
         /**
          * To finish
          */
@@ -104,31 +124,6 @@ export default new Router({
          * Behavior on axios
          * Error on routes
          */
-        {
-            path: "/tomerge/buildings",
-            name: "our-buildings",
-            component: () =>
-                import("@/apps/tomerge/LC-144/Buildings/all-buildings")
-        },
-        {
-            path: "/tomerge/buildings/add",
-            name: "add-building",
-            component: () =>
-                import("@/apps/tomerge/LC-144/Buildings/single-building")
-        },
-        {
-            path: "/tomerge/buildings/show/:id",
-            name: "show-building",
-            component: () =>
-                import("@/apps/tomerge/LC-144/Buildings/single-building")
-        },
-        {
-            path: "/tomerge/buildings/edit/:id",
-            name: "edit-building",
-            component: () =>
-                import("@/apps/tomerge/LC-144/Buildings/single-building")
-        },
-        
 
         // LC-142: Need axios + behaviors + dummy datas need to be deleted and replaced by real datas on most pages
         {
@@ -160,41 +155,47 @@ export default new Router({
          * no axios
          *
          */
-   
+
         {
-            path     : '/wallCardSunglo-1',
-            name     : 'wallCardSungloV1',
-            component: () => import('@/apps/tomerge/LC-173-JC/WallCard-sunglo-1')
+            path: "/wallCardSunglo-1",
+            name: "wallCardSungloV1",
+            component: () =>
+                import("@/apps/tomerge/LC-173-JC/WallCard-sunglo-1")
         },
         {
-            path     : '/wallCardSunglo-2',
-            name     : 'wallCardSungloV2',
-            component: () => import('@/apps/tomerge/LC-173-JC/WallCard-sunglo-2')
+            path: "/wallCardSunglo-2",
+            name: "wallCardSungloV2",
+            component: () =>
+                import("@/apps/tomerge/LC-173-JC/WallCard-sunglo-2")
         },
         {
-            path     : '/wallCardSunglo-3',
-            name     : 'wallCardSungloV3',
-            component: () => import('@/apps/tomerge/LC-173-JC/WallCard-sunglo-3')
+            path: "/wallCardSunglo-3",
+            name: "wallCardSungloV3",
+            component: () =>
+                import("@/apps/tomerge/LC-173-JC/WallCard-sunglo-3")
         },
         {
-            path     : '/wallCardChocolate',
-            name     : 'wallCardChocolate',
-            component: () => import('@/apps/tomerge/LC-173-JC/WallCard-chocolate')
+            path: "/wallCardChocolate",
+            name: "wallCardChocolate",
+            component: () =>
+                import("@/apps/tomerge/LC-173-JC/WallCard-chocolate")
         },
         {
-            path     : '/wallCardTradewind',
-            name     : 'wallCardTradewind',
-            component: () => import('@/apps/tomerge/LC-173-JC/WallCard-tradewind')
+            path: "/wallCardTradewind",
+            name: "wallCardTradewind",
+            component: () =>
+                import("@/apps/tomerge/LC-173-JC/WallCard-tradewind")
         },
         {
-            path     : '/wallCardCorn',
-            name     : 'wallCardCorn',
-            component: () => import('@/apps/tomerge/LC-173-JC/WallCard-corn')
+            path: "/wallCardCorn",
+            name: "wallCardCorn",
+            component: () => import("@/apps/tomerge/LC-173-JC/WallCard-corn")
         },
         {
-            path     : '/wallCardMidnightBlue',
-            name     : 'wallCardMidnightBlue',
-            component: () => import('@/apps/tomerge/LC-173-JC/WallCard-midnightBlue')
+            path: "/wallCardMidnightBlue",
+            name: "wallCardMidnightBlue",
+            component: () =>
+                import("@/apps/tomerge/LC-173-JC/WallCard-midnightBlue")
         }
         // {
         //     name: 'faq',
@@ -207,6 +208,5 @@ export default new Router({
         //     name: "LC-31-RMC",
         //     component: () => import("@/apps/LC-31-RMC/index.vue")
         // },
-
     ]
 });

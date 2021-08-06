@@ -14,14 +14,18 @@
                                         <v-text-field
                                             v-model="building.name"
                                             label="Nom du bâtiment"
-                                            v-bind:disabled="editionMode === false"
+                                            v-bind:disabled="
+                                                editionMode === false
+                                            "
                                         ></v-text-field>
                                     </div>
                                     <div class="input-group">
                                         <v-text-field
                                             v-model="building.location.address"
                                             label="Numéro et rue"
-                                            v-bind:disabled="editionMode === false"
+                                            v-bind:disabled="
+                                                editionMode === false
+                                            "
                                         ></v-text-field>
                                     </div>
 
@@ -29,7 +33,9 @@
                                         <v-text-field
                                             v-model="building.location.zipCode"
                                             label="Code postal"
-                                            v-bind:disabled="editionMode === false"
+                                            v-bind:disabled="
+                                                editionMode === false
+                                            "
                                         ></v-text-field>
                                     </div>
 
@@ -37,7 +43,9 @@
                                         <v-text-field
                                             v-model="building.location.city"
                                             label="Ville"
-                                            v-bind:disabled="editionMode === false"
+                                            v-bind:disabled="
+                                                editionMode === false
+                                            "
                                         ></v-text-field>
                                     </div>
 
@@ -45,10 +53,11 @@
                                         <v-text-field
                                             v-model="building.location.country"
                                             label="Pays"
-                                            v-bind:disabled="editionMode === false"
+                                            v-bind:disabled="
+                                                editionMode === false
+                                            "
                                         ></v-text-field>
                                     </div>
-
                                 </div>
                             </div>
                         </v-card-text>
@@ -72,35 +81,6 @@
                         </v-card-text>
                     </v-card>
                 </v-expansion-panel-content>
-                <!-- <v-expansion-panel-content>
-                    <template v-slot:header>
-                        <div>Caractéristiques</div>
-                    </template>
-                    <v-card>
-                        <v-card-text class="grey lighten-3">
-                            <template>
-                                <v-container fluid>
-                                    <v-layout row wrap>
-                                        <v-flex
-                                            v-for="service in services"
-                                            xs4
-                                            :key="service._id"
-                                            >
-                                            <v-checkbox
-                                                :id="`service_${service._id}`"
-                                                :label="service.name"
-                                                 v-bind:disabled="editionMode === false"
-                                                @click="toggleService(service._id)"
-                                            >
-                                            {{service.name}}
-                                            </v-checkbox>
-                                        </v-flex>
-                                    </v-layout>
-                                </v-container>
-                            </template>
-                        </v-card-text>
-                    </v-card>
-                </v-expansion-panel-content> --> 
                 <v-expansion-panel-content>
                     <template v-slot:header>
                         <div>Description</div>
@@ -138,7 +118,7 @@
                                     /><label
                                         class="custom-file-label"
                                         for="addingNewImageBrowser"
-                                        >Télécharger un fichier</label
+                                        >{{ downloadLabel }}</label
                                     >
                                 </div>
                             </div>
@@ -146,15 +126,11 @@
                     </v-card>
                 </v-expansion-panel-content>
             </v-expansion-panel>
-            
-            <v-btn 
-                v-if="editionMode"
-                @click="sendBuilding">
+
+            <v-btn v-if="editionMode" @click="sendBuilding">
                 Valider
             </v-btn>
-            <v-btn
-                v-if="editionMode"
-                @click="redirectToBuildingIndex">
+            <v-btn v-if="editionMode" @click="redirectToBuildingIndex">
                 Annuler
             </v-btn>
         </form>
@@ -162,18 +138,17 @@
 </template>
 
 <script>
-import { Buildings } from "@/mixins/building"
+import { Buildings } from "@/mixins/building";
 // import { Services } from "@/mixins/service"
-import { Images } from "@/mixins/image"
-
+import { Images } from "@/mixins/image";
 
 export default {
-    mixins: [ 
+    mixins: [
         Buildings,
         // Services,
         Images
-        ],
-    data () {
+    ],
+    data() {
         return {
             building: {
                 _id: null,
@@ -182,7 +157,7 @@ export default {
                     address: "",
                     city: "",
                     zipCode: "",
-                    country: "",
+                    country: ""
                 },
                 surface: 0,
                 openingHours: [],
@@ -191,14 +166,16 @@ export default {
                 characterics: "",
                 state: 0,
                 enabled: true,
-                floors: [],
+                floors: []
+
                 // services: [],
-            },     
+            },
             // services: [],
-            editionMode: false, 
-        }
+            editionMode: false,
+            downloadLabel: "Télécharger un fichier"
+        };
     },
-    mounted () {
+    mounted() {
         this.switchMode();
         // this.getServices();
         if (this.$route.params.id) {
@@ -209,36 +186,42 @@ export default {
         addFile(event) {
             const fileList = event.target.files;
 
-            if(fileList && fileList.length > 0) {
-                this.building.file = event.target.files[event.target.files.length-1];
+            if (fileList && fileList.length > 0) {
+                this.building.file =
+                    event.target.files[event.target.files.length - 1];
+                console.log(event.target.files);
+                this.downloadLabel = event.target.files[0].name;
             }
-            
         },
-        switchMode () {
-            if ((this.$route.params.id && this.$route.name == "edit-building") || this.$route.name == "add-building") {
-                return this.editionMode = true;
+        switchMode() {
+            if (
+                (this.$route.params.id &&
+                    this.$route.name == "edit-building") ||
+                this.$route.name == "add-building"
+            ) {
+                return (this.editionMode = true);
             }
-            return this.editionMode = false;
+            return (this.editionMode = false);
         },
-        async getBuilding () {
-            const id = this.$route.params.id
+        async getBuilding() {
+            const id = this.$route.params.id;
             if (!id) {
                 return;
             }
             const res = await this.getBuildingById(id);
             if (res.error) {
-                this.$sweetError('Erreur de chargement du batiment')
+                this.$sweetError("Erreur de chargement du batiment");
             }
-            this.building = res.datas
+            this.building = res.datas;
         },
-        async getServices () {
+        async getServices() {
             const res = await this.getAllServices();
             if (res.error) {
-                this.$sweetError('Erreur de chargement des services')
+                this.$sweetError("Erreur de chargement des services");
             }
             this.services = res.datas;
         },
-        async sendBuilding () {
+        async sendBuilding() {
             this.building.wl = 1;
             this.building.user = 1;
             this.building.caption = "test";
@@ -251,46 +234,57 @@ export default {
                 return await this.saveNewBuilding();
             }
         },
-        async sendUpdatedBuilding () {
-            
-            const update = await this.updateBuilding(this.$route.params.id, this.building);
+        async sendUpdatedBuilding() {
+            const update = await this.updateBuilding(
+                this.$route.params.id,
+                this.building
+            );
             if (update.error) {
-                return this.$sweetError('Impossible de modifier ce bâtiment.');
+                return this.$sweetError("Impossible de modifier ce bâtiment.");
             }
             const buildingId = update.datas._id;
-            
 
             if (buildingId && this.building.file) {
-                const storedImage = await this.storeImage(this.building, buildingId);
+                const storedImage = await this.storeImage(
+                    this.building,
+                    buildingId
+                );
 
                 if (storedImage.error) {
-                    return this.$sweetError('Une erreur est survenue pendant l\'enregistrement de l\'image');
+                    return this.$sweetError(
+                        "Une erreur est survenue pendant l'enregistrement de l'image"
+                    );
                 }
             }
-            this.$sweetNotif('Le batiment a été modifié');
+            this.$sweetNotif("Le batiment a été modifié");
             return this.redirectToBuildingIndex();
         },
         async saveNewBuilding() {
             const storedBuilding = await this.storeBuilding(this.building);
             if (storedBuilding.error) {
-                return this.$sweetError('Impossible d\'enregistrer un nouveau bâtiment.');
+                return this.$sweetError(
+                    "Impossible d'enregistrer un nouveau bâtiment."
+                );
             }
             const buildingId = storedBuilding.datas._id;
-            
 
             if (buildingId && this.building.file) {
-                
-                const storedImage = await this.storeImage(this.building, buildingId);
+                const storedImage = await this.storeImage(
+                    this.building,
+                    buildingId
+                );
 
                 if (storedImage.error) {
-                    return this.$sweetError('Une erreur est survenue pendant l\'enregistrement de l\'image');
+                    return this.$sweetError(
+                        "Une erreur est survenue pendant l'enregistrement de l'image"
+                    );
                 }
             }
-            this.$sweetNotif('Le batiment a été sauvegardé');
+            this.$sweetNotif("Le batiment a été sauvegardé");
             return this.redirectToBuildingIndex();
         },
         redirectToBuildingIndex() {
-            return this.$router.push({name: "our-buildings"});
+            return this.$router.push({ name: "our-buildings" });
         }
         // toggleService (id) {
         //     // TODO : gérer les services disponibles

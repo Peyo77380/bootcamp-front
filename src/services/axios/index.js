@@ -30,4 +30,6 @@ const apiCRM = axios.create({
     }
 });
 
-export { apiCustomFields, apiRoomServices, apiCRM };
+const mediaHost = "http://127.0.0.1:3000/api/";
+
+export { apiCustomFields, apiRoomServices, apiCRM, mediaHost };
