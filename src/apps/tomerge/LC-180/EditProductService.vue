@@ -237,7 +237,7 @@ import { faChevronDown, faChevronUp } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/vue-fontawesome";
 
 library.add(faChevronUp, faChevronDown);
-import { ProductServices } from "../../mixins/productService";
+import { ProductServices } from "@/mixins/productService";
 import Loading from "vue-loading-overlay";
 export default {
     components: {
