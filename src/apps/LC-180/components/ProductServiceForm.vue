@@ -249,16 +249,16 @@ export default {
             file: null,
             valid: true,
             nameRules: [
-                v => !!v || "Le nom est requis"
-                /*                 v =>
-                    (v && v.length <= 10) ||
-                    "Name must be less than 10 characters" */
+                v => !!v || "Le nom est requis",
+                v =>
+                    (v && v.length <= 15) ||
+                    "Name must be less than 10 characters"
             ],
             identifiantRules: [
-                v => !!v || "L'identifiant est requis"
-                /*                 v =>
+                v => !!v || "L'identifiant est requis",
+                v =>
                     (v && v.length <= 10) ||
-                    "Name must be less than 10 characters" */
+                    "Name must be less than 10 characters"
             ],
             publicPriceRules: [v => !!v || "Le prix public est requis"]
         };

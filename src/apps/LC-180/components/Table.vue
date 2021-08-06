@@ -37,11 +37,11 @@
                 >
                     <thead>
                         <tr>
+                            <th class="text-center">Identifiant</th>
                             <th class="text-center">Nom</th>
                             <th class="text-center">Type</th>
                             <th class="text-center">Catégorie</th>
                             <th class="text-center">Affichage</th>
-                            <!--                            <th class="text-center">Prix HT</th> -->
                             <th class="text-center">Prix TTC</th>
                             <th class="text-center">Etat</th>
                         </tr>
@@ -52,6 +52,9 @@
                                 v-for="product in filteredItems"
                                 :key="product._id"
                             >
+                                <td class="text-center">
+                                    {{ product.key.toUpperCase() }}
+                                </td>
                                 <td class="text-center">
                                     {{ product.name }}
                                 </td>
@@ -73,12 +76,6 @@
                                 <td class="text-center">
                                     {{ getDisplayText(product.display) }}
                                 </td>
-                                <!-- 
-                            <td class="text-center">
-                                <a href="javascript:void(0)">{{
-                                    product.price
-                                }}</a>
-                            </td> -->
                                 <td
                                     class="text-center"
                                     v-if="product.prices.length > 0"
