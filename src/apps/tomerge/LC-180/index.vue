@@ -1,6 +1,7 @@
 <template>
   <div>
     <loading class="text-center" :active.sync="loading"></loading>
+    
     <div>
       <Table
         @remove="handleRemove"
