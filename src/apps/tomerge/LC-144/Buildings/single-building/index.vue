@@ -68,41 +68,6 @@
                                         v-bind:disabled="editionMode === false"
                                     ></v-text-field>
                                 </div>
-                                Etages
-                                <div class="input-group">
-                                    <v-text-field
-                                        v-model="building.floors.name"
-                                        label="Nom de l'étage"
-                                        v-bind:disabled="editionMode === false"
-                                    ></v-text-field>
-                                    <v-text-field
-                                        v-model="building.floors.surface"
-                                        label="Surface de l'étage"
-                                        v-bind:disabled="editionMode === false"
-                                    ></v-text-field>
-                                    <v-checkbox
-                                        label="Activé ?"
-                                            v-bind:disabled="editionMode === false"
-                                        v-model="building.floors.state"
-                                    ></v-checkbox>
-                                </div>
-                                <div class="input-group">
-                                    <v-text-field
-                                        v-model="building.floors.name"
-                                        label="Nom de l'étage"
-                                        v-bind:disabled="editionMode === false"
-                                    ></v-text-field>
-                                    <v-text-field
-                                        v-model="building.floors.surface"
-                                        label="Surface de l'étage"
-                                        v-bind:disabled="editionMode === false"
-                                    ></v-text-field>
-                                    <v-checkbox
-                                        label="Activé ?"
-                                            v-bind:disabled="editionMode === false"
-                                        v-model="building.floors.state"
-                                    ></v-checkbox>
-                                </div>
                             </div>
                         </v-card-text>
                     </v-card>
@@ -165,8 +130,11 @@
                                     <input
                                         type="file"
                                         id="addingNewImageBrowser"
+                                        ref="imageInput"
+                                        accept="image/*"
                                         name="customFile"
                                         class="custom-file-input"
+                                        @change="addFile"
                                     /><label
                                         class="custom-file-label"
                                         for="addingNewImageBrowser"
@@ -195,13 +163,15 @@
 
 <script>
 import { Buildings } from "@/mixins/building"
-import { Services } from "@/mixins/service"
+// import { Services } from "@/mixins/service"
+import { Images } from "@/mixins/image"
 
 
 export default {
     mixins: [ 
         Buildings,
-        Services
+        // Services,
+        Images
         ],
     data () {
         return {
@@ -217,7 +187,7 @@ export default {
                 surface: 0,
                 openingHours: [],
                 description: "",
-                pictures: [],
+                file: "",
                 characterics: "",
                 state: 0,
                 enabled: true,
@@ -230,12 +200,20 @@ export default {
     },
     mounted () {
         this.switchMode();
-        this.getServices();
+        // this.getServices();
         if (this.$route.params.id) {
             this.getBuilding();
         }
     },
     methods: {
+        addFile(event) {
+            const fileList = event.target.files;
+
+            if(fileList && fileList.length > 0) {
+                this.building.file = event.target.files[event.target.files.length-1];
+            }
+            
+        },
         switchMode () {
             if ((this.$route.params.id && this.$route.name == "edit-building") || this.$route.name == "add-building") {
                 return this.editionMode = true;
@@ -249,18 +227,23 @@ export default {
             }
             const res = await this.getBuildingById(id);
             if (res.error) {
-                console.log(res.error)
+                this.$sweetError('Erreur de chargement du batiment')
             }
             this.building = res.datas
         },
         async getServices () {
             const res = await this.getAllServices();
             if (res.error) {
-                console.log(res.error)
+                this.$sweetError('Erreur de chargement des services')
             }
             this.services = res.datas;
         },
         async sendBuilding () {
+            this.building.wl = 1;
+            this.building.user = 1;
+            this.building.caption = "test";
+            this.building.relatedEntityType = 1;
+
             if (this.editionMode) {
                 if (this.$route.params.id) {
                     return await this.sendUpdatedBuilding();
@@ -269,17 +252,41 @@ export default {
             }
         },
         async sendUpdatedBuilding () {
+            
             const update = await this.updateBuilding(this.$route.params.id, this.building);
             if (update.error) {
-                return console.log(update.error)
+                return this.$sweetError('Impossible de modifier ce bâtiment.');
             }
+            const buildingId = update.datas._id;
+            
+
+            if (buildingId && this.building.file) {
+                const storedImage = await this.storeImage(this.building, buildingId);
+
+                if (storedImage.error) {
+                    return this.$sweetError('Une erreur est survenue pendant l\'enregistrement de l\'image');
+                }
+            }
+            this.$sweetNotif('Le batiment a été modifié');
             return this.redirectToBuildingIndex();
         },
         async saveNewBuilding() {
-            const save = await this.storeBuilding(this.building);
-            if (save.error) {
-                return console.log(save.error);
+            const storedBuilding = await this.storeBuilding(this.building);
+            if (storedBuilding.error) {
+                return this.$sweetError('Impossible d\'enregistrer un nouveau bâtiment.');
             }
+            const buildingId = storedBuilding.datas._id;
+            
+
+            if (buildingId && this.building.file) {
+                
+                const storedImage = await this.storeImage(this.building, buildingId);
+
+                if (storedImage.error) {
+                    return this.$sweetError('Une erreur est survenue pendant l\'enregistrement de l\'image');
+                }
+            }
+            this.$sweetNotif('Le batiment a été sauvegardé');
             return this.redirectToBuildingIndex();
         },
         redirectToBuildingIndex() {

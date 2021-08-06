@@ -51,7 +51,7 @@ export const Buildings = {
                 await apiRoomServices.delete(`building/${id}`);
                 return {
                     status: 1,
-                    success: "Successfully deleted"
+                    datas: "Successfully deleted"
                 }
             } catch (error) {
                 return {
@@ -63,10 +63,10 @@ export const Buildings = {
         async updateBuilding (id, data) {
             // TODO : add validation
             try {
-                const response = await apiRoomServices.put(`building/${id}`, data);
+                const response = await apiRoomServices.post(`building/${id}`, data);
                 return {
                     status: 1,
-                    success: response.data.datas
+                    datas: response.data.datas
                 }
             } catch (error) {
                 return {

@@ -157,14 +157,10 @@ export default new Router({
         /**
          * behavior don't working
          * update and add don't working
+         * no axios
          *
          */
-        // Dashboards
-        {
-            path: "/LC-31-RMC",
-            name: "LC-31-RMC",
-            component: () => import("@/apps/LC-31-RMC/index.vue")
-        },
+   
         {
             path     : '/wallCardSunglo-1',
             name     : 'wallCardSungloV1',
@@ -200,5 +196,17 @@ export default new Router({
             name     : 'wallCardMidnightBlue',
             component: () => import('@/apps/tomerge/LC-173-JC/WallCard-midnightBlue')
         }
+        // {
+        //     name: 'faq',
+        //     path: '/LC-186',
+        //     component: () => import('@/apps/tomerge/LC-186'),
+        // },
+        //     // Dashboards
+        // {
+        //     path: "/LC-31-RMC",
+        //     name: "LC-31-RMC",
+        //     component: () => import("@/apps/LC-31-RMC/index.vue")
+        // },
+
     ]
 });

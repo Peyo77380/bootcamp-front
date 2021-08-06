@@ -34,7 +34,6 @@ export const Rooms = {
         async getRoom(id) {
             try {
                 const response = await apiRoomServices.get(`room/${id}`);
-                console.log(response);
                 return {
                     status: 1,
                     datas: response.data.datas
@@ -49,7 +48,6 @@ export const Rooms = {
         async updateRoom(id, datas) {
             try {
                 const response = await apiRoomServices.put(`room/${id}`, datas);
-                console.log(response);
                 return {
                     status: 1,
                     datas: response.data.datas
@@ -64,7 +62,7 @@ export const Rooms = {
         async createRoom(datas) {
             try {
                 const response = await apiRoomServices.post("room", datas);
-                console.log(response);
+                
                 return {
                     status: 1,
                     datas: response.data.datas
