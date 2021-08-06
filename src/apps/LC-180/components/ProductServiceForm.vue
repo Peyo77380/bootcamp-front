@@ -54,7 +54,7 @@
                             </v-layout>
                             <v-layout>
                                 <v-text-field
-                                    v-model="formItem.variation[0]"
+                                    v-model="formItem.variation"
                                     label="Variation"
                                 ></v-text-field>
                                 <v-flex>
