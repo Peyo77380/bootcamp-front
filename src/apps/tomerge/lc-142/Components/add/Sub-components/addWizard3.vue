@@ -140,7 +140,7 @@
 import { serviceDetailsData } from "@/apps/tomerge/lc-142/Components/data-serviceDetails";
 import { roomDetailsData } from "@/apps/tomerge/lc-142/Components/data-roomDetails";
 import VuePerfectScrollbar from "vue-perfect-scrollbar";
-
+// TODO: related to service/product API 
 export default {
     name: "Wizard3",
     components: {
