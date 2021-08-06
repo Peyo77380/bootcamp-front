@@ -37,11 +37,11 @@
                 >
                     <thead>
                         <tr>
+                            <th class="text-center">Identifiant</th>
                             <th class="text-center">Nom</th>
                             <th class="text-center">Type</th>
                             <th class="text-center">Catégorie</th>
                             <th class="text-center">Affichage</th>
-                            <!--                            <th class="text-center">Prix HT</th> -->
                             <th class="text-center">Prix TTC</th>
                             <th class="text-center">Etat</th>
                         </tr>
@@ -52,6 +52,9 @@
                                 v-for="product in filteredItems"
                                 :key="product._id"
                             >
+                                <td class="text-center">
+                                    {{ product.key.toUpperCase() }}
+                                </td>
                                 <td class="text-center">
                                     {{ product.name }}
                                 </td>
@@ -73,12 +76,6 @@
                                 <td class="text-center">
                                     {{ getDisplayText(product.display) }}
                                 </td>
-                                <!-- 
-                            <td class="text-center">
-                                <a href="javascript:void(0)">{{
-                                    product.price
-                                }}</a>
-                            </td> -->
                                 <td
                                     class="text-center"
                                     v-if="product.prices.length > 0"
@@ -231,9 +228,6 @@ export default {
                 });
             }
         }
-        /*         prows() {
-            return this.filteredItems.length;
-        } */
     },
     methods: {
         async remove(id) {
@@ -243,7 +237,7 @@ export default {
                     // await this.handleRemove(id);
                     this.$emit("remove", id);
                 } catch (error) {
-                    console.error(error);
+                    this.$sweetError("GLC-180-remove");
                 }
             }
         },
@@ -251,7 +245,7 @@ export default {
             const display = this.radioDisplays.filter(ds => {
                 return ds.value == value;
             });
-            return display[0].text;
+            return display[0] ? display[0].text : "";
         }
     }
 };

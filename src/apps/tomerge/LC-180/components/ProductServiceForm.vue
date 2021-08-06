@@ -18,7 +18,7 @@
                 </div>
                 <div class="mb-5">
                     <v-flex xs12 sm8 offset-sm1 align-center justify-center>
-                        <v-form ref="form">
+                        <v-form ref="form" v-model="valid">
                             <v-layout>
                                 <v-combobox
                                     v-model="selectedType"
@@ -29,17 +29,27 @@
                                     v-model="selectedCategory"
                                     :items="selectedCategories"
                                     label="Catégorie"
+                                    :rules="[
+                                        v =>
+                                            v._id !== null ||
+                                            'La catégorie doit être sélectionnée !'
+                                    ]"
+                                    required
                                 ></v-combobox>
                             </v-layout>
                             <v-layout>
                                 <v-text-field
                                     v-model="formItem.name"
                                     label="Nom"
+                                    :rules="nameRules"
+                                    required
                                 ></v-text-field>
 
                                 <v-text-field
                                     v-model="formItem.key"
                                     label="Identifiant"
+                                    :rules="identifiantRules"
+                                    required
                                 ></v-text-field>
                             </v-layout>
                             <v-layout>
@@ -51,7 +61,7 @@
                                     <v-text-field
                                         label="Image"
                                         @click="onPickFile"
-                                        v-model="imageProduct"
+                                        v-model="fileName"
                                         prepend-icon="attach_file"
                                     ></v-text-field>
                                     <!-- Hidden -->
@@ -66,17 +76,22 @@
                             </v-layout>
                             <v-layout>
                                 <v-text-field
-                                    v-model="prices.amounts.public"
+                                    type="number"
+                                    v-model.number="prices.amounts.public"
                                     label="Prix de vente"
+                                    :rules="publicPriceRules"
+                                    required
                                 ></v-text-field>
 
                                 <v-text-field
-                                    v-model="prices.amounts.member"
+                                    type="number"
+                                    v-model.number="prices.amounts.member"
                                     label="Prix membres"
                                 ></v-text-field>
 
                                 <v-text-field
-                                    v-model="prices.amounts.co"
+                                    type="number"
+                                    v-model.number="prices.amounts.co"
                                     label="Prix co"
                                 ></v-text-field>
                             </v-layout>
@@ -144,7 +159,11 @@
                                     ></v-radio>
                                 </v-radio-group>
                             </v-layout>
-                            <v-btn color="success" @click="confirmer">
+                            <v-btn
+                                :disabled="!valid"
+                                color="success"
+                                @click="validate()"
+                            >
                                 Confirmer
                             </v-btn>
 
@@ -226,20 +245,39 @@ export default {
     data() {
         return {
             selectedCategories: [],
-
-            imageProduct: "",
-            url: "",
-            fileObject: null,
-            cardResult: "",
-            name: "",
-            size: "",
-            type: "",
-            file: "",
-            lastModifiedDate: ""
+            fileName: "",
+            file: null,
+            valid: true,
+            nameRules: [
+                v => !!v || "Le nom est requis",
+                v =>
+                    (v && v.length <= 15) ||
+                    "Name must be less than 10 characters"
+            ],
+            identifiantRules: [
+                v => !!v || "L'identifiant est requis",
+                v =>
+                    (v && v.length <= 10) ||
+                    "Name must be less than 10 characters"
+            ],
+            publicPriceRules: [v => !!v || "Le prix public est requis"]
         };
     },
     methods: {
-        async confirmer() {
+        async validate() {
+            //if (this.selectedCategory._id) {
+            // console.log(this.selectedCategory);
+            this.$refs.form.validate();
+            await this.handleRegister();
+            //     }
+        },
+        reset() {
+            this.$refs.form.reset();
+        },
+        resetValidation() {
+            this.$refs.form.resetValidation();
+        },
+        async handleRegister() {
             try {
                 //If the item is duplicated, delete unnecessary variables which were received by existing product
                 const item = this.formItem;
@@ -257,6 +295,13 @@ export default {
                 }
                 //add prices receiving by v-model
                 item.prices = this.prices;
+                //pour régler les conneries de Laravel et de Pierre
+                if (item.prices.amounts.member === null) {
+                    delete item.prices.amounts.member;
+                }
+                if (item.prices.amounts.co === null) {
+                    delete item.prices.amounts.co;
+                }
                 //delete the rest of old data
                 if (item.prices._id) {
                     delete item.prices._id;
@@ -266,22 +311,13 @@ export default {
                     delete item.prices.startDate;
                     delete item.prices.updated_at;
                 }
-                if (!this.fileObject) {
-                    alert("No file!!");
+                var image = {};
+                if (this.file != null) {
+                    image.file = this.file;
+                    image.wl = 1;
+                    image.user = 1;
                 }
-                let data = new FormData();
-                data.append("name", "my-picture");
-                data.append("file", this.file);
-
-                item.wl = 1;
-                item.user = 1;
-                data.append("item", item, data);
-
-                //  item.prices.startDate = Date.now();
-                this.$emit("register", data);
-
-                //await this.handleRegister(item);
-                // this.closeForm();
+                this.$emit("register", item, image);
             } catch (error) {
                 this.$sweetError("GLC-180-upload");
             }
@@ -306,23 +342,8 @@ export default {
             this.$refs.fileInput.click();
         },
         onFilePicked() {
-            console.log(this.$refs.fileInput);
             this.file = this.$refs.fileInput.files[0];
-        },
-        onUploadSelectedFileClick() {
-            console.log("upload");
-            console.log(this.fileObject);
-            // A file is not chosen!
-            if (!this.fileObject) {
-                alert("No file!!");
-            }
-            // DO YOUR JOB HERE with fileObjectToUpload
-            // https://developer.mozilla.org/en-US/docs/Web/API/File/File
-            this.name = this.fileObject.name;
-            this.size = this.fileObject.size;
-            this.type = this.fileObject.type;
-            this.lastModifiedDate = this.fileObject.lastModifiedDate;
-            // DO YOUR JOB HERE with fileObjectToUpload
+            this.fileName = this.file.name;
         }
     }
 };

@@ -1,6 +1,11 @@
 <template>
     <!-- Pour faire simple, bootstrapiser le tout !-->
     <div>
+        <page-title
+            :heading="heading"
+            :subheading="subheading"
+            :icon="icon"
+        ></page-title>
         <loading class="text-center" :active.sync="loading"></loading>
         <div class="mb-5" v-if="loading == false">
             <v-flex xs12 sm8 offset-sm1 align-center justify-center>
@@ -39,7 +44,7 @@
                             <v-text-field
                                 label="Image"
                                 @click="onPickFile"
-                                v-model="image.imageProduct"
+                                v-model="fileName"
                                 prepend-icon="attach_file"
                             ></v-text-field>
                             <!-- Hidden -->
@@ -48,12 +53,16 @@
                                 style="display: none"
                                 ref="fileInput"
                                 accept="image/*"
-                                @change="onFilePicked"
+                                @change="onFilePicked()"
                             />
                         </v-flex>
                     </v-layout>
 
-                    <v-layout id="root" @click="isShow = !isShow">
+                    <v-layout
+                        class="d-flex flex-column"
+                        id="root"
+                        @click="isShow = !isShow"
+                    >
                         <h5>
                             Historique des Prix
                             <font-awesome-icon
@@ -69,7 +78,7 @@
                         <transition name="slide">
                             <table
                                 v-if="isShow"
-                                class="align-middle text-truncate mb-0 table table-borderless table-striped table-hover"
+                                class="align-left text-truncate mb-0 table table-borderless table-striped table-hover"
                             >
                                 <thead>
                                     <tr>
@@ -232,6 +241,7 @@
 </template>
 
 <script>
+import PageTitle from "./components/PageTitle";
 import { library } from "@fortawesome/fontawesome-svg-core";
 import { faChevronDown, faChevronUp } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/vue-fontawesome";
@@ -242,6 +252,7 @@ import Loading from "vue-loading-overlay";
 export default {
     components: {
         Loading,
+        PageTitle,
         "font-awesome-icon": FontAwesomeIcon
     },
     name: "ProductServiceForm",
@@ -291,21 +302,16 @@ export default {
     },
     data() {
         return {
+            heading: "LaColloc - Produits/Services",
+            subheading: "Modifier le produit/service",
+            icon: "pe-7s-news-paper icon-gradient bg-night-fade",
             selectedCategories: [],
             selectedType: "",
             selectedCategory: "",
             loading: false,
             formItem: {},
-            image: {
-                imageProduct: "",
-                url: "",
-                fileObject: null,
-                cardResult: "",
-                name: "",
-                size: "",
-                type: "",
-                lastModifiedDate: ""
-            },
+            fileName: "",
+            file: null,
             prices: {
                 amounts: {
                     public: null,
@@ -370,51 +376,14 @@ export default {
             }
 
             await this.handleModify(this.id, item);
-            /*             console.log("ModifyC");
-            this.$emit("modifyC", this.id, item); */
             this.$router.push({ name: "ProductServiceList" });
         },
-        //For upload image
         onPickFile() {
             this.$refs.fileInput.click();
         },
-        onFilePicked(event) {
-            const files = event.target.files;
-            if (files[0] !== undefined) {
-                this.image.imageProduct = files[0].name;
-                // Check validity of file
-                if (this.image.imageProduct.lastIndexOf(".") <= 0) {
-                    return;
-                }
-                // If valid, continue
-                const fr = new FileReader();
-                fr.readAsDataURL(files[0]);
-                fr.addEventListener("load", () => {
-                    this.image.url = fr.result;
-                    this.image.fileObject = files[0]; // this is an file that can be sent to server...
-                });
-            } else {
-                this.image.imageProduct = "";
-                this.image.fileObject = null;
-                this.image.url = "";
-            }
-        },
-        onUploadSelectedFileClick() {
-            this.loading = true;
-
-            console.log(this.fileObject);
-            // A file is not chosen!
-            if (!this.image.fileObject) {
-                alert("No file!!");
-            }
-            // DO YOUR JOB HERE with fileObjectToUpload
-            // https://developer.mozilla.org/en-US/docs/Web/API/File/File
-            this.image.name = this.fileObject.name;
-            this.image.size = this.fileObject.size;
-            this.image.type = this.fileObject.type;
-            this.image.lastModifiedDate = this.image.fileObject.lastModifiedDate;
-            // DO YOUR JOB HERE with fileObjectToUpload
-            this.loading = false;
+        onFilePicked() {
+            this.file = this.$refs.fileInput.files[0];
+            this.fileName = this.file.name;
         },
         formatDate(date) {
             if (!date) return null;
