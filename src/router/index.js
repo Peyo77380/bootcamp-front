@@ -216,6 +216,10 @@ export default new Router({
             name: "ProductServiceList",
             component: () => import("@/apps/tomerge/LC-180/index.vue")
         },
+
+        // LC-187: 
+// datas's room & dates available 
+        // Need mixins
         {
             path: "/LC-180/:id",
             name: "EditProductService",
@@ -223,6 +227,13 @@ export default new Router({
             component: () => import('@/apps/tomerge/LC-180/EditProductService'),
         },
 
-
+        {
+            path: "/LC-187",
+            name: "calendar",
+            component: () => import('@/apps/tomerge/LC-187'),
+        },
+//LC-187
+            
+       
     ]
 });
