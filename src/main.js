@@ -5,7 +5,7 @@ import router from "./router";
 import { TimeAgo } from "vue2-timeago";
 import CKEditor from "@ckeditor/ckeditor5-vue2";
 
-import BootstrapVue from "bootstrap-vue";
+import { BootstrapVue, BootstrapVueIcons } from 'bootstrap-vue';
 
 import App from "./App";
 
@@ -25,6 +25,7 @@ Vue.use(TimeAgo, {
     }
 });
 Vue.use(CKEditor);
+Vue.use( BootstrapVueIcons );
 
 Vue.component("default-layout", Default);
 Vue.component("userpages-layout", Pages);

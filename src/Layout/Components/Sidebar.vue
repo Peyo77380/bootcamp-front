@@ -123,7 +123,8 @@ export default {
                             title: "Attributes"
                         }
                     ]
-                }
+                },
+
             ],
             collapsed: true,
 

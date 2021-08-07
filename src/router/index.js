@@ -232,8 +232,20 @@ export default new Router({
             name: "calendar",
             component: () => import('@/apps/tomerge/LC-187'),
         },
-//LC-187
-            
-       
+
+                // LC-: 
+// datas's room & dates available 
+        // Need mixins
+      
+        {
+            path: "/membres",
+            name: "membres",
+            component: () => import("@/apps/dash-exemple/LC-203-JC/Membres")
+        },
+        {
+            path: "/societes",
+            name: "societes",
+            component: () => import("@/apps/dash-exemple/LC-203-JC/Societes")
+        }
     ]
 });
