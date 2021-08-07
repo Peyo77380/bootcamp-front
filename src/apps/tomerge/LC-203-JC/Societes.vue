@@ -194,10 +194,10 @@
 </template>
 
 <script>
-import InvoicesQuotes from '@/apps/dash-exemple/LC-203-JC/components/InvoicesQuotes';
-import Credits from '@/apps/dash-exemple/LC-203-JC/components/Credits';
-import Bookings from '@/apps/dash-exemple/LC-203-JC/components/Bookings';
-import Subscription from '@/apps/dash-exemple/LC-203-JC/components/Subscription';
+import InvoicesQuotes from '@/apps/tomerge/LC-203-JC/components/InvoicesQuotes';
+import Credits from '@/apps/tomerge/LC-203-JC/components/Credits';
+import Bookings from '@/apps/tomerge/LC-203-JC/components/Bookings';
+import Subscription from '@/apps/tomerge/LC-203-JC/components/Subscription';
 
 export default {
     name      : 'Societes',
